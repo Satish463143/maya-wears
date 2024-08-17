@@ -1,0 +1,55 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+}
+:root{
+  --pri_text:#000;
+  --white:#fff;
+  --pri_color:#F7E6D3;
+  --sec_color:#D3BFAD;
+  --sec_dark:#8D6B4D;
+}
+Link, a, button{
+  cursor: pointer;
+  color: var(--pri_text);
+  text-decoration: none;
+}
+h1,h2,h3,h4,h5,p{
+  color: var(--pri_text);
+}
+.container{
+  max-width: 90%;
+  margin: auto;  
+}
+body{
+  height: 200vh;
+  background: var(--pri_color);
+}
+
+
+/* For WebKit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* For Firefox */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}

@@ -1,0 +1,30 @@
+.footnav{
+    position: fixed;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    display: none; 
+    z-index: 999;      
+    
+}
+.foornav_box{    
+    padding:10px 20px;
+    background: var(--sec_dark);
+    border-radius: 10px;   
+}
+.foornav_box ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+.nav_foot_active svg,.nav_foot_active svg path {
+    fill: #fff;
+
+}
+
+@media (max-width: 800px){
+    .footnav{
+        display: block;
+    }
+}
