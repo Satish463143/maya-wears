@@ -1,22 +1,24 @@
 .footnav{
     position: fixed;
-    bottom: 10px;
+    bottom: 0px;
     display: flex;
     justify-content: center;
     width: 100%;
-    display: none; 
-    z-index: 999;      
-    
+    display: none;     
+    z-index: 9999;
 }
 .foornav_box{    
-    padding:10px 20px;
+    /* padding:10px 20px; */
+    
     background: var(--sec_dark);
-    border-radius: 10px;   
+    /* border-radius: 10px;    */
 }
 .foornav_box ul {
+    height: 60px;
     display: flex;
     justify-content: space-around;
     list-style: none;
+    align-items: center;
 }
 .nav_foot_active svg,.nav_foot_active svg path {
     fill: #fff;

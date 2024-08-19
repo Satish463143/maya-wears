@@ -22,7 +22,7 @@ const FooterNav = () => {
     
   return (
     <div className='footnav'>
-        <div className=' container'>        
+                
             <div className='foornav_box'>
                 <ul>
                     <Link to="/">
@@ -73,7 +73,7 @@ const FooterNav = () => {
                 </ul>
             </div>
         </div>
-    </div>
+    
   )
 }
 

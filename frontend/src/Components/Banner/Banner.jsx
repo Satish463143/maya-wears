@@ -34,21 +34,21 @@ const Banner = () => {
           <source src="../src/assets/images/Rafting.mp4" type="video/mp4" />
         </video>
       </div>
-      {/* <div className="mobile_img">
+      <div className="mobile_img">
         <video ref={videoRefMobile} autoPlay muted loop>
           <source src="../src/assets/images/skating.mp4" type="video/mp4" />
         </video>
-      </div> */}
+      </div>
 
       {/* Controls */}
-      <div className="controls">
+      {/* <div className="controls">
         <button onClick={togglePlayPause}>
           {isPlaying ? <img src="../src/assets/images/resume.png" />: <img src="../src/assets/images/Play.webp" />}
         </button>
         <button onClick={toggleMuteUnmute}>
           {isMuted ? <img src="../src/assets/images/unmute.png" /> : <img src="../src/assets/images/mute.png" />}
         </button>
-      </div>
+      </div> */}
       <div className='banner_content'>
         <h2>This is the main video </h2>
         <p>Welcome to the satish site and Myawears</p>
