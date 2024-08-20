@@ -7,3 +7,14 @@
     z-index: 999;
     background-color: var(--pri_color);
 }
+.bestSelling h2{
+    text-align: center;
+    margin: 50px 0;
+}
+.best_flex{
+    display: flex;
+    justify-content: start;
+    overflow-x: scroll;
+    scrollbar-width: none;   
+    gap: 20px; 
+}

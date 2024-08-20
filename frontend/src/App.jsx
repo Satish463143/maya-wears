@@ -8,7 +8,7 @@ import StoreContextProvider from './context/StoreContext'
 
 const App = () => {
   return (
-    <StoreContextProvider>
+    
       <div>        
             <Navbar/>
             <FooterNav/>
@@ -17,7 +17,7 @@ const App = () => {
             </Routes>
             <Footer/>        
       </div>
-    </StoreContextProvider>
+    
   )
 }
 

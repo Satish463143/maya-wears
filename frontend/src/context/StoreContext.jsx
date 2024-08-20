@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { ProductList } from "../assets/assets";
 
-export const storeContext = createContext(null)
+export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props)=>{
 
@@ -9,9 +9,9 @@ const StoreContextProvider = (props)=>{
         ProductList
     }
     return(
-        <storeContext.Provider value ={contextValue}>
+        <StoreContext.Provider value ={contextValue}>
             {props.children}
-        </storeContext.Provider>
+        </StoreContext.Provider>
     )
 }
 export default StoreContextProvider

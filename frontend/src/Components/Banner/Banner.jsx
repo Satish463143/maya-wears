@@ -2,40 +2,40 @@ import React, { useRef, useState } from 'react';
 import './Banner.css';
 
 const Banner = () => {
-  const videoRefDesktop = useRef(null);
-  const videoRefMobile = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  // const videoRefDesktop = useRef(null);
+  // const videoRefMobile = useRef(null);
+  // const [isPlaying, setIsPlaying] = useState(true);
+  // const [isMuted, setIsMuted] = useState(true);
 
-  // Toggle play/pause functionality
-  const togglePlayPause = () => {
-    if (isPlaying) {
-      videoRefDesktop.current.pause();
-      videoRefMobile.current.pause();
-    } else {
-      videoRefDesktop.current.play();
-      videoRefMobile.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
+  // // Toggle play/pause functionality
+  // const togglePlayPause = () => {
+  //   if (isPlaying) {
+  //     videoRefDesktop.current.pause();
+  //     videoRefMobile.current.pause();
+  //   } else {
+  //     videoRefDesktop.current.play();
+  //     videoRefMobile.current.play();
+  //   }
+  //   setIsPlaying(!isPlaying);
+  // };
 
-  // Toggle mute/unmute functionality
-  const toggleMuteUnmute = () => {
-    const isCurrentlyMuted = videoRefDesktop.current.muted;
-    videoRefDesktop.current.muted = !isCurrentlyMuted;
-    videoRefMobile.current.muted = !isCurrentlyMuted;
-    setIsMuted(!isCurrentlyMuted);
-  };
+  // // Toggle mute/unmute functionality
+  // const toggleMuteUnmute = () => {
+  //   const isCurrentlyMuted = videoRefDesktop.current.muted;
+  //   videoRefDesktop.current.muted = !isCurrentlyMuted;
+  //   videoRefMobile.current.muted = !isCurrentlyMuted;
+  //   setIsMuted(!isCurrentlyMuted);
+  // };
 
   return (
     <div className="banner">
       <div className="desktop_img">
-        <video ref={videoRefDesktop} autoPlay muted loop>
+        <video  autoPlay muted loop>
           <source src="../src/assets/images/Rafting.mp4" type="video/mp4" />
         </video>
       </div>
       <div className="mobile_img">
-        <video ref={videoRefMobile} autoPlay muted loop>
+        <video autoPlay muted loop>
           <source src="../src/assets/images/skating.mp4" type="video/mp4" />
         </video>
       </div>

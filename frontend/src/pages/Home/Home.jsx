@@ -6,8 +6,8 @@ import BestSellingItem from '../../Components/BestSellingItem/BestSellingItem'
 const Home = () => {
   const adjustContainerWidth = () => {
     document.querySelectorAll('.container').forEach(element => {
-      if (window.innerWidth > 1300) {
-        element.style.maxWidth = '1300px';
+      if (window.innerWidth > 1400) {
+        element.style.maxWidth = '1400px';
       }else{
         element.style.maxWidth = '90%';
       }
