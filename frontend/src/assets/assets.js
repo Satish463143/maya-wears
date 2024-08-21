@@ -1,3 +1,28 @@
+export const BannerContent=[
+    {
+        _id:'1',
+        category:'Image',
+        title:'This is main video',
+        content:'Welcome to the site of Mayawears',
+        desktopImage:'../src/assets/images/banner.jpg',
+        desktopVideo:'../src/assets/images/Rafting.mp4',
+        mobielVideo:'../src/assets/images/video.mp4',
+        mobileImage:'../src/assets/images/mobile.png',
+    }
+]
+export const DownBannerContent=[
+    {
+        _id:'1',
+        category:'Video',
+        title:'This is main video',
+        content:'Welcome to the site of Mayawears',
+        desktopImage:'../src/assets/images/banner.jpg',
+        desktopVideo:'../src/assets/images/Rafting.mp4',
+        mobielVideo:'../src/assets/images/video.mp4',
+        mobileImage:'../src/assets/images/mobile.png',
+    }
+]
+
 export const ProductList =[
     {
         _id:"1",
@@ -6,6 +31,7 @@ export const ProductList =[
         crossPrice:"2000",
         price:"1500",
         quantity:"0",
+        category:'Best Selling'
     },
     {
         _id:"2",
@@ -14,6 +40,7 @@ export const ProductList =[
         crossPrice:"2000",
         price:"1500",
         quantity:"10",
+        category:'Best Selling'
     },
     {
         _id:"3",
@@ -22,6 +49,7 @@ export const ProductList =[
         crossPrice:"2000",
         price:"1500",
         quantity:"10",
+        category:'Best Selling'
     },
     {
         _id:"4",
@@ -30,6 +58,7 @@ export const ProductList =[
         crossPrice:"2000",
         price:"1500",
         quantity:"10",
+        category:'Best Selling'
     },
     {
         _id:"5",
@@ -38,6 +67,7 @@ export const ProductList =[
         crossPrice:"2000",
         price:"1500",
         quantity:"10",
+        category:'Hot Selling'
     },
     {
         _id:"6",
@@ -46,6 +76,7 @@ export const ProductList =[
         crossPrice:"2000",
         price:"1500",
         quantity:"10",
+        category:'Hot Selling'
     },
     {
         _id:"7",
@@ -54,5 +85,24 @@ export const ProductList =[
         crossPrice:"2000",
         price:"1500",
         quantity:"10",
+        category:'Hot Selling',
+    },
+    {
+        _id:"8",
+        image:"../src/assets/images/pant.jpg",
+        title:"sweatshirt",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Hot Selling',
+    },
+    {
+        _id:"9",
+        image:"../src/assets/images/pant.jpg",
+        title:"sweatshirt",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Hot Selling',
     },
 ]

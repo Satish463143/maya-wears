@@ -1,18 +1,28 @@
 .banner{
     width: 100%;
     height: 100vh;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
 }
 .desktop_img,.mobile_img{
     z-index: 99;
-    position: fixed;
+    position: absolute; /* Absolute within the fixed banner */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 .desktop_img video, .mobile_img video{
     width: 100%;
     height: 100vh;
     object-fit: cover;
+}
+.desktop_img img, .mobile_img img{
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
 }
 .mobile_img{
     display: none;
@@ -50,9 +60,10 @@
     transform: scale(0.98); /* Adds a subtle click effect */
   }
 .banner_content{
-    position: fixed;
+    /* position: fixed; */
+    position: relative;
     z-index: 999;
-    bottom: 20vh;
+    margin-top: 80vh;
     text-align: center;
     display: flex;
     width: 100%;
@@ -74,9 +85,9 @@
     .mobile_img{
         display: block !important;
     }
-    /* .desktop_img{
+    .desktop_img{
         display: none;
-    } */
+    }
     .controls{
         bottom: 80px;
     }
@@ -92,5 +103,8 @@
   }
   .banner_content p{
     font-size: 20px;
+  }
+  .banner_content{
+    margin-top: 60vh;
   }
 }

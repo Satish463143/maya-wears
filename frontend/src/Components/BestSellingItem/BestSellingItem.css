@@ -1,15 +1,9 @@
-.bestSelling{
-    height: 200vh;
-    position: absolute;
-    top: 100vh;
-    width: 100%;
-    left: 0;
-    z-index: 999;
-    background-color: var(--pri_color);
+.bestSelling{ 
+    margin-top: 100vh;
 }
-.bestSelling h2{
+.bestSelling h2,.hotSelling h2{
     text-align: center;
-    margin: 50px 0;
+    padding: 50px 0;
 }
 .best_flex{
     display: flex;
@@ -17,4 +11,13 @@
     overflow-x: scroll;
     scrollbar-width: none;   
     gap: 20px; 
+}
+.view_all_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 368px;
+    border-radius: 20px;
+    background: var(--sec_color);
 }

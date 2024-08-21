@@ -1,12 +1,13 @@
 import { createContext } from "react";
-import { ProductList } from "../assets/assets";
+import { BannerContent, ProductList,DownBannerContent } from "../assets/assets";
 
 export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props)=>{
-
     const contextValue ={
-        ProductList
+        ProductList,
+        BannerContent,
+        DownBannerContent,
     }
     return(
         <StoreContext.Provider value ={contextValue}>

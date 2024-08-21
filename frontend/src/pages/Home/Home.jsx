@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import './Home.css'
 import Banner from '../../Components/Banner/Banner'
 import BestSellingItem from '../../Components/BestSellingItem/BestSellingItem'
+import DownBannerItem from '../../Components/DownBannerItem/DownBannerItem'
+import HotSellingItem from '../../Components/hotSellingItem/hotSellingItem'
 
 const Home = () => {
   const adjustContainerWidth = () => {
@@ -24,6 +26,8 @@ const Home = () => {
     <div>
         <Banner/>
         <BestSellingItem/>
+        <DownBannerItem/>
+        <HotSellingItem/>
     </div>
   )
 }

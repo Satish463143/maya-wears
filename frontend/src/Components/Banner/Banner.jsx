@@ -1,7 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './Banner.css';
+import { StoreContext } from '../../context/StoreContext';
 
 const Banner = () => {
+  const {BannerContent} = useContext(StoreContext);
+  const bannerData = BannerContent[0];
   // const videoRefDesktop = useRef(null);
   // const videoRefMobile = useRef(null);
   // const [isPlaying, setIsPlaying] = useState(true);
@@ -29,16 +32,31 @@ const Banner = () => {
 
   return (
     <div className="banner">
-      <div className="desktop_img">
-        <video  autoPlay muted loop>
-          <source src="../src/assets/images/Rafting.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div className="mobile_img">
-        <video autoPlay muted loop>
-          <source src="../src/assets/images/skating.mp4" type="video/mp4" />
-        </video>
-      </div>
+      {bannerData?.category === "Video" && (
+        <>
+            <div className="desktop_img">
+            <video  autoPlay muted loop>
+              <source src={bannerData?.desktopVideo} type="video/mp4" />
+            </video>
+          </div>
+          <div className="mobile_img">
+            <video autoPlay muted loop>
+              <source src={bannerData?.mobielVideo} type="video/mp4" />
+            </video>
+          </div>
+        </>
+      ) }
+      {bannerData?.category === "Image" && (
+        <>
+          <div className="desktop_img">
+              <img src={bannerData?.desktopImage} alt="" />            
+          </div>
+          <div className="mobile_img">
+            <img src={bannerData?.mobileImage} alt="" />             
+          </div>
+        </>
+      ) }
+      
 
       {/* Controls */}
       {/* <div className="controls">
@@ -50,8 +68,8 @@ const Banner = () => {
         </button>
       </div> */}
       <div className='banner_content'>
-        <h2>This is the main video </h2>
-        <p>Welcome to the satish site and Myawears</p>
+        <h2>{bannerData?.title || "abc"} </h2>
+        <p>{bannerData?.content}</p>
       </div>
     </div>
   );
