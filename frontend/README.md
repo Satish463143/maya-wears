@@ -10,3 +10,7 @@ Currently, two official plugins are available:
 node js
 laptop git
 vs code install
+
+2 banner 
+ review
+footer

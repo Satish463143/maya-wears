@@ -5,7 +5,29 @@ import './FooterNav.css'
 const FooterNav = () => {
     const [isnavfoot , setNavFoot] = useState("Home")
     const location = useLocation();
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [showNavbar, setShowNavbar] = useState(false); // Initially hidden   
+
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
     
+        if (currentScrollY > lastScrollY && currentScrollY > 10) {
+          // Scrolling down and past 10px from the top
+          setShowNavbar(true);
+        } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
+          // Scrolling up
+          setShowNavbar(false);
+        }
+    
+        setLastScrollY(currentScrollY);
+      };
+    
+      useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, [lastScrollY]);
 
     useEffect(() => {
         const footPath = location.pathname;
@@ -21,8 +43,7 @@ const FooterNav = () => {
     
     
   return (
-    <div className='footnav'>
-                
+    <div className={`footnav ${showNavbar ? 'visible' : 'hidden'}`}>                
             <div className='foornav_box'>
                 <ul>
                     <Link to="/">

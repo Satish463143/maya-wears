@@ -1,0 +1,12 @@
+.sk_reviews_grid{
+    background:var(--pri_color);
+}
+.sk_branding{
+    display: none !important;
+    visibility: hidden;
+    background: var(--pri_color);
+}
+.sk-below-button-container{
+    display: none !important;
+    background-color: var(--pri_color);
+}

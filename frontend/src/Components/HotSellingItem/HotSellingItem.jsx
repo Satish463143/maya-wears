@@ -14,24 +14,25 @@ const HotSellingItem = () => {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  };
-  
-  const bestShuffleArray =  shuffleArray(bestSelling)
+  };  
+  const bestShuffleArray =  shuffleArray([...bestSelling])
+  const limitedbestShuffleArray = bestShuffleArray.slice(0,8)
+
   return (
     <div className='hotSelling div_container'>
-        <h2>Hot Selling</h2>
-        <div className="container">
-          <div className='best_flex'>
-            {bestShuffleArray.map((item,index)=>{
-              return <ProductItem key={index} id={item._id} image={item.image} title={item.title} crossPrice={item.crossPrice} price={item.price} quantity={item.quantity}/>
-            })}
-            <Link>
-              <div className='view_all_box'>
-                View  all
-              </div>
-            </Link>
-          </div>
-       </div>
+      <h2>Hot Selling</h2>
+      <div className="container">
+        <div className='best_flex'>
+          {limitedbestShuffleArray.map((item,index)=>{
+            return <ProductItem key={index} id={item._id} image={item.image} title={item.title} crossPrice={item.crossPrice} price={item.price} quantity={item.quantity}/>
+          })}
+          <Link>
+            <div className='view_all_box'>
+              View  all
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }

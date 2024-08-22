@@ -31,6 +31,10 @@ const DownBannerItem = () => {
           </div>
         </>
       ) }
+      <div className='down_banner_content'>
+        <h2>{downBannerData?.title || "abc"} </h2>
+        <p>{downBannerData?.content}</p>
+      </div>
     </div>
   )
 }

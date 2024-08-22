@@ -22,6 +22,30 @@ export const DownBannerContent=[
         mobileImage:'../src/assets/images/mobile.png',
     }
 ]
+export const Down_2_BannerContent=[
+    {
+        _id:'1',
+        category:'Image',
+        title:'This is main 2 video',
+        content:'Welcome to the site of Mayawears',
+        desktopImage:'../src/assets/images/banner.jpg',
+        desktopVideo:'../src/assets/images/Rafting.mp4',
+        mobielVideo:'../src/assets/images/video.mp4',
+        mobileImage:'../src/assets/images/mobile.png',
+    }
+]
+export const Down_3_BannerContent=[
+    {
+        _id:'1',
+        category:'Video',
+        title:'This is main 3 video',
+        content:'Welcome to the site of Mayawears',
+        desktopImage:'../src/assets/images/banner.jpg',
+        desktopVideo:'../src/assets/images/Rafting.mp4',
+        mobielVideo:'../src/assets/images/video.mp4',
+        mobileImage:'../src/assets/images/mobile.png',
+    }
+]
 
 export const ProductList =[
     {
@@ -104,5 +128,59 @@ export const ProductList =[
         price:"1500",
         quantity:"10",
         category:'Hot Selling',
+    },
+    {
+        _id:"10",
+        image:"../src/assets/images/pant.jpg",
+        title:"track",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Hot Selling'
+    },
+    {
+        _id:"11",
+        image:"../src/assets/images/pant.jpg",
+        title:"track",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Hot Selling'
+    },
+    {
+        _id:"12",
+        image:"../src/assets/images/pant.jpg",
+        title:"track",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Hot Selling'
+    },
+    {
+        _id:"13",
+        image:"../src/assets/images/pant.jpg",
+        title:"track",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Hot Selling'
+    },
+    {
+        _id:"14",
+        image:"../src/assets/images/pant.jpg",
+        title:"track",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Best Selling'
+    },
+    {
+        _id:"15",
+        image:"../src/assets/images/pant.jpg",
+        title:"track",
+        crossPrice:"2000",
+        price:"1500",
+        quantity:"10",
+        category:'Best Selling'
     },
 ]

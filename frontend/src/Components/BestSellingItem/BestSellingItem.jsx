@@ -17,14 +17,15 @@ const BestSellingItem = () => {
     return array;
   };
   
-  const bestShuffleArray =  shuffleArray(bestSelling)
+  const bestShuffleArray =  shuffleArray([...bestSelling])
+  const limitedbestShuffleArray = bestShuffleArray.slice(0,8)
 
   return (
     <div className='bestSelling div_container'>
         <h2>Best Selling</h2>
         <div className="container">
           <div className='best_flex'>
-            {bestShuffleArray.map((item,index)=>{
+            {limitedbestShuffleArray.map((item,index)=>{
               return <ProductItem key={index} id={item._id} image={item.image} title={item.title} crossPrice={item.crossPrice} price={item.price} quantity={item.quantity}/>
             })}
             <Link>

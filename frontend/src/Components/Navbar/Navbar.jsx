@@ -4,11 +4,11 @@ import {Link, useLocation, useNavigate} from 'react-router-dom'
 
 const Navbar = () => {
     const [isMenuActive, setIsMenuActive] = useState(false);
-    const [isSearchActive, setIsSearchActive]= useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
-    const [showNavbar, setShowNavbar] = useState(true);
-    const [menu , setMenu] = useState ("Home")
-    const location = useLocation();
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(false); // Initially hidden
+  const [menu, setMenu] = useState("Home");
+  const location = useLocation();
 
     const toggleNav = () => {
         setIsMenuActive(!isMenuActive);
@@ -21,22 +21,24 @@ const Navbar = () => {
     }; 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
+    
         if (currentScrollY > lastScrollY && currentScrollY > 10) {
-            // Scrolling down and past 10px from the top
-            setShowNavbar(false);
-        } else if (currentScrollY < lastScrollY) {
-            // Scrolling up
-            setShowNavbar(true);
+          // Scrolling down and past 10px from the top
+          setShowNavbar(true);
+        } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
+          // Scrolling up
+          setShowNavbar(false);
         }
+    
         setLastScrollY(currentScrollY);
-    };
-
-    useEffect(() => {
+      };
+    
+      useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+          window.removeEventListener('scroll', handleScroll);
         };
-    }, [lastScrollY]);
+      }, [lastScrollY]);
 
     useEffect(()=>{
         const path = location.pathname;

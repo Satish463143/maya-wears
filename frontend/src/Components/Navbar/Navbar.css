@@ -1,17 +1,18 @@
 .navbar {
-    width: 100%;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    transition: transform 0.3s ease-in-out;
-  }
-  .navbar.hidden {
-    transform: translateY(-100%);
-  }
-  
-  .navbar.visible {
-    transform: translateY(0);
-  }
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  top: -100%;
+  transition:  0.5s ease;
+}
+
+.navbar.hidden {
+  top: -100%;
+}
+
+.navbar.visible {
+  top: 0;
+}
   .navbar .nav_grid {
     width: 100%;
     display: grid;

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { BannerContent, ProductList,DownBannerContent } from "../assets/assets";
+import { BannerContent, ProductList,DownBannerContent, Down_2_BannerContent, Down_3_BannerContent } from "../assets/assets";
 
 export const StoreContext = createContext(null)
 
@@ -8,6 +8,8 @@ const StoreContextProvider = (props)=>{
         ProductList,
         BannerContent,
         DownBannerContent,
+        Down_2_BannerContent,
+        Down_3_BannerContent,
     }
     return(
         <StoreContext.Provider value ={contextValue}>
