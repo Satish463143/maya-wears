@@ -1,0 +1,19 @@
+.image_slide_box{
+    width: 60%;
+    /* height: 100vh; */
+    margin: auto;
+    background: rgba(0,0,0,0.1);
+    border-radius: 20px;
+    
+}
+@media (max-width:800px){
+    .image_slide_box{
+
+        width: 80%;
+    }
+}
+@media (max-width:600px){
+    .image_slide_box{
+        width: 100%;
+    }
+}

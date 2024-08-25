@@ -5,7 +5,7 @@ const Down_3_Banner = () => {
     const {Down_3_BannerContent} = useContext(StoreContext);
     const downBannerData = Down_3_BannerContent[0];
     return (
-      <div className='down_banner div_container'>
+      <div className='down_banner div_container' style={{paddingTop:'3px'}}>
         {downBannerData?.category === "Video" && (
           <>
               <div className="down_desktop_img">

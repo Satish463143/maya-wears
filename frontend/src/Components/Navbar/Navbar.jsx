@@ -1,14 +1,15 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import {Link, useLocation, useNavigate} from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isMenuActive, setIsMenuActive] = useState(false);
-  const [isSearchActive, setIsSearchActive] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [showNavbar, setShowNavbar] = useState(false); // Initially hidden
-  const [menu, setMenu] = useState("Home");
-  const location = useLocation();
+    const [isSearchActive, setIsSearchActive] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [showNavbar, setShowNavbar] = useState(true);
+    const [menu, setMenu] = useState("Home");
+    const [navbarBackground, setNavbarBackground] = useState(false);
+    const location = useLocation();
 
     const toggleNav = () => {
         setIsMenuActive(!isMenuActive);
@@ -18,45 +19,50 @@ const Navbar = () => {
         } else {
             document.body.classList.remove('no-scroll');
         }
-    }; 
+    };
+
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
-    
+
         if (currentScrollY > lastScrollY && currentScrollY > 10) {
-          // Scrolling down and past 10px from the top
-          setShowNavbar(true);
+            // Scrolling down and past 10px from the top
+            setShowNavbar(true);
+            setNavbarBackground(true);
         } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
-          // Scrolling up
-          setShowNavbar(false);
+            // Scrolling up
+            setShowNavbar(false);
+        } else if (currentScrollY <= 10) {
+            // At the top
+            setShowNavbar(true);
+            setNavbarBackground(false);
         }
-    
+
         setLastScrollY(currentScrollY);
-      };
-    
-      useEffect(() => {
+    };
+
+    useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
-          window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
-      }, [lastScrollY]);
+    }, [lastScrollY]);
 
-    useEffect(()=>{
+    useEffect(() => {
         const path = location.pathname;
-        if(path === '/'){
-            setMenu("Home")
-        }else if(path === '/about'){
-            setMenu("About")
+        if (path === '/') {
+            setMenu("Home");
+        } else if (path === '/about') {
+            setMenu("About");
+        } else {
+            setMenu("");
         }
-        else{
-            setMenu()
-        }
-    },[location]);
+    }, [location]);
     
     return (
         <div>
             <header>
                 <div className={`navbar ${showNavbar ? 'visible' : 'hidden'}`}>
-                    <div className=' navbar_menu'>
+                    <div className={`${navbarBackground ? 'background_nav' : ''}`}>
                         <div className="nav_grid container">
                             <div className="nav_btn" >
                                 <div 

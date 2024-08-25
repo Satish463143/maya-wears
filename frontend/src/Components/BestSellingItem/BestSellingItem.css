@@ -1,23 +1,33 @@
-.bestSelling{ 
-    margin-top: 100vh;
-}
-.bestSelling h2,.hotSelling h2{
+/* .bestSelling{ 
+    
+    padding: 10px;
+} */
+.bestSelling h1,.hotSelling h2{
     text-align: center;
-    padding: 50px 0;
+    padding: 40px 0;
 }
 .best_flex{
     display: flex;
     justify-content: start;
     overflow-x: scroll;
     scrollbar-width: none;   
-    gap: 20px; 
+    gap: 30px; 
+    padding: 0 0 15px 15px ;
 }
 .view_all_box{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 250px;
-    height: 368px;
+    height: 400px;
     border-radius: 20px;
     background: var(--sec_color);
+}
+@media (max-width:600px){
+    .best_flex{
+    gap: 15px;
+}
+.best_container{
+    width: 100%;
+}
 }

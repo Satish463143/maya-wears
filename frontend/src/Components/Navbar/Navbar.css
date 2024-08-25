@@ -2,8 +2,8 @@
   width: 100%;
   position: fixed;
   z-index: 9999;
-  top: -100%;
-  transition:  0.5s ease;
+  top: 0%;
+  transition: top 0.5s ease, background-color 0.5s ease;
 }
 
 .navbar.hidden {
@@ -13,15 +13,22 @@
 .navbar.visible {
   top: 0;
 }
-  .navbar .nav_grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-    
-  }
-  .navbar_menu{
-    background: var(--sec_color);
-  }
+
+.navbar .nav_grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.navbar_menu {
+  background: none;
+}
+
+.background_nav {
+  transition: 0.5s;
+  background: var(--sec_color);
+}
+
   .no-scroll {
     overflow: hidden;
   }
@@ -141,7 +148,7 @@
   
   .overlay nav {
     position: absolute;
-    z-index: 99999999999;
+    z-index: 9;
     width: 35%;
     height: 100vh;
     background-color: var(--sec_color);
@@ -192,5 +199,9 @@
       }
       .search_btn{
         padding-left: 15px;
+      }
+      .menu_logo img,.end_menu{
+        z-index: 99;
+        position: relative;
       }
   }

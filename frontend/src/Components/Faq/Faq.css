@@ -1,0 +1,33 @@
+.faq_width{
+    width: 80%;
+    margin:0px auto;
+
+
+}
+.faq_width h2{
+    /* margin: 40px 20px 20px 20px; */
+    color: var(--g);
+}
+@media(max-width:800px){
+    .faq_width{
+        width: 100%;
+    }
+    .faq_width h2{
+        font-size: 20px;
+    }
+    .home_loan h1{
+
+        font-size: 25px;
+    }
+}
+@media(max-width:600px){
+    .faq_width h2{
+        font-size: 18px;
+    }
+    .home_loan h1{
+
+        font-size: 20px;
+    }
+    
+
+}

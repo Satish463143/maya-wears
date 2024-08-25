@@ -13,10 +13,10 @@ const FooterNav = () => {
     
         if (currentScrollY > lastScrollY && currentScrollY > 10) {
           // Scrolling down and past 10px from the top
-          setShowNavbar(true);
+          setShowNavbar(false);
         } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
           // Scrolling up
-          setShowNavbar(false);
+          setShowNavbar(true);
         }
     
         setLastScrollY(currentScrollY);
