@@ -1,7 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
    */
-   @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
-  
+   /* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap'); */
+   @import url("https://use.typekit.net/jza0yuk.css");
   *{margin: 0;
   padding: 0;
   box-sizing: border-box;  
@@ -28,11 +28,10 @@ h1,h2,h3,h4,h5,p{
 body{
   /* height: 200vh; */
   background: var(--pri_color);
-  font-family: "Josefin Sans", sans-serif;
-   font-optical-sizing: auto;
-  font-style: normal;
+  font-family: "enra-sans-variable", sans-serif;
+  font-variation-settings: "wght" 400;
 }
-
+ 
 
 /* For WebKit browsers */
 ::-webkit-scrollbar {

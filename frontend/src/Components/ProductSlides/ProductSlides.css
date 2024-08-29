@@ -1,6 +1,7 @@
 .image_slide_box{
     width: 60%;
     /* height: 100vh; */
+    max-width: 800px;
     margin: auto;
     background: rgba(0,0,0,0.1);
     border-radius: 20px;
