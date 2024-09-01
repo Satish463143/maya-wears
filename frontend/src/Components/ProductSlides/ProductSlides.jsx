@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slides from '../Slides/Slides';
+import Slides from '../../Middlewares/Slides/Slides';
 import { StoreContext } from '../../context/StoreContext';
 import './ProductSlides.css';
 
@@ -34,24 +34,26 @@ const ProductSlides = () => {
 
   return (
     <div className='div_container ' style={{marginTop:'100vh',paddingTop:'50px'}}>
-      <div className='container'>
-        <div className='image_slide_box'>
-          <Slider {...settings}>
-            {limitedbestShuffleArray.map((item, index) => (
-              <Slides
-                key={index}
-                logo={item.logo}
-                id={item._id}
-                image={item.image}
-                title={item.title}
-                price={item.price}
-                dhakaPattern={item.dhakaPattern}
-                availableSize={item.availableSize}
-                fabric={item.fabric}
-                styles={item.styles}
-              />
-            ))}
-          </Slider>
+      <div data-aos="fade-up">
+        <div className='container'>
+          <div className='image_slide_box' >
+            <Slider {...settings}>
+              {limitedbestShuffleArray.map((item, index) => (
+                <Slides
+                  key={index}
+                  logo={item.logo}
+                  id={item._id}
+                  image={item.image}
+                  title={item.title}
+                  price={item.price}
+                  dhakaPattern={item.dhakaPattern}
+                  availableSize={item.availableSize}
+                  fabric={item.fabric}
+                  styles={item.styles}
+                />
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </div>

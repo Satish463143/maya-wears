@@ -5,8 +5,15 @@ import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
 import FooterNav from './Components/FooterNav/FooterNav'
 import StoreContextProvider from './context/StoreContext'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const App = () => {
+
+  useEffect(() => {
+    AOS.init({ duration: 1200 });
+  }, []);
+
   const adjustContainerWidth = () => {
     document.querySelectorAll('.container').forEach(element => {
       if (window.innerWidth <= 600) {

@@ -67,7 +67,7 @@ const Banner = () => {
           {isMuted ? <img src="../src/assets/images/unmute.png" /> : <img src="../src/assets/images/mute.png" />}
         </button>
       </div> */}
-      <div className='banner_content'>
+      <div className='banner_content' data-aos="fade-up">
         <h2>{bannerData?.title || "abc"} </h2>
         <p>{bannerData?.content}</p>
       </div>

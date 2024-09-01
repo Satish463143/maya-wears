@@ -20,10 +20,12 @@ const GoogleReview = () => {
 // <div class="elfsight-app-bb85483c-62bc-4336-ad91-6ee47dc0d77c" data-elfsight-app-lazy></div>
   return (
     <div className='div_container' style={{paddingTop:'20px'}}>
+      <div data-aos="fade-up">
         <div className='container'>
            
             <div className="elfsight-app-bb85483c-62bc-4336-ad91-6ee47dc0d77c" data-elfsight-app-lazy></div>
           </div>
+      </div>
     </div>
   )
 }

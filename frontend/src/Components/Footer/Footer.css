@@ -1,0 +1,106 @@
+/* .footer_div{
+    background: var(--sec_color);
+    width: 100%;
+    height: auto;
+
+}
+.footer_first_section{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    width: 100%;
+}
+.footer_second_section{
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.community h4 {
+    margin: 10px 0;
+}
+.community button{
+    background: var(--sec_dark);
+    border: none;
+    padding: 10px 20px;
+    color: var(--white);
+    margin: 10px 0;
+    transition: 0.5s ease;
+}
+.community button:hover{
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.footer_second_section .logo_part img{
+    width: 90px;
+    height: auto;
+}
+.terms li , .media li,.links li{
+    list-style: none;
+    margin: 5px 0;
+    transition: 0.4s ease
+}
+.terms li:hover , .media li:hover,.links li:hover{
+    color: var(--sec_dark);
+}
+.media li{
+    display: inline;
+    margin-right:20px;
+
+} */
+.footer_part{
+    background: var(--sec_color);
+    width: 100%;
+    height: auto;
+    padding: 50px 0;
+}
+.social_media{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    
+
+}
+.social_media li {
+    list-style: none;
+    position: relative;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--sec_dark);
+    border-radius: 50%;
+}
+.footer_menu ul{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.footer_menu ul li {
+    list-style: none;
+}
+
+.copyright{
+    background-color: var(--sec_dark);
+    width: 100%;
+    height: auto;
+    padding: 20PX;
+    text-align: center;
+}
+.copyright p, .copyright p a {
+    color: var(--white);
+}
+@media (max-width:800px){
+    .footer_second_section .logo_part img{
+        width: 50px;
+    }
+    .footer_second_section{
+        display: grid;
+        grid-template-columns: 40% 10% 25% 25%;
+}
+}

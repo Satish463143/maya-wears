@@ -6,6 +6,7 @@ const Down_2_Banner = () => {
     const downBannerData = Down_2_BannerContent[0];
     return (
       <div className='down_banner div_container'>
+        <div data-aos="fade-up">
         {downBannerData?.category === "Video" && (
           <>
               <div className="down_desktop_img">
@@ -33,6 +34,7 @@ const Down_2_Banner = () => {
         <div className='down_banner_content'>
           <h2>{downBannerData?.title || "abc"} </h2>
           <p>{downBannerData?.content}</p>
+        </div>
         </div>
       </div>
     )
