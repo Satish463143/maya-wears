@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const ProductItem = ({_id,image,title,crossPrice,price,quantity,category}) => {
   return (
     <>
-      <Link to="#">
+      <Link to={`/product/${_id}`}>
         <div className='item_div'>
           <div className="img">
             <img src={image} alt="" />

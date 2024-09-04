@@ -2,9 +2,9 @@ import React from 'react';
 import './Slides.css';
 import {Link} from 'react-router-dom'
 
-const Slides = ({ image, logo, fabric, title, dhakaPattern, availableSize, styles, price, quantity, category }) => {
+const Slides = ({_id,image, logo, fabric, title, dhakaPattern, availableSize, styles, price, quantity, category }) => {
   return (
-    <Link >
+    <Link to={`/product/${_id}`}>
     <div className='slides_box'>
         <div className='slidex_box_flex'>
             <h1>{logo}</h1>

@@ -42,7 +42,7 @@ const ProductSlides = () => {
                 <Slides
                   key={index}
                   logo={item.logo}
-                  id={item._id}
+                  _id={item._id}
                   image={item.image}
                   title={item.title}
                   price={item.price}

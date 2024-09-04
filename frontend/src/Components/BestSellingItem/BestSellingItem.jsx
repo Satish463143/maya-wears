@@ -30,7 +30,7 @@ const BestSellingItem = () => {
         <div className="container best_container">
           <div className='best_flex'  >
             {limitedbestShuffleArray.map((item,index)=>{
-              return <ProductItem key={index} id={item._id} image={item.image} title={item.title} crossPrice={item.crossPrice} price={item.price} quantity={item.quantity}/>
+              return <ProductItem key={index} _id={item._id} image={item.image} title={item.title} crossPrice={item.crossPrice} price={item.price} quantity={item.quantity}/>
             })}
             <Link>
               <div className='view_all_box' >
