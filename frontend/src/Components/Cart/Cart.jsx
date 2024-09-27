@@ -3,9 +3,9 @@ import './Cart.css'
 import CartItem from '../../Middlewares/CartItem/CartItem'
 import { StoreContext } from '../../context/StoreContext'
 
-const Cart = ({isCartActive , toogleCart}) => {
-    const {cartList} = useContext(StoreContext)
-    console.log(cartList)
+const Cart = ({isCartActive , toogleCart,}) => {
+    const {cartList,removeFromCartList} = useContext(StoreContext)
+    const netTotal = cartList.reduce((total,product)=>total+product.price * product.counter,0);
   return (
     
     <div className={`cart ${isCartActive?'cart_active': ''}`}>
@@ -41,17 +41,23 @@ const Cart = ({isCartActive , toogleCart}) => {
                         {cartList.length>0 ? (
                             cartList.map(product =>(  
                                 <div>     
-                                    <CartItem key={product._id} {...product}/>
-                                    <hr />
+                                    <CartItem key={product._id} {...product} removeFromCartList={removeFromCartList}/>                                   
+                                    <hr />                                    
                                 </div> 
                             ))
                         ):(
                             <p style={{margin:'50px 0', textAlign:'center'}}>No items in the Cart</p>
                         )}
-                        
-                       
-                    </div>
-                    
+                        </div> 
+                        <div className='checkout_btn'>
+                            <button>
+                                Checkout
+                            </button>
+                            <button>
+                                Rs./-{netTotal}
+                            </button>
+
+                        </div>
                 </div>            
         </div>
     </div>

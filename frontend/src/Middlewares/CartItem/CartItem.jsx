@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './CartItem.css'
 
-const CartItem = ({_id,title, image, color, price}) => {
+const CartItem = ({_id,title, image, color, price,selectedSize,removeFromCartList}) => {
     const [counter, setCounter] = useState(1);
    
     const sub = ()=>{
@@ -24,21 +24,22 @@ const CartItem = ({_id,title, image, color, price}) => {
         <div className='cart_title'>
             <h3>{title}</h3>
             <p style={{padding:'5px 0'}}>{color}</p>
-            <p style={{paddingBottom:'5px'}}>Size: XL</p>
+            <p style={{ paddingBottom: '5px' }}>Size: {selectedSize || "N/A"}</p>
             <div className='quantity'>
                 <button onClick={sub}>-</button>
-                <h4>{counter}</h4>
+                    <h4>{counter}</h4>
                 <button onClick={add}>+</button>
             </div>
         </div>
         <div className='cart_price'>
-            <span >
+            <span>
                 <svg
-                    style={{ enableBackground: 'new 0 0 24 24' }}
+                    style={{ enableBackground: 'new 0 0 24 24',cursor:'pointer' }}
+                    onClick={() => removeFromCartList(_id)}
                     version="1.1"
                     viewBox="0 0 24 24"
-                    width='30px'
-                    height='30px'
+                    width='20px'
+                    height='20px'
                     xmlSpace="preserve"
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"

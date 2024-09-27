@@ -3,32 +3,30 @@ import { StoreContext } from '../../context/StoreContext';
 import { useParams } from 'react-router-dom';
 import './ProductDetails.css';
 
-const ProductDetails = ({isCartActive , toogleCart}) => {
+const ProductDetails = ({  toogleCart, toogleAddToCart }) => {
   const { _id } = useParams();
   const { ProductList } = useContext(StoreContext);
   const [product, setProduct] = useState(null);
   const [Loading, setLoading] = useState(true);
-  const [isSelectedSize, setSelectedSize] = useState(null); // Corrected typo in variable name
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [isInCart, setIsInCart] = useState(false);
   const [activeTab, setActiveTab] = useState('description');
-  const {cartList, addToCartList} =  useContext(StoreContext)
-
-    const isCartList = cartList.some(item => item._id === _id)
-    const toogleAddToCart = (e)=>{
-        // e.preventDefault();
-        const cartProperty = {_id, title, image, color, price }
-        addToCartList(cartProperty);
-        console.log("Updated cart list:", cartList);
-    }
 
   useEffect(() => {
     const foundProduct = ProductList.find(item => item._id === _id);
     setProduct(foundProduct);
     setLoading(false);
+    setIsInCart(foundProduct ? isProductInCart(foundProduct._id) : false);
   }, [_id, ProductList]);
+
+  const isProductInCart = (productId) => {
+    // Normally, this should use the cartList from context
+    return false; // Dummy value for now
+  };
 
   if (!product) return <div>Product not found</div>;
   if (Loading) return <div>Loading...</div>;
-
+  
   const media = [
     { type: 'image', src: product.image1 },
     { type: 'image', src: product.image2 },
@@ -72,17 +70,30 @@ const ProductDetails = ({isCartActive , toogleCart}) => {
                 <h1 className='headers'>{product.title}</h1 >
                 <p className='price'>Rs.{product.price}/-</p>
                 <span style={{ fontWeight: '600' }}>Size:</span> <span>Size Guide</span><br />
-                {product.availableSize.map((item) => (
+                {product.availableSize.map((size) => (
                 <button
-                    key={item}
-                    onClick={() => handleSize(item)}
-                    className={isSelectedSize === item ? 'selected_size' : ''}
+                    key={size}
+                    onClick={() => handleSize(size)}
+                    className={selectedSize === size ? 'selected_size' : ''}
                 >
-                    {item}
+                    {size }
                 </button>
                 ))}
                 <p className='color'><span  style={{ fontWeight: '600' }}>Color:</span>{product.color}</p>
-                <button className='cart_btn' onClick={() => { toogleCart(); toogleAddToCart(); }}>Add To Bag</button>
+                <button 
+                    className='cart_btn' 
+                    onClick={() => {
+                        if (!selectedSize) {
+                        alert("Please select a size!"); // Alert user if no size is selected
+                        return;
+                        }
+                        toogleCart();
+                        toogleAddToCart(product, selectedSize); // Pass selected size explicitly
+                    }} 
+                    disabled={isInCart}
+                    >
+                    {isInCart ? 'View In Cart' : 'Add To Bag'}
+                </button>
                 <button className='buy_btn'>Buy Now</button>
                 <h3 id='wishlist'>+ Add To My List</h3>
                 <div className="product-tabs">

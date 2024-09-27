@@ -1,17 +1,40 @@
-import React,{useEffect, useState} from 'react'
-import {Routes, Route, useLocation, Router} from 'react-router-dom'
+import React,{useEffect, useState,useContext} from 'react'
+import { HashRouter as Router, Routes, Route, useLocation} from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
 import FooterNav from './Components/FooterNav/FooterNav'
-import StoreContextProvider from './context/StoreContext'
+import { StoreContext } from './context/StoreContext'
 import AOS from 'aos';
 import ProductPage from './pages/ProductPage/ProductPage'
 import 'aos/dist/aos.css';
 import Cart from './Components/Cart/Cart'
 
+
 const App = () => {
   const [isCartActive , setCartActive] = useState(null);
+
+
+  const ScrollToTop = () => {
+    const { hash, pathname } = useLocation();
+
+    useEffect(() => {
+      // Scroll to the specific section if there's a hash in the URL
+      if (hash) {
+        const sectionId = hash.replace('#', '');
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView();
+        }
+      } else {
+        // Scroll to the top when the route changes and there's no hash
+        window.scrollTo({ top: 0 });
+      }
+    }, [hash, pathname]);
+
+    return null;
+  }
+
 
   const toogleCart = ()=>{
     setCartActive(!isCartActive)
@@ -21,15 +44,15 @@ const App = () => {
     AOS.init({ duration: 1200 });
   }, []);
 
-
   return (      
       <div>        
         <Navbar/>
-        <Cart isCartActive={isCartActive} toogleCart={toogleCart}/>
+        <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
         <FooterNav/>
+        <ScrollToTop/>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/product/:_id' element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart}/>}/>
+          <Route path='/product/:_id' element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart} />}/>
         </Routes>
         <Footer/>        
       </div>  

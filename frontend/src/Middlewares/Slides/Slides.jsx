@@ -23,7 +23,7 @@ const Slides = ({_id,image, logo, fabric, title, dhakaPattern, availableSize, st
                 </div>              
                 <div className='details_grid_box'>
                     <img src="../src/assets/images/size.webp" alt="" />
-                    <p>{availableSize}</p> 
+                    <p>{availableSize + ' , '}</p> 
                 </div>              
                 <div className='details_grid_box'>
                     <img src="../src/assets/images/style.webp" alt="" />

@@ -55,6 +55,10 @@
 .cross_btn span:hover{
     transform:rotate(180deg);
 }
+.checkout_btn{
+    
+
+}
 @media (min-width: 1300px) {
     .cart_container {
         width: calc((100% - 1300px)/2 + 350px);
