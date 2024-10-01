@@ -1,4 +1,5 @@
 require("dotenv").config()
+const UserModel = require("./user.model")
 const userSvc = require("./user.service")
 
 
@@ -6,7 +7,14 @@ const userSvc = require("./user.service")
 class UserController {
      userCreate = async (req,res,next)=>{
     try{
-        const data = userSvc.transformUserCreate(req)   
+
+        //user create 
+        const data = userSvc.transformUserCreate(req)  
+       
+        // store inn database
+        await userSvc.registerUser(data)
+
+        //mail service
         await userSvc.sendActivationEmail({ name: data.name, email: data.email, token: data.activationToken });
 
 
@@ -19,6 +27,7 @@ class UserController {
 
        }
     catch(exception){
+        console.log("I amm here")
         next(exception)
 
        }

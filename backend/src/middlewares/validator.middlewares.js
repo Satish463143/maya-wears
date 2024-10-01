@@ -19,7 +19,7 @@ const bodyValidator = (schema)=>{
 
            //file delete
            if(req.file){
-            console.log(req.file)
+            console.log(req.file) 
             deleteFile("./"+req.file.path)
            }
 
