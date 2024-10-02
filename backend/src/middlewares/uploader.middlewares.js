@@ -6,41 +6,41 @@ const { FileFilterType } = require("../config/constants.config")
 
 
 const myStorage = multer.diskStorage({
-    destination:(req,file, cb)=>{
-        const path = "./public/uploads/"+req.uploadPath
-        if(!fs.existsSync(path)){
-            fs.mkdirSync(path, {recursive:true})
+    destination: (req, file, cb) => {
+        const path = "./public/uploads/" + req.uploadPath
+        if (!fs.existsSync(path)) {
+            fs.mkdirSync(path, { recursive: true })
         }
         cb(null, path)
     },
-    filename:(req,file,cb)=>{
+    filename: (req, file, cb) => {
         const ext = file.originalname.split(".").pop()
-        const filename = randomStringGenerator(40)+"."+ext
-        cb(null,filename)
+        const filename = randomStringGenerator(40) + "." + ext
+        cb(null, filename)
     }
 })
 
 
-const uplaodFile = (fileType = FileFilterType.IMAGE)=>{
-    let allowed = ['jpg','png','webp','gif']
-    if(fileType === FileFilterType.DOCUMENT){
-        allowed=['pdf','txt','docs']
-    }else if(fileType === FileFilterType.VIDEO){
+const uplaodFile = (fileType = FileFilterType.IMAGE) => {
+    let allowed = ['jpg', 'png', 'webp', 'gif']
+    if (fileType === FileFilterType.DOCUMENT) {
+        allowed = ['pdf', 'txt', 'docs']
+    } else if (fileType === FileFilterType.VIDEO) {
         allowed = ['mp4', 'mov', 'mkv']
     }
 
-    return multer ({
-        storage : myStorage,
-        limits:{
-            fileSize:3000000
+    return multer({
+        storage: myStorage,
+        limits: {
+            fileSize: 3000000
         },
-        fileFilter:(req,file,cb)=>{
-            const ext = file.originalname.split(".").pop()           
-    
-            if(allowed.includes(ext.toLowerCase())){
-                cb(null,true)
-            }else{
-                cb({code:400, message:"File format not supproted"})
+        fileFilter: (req, file, cb) => {
+            const ext = file.originalname.split(".").pop()
+
+            if (allowed.includes(ext.toLowerCase())) {
+                cb(null, true)
+            } else {
+                cb({ code: 400, message: "File format not supproted" })
             }
         }
     })
@@ -57,10 +57,10 @@ const uploadImageAndVideo = () => {
             console.log("Received file:", file);
             const ext = file.originalname.split(".").pop().toLowerCase();
             console.log("File extension:", ext);
-        
+
             const imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
             const videoExtensions = ['mp4', 'mov', 'mkv'];
-        
+
             if (file.fieldname === 'desktopImage' || file.fieldname === 'mobileImage') {
                 if (imageExtensions.includes(ext)) {
                     cb(null, true); // Accept the file
@@ -77,7 +77,7 @@ const uploadImageAndVideo = () => {
                 cb({ code: 400, message: "Unexpected field" }, false); // Reject unexpected fields
             }
         }
-        
+
     }).fields([
         { name: 'desktopImage', maxCount: 1 },
         { name: 'mobileImage', maxCount: 1 },
@@ -86,13 +86,13 @@ const uploadImageAndVideo = () => {
     ]);
 };
 
-const setPath = (path)=>{
-    return (req,res, next)=>{
+const setPath = (path) => {
+    return (req, res, next) => {
         req.uploadPath = path
         next()
     }
 }
 
 module.exports = {
-    uplaodFile,setPath,uploadImageAndVideo
+    uplaodFile, setPath, uploadImageAndVideo
 }
