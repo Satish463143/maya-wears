@@ -37,37 +37,42 @@ class Banner_2Controller {
             next(exception)
         }
     }
-    update= async(req,res,next)=>{
-        try{
-            const id = req.params.id
-            await this.#validateId(id)
-
-            const data = req.body
-
-            // if file is also being updatted
-            if(req.file){
-                data.desktopImage = await uploadImage('./public/uploads/banner_2/'+req.file.filename)                
-                data.mobileVideo = await uploadImage('./public/uploads/banner_2/'+req.file.filename)                
-                data.desktopVideo = await uploadImage('./public/uploads/banner_2/'+req.file.filename)                
-                data.mobileImage = await uploadImage('./public/uploads/banner_2/'+req.file.filename)                
+    update = async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            await this.#validateId(id);
+    
+            const data = req.body;
+            console.log(data)
+    
+            // Process the uploaded files
+            if (req.files) {
+                if (req.files.desktopVideo) {
+                    data.desktopVideo = await uploadImage(req.files.desktopVideo[0].path);
+                }
+                if (req.files.mobileVideo) {
+                    data.mobileVideo = await uploadImage(req.files.mobileVideo[0].path);
+                }
+                if (req.files.desktopImage) {
+                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                }
+                if (req.files.mobileImage) {
+                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                }
             }
-                deleteFile('./public/uploads/banner_2/'+req.file.filename)
-            
-                // updated daata saved
-
-                const response = await banner_2Service.updateBanner(data, id);
-                res.json({
-                    result:response,
-                    message:"Banner updated sucessfully",
-                    meta:null
-                })
-
+    
+            const response = await banner_2Service.updateBanner(data, id);
+            res.json({
+                result: response,
+                message: "Banner updated successfully",
+                meta: null
+            });
+        } catch (exception) {
+            console.error("Update error:", exception);
+            next(exception);
         }
-        catch(exception){
-            next(exception)
-        }
-        
-    }
+    };
+    
 
 
 }

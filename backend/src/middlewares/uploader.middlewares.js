@@ -46,6 +46,46 @@ const uplaodFile = (fileType = FileFilterType.IMAGE)=>{
     })
 }
 
+// for both image and video at once wiwth diffeerent size limit
+const uploadImageAndVideo = () => {
+    return multer({
+        storage: myStorage,  // Reuse the existing storage config
+        limits: {
+            fileSize: 100000000  // 5MB limit for both images and videos
+        },
+        fileFilter: (req, file, cb) => {
+            console.log("Received file:", file);
+            const ext = file.originalname.split(".").pop().toLowerCase();
+            console.log("File extension:", ext);
+        
+            const imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+            const videoExtensions = ['mp4', 'mov', 'mkv'];
+        
+            if (file.fieldname === 'desktopImage' || file.fieldname === 'mobileImage') {
+                if (imageExtensions.includes(ext)) {
+                    cb(null, true); // Accept the file
+                } else {
+                    cb({ code: 400, message: `File type not supported for ${file.fieldname}: ${file.mimetype}` }, false); // Reject the file
+                }
+            } else if (file.fieldname === 'desktopVideo' || file.fieldname === 'mobileVideo') {
+                if (videoExtensions.includes(ext)) {
+                    cb(null, true); // Accept the file
+                } else {
+                    cb({ code: 400, message: `File type not supported for ${file.fieldname}: ${file.mimetype}` }, false); // Reject the file
+                }
+            } else {
+                cb({ code: 400, message: "Unexpected field" }, false); // Reject unexpected fields
+            }
+        }
+        
+    }).fields([
+        { name: 'desktopImage', maxCount: 1 },
+        { name: 'mobileImage', maxCount: 1 },
+        { name: 'desktopVideo', maxCount: 1 },
+        { name: 'mobileVideo', maxCount: 1 }
+    ]);
+};
+
 const setPath = (path)=>{
     return (req,res, next)=>{
         req.uploadPath = path
@@ -54,5 +94,5 @@ const setPath = (path)=>{
 }
 
 module.exports = {
-    uplaodFile,setPath
+    uplaodFile,setPath,uploadImageAndVideo
 }
