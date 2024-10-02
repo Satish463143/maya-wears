@@ -7,7 +7,7 @@ import FooterNav from './Components/FooterNav/FooterNav'
 import { StoreContext } from './context/StoreContext'
 import AOS from 'aos';
 import ProductPage from './pages/ProductPage/ProductPage'
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 import Cart from './Components/Cart/Cart'
 
 

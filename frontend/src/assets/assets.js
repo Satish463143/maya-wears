@@ -25,7 +25,7 @@ export const DownBannerContent=[
 export const Down_2_BannerContent=[
     {
         _id:'1',
-        category:'Image',
+        category:'Video',
         title:'This is main 2 video',
         content:'Welcome to the site of Mayawears',
         desktopImage:'../src/assets/images/desktopImage_3.jpg',

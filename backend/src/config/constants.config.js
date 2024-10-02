@@ -15,9 +15,14 @@ const Status={
     ACTIVE:"active",
     INACTIVE:"inactive"
 }
+const BannerCategory={
+    IMAGE:"image",
+    VIDEO:"video"
+}
 
 module.exports ={
     FileFilterType,
     UserRoles,
-    Status
+    Status,
+    BannerCategory
 }
