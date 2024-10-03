@@ -9,7 +9,7 @@ const {collectionDTO} = require("./collections.request")
 
 router.route('/')
     .post(loginCheck,hasPermission('admin'),setPath('collection'),uplaodFile(FileFilterType.IMAGE).single("image"),bodyValidator(collectionDTO),collectionController.create) //create collection
-    .get() //list collection
+    .get(loginCheck,hasPermission('admin'),collectionController.index) //list collection
 
 router.route('/:id')
     .get() //get collection by id

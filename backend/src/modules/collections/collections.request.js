@@ -1,6 +1,6 @@
 const Joi = require("joi")
 const { Status } = require("../../config/constants.config")
-const collectionDTO =({
+const collectionDTO =Joi.object({
     name:Joi.string().min(3).max(50).required(),
     decription:Joi.string().min(3).max(50).empty(null, "").optional().default(null),
     status:Joi.string().valid(...Object.values(Status)).required(),
@@ -8,4 +8,6 @@ const collectionDTO =({
 
 })
 
-module.exports = {collectionDTO}
+module.exports = {
+    collectionDTO
+};

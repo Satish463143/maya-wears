@@ -3,13 +3,13 @@ const { deleteFile } = require("../../utilies/helper")
 const collectionService = require("./collection.service")
 
 class CollectionController{
-    create =async(re,res,next)=>{
+    create =async(req,res,next)=>{
         try{
             const data = req.body
 
-            data.image =await uploadImage('./public/uploads/collection'+req.file.filename)
+            data.image =await uploadImage('./public/uploads/collection/'+req.file.filename)
 
-            deleteFile('./public/uploads/collection'+req.file.filename)
+            deleteFile('./public/uploads/collection/'+req.file.filename)
             data.createdBy = req.authUser._id
 
             const collection  = await collectionService.createCollection(data)
@@ -26,6 +26,39 @@ class CollectionController{
         }
         
     }
+    index =async(req,res,next)=>{
+        try{
+            const limit = req.query.limit || 10
+            const page = req.query.page || 1
+            const skip  = (page-1)*limit
+
+            let filter = {}
+            if(req.query.search){
+                filter ={
+                    name: new RegExp(req.query.search, "i")
+                }
+            } 
+            const {data,count} = await collectionService.listdata({
+                skip:skip,
+                limit:limit,
+                filter:filter,               
+
+            })
+            res.json({
+                result:data,
+                message:"List of Collection",
+                meta:{
+                    currentPage:page,
+                    total:count,
+                    limit:limit
+                }
+            })
+        }
+        catch(exception){
+            next(exception)
+        }
+        
+    }
     show =(re,res,next)=>{
         try{
             
@@ -35,15 +68,7 @@ class CollectionController{
         }
         
     }
-    index =(re,res,next)=>{
-        try{
-            
-        }
-        catch(exception){
-            next(exception)
-        }
-        
-    }
+    
     update =(re,res,next)=>{
         try{
             

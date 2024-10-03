@@ -11,6 +11,23 @@ class CollectionService {
         }
 
     }
+    listdata = async({skip=0,limit=10,filter ={}})=>{
+        try{
+            const count = await CollectionModel.countDocuments(filter)
+            const data = await CollectionModel.find(filter)
+                .populate("createdBy", ["_id","email", "email", "role"])
+                .sort({_id: "desc"})
+                .limit(limit)
+                .skip(skip)
+            
+    
+            return {count, data}
+        }catch(exception){
+            throw exception
+        }
+        
+
+    }
 }
 
 module.exports  = new CollectionService

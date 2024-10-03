@@ -14,7 +14,12 @@ cloudinary.config({
 // Uploads an image file
 /////////////////////////
 exports.uploadImage = async (imagePath) => {
-
+  const options = {
+    resource_type: "image", // Ensure it handles video
+    use_filename: true,
+    unique_filename: true,
+    overwrite: true,
+  };
   try {
     // Upload the image
     const result = await cloudinary.uploader.upload(imagePath, options);
@@ -23,6 +28,7 @@ exports.uploadImage = async (imagePath) => {
     console.error(error);
     throw error;
   }
+  
 };
 exports.uploadVideo = async (videoPath) => {
 
@@ -44,15 +50,3 @@ exports.uploadVideo = async (videoPath) => {
     throw error;
   }
 };
-
-exports.uploadVideo = async (videoPath) => {
-
-  // Use the uploaded file's name as the asset's public ID and 
-  // allow overwriting the asset with new versions
-  const options = {
-    resource_type: "video", // Ensure it handles video
-    use_filename: true,
-    unique_filename: true,
-    overwrite: true,
-  };
-}
