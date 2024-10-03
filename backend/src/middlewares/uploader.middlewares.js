@@ -51,12 +51,12 @@ const uploadImageAndVideo = () => {
     return multer({
         storage: myStorage,  // Reuse the existing storage config
         limits: {
-            fileSize: 100000000  // 5MB limit for both images and videos
+            fileSize: 100000000  // 100MB limit for both images and videos
         },
         fileFilter: (req, file, cb) => {
-            console.log("Received file:", file);
+            // console.log("Received file:", file);
             const ext = file.originalname.split(".").pop().toLowerCase();
-            console.log("File extension:", ext);
+            // console.log("File extension:", ext);
         
             const imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
             const videoExtensions = ['mp4', 'mov', 'mkv'];

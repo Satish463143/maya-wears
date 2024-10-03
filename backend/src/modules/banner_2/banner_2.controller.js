@@ -1,6 +1,7 @@
 const banner_2Service = require("./banner_2.service")
 const { deleteFile } = require("../../utilies/helper")
-const uploadImage = require("../../config/cloudinary.config")
+const {uploadImage,uploadVideo} = require("../../config/cloudinary.config")
+// const  = require("../../config/cloudinary.config")
 
 class Banner_2Controller {
     banner_2Details
@@ -48,10 +49,10 @@ class Banner_2Controller {
             // Process the uploaded files
             if (req.files) {
                 if (req.files.desktopVideo) {
-                    data.desktopVideo = await uploadImage(req.files.desktopVideo[0].path);
+                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
                 }
                 if (req.files.mobileVideo) {
-                    data.mobileVideo = await uploadImage(req.files.mobileVideo[0].path);
+                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
                 }
                 if (req.files.desktopImage) {
                     data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
@@ -60,11 +61,12 @@ class Banner_2Controller {
                     data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
                 }
             }
+
     
             const response = await banner_2Service.updateBanner(data, id);
             res.json({
                 result: response,
-                message: "Banner updated successfully",
+                message: "Banner_2 updated successfully",
                 meta: null
             });
         } catch (exception) {

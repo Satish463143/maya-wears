@@ -1,4 +1,4 @@
-const uploadImage = require("../../config/cloudinary.config")
+const {uploadImage} = require("../../config/cloudinary.config")
 const { deleteFile } = require("../../utilies/helper")
 const BannerModel = require("./banner.model")
 const bannerSvc = require("./banner.service")
