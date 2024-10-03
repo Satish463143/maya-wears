@@ -5,36 +5,36 @@ const {uploadImage,uploadVideo} = require("../../config/cloudinary.config")
 
 class Banner_2Controller {
     banner_2Details
-    #validateId = async(id)=>{
-        try{
-            
-            if(!id){
-                throw{status:400, message:"Id is required"}
+    #validateId = async (id) => {
+        try {
+
+            if (!id) {
+                throw { status: 400, message: "Id is required" }
             }
             this.banner_2Details = await banner_2Service.getDetailByFilter({
-                _id :id
+                _id: id
             })
-            if(!this.banner_2Details){
-                throw{status:404, message:"Banner does not exist"}
+            if (!this.banner_2Details) {
+                throw { status: 404, message: "Banner does not exist" }
             }
 
         }
-        catch(exception){
+        catch (exception) {
             throw exception
         }
     }
-    index = async(req,res,next)=>{
-        try{
-            const {count, data} = await banner_2Service.listData()
+    index = async (req, res, next) => {
+        try {
+            const { count, data } = await banner_2Service.listData()
             res.json({
-                result:data,
-                message:"List Of Banner",
-                meta:{
-                    total:count
+                result: data,
+                message: "List Of Banner",
+                meta: {
+                    total: count
                 }
             })
 
-        }catch(exception){
+        } catch (exception) {
             next(exception)
         }
     }
@@ -42,10 +42,10 @@ class Banner_2Controller {
         try {
             const id = req.params.id;
             await this.#validateId(id);
-    
+
             const data = req.body;
-            console.log(data)
-    
+            console.log(req.files)
+
             // Process the uploaded files
             if (req.files) {
                 if (req.files.desktopVideo) {
@@ -74,9 +74,9 @@ class Banner_2Controller {
             next(exception);
         }
     };
-    
+
 
 
 }
 
-module.exports= new Banner_2Controller
+module.exports = new Banner_2Controller
