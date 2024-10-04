@@ -1,8 +1,10 @@
-const { uploadImage } = require("../../config/cloudinary.config")
+const {uploadImage}  = require("../../config/cloudinary.config")
 const { deleteFile } = require("../../utilies/helper")
 const collectionService = require("./collection.service")
 
 class CollectionController{
+    
+    collectionDetails;
     create =async(req,res,next)=>{
         try{
             const data = req.body
@@ -59,27 +61,82 @@ class CollectionController{
         }
         
     }
-    show =(re,res,next)=>{
+    #validate=async(id)=>{
         try{
+            if(!id){
+                throw{status:400, message:"Id is required"}
+            }
+            this.collectionDetails = await collectionService.getIdbyFilter({
+                _id: id
+            })
+    
+            
+            if(!this.collectionDetails){
+                throw{status:400, message:"Collection Doesn't Exit"}
+            }
+
+        }catch(exception){
+            
+            throw exception
+        }        
+
+    }
+
+    show =async(req,res,next)=>{
+        try{
+            const id = req.params.id
+            await this.#validate(id)
+            res.json({
+                result:this.collectionDetails,
+                message:"Collection fetched By Id",
+                meta:null
+            })           
             
         }
         catch(exception){
+            console.log(exception+" error")
             next(exception)
         }
         
     }
     
-    update =(re,res,next)=>{
+    update =async(req,res,next)=>{
         try{
-            
-        }
-        catch(exception){
+            const id = req.params.id
+            await this.#validate(id)
+            const data = req.body
+            if(req.file){
+                data.image =await uploadImage('./public/uploads/collection/'+req.file.filename)
+            }
+
+            deleteFile('./public/uploads/collection/'+req.file.filename)
+
+            const response = await collectionService.updateCollection(data,id)
+            res.json({
+                result:response,
+                meessage:"Banner Updated Sucessfully",
+                meta:null
+            })
+        
+        
+        }catch(exception){
+            console.log(exception+" Error here")
             next(exception)
         }
-        
     }
-    delete =(re,res,next)=>{
+    delete =async(req,res,next)=>{
         try{
+            const id = req.params.id
+            await this.#validate(id)
+            
+
+            const response  = await collectionService.deleteCollection(id)
+            res.json({
+                result:response,
+                message:"Collection deleted Sucessfuly",
+                meta: null
+            })
+
             
         }
         catch(exception){

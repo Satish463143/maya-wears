@@ -123,6 +123,7 @@ class BannerController {
 
 
         }catch(exception){
+            
             next(exception)
 
         }

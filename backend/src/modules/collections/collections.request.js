@@ -7,7 +7,17 @@ const collectionDTO =Joi.object({
     image:Joi.string().required()
 
 })
+const collectionUpdateDTO =Joi.object({
+    name:Joi.string().min(3).max(50).required(),
+    decription:Joi.string().min(3).max(50).empty(null, "").optional().default(null),
+    status:Joi.string().valid(...Object.values(Status)).required(),
+    image:Joi.string().optional()
+
+})
+
+
 
 module.exports = {
-    collectionDTO
+    collectionDTO,
+    collectionUpdateDTO
 };

@@ -15,7 +15,7 @@ cloudinary.config({
 /////////////////////////
 exports.uploadImage = async (imagePath) => {
   const options = {
-    resource_type: "image", // Ensure it handles video
+    resource_type: "image", 
     use_filename: true,
     unique_filename: true,
     overwrite: true,
