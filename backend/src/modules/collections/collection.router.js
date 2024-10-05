@@ -16,4 +16,7 @@ router.route('/:id')
     .put(loginCheck,hasPermission('admin'),setPath('collection'),uplaodFile(FileFilterType.IMAGE).single("image"),bodyValidator(collectionUpdateDTO),collectionController.update) //update collection
     .delete(loginCheck,hasPermission('admin'),collectionController.delete) // delete collection
 
+router.route('/list')
+    .get(collectionController.listForHome)
+
 module.exports = router

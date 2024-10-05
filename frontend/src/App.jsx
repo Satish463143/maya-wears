@@ -1,13 +1,14 @@
 import React,{useEffect, useState,useContext} from 'react'
 import { HashRouter as Router, Routes, Route, useLocation} from 'react-router-dom'
 import Home from './pages/Home/Home'
+import LoginPage from './pages/LoginPage/LoginPage'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
 import FooterNav from './Components/FooterNav/FooterNav'
 import { StoreContext } from './context/StoreContext'
 import AOS from 'aos';
 import ProductPage from './pages/ProductPage/ProductPage'
-// import 'aos/dist/aos.css';
+import 'aos/dist/aos.css';
 import Cart from './Components/Cart/Cart'
 
 
@@ -44,9 +45,11 @@ const App = () => {
     AOS.init({ duration: 1200 });
   }, []);
 
+
   return (      
       <div>        
         <Navbar/>
+        <LoginPage/>
         <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
         <FooterNav/>
         <ScrollToTop/>

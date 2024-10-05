@@ -1,6 +1,9 @@
-const {uploadImage}  = require("../../config/cloudinary.config")
-const { deleteFile } = require("../../utilies/helper")
+const {uploadImage}  = require("../../config/cloudinary.config");
+const { Status } = require("../../config/constants.config");
+const { deleteFile } = require("../../utilies/helper");
+const { meta } = require("../banner/banner.request");
 const collectionService = require("./collection.service")
+const slugify = require("slugify")
 
 class CollectionController{
     
@@ -10,6 +13,8 @@ class CollectionController{
             const data = req.body
 
             data.image =await uploadImage('./public/uploads/collection/'+req.file.filename)
+            //slug
+            data.slug = slugify(data.name,{lower:true})
 
             deleteFile('./public/uploads/collection/'+req.file.filename)
             data.createdBy = req.authUser._id
@@ -68,15 +73,12 @@ class CollectionController{
             }
             this.collectionDetails = await collectionService.getIdbyFilter({
                 _id: id
-            })
-    
+            })   
             
             if(!this.collectionDetails){
                 throw{status:400, message:"Collection Doesn't Exit"}
             }
-
-        }catch(exception){
-            
+        }catch(exception){            
             throw exception
         }        
 
@@ -143,6 +145,25 @@ class CollectionController{
             next(exception)
         }
         
+    }
+    listForHome =async(req,res,next)=>{
+        try{
+
+            const list = await collectionService.listdata({
+                limit:5,
+                filter:{
+                    status:Status.ACTIVE
+                }
+            })
+            res.json({
+                result:list,
+                message:"List of active Collection",
+                meta:null
+            })
+        }catch(exception){
+            next(exception)
+        }
+
     }
 }
 module.exports = new CollectionController

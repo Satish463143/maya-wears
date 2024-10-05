@@ -4,7 +4,8 @@ const { Status } = require("../../config/constants.config")
 const collectionSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     decription:{
         type:String,
@@ -15,6 +16,11 @@ const collectionSchema = new mongoose.Schema({
         type:String,
         enum:[...Object.values(Status)],
         default:Status.INACTIVE
+    },
+    slug:{
+        type:String,
+        required:true,
+        unique:true
     },
     createdBy:{
         type: mongoose.Types.ObjectId,
