@@ -1,29 +1,30 @@
 import React from 'react'
 import './Login.css'
 
-const Login = () => {
+const Login = ({setCurrentView}) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    }
   return (
-    
         <div className='login_box'>
-            <form action=""method="post" >
+            <form action=""method="post" onSubmit={handleSubmit} >
                 <div className="fromtitle">
-                    <h1>Login</h1>
+                    <h2>Login</h2>
                     <div className='login_hr'></div>
                 </div>
                 <div className="form_body">
-                    <label htmlFor="email">Email</label><br />
+                    <label htmlFor="email">Email<span>*</span></label><br />
                     <input type="email" name='email' required /><br />
-                    <label htmlFor="password">Password</label><br />
+                    <label htmlFor="password">Password<span>*</span></label><br />
                     <input type="password" name='password' required /><br />
-                    <input type="submit" value="Submit" name='login_submit'/>
+                    <input className='submit_btn' type="submit" value="Submit" name='login_submit'/>
                 </div>
                 <div className="sign_up_p">
-                    <p>Don't have an account? <span>Sign Up</span></p>
+                    <h5 onClick={()=> setCurrentView('forgotPassowrd')}>Forgot Password?</h5>
+                    <p>Don't have an account? <span onClick={()=> setCurrentView('signup')}>Sign Up</span></p>
                 </div>
-
             </form>
-        </div>
-    
+        </div>    
   )
 }
 

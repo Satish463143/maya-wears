@@ -9,4 +9,44 @@
     height: 2px;
     background-color: var(--sec_dark);
 }
+.sign_up_p{
+    margin-top: 20px;
+    text-align: center;
 
+}
+.sign_up_p h5{
+    padding-bottom: 5px;
+    color: rgb(199, 53, 53);
+    cursor: pointer;
+
+}
+.sign_up_p span{
+    color: rgb(199, 53, 53);
+    font-weight: 600;
+    cursor: pointer;
+}
+.login_box form .form_body{
+    margin-top: 30px;
+}
+.login_box form .form_body input{
+    width: 250px;
+    height: 30px;
+    border: none;
+    background: none;
+    border-bottom: 1px solid var(--sec_dark);
+    padding-left: 10px;
+    margin-bottom: 15px;
+    
+}
+.login_box form .form_body .submit_btn{
+    background: var(--sec_dark);
+    height: 40px;
+    color: var(--white);
+    border-radius: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.login_box form .form_body span{
+    color: red;
+    
+}

@@ -19,16 +19,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     
+}
+.loginpage_messaage .login_hr{
+    background-color: var(--sec_color) !important;
+    width: 100px !important;
+    margin: 5px 0px 20px 0 !important;
 }
 .loginform_box{
     border: 1px solid var(--sec_dark);
     box-shadow: var(--sec_dark) 0px 5px 15px;;
-    background: linear-gradient(-125deg, var(--sec_dark) 50%, var(--sec_color) 50%);
+    background: linear-gradient(-110deg, var(--sec_dark) 45%, var(--sec_color) 0%);
     padding: 50px 25px;
+    border-radius: 5px;
 }
 .loginform_box_grid{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 180px;
+}
+.loginpage_messaage {
+    text-align: end;
+}
+.loginpage_messaage  h2{
+    padding-bottom: 5px;
+
 }
