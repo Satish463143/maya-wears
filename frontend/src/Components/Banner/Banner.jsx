@@ -1,34 +1,34 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Banner.css';
 import { StoreContext } from '../../context/StoreContext';
 
 const Banner = () => {
   const {BannerContent} = useContext(StoreContext);
   const bannerData = BannerContent[0];
-  // const videoRefDesktop = useRef(null);
-  // const videoRefMobile = useRef(null);
-  // const [isPlaying, setIsPlaying] = useState(true);
-  // const [isMuted, setIsMuted] = useState(true);
 
-  // // Toggle play/pause functionality
-  // const togglePlayPause = () => {
-  //   if (isPlaying) {
-  //     videoRefDesktop.current.pause();
-  //     videoRefMobile.current.pause();
-  //   } else {
-  //     videoRefDesktop.current.play();
-  //     videoRefMobile.current.play();
-  //   }
-  //   setIsPlaying(!isPlaying);
-  // };
+  const [bannerData1, setBannerData] =useState()
+  const getAllBanner = ()=>{
+    const response=[
+      {
+        _id:"",
+        title:"",
+        category:"",
+        link:"",
+        desktopImage:"",
+        mobileImage:"",
+        desktopVideo:"",
+        mobileVideo:""
+      }
+    ]
 
-  // // Toggle mute/unmute functionality
-  // const toggleMuteUnmute = () => {
-  //   const isCurrentlyMuted = videoRefDesktop.current.muted;
-  //   videoRefDesktop.current.muted = !isCurrentlyMuted;
-  //   videoRefMobile.current.muted = !isCurrentlyMuted;
-  //   setIsMuted(!isCurrentlyMuted);
-  // };
+    setBannerData(response)
+  }
+
+
+  useEffect(()=>{
+    getAllBanner()
+  },[])
+
 
   return (
     <div className="banner">

@@ -4,7 +4,17 @@
     height: 100vh;
     position: fixed;
     top: 0;
-    z-index: 9999999;    
+    z-index: 9999999;
+    display: none;    
+}
+.login_page_none{
+    display: block;
+}
+.loginform_box .cross_btn{
+    position: absolute;
+    z-index: 999999999999999;
+    top: 10px;
+    right: 10px;
 }
 .login_overlay{
     position: absolute;
@@ -33,6 +43,7 @@
     background: linear-gradient(-110deg, var(--sec_dark) 45%, var(--sec_color) 0%);
     padding: 50px 25px;
     border-radius: 5px;
+    position: relative;
 }
 .loginform_box_grid{
     display: flex;

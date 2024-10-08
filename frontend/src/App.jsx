@@ -14,7 +14,13 @@ import Cart from './Components/Cart/Cart'
 
 const App = () => {
   const [isCartActive , setCartActive] = useState(null);
+  
+  const [isVisible, setIsVisible] = useState(false)
 
+  const toggleVisible =()=>{
+    setIsVisible(!isVisible)
+    
+  }
 
   const ScrollToTop = () => {
     const { hash, pathname } = useLocation();
@@ -39,6 +45,7 @@ const App = () => {
 
   const toogleCart = ()=>{
     setCartActive(!isCartActive)
+
   }
 
   useEffect(() => {
@@ -48,8 +55,8 @@ const App = () => {
 
   return (      
       <div>        
-        <Navbar/>
-        <LoginPage/>
+        <Navbar isVisible={isVisible} toggleVisible={toggleVisible}/>
+        <LoginPage isVisible={isVisible} toggleVisible={toggleVisible}/>
         <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
         <FooterNav/>
         <ScrollToTop/>
