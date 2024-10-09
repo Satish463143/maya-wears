@@ -1,10 +1,12 @@
 import React, { useContext,useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import ProductDetails from '../../Components/ProductDetails/ProductDetails';
 import SimilarProperties from '../../Components/SimilarProperties/SimilarProperties';
 import Faq from '../../Components/Faq/Faq';
 import { StoreContext } from '../../context/StoreContext';
 
-const ProductPage = ({ isCartActive, toogleCart }) => {
+const ProductPage = () => {
+  const { isCartActive, toogleCart } = useOutletContext();
   const { cartList, addToCartList } = useContext(StoreContext);
   const [selectedSize, setSelectedSize] = useState(null);
 

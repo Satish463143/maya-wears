@@ -8,6 +8,7 @@ import Down_3_Banner from '../../Components/Down_3_Banner/Down_3_Banner'
 import GoogleReview from '../../Components/GoogleReview/GoogleReview'
 import ProductSlides from '../../Components/ProductSlides/ProductSlides'
 import Faq from '../../Components/Faq/Faq'
+import Collection from '../../Components/Collection/Collection'
 
 const Home = () => {
   
@@ -19,8 +20,9 @@ const Home = () => {
         <BestSellingItem/>
         <Down_2_Banner/>
         <Down_3_Banner/>
-        <GoogleReview/>  
+        <GoogleReview/>          
         <Faq/>
+        <Collection/>
     </div>
   )
 }
