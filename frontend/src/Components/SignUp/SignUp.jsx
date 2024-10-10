@@ -1,83 +1,74 @@
 import React, { useState } from 'react'
+import { TextInputComponent } from '../../Middlewares/Form/Input.component'
+import {useForm} from "react-hook-form"
 
 const SignUp = ({ setCurrentView }) => {
-    const [data, setData] =useState({
-        name:"",
-        email:"",
-        password:"",
-        confirmPassword:"",
-        address:"",
-        phone:"",
+    const {control,handleSubmit, setValue,formState:{errors}} = useForm({
 
-    })
-    console.log(data)
-    const handleForm= (e)=>{
-        e.preventDefault();
-        if (password !== confirmPassword) {
-          setError('Confrim Passwords do not match');
-          return;
-        }else{
-            setCurrentView('login');
-        }
-        
+    }) 
+    const submitForm=(data)=>{
+
     }
   return (
     <div>
         <div className='login_box'>
-            <form action=""method="post" onSubmit={handleForm}>
+            <form  method="post" onSubmit={handleSubmit(submitForm)}>
                 <div className="fromtitle">
                     <h2>Sign Up</h2>
                     <div className='login_hr'></div>
                 </div>
                 <div className="form_body">
                     <label htmlFor="name">Name <span>*</span></label><br />
-                    <input type="text" name='name' onChange={(e)=>{
-                        e.preventDefault()
-                        setData({
-                            ...data,
-                            name:e.target.value
-                        })
-                    }} required /><br />
+                    <TextInputComponent
+                        name="name"
+                        errMsg={errors?.name?.message || null}
+                        required:true
+                        control={control}
+ 
+                    />
+                    <br />
                     <label htmlFor="address">Address </label><br />
-                    <input type="text" name='address'onChange={(e)=>{
-                        e.preventDefault()
-                        setData({
-                            ...data,
-                            address:e.target.value
-                        })
-                    }} required /><br />
+                    <TextInputComponent
+                        name="address"
+                        errMsg={errors?.address?.message || null}
+                        required:true
+                        control={control}
+                    />
+                    <br />
                     <label htmlFor="email">Email<span>*</span></label><br />
-                    <input type="email" name='email'onChange={(e)=>{
-                        e.preventDefault()
-                        setData({
-                            ...data,
-                            email:e.target.value
-                        })
-                    }} required /><br />
+                    <TextInputComponent
+                        name="email"
+                        errMsg={errors?.email?.message || null}
+                        required:true
+                        control={control}
+                    />
+                    <br />
                     <label htmlFor="phone">Phone Number<span>*</span></label><br />
-                    <input type="text" name='phone' onChange={(e)=>{
-                        e.preventDefault()
-                        setData({
-                            ...data,
-                            phone:e.target.value
-                        })
-                    }}required /><br />
+                    <TextInputComponent
+                        name="phone"
+                        errMsg={errors?.phone?.message || null}
+                        required:true
+                        control={control}
+                    />
+                    
+                    <br />
                     <label htmlFor="password">Password<span>*</span></label><br />
-                    <input type="password" name='password'onChange={(e)=>{
-                        e.preventDefault()
-                        setData({
-                            ...data,
-                            password:e.target.value
-                        })
-                    }} required /><br />
+                    <TextInputComponent
+                        name="password"
+                        errMsg={errors?.password?.message || null}
+                        required:true
+                        control={control}
+                    />
+                    <br />
                     <label htmlFor="confirmPassword">Confirm Password<span>*</span></label><br />
-                    <input type="password" name='confirmPassword' onChange={(e)=>{
-                        e.preventDefault()
-                        setData({
-                            ...data,
-                            confirmPassword:e.target.value
-                        })
-                    }}required /><br />
+                    <TextInputComponent
+                        name="confirmPassword"
+                        errMsg={errors?.confirmPassword?.message || null}
+                        required:true
+                        control={control}
+                    />
+                    
+                    <br />
                     <input className='submit_btn' type="submit" value="Submit" name='signUp_submit'/>
                 </div>
                 <div className="sign_up_p">                    
