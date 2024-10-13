@@ -46,6 +46,11 @@
     margin-top: 20px;
     cursor: pointer;
 }
+.login_box form .form_body .submit_btn:disabled{
+    cursor: not-allowed;
+    background: #806f3e;
+    opacity: 0.6;
+}
 .login_box form .form_body span{
     color: red;
     

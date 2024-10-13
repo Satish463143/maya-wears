@@ -5,15 +5,12 @@ import Navbar from '../../Components/Navbar/Navbar'
 import Footer from '../../Components/Footer/Footer'
 import FooterNav from '../../Components/FooterNav/FooterNav'
 import Cart from '../../Components/Cart/Cart'
-
+import {ToastContainer} from 'react-toastify'
+import "react-toastify/ReactToastify.css"
 
 
 
 const LayoutPage = () => {
-
-
-
-
 
     const [isCartActive , setCartActive] = useState(null);
   
@@ -51,6 +48,7 @@ const LayoutPage = () => {
     }
     return (
         <div>
+            <ToastContainer style={{ zIndex: 9999999 }}/>
             <Navbar isVisible={isVisible} toggleVisible={toggleVisible}/>
             <LoginPage isVisible={isVisible} toggleVisible={toggleVisible}/>
             <Cart isCartActive={isCartActive} toogleCart={toogleCart} />

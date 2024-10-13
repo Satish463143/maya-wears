@@ -9,6 +9,8 @@ import 'aos/dist/aos.css';
 import LayoutPage from './pages/LayoutPage/LayoutPage'
 import CMSLayout from './pages/LayoutPage/CMSLayout';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
+import UserActivation from './pages/LoginPage/actiavte.user';
+
 
 
 const App = ({isCartActive,toogleCart}) => {
@@ -21,10 +23,12 @@ const App = ({isCartActive,toogleCart}) => {
 
   return (      
       <div>
+        
         <Routes>
 
           <Route path='/' element={<LayoutPage/>}>
             <Route index element={<Home/>}/>
+            <Route path="activate/:token" element={<UserActivation/>}/>
             <Route path='product/:_id' element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart} />}/>
             <Route path='collection/:slug' element={<CollectionPage/>}/>
             <Route path='*' element={<>Page not Found</>}/>

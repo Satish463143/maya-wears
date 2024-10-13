@@ -1,5 +1,5 @@
 import {useController} from "react-hook-form"
-export const TextInputComponent = ({type="text",control,name, defaultValue,required=false, errMsg= null})=>{
+export const TextInputComponent = ({type="text",control,name, defaultValue="",required=false, errMsg= null})=>{
     const {field} = useController({
         control:control,
         name:name,

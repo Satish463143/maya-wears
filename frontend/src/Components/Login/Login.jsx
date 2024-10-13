@@ -27,5 +27,5 @@ const Login = ({setCurrentView}) => {
         </div>    
   )
 }
-
+ 
 export default Login
