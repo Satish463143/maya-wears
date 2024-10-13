@@ -39,11 +39,11 @@ const UserSchema = new mongoose.Schema({
     address:{
         ShippingAddress:AddressSchema
     },
-    role:{
-        type:String,
-        enum:[...Object.values(UserRoles)],
-        default:UserRoles.CUSTOMER,
-    },
+    // role:{
+    //     type:String,
+    //     enum:[...Object.values(UserRoles)],
+    //     default:UserRoles.CUSTOMER,
+    // },
     status:{
         type:String,
         enum:[...Object.values(Status)],
@@ -54,10 +54,10 @@ const UserSchema = new mongoose.Schema({
         default:null,
 
     },
-    activeFor:Date,
+    activeFor:{ type: Date },
     forgetToken:String,
     forgetFor:String,
-    image:String,
+    // image:String,
     createdBy:{
         type:mongoose.Types.ObjectId,
         ref:"User",

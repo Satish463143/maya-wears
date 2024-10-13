@@ -35,6 +35,7 @@ class AuthController {
             })
         }
         catch(exception){
+            // console.log("I am here too")
             next(exception)
         }
     }

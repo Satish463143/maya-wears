@@ -8,27 +8,25 @@ class UserService {
 
     generateUserActivationToken = (data)=>{
         data.activationToken = randomStringGenerator(100)
-        data.activeFor = new Date(Date.now()+ (process.env.ACTIVE_FOR*60*60*1000))
+        data.activeFor = new Date(Date.now() + (parseInt(process.env.ACTIVE_FOR, 10) * 60 * 60 * 1000));
+
         return data
     }
     //Create user
     transformUserCreate = (req)=>{
-        const data = req.body;
+        let data = req.body;
         if(req.file){
             data.image = req.file.filename;
         }
 
         data.password = bcrypt.hashSync(data.password, 10)
          // bcrypt.compareSync(data.confirmPassword, data.password)
-        // delete data.confirmPassword
-        
+        // delete data.confirmPassword          
+        data =  this.generateUserActivationToken(data)
         data.status ="inactive"
-        
-        this.generateUserActivationToken(data)
-
         return data
     }
-    // send activation mail
+    // send activation mail    
     sendActivationEmail = async ({ email, name, token,sub="Activate your Account" }) => {
         try {
             return await mailSvc.sendEmail({

@@ -27,7 +27,7 @@ class UserController {
 
        }
     catch(exception){
-        console.log("I amm here")
+        console.log("I amm here "+ exception)
         next(exception)
 
        }

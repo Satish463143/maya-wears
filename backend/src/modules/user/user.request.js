@@ -15,10 +15,10 @@ const UserCreateDTO = Joi.object({
     confirmPassword: Joi.string().equal(Joi.ref('password')).required().messages({
         "any.only":"Password and confirmPassword must match"
     }),
-    image: Joi.string(),
-    role:Joi.string().regex(/^(seller|customer|admin)$/).required().messages({
-        "string.pattern.base":"choose a given role"
-    })
+    // image: Joi.string(),
+    // role:Joi.string().regex(/^(seller|customer|admin)$/).required().messages({
+    //     "string.pattern.base":"choose a given role"
+    // })
 
 });
 

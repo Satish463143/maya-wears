@@ -1,9 +1,13 @@
 const express = require ("express");
+const cors = require ('cors')
 require("./db.config") // databsae connection
 const router = require("./router.config");
 const {MulterError} = require('multer')
 
 const app = express();
+
+//cors allowed
+app.use(cors())
 
 // Parser
 app.use(express.json());
@@ -32,6 +36,9 @@ app.use((error, req, res, next) => {
         uniqueFailedKeys.map((field)=>{
             details[field] =field + " should be unique"
         })
+        statusCode = 400;
+        message = "Validation error: Duplicate key";
+
     }
 
 
