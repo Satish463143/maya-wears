@@ -31,6 +31,24 @@ class HttpService {
       throw exception;
     }
   };
+
+
+  getRequest = async (url,  config = {}) => {
+    try {
+      // Call the private method to set headers
+      this.#setHeaders(config);
+
+      const response = await axiosInstance.get(url, {
+        headers: { ...this.#headers },
+      });
+
+      console.log("Success: " + response);
+      return response;
+    } catch (exception) {
+        console.log("get reques  error",exception)
+      throw exception;
+    }
+  };
 }
 
 export default new HttpService(); // Default export for an instance

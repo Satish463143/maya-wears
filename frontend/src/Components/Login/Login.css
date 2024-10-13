@@ -46,7 +46,7 @@
     margin-top: 20px;
     cursor: pointer;
 }
-.login_box form .form_body .submit_btn:disabled{
+.login_box form .form_body .submit_btn:disabled, #popup-modal button:disabled{
     cursor: not-allowed;
     background: #806f3e;
     opacity: 0.6;

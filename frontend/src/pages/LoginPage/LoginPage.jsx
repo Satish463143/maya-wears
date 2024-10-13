@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './LoginPage.css'
 import Login from '../../Components/Login/Login'
 import SignUp from '../../Components/SignUp/SignUp'
-import {useLocation} from 'react-router-dom'
+import {useLocation,useOutletContext} from 'react-router-dom'
 import ForgotPassword from '../../Components/ForgotPassword/ForgotPassword'
 import Token from '../../Components/Token/Token'
 import GeneratePassword from '../../Components/GeneratePassword/GeneratePassword'
 
 const LoginPage = ({ isVisible,toggleVisible }) => {
+  const { setIsVisible } = useOutletContext();
   const location = useLocation();
   const [currentView,setCurrentView] = useState('login')
   useEffect(()=>{
@@ -19,7 +20,7 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
   const renderComponent = ()=>{
     switch (currentView){
       case 'login':
-        return <Login setCurrentView = {setCurrentView} />
+        return <Login setCurrentView = {setCurrentView}  setIsVisible={setIsVisible}/>
       case 'signup':
         return <SignUp setCurrentView = {setCurrentView} />
         case 'forgotPassowrd':
@@ -29,7 +30,7 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
         case 'generatePassword':
           return <GeneratePassword setCurrentView={setCurrentView}/>  
       default :
-      return <Login setCurrentView = {setCurrentView} />
+      return <Login setCurrentView = {setCurrentView} setIsVisible={setIsVisible}/>
     }
   }
   return (
@@ -62,7 +63,7 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
               </span>
             </div> 
             <div className="loginform_box_grid">
-              {renderComponent()}
+              {renderComponent ()}
               <div className="login_message">
               <div className=" loginpage_messaage">
                   <h2>Welcome <br /> Again!</h2>                    

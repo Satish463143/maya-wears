@@ -13,7 +13,7 @@ import UserActivation from './pages/LoginPage/actiavte.user';
 
 
 
-const App = ({isCartActive,toogleCart}) => {
+const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
   
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const App = ({isCartActive,toogleCart}) => {
 
           <Route path='/' element={<LayoutPage/>}>
             <Route index element={<Home/>}/>
-            <Route path="activate/:token" element={<UserActivation/>}/>
+            <Route path="activate/:token" element={<UserActivation setIsVisible={setIsVisible} setCurrentView={setCurrentView}/>}/>
             <Route path='product/:_id' element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart} />}/>
             <Route path='collection/:slug' element={<CollectionPage/>}/>
             <Route path='*' element={<>Page not Found</>}/>

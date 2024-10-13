@@ -49,13 +49,13 @@ const LayoutPage = () => {
     return (
         <div>
             <ToastContainer style={{ zIndex: 9999999 }}/>
-            <Navbar isVisible={isVisible} toggleVisible={toggleVisible}/>
-            <LoginPage isVisible={isVisible} toggleVisible={toggleVisible}/>
+            <Navbar isVisible={isVisible} toggleVisible={toggleVisible} setIsVisible={setIsVisible}/>
+            <LoginPage isVisible={isVisible} toggleVisible={toggleVisible} />
             <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
             <FooterNav/>
             <ScrollToTop/>
 
-                <Outlet context={{ isCartActive, toogleCart }}/>
+                <Outlet context={{ isCartActive, toogleCart, setIsVisible}}/>
 
             <Footer/> 
         </div>
