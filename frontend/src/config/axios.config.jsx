@@ -14,7 +14,6 @@ const axiosInstance = axios.create({
 //interceptor
 
 axiosInstance.interceptors.response.use((response)=>{
-    console.log("sucessInterceptoors: "+response)
     return response.data
 },(error)=>{
    if(error.code === "ERR_BAD_REQUEST"){

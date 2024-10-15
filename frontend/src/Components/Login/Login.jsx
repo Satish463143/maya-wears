@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import './Login.css'
 import { useForm } from 'react-hook-form';
+import { TextInputComponent } from '../../Middlewares/Form/Input.component'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import authSvc from '../../pages/LoginPage/auth.service'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ setCurrentView, setIsVisible }) => {
+const Login = ({ setCurrentView,setLoggedIn}) => {
     
     const [loading, setLoading] = useState(false);
+
 
     const loginDTO = Yup.object({
         email: Yup.string().email().required(),
@@ -19,19 +22,41 @@ const Login = ({ setCurrentView, setIsVisible }) => {
         resolver: yupResolver(loginDTO),
     });
 
+    const getLoggedInUser= async()=>{
+        try{
+            const response = await authSvc.getRequest("/auth/me",{auth:true})
+            console.log(response)
+        }catch(exception){
+            throw exception
+        }
+    }
+    useEffect(()=>{
+        const token = localStorage.getItem('_at') || null
+        if(token){
+            getLoggedInUser()
+        }
+    },[])
+
     const login = async (data) => {
         try {
-        setLoading(true);
-        const response = await authSvc.postRequest('/auth/login/', data);
-        setLoading(false);
-        toast.success('Welcome to Maya Wears');
-        setIsVisible(false); // Set modal to invisible after successful login
+          setLoading(true);
+          const response = await authSvc.postRequest('/auth/login/', data);
+          setLoading(false);
+        //   console.log(response)
+          toast.success('Welcome to Maya Wears');
+          localStorage.setItem("_at", response.result.token.token);
+          localStorage.setItem("_rt", response.result.token.refreshToken);
+          
+          // After successful login, get the logged-in user
+          getLoggedInUser(); // Ensure the profile is shown after login
+          setLoggedIn(true)
         } catch (exception) {
-        setLoading(false);
-        console.log(exception);
-        toast.error(exception.data?.message || 'Login failed');
+          setLoading(false);
+          toast.error(exception.data?.message || 'Login failed');
         }
-    };
+      };
+
+    
     
   return (
         <div className='login_box'>

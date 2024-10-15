@@ -15,10 +15,10 @@ const LayoutPage = () => {
     const [isCartActive , setCartActive] = useState(null);
   
     const [isVisible, setIsVisible] = useState(false)
+    
 
     const toggleVisible =()=>{
-        setIsVisible(!isVisible)
-        
+        setIsVisible(!isVisible)        
     }
 
     const ScrollToTop = () => {

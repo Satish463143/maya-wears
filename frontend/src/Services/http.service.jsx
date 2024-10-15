@@ -4,7 +4,15 @@ class HttpService {
     #headers={}
     #setHeaders=(config)=>{
         if(config && config.auth){
-
+            const token = localStorage.getItem("_at") || null
+            if(!token){
+              throw {message:"Login firts"}
+            }else{
+              this.#headers={
+                ...this.#headers,
+                "Authorization": "Bearer " + token,
+              }
+            }
         }
         // If handling file uploads
         // if (config && config.file) {
@@ -24,8 +32,6 @@ class HttpService {
       const response = await axiosInstance.post(url, data, {
         headers: { ...this.#headers },
       });
-
-      console.log("Success: " + response);
       return response;
     } catch (exception) {
       throw exception;
@@ -42,10 +48,8 @@ class HttpService {
         headers: { ...this.#headers },
       });
 
-      console.log("Success: " + response);
       return response;
     } catch (exception) {
-        console.log("get reques  error",exception)
       throw exception;
     }
   };

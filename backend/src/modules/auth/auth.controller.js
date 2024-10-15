@@ -1,4 +1,4 @@
-const UserModel = require("../user/user.model")
+
 const userSvc = require("../user/user.service")
 const {Status} = require("../../config/constants.config")
 const bcrypt = require("bcryptjs")
@@ -65,7 +65,6 @@ class AuthController {
 
         }
         catch(exception){
-            console.log(exception)
             next (exception)
         }
         
