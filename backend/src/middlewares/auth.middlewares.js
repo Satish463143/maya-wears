@@ -4,6 +4,7 @@ const userSvc = require("../modules/user/user.service");
 
 const loginCheck = async (req, res, next) => {
     try {
+       
         let token = req.headers['authorization'] || null;
         if (!token) {
             throw { status: 401, message: "Unauthorized access: Token not provided" };
@@ -24,7 +25,7 @@ const loginCheck = async (req, res, next) => {
         if (!user) {
             throw { status: 404, message: "User does not exist" };
         }
-
+        
         req.authUser = {
             _id: user._id,
             name: user.name,
@@ -34,7 +35,7 @@ const loginCheck = async (req, res, next) => {
             phone: user.phone,
             image: user.image
         };
-
+        console.log(req.authUser)
         next();
     } catch (exception) {
         next({ status: exception.status || 401, message: exception.message || "Unauthorized" });
