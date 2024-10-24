@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { StoreContext } from "../context/StoreContext";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const CheckPermission = ({ allowedBy, children }) => {
@@ -10,9 +10,8 @@ const CheckPermission = ({ allowedBy, children }) => {
   useEffect(() => {
     if (loggedInUser) {
       if (loggedInUser.role !== allowedBy) {
-        toast.warn("You don't have permission to access this panel!!!", {
-          onClose: () => navigate("/"), // Navigates after the toast shows
-        });
+        toast.warn("You don't have permission to access this panel!!!");
+        navigate('/');
       }
     } else {
       toast.error("Please login first", {
@@ -26,7 +25,7 @@ const CheckPermission = ({ allowedBy, children }) => {
   }
 
   // Return null to prevent rendering unauthorized content
-  return null;
+  return <ToastContainer/>;
 };
 
 export default CheckPermission;

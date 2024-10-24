@@ -43,8 +43,7 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
     if(loggedInUser){
       if(loggedInUser.role === "admin"){ 
         setLoggedIn(false)
-        navigate('/admin')  
-          
+        navigate('/admin')           
       }else{
         setLoggedIn(true)
       }

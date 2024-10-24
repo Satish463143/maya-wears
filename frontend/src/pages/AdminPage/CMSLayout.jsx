@@ -6,8 +6,7 @@ import { Outlet } from 'react-router-dom'
 const CMSLayout = () => {
   return (
     <div>
-        <Navbar/>  
-                 
+        <Navbar/>                   
           <Outlet/>
         <Footer/>
 
