@@ -6,7 +6,7 @@ class HttpService {
         if(config && config.auth){
             const token = localStorage.getItem("_at") || null
             if(!token){
-              throw {message:"Login firts"}
+              throw {message:"Login first"}
             }else{
               this.#headers={
                 ...this.#headers,

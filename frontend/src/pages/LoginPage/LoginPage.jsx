@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './LoginPage.css'
 import Login from '../../Components/Login/Login'
 import SignUp from '../../Components/SignUp/SignUp'
-import {useLocation} from 'react-router-dom'
-import authSvc from '../LoginPage/auth.service'
+import {useLocation, useNavigate} from 'react-router-dom'
 import ForgotPassword from '../../Components/ForgotPassword/ForgotPassword'
 import Token from '../../Components/Token/Token'
 import GeneratePassword from '../../Components/GeneratePassword/GeneratePassword'
+import { StoreContext } from '../../context/StoreContext'
 
 const LoginPage = ({ isVisible,toggleVisible }) => {
   const location = useLocation();
   const [currentView,setCurrentView] = useState('login')
   let [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(()=>{
     if(location.state && location.state.currentView){
@@ -22,7 +23,7 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
   const renderComponent = ()=>{
     switch (currentView){
       case 'login':
-        return <Login setCurrentView = {setCurrentView} getLoggedInUser={getLoggedInUser} setLoggedIn= {setLoggedIn}/>
+        return <Login setCurrentView = {setCurrentView} setLoggedIn= {setLoggedIn}/>
       case 'signup':
         return <SignUp setCurrentView = {setCurrentView} />
       case 'forgotPassowrd':
@@ -32,24 +33,25 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
       case 'generatePassword':
         return <GeneratePassword setCurrentView={setCurrentView} />  
       default :
-      return <Login setCurrentView = {setCurrentView} getLoggedInUser={getLoggedInUser} setLoggedIn= {setLoggedIn}/>
+      return <Login setCurrentView = {setCurrentView}  setLoggedIn= {setLoggedIn}/>
     }
   }
-  const getLoggedInUser = async () => {
-    try {
-      const response = await authSvc.getRequest('/auth/me', { auth: true });
-      setLoggedIn(true); // Set logged in to true after successful response
-    } catch (exception) {
-      console.log(exception);
-    }
-  };
+ 
 
-  useEffect(() => {
-    const token = localStorage.getItem('_at') || null;
-    if (token) {
-      getLoggedInUser(); // Check if user is logged in on component load
+  const {loggedInUser} = useContext(StoreContext)
+  useEffect(()=>{
+    if(loggedInUser){
+      if(loggedInUser.role === "admin"){ 
+        setLoggedIn(false)
+        navigate('/admin')  
+          
+      }else{
+        setLoggedIn(true)
+      }
     }
-  }, []);
+    
+  },[loggedInUser])
+
 
 
   return loggedIn ? (

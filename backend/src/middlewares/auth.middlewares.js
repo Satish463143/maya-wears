@@ -35,7 +35,6 @@ const loginCheck = async (req, res, next) => {
             phone: user.phone,
             image: user.image
         };
-        console.log(req.authUser)
         next();
     } catch (exception) {
         next({ status: exception.status || 401, message: exception.message || "Unauthorized" });

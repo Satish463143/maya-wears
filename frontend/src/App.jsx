@@ -1,15 +1,14 @@
 import React,{useEffect} from 'react'
 import { HashRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home/Home'
-
 import AOS from 'aos';
 import ProductPage from './pages/ProductPage/ProductPage'
 import 'aos/dist/aos.css';
-
 import LayoutPage from './pages/LayoutPage/LayoutPage'
-import CMSLayout from './pages/LayoutPage/CMSLayout';
+import CMSLayout from './pages/AdminPage/CMSLayout'
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import UserActivation from './pages/LoginPage/actiavte.user';
+import CheckPermission from './config/rbac.config';
 
 
 
@@ -19,7 +18,6 @@ const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
   useEffect(() => {
     AOS.init({ duration: 1200 });
   }, []);
-
 
   return (      
       <div>
@@ -34,11 +32,16 @@ const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
             <Route path='*' element={<>Page not Found</>}/>
           </Route>
            
-          <Route path='/admin' element={<CMSLayout/>}/>
+          <Route path='/admin' element={<CheckPermission  allowedBy={'admin'}>
+              <CMSLayout/>
+            </CheckPermission>}>
+            {/* routes down */}
+
+          </Route>
 
         </Routes>
                
-      </div>  
+      </div>   
   )
 }
 

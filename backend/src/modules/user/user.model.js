@@ -39,11 +39,7 @@ const UserSchema = new mongoose.Schema({
     address:{
         ShippingAddress:AddressSchema
     },
-    // role:{
-    //     type:String,
-    //     enum:[...Object.values(UserRoles)],
-    //     default:UserRoles.CUSTOMER,
-    // },
+    role: { type: String, default: 'user' },
     status:{
         type:String,
         enum:[...Object.values(Status)],

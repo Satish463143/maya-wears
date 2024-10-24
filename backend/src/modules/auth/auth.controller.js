@@ -133,7 +133,6 @@ class AuthController {
                 message:"Your profile",
                 meta:null
             })
-            console.log(req.authUser)
 
         }catch(exception){
             next(exception)
