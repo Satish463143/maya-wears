@@ -25,7 +25,7 @@ const SignUp = ({ setCurrentView }) => {
         try{
             setLoading(true)
             await authSvc.postRequest('/auth/register',data,{file:true})
-            toast.success("Your Account has been created sucessfully. Please checck your mail to activate your account")
+            toast.success("Your Account has been created sucessfully. Please check your mail to activate your account")
             setLoading(false)
             setCurrentView('login')
         }catch(exception){

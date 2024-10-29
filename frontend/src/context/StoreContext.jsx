@@ -24,8 +24,7 @@ const StoreContextProvider = (props)=>{
       const getLoggedInUser = async()=>{
         try{
             const response = await authSvc.getRequest('/auth/me',{auth:true})
-            setLoggedInUser(response.result)            
-            console.log("user Detials",response.result)
+            setLoggedInUser(response.result)
         }catch(exception){
           console.log(exception)
         }
