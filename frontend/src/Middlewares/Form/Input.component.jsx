@@ -1,4 +1,5 @@
 import {useController} from "react-hook-form"
+import Select from 'react-select'
 export const TextInputComponent = ({type="text",control,name, defaultValue="",required=false, errMsg= null})=>{
     const {field} = useController({
         control:control,
@@ -43,7 +44,7 @@ export const TextAreaInput = ({control,name, defaultValue="",required=false, err
     )
 }
 
-export const SelectInputField = ({options,control,name,defaultValue,errMsg,required})=>{
+export const SelectInputField = ({options,control,name,defaultValue,errMsg})=>{
     const {field} = useController({
         control:control,
         name:name,
@@ -70,18 +71,46 @@ export const SelectInputField = ({options,control,name,defaultValue,errMsg,requi
         </>
     )
 }
+export const SelectComponent = ({options,control,name,defaultValue,errMsg})=>{
+    const {field} = useController({
+        control:control,
+        name:name,
+        defaultValue:defaultValue,
+        // rules:{
+        //     required:required
+        // }
+    })
+
+    return (
+        <>
+            <Select options={options} {...field} isClearable />
+            <span style={{color:'red', fontStyle:'italic'}}>
+                {errMsg}
+            </span>
+        </>
+    )
+}
 export const OptionsCompoentt = ({control,name,errMsg,required})=>{
     return(
         <>
-            <SelectInputField 
+            <SelectComponent 
                 options ={
-                    [{label:"Image", value:"image"},{label:"Video", value:"video"}]
+                    [{label:"Active", value:"active"},{label:"Inactive", value:"inactive"}]
                 }
                 control={control}
                 name={name}
                 errMsg={errMsg}
                 required={required}
             />
+        </>
+    )
+}
+
+export const SubmitButton = ({loading=false,value})=>{
+    return (
+
+        <>
+            <input type="submit" value={value}  disabled={loading}/>   
         </>
     )
 }

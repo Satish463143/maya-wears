@@ -15,12 +15,12 @@ class HttpService {
             }
         }
         // If handling file uploads
-        // if (config && config.file) {
-        // this.#headers = {
-        //     ...this.#headers,
-        //     "Content-Type": "multipart/form-data",
-        // };
-        // }
+        if (config && config.file) {
+        this.#headers = {
+            ...this.#headers,
+            "Content-Type": "multipart/form-data",
+        };
+        }
   };
 
   // Method to handle POST requests
