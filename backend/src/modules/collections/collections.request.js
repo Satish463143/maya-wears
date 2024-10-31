@@ -1,17 +1,17 @@
 const Joi = require("joi")
 const { Status } = require("../../config/constants.config")
-const collectionDTO =Joi.object({
-    name:Joi.string().min(3).max(50).required(),
-    decription:Joi.string().min(3).max(50).empty(null, "").optional().default(null),
-    status:Joi.string().valid(...Object.values(Status)).required(),
-    image:Joi.string().required()
+const collectionDTO = Joi.object({
+    name: Joi.string().min(3).max(50).required(),
+    description: Joi.string().min(3).max(50).empty(null, "").optional().default(null),
+    status: Joi.string().valid(...Object.values(Status)).required(),
+    image: Joi.string().required()
 
 })
-const collectionUpdateDTO =Joi.object({
-    name:Joi.string().min(3).max(50).required(),
-    decription:Joi.string().min(3).max(50).empty(null, "").optional().default(null),
-    status:Joi.string().valid(...Object.values(Status)).required(),
-    image:Joi.string().optional()
+const collectionUpdateDTO = Joi.object({
+    name: Joi.string().min(3).max(50).required(),
+    description: Joi.string().min(3).max(50).empty(null, "").optional().default(null),
+    status: Joi.string().valid(...Object.values(Status)).required(),
+    image: Joi.string().optional()
 
 })
 

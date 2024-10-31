@@ -1,26 +1,26 @@
 import axiosInstance from "../config/axios.config";
 
 class HttpService {
-    #headers={}
-    #setHeaders=(config)=>{
-        if(config && config.auth){
-            const token = localStorage.getItem("_at") || null
-            if(!token){
-              throw {message:"Login first"}
-            }else{
-              this.#headers={
-                ...this.#headers,
-                "Authorization": "Bearer " + token,
-              }
-            }
-        }
-        // If handling file uploads
-        if (config && config.file) {
+  #headers = {}
+  #setHeaders = (config) => {
+    if (config && config.auth) {
+      const token = localStorage.getItem("_at") || null
+      if (!token) {
+        throw { message: "Login first" }
+      } else {
         this.#headers = {
-            ...this.#headers,
-            "Content-Type": "multipart/form-data",
-        };
+          ...this.#headers,
+          "Authorization": "Bearer " + token,
         }
+      }
+    }
+    // If handling file uploads
+    if (config && config.file) {
+      this.#headers = {
+        ...this.#headers,
+        "Content-Type": "multipart/form-data",
+      };
+    }
   };
 
   // Method to handle POST requests
@@ -39,7 +39,7 @@ class HttpService {
   };
 
 
-  getRequest = async (url,  config = {}) => {
+  getRequest = async (url, config = {}) => {
     try {
       // Call the private method to set headers
       this.#setHeaders(config);
