@@ -1,5 +1,6 @@
 import {useController} from "react-hook-form"
 import Select from 'react-select'
+import '../../pages/AdminPage/CMSLayout.css'
 export const TextInputComponent = ({type="text",control,name, defaultValue="",required=false, errMsg= null})=>{
     const {field} = useController({
         control:control,
@@ -110,7 +111,7 @@ export const SubmitButton = ({loading=false,value})=>{
     return (
 
         <>
-            <input type="submit" value={value}  disabled={loading}/>   
+            <input className="submit_btn" type="submit" value={value}  disabled={loading}/>   
         </>
     )
 }

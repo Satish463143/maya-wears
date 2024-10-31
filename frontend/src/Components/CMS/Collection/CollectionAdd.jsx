@@ -3,8 +3,9 @@ import AdminTitle from '../../../Middlewares/AdminTitle/AdminTitle'
 import * as Yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { toast } from 'react-toastify'
-import { OptionsCompoentt, SelectInputField, SubmitButton, TextAreaInput, TextInputComponent } from '../../../Middlewares/Form/Input.component'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { OptionsCompoentt, SubmitButton, TextAreaInput, TextInputComponent } from '../../../Middlewares/Form/Input.component'
 import collectionSvc from './Collection.service'
 import { useNavigate } from 'react-router-dom'
 
@@ -21,7 +22,7 @@ const CollectionAdd = () => {
         }).required(),
         image: Yup.string().required()
     })
-    const { control, handleSubmit, setValue, setError, formState: { errors } } = useForm({
+    const { control, handleSubmit, setValue,  formState: { errors } } = useForm({
         resolver: yupResolver(collectionDTO)
     })
 
@@ -36,11 +37,31 @@ const CollectionAdd = () => {
             formData.append("image", imageFile);  // Ensure file upload
 
             await collectionSvc.postRequest("/collection", formData, { auth: true, file: true });
-            toast.success("Collection Created Successfully");
+            
+            // toast.success("Collection Created Successfully");
             // navigate("/admin/collection");
+            toast.success("Collection Created Successfully", {
+                onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
+              }); 
+            
         } catch (exception) {
+             // Default error message
+            let errorMessage = "Error while creating collection";
+
+            // Check if response has data and specific field errors
+            if (exception.data) {
+                const data = exception.data;
+        
+                if (data.result) {
+                    // Use field-specific errors
+                    errorMessage = Object.values(data.result).join(", ");
+                } else if (data.message) {
+                    errorMessage = data.message;
+                }
+            }
+
+            toast.error(errorMessage);
             console.error(exception, "Error here");
-            toast.error("Error while creating collection");
         } finally {
             setLoading(false);
         }
@@ -48,6 +69,7 @@ const CollectionAdd = () => {
 
     return (
         <div className='admin_margin_box'>
+            <ToastContainer />
             <div className="admin_titles">
                 <AdminTitle label1=" Collection List" label2="/Add Collection" url="/admin/collection" />
                 <div className='Dashboard_title'>
@@ -104,9 +126,8 @@ const CollectionAdd = () => {
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <SubmitButton
-                            value="Add Collection"
-                        />
+                        
+                        <input className='submit_btn' type="submit" value="Add Collection" disabled={loading}/>
                     </div>
                 </form>
             </div>
