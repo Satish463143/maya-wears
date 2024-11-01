@@ -12,7 +12,7 @@ class CollectionService {
         }
 
     }
-    listdata = async ({ skip = 0, limit = 10, filter = {} }) => {
+    listdata = async ({ skip , limit , filter }) => {
         try {
             const count = await CollectionModel.countDocuments(filter)
             const data = await CollectionModel.find(filter)

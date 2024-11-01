@@ -36,8 +36,8 @@ class CollectionController {
     }
     index = async (req, res, next) => {
         try {
-            const limit = req.query.limit || 10
-            const page = req.query.page || 1
+            const limit = parseInt(req.query.limit) || 10
+            const page = parseInt(req.query.page) || 1
             const skip = (page - 1) * limit
 
             let filter = {}

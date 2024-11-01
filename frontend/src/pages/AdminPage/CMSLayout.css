@@ -4,6 +4,16 @@
     justify-content: center;
     width: 100%;
 }
+
+.Dashboard_title input{
+    border-radius: 25px;
+    margin-right: 10px;
+    background: none;
+    height: 35px;
+}
+.blog_table tbody td{
+    padding: 10px;
+}
 .admin_margin_box{
     margin: 20px;
     border: 1px solid var(--sec_dark);

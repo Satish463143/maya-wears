@@ -1,6 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import * as Yup from 'yup'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { OptionsCompoentt,  TextAreaInput, TextInputComponent } from '../../../Middlewares/Form/Input.component'
 
-const CollectionForm = () => {
+
+const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
+
+    const collectionDTO = Yup.object({
+        name: Yup.string().min(3).max(50).required(),
+        description: Yup.string().min(3).max(50).nullable().optional().default(null),
+        status: Yup.object({
+            label:Yup.string().matches(/^(Active|InActive)$/),
+            value: Yup.string().matches(/^(active|inactive)$/).required()
+        }).required(),
+        image: Yup.string().required()
+    })
+
+    const { control, handleSubmit, setValue,  formState: { errors } } = useForm({
+        resolver: yupResolver(collectionDTO)
+    })
+
+    useEffect(()=>{
+        if(detail){
+            setValue("name", detail.name)
+            setValue("image", detail.image)
+            setValue("description", detail.description)
+            setValue("status", detail.status)
+
+        }
+    },[detail])
+
   return (
     <form onSubmit={handleSubmit(submitEvent)}>
         <h3>Content</h3>

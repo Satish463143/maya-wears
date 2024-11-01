@@ -45,7 +45,7 @@ const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
             <Route path='banner_1_edit' element={<Banner_1_Edit/>}/>
             <Route path='collection' element={<CollectionList/>} />
             <Route path='add_collection' element={<CollectionAdd/>} />
-            <Route path='edit_collection' element={<CollectionEdit/>} />
+            <Route path='edit_collection/:id' element={<CollectionEdit/>} />
           </Route>
 
         </Routes>
