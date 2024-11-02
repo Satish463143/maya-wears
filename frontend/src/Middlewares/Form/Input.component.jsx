@@ -106,6 +106,21 @@ export const OptionsCompoentt = ({control,name,errMsg,required})=>{
         </>
     )
 }
+export const CategoryOptionsCompoent = ({control,name,errMsg,required})=>{
+    return(
+        <>
+            <SelectComponent 
+                options ={
+                    [{label:"Image", value:"image"},{label:"Video", value:"Video"}]
+                }
+                control={control}
+                name={name}
+                errMsg={errMsg}
+                required={required}
+            />
+        </>
+    )
+}
 
 export const SubmitButton = ({loading=false,value})=>{
     return (

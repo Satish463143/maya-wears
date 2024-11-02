@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,12 +11,12 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
         name: Yup.string().min(3).max(50).required(),
         description: Yup.string().min(3).max(50).nullable().optional().default(null),
         status: Yup.object({
-            label:Yup.string().matches(/^(Active|InActive)$/),
+            label:Yup.string().matches(/^(Active|Inactive)$/),
             value: Yup.string().matches(/^(active|inactive)$/).required()
         }).required(),
         image: Yup.string().required()
     })
-
+     
     const { control, handleSubmit, setValue,  formState: { errors } } = useForm({
         resolver: yupResolver(collectionDTO)
     })
@@ -74,7 +74,6 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
                         setImageFile(image)
                         setValue('image', image)
                     }}
-                    required
                 /><br />
             </div>
         </div>

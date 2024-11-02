@@ -62,6 +62,23 @@ class HttpService {
       throw exception;
     }
   };
+
+  putRequest= async (url,data={}, config = {}) => {
+    try {
+      // Call the private method to set headers
+      this.#setHeaders(config);
+
+      const response = await axiosInstance.put(url,data, {
+        headers: { ...this.#headers },
+        params:{...this.#params}
+      });
+
+      return response;
+    } catch (exception) {
+      console.log(exception, 'here it is') 
+      throw exception;
+    }
+  };
   deleteRequest = async (url, config = {}) => {
     try {
       // Call the private method to set headers

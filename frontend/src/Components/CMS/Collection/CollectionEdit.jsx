@@ -16,8 +16,7 @@ const CollectionEdit = () => {
 
     const getDetail = async()=>{
       try{
-        const detail = await collectionSvc.getRequest("/collection/"+params.id,{auth:true})
-       
+        const detail = await collectionSvc.getRequest("/collection/"+params.id,{auth:true})       
         
         setCollection(detail.result)
         setLoading(false)
@@ -37,37 +36,30 @@ const CollectionEdit = () => {
         setLoading(true);
         try {
             // Set up FormData to handle file upload
-            console.log(data)
+            // console.log(data)
             const formData = new FormData();
             formData.append("name", data.name);
             formData.append("description", data.description || "");  // Make sure this aligns with server field name
             formData.append("status", data.status.value);  // Adjust based on object structure
             formData.append("image", imageFile);  // Ensure file upload
-
-            // await collectionSvc.postRequest("/collection", formData, { auth: true, file: true });
             
-            // // toast.success("Collection Created Successfully");
-            // // navigate("/admin/collection");
-            // toast.success("Collection Created Successfully", {
-            //     onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
-            //   }); 
+             await collectionSvc.putRequest("/collection/"+params.id, formData, { auth: true, file: true });
+
+             if(typeof data.image === 'string'){
+              delete formData.image
+            }
+             
+            //  for (let [key, value] of formData.entries()) {
+            //   console.log(key, value);
+            // }
+
+            toast.success("Collection Updated Successfully", {
+                onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
+              }); 
             
         } catch (exception) {
              // Default error message
-            let errorMessage = "Error while creating collection";
-
-            // Check if response has data and specific field errors
-            if (exception.data) {
-                const data = exception.data;
-        
-                if (data.result) {
-                    // Use field-specific errors
-                    errorMessage = Object.values(data.result).join(", ");
-                } else if (data.message) {
-                    errorMessage = data.message;
-                }
-            }
-
+            let errorMessage = "Error while updating collection";
             toast.error(errorMessage);
             console.error(exception, "Error here");
         } finally {
@@ -93,7 +85,7 @@ const CollectionEdit = () => {
                   name:collection.name,
                   description:collection.description,
                   status:{
-                    label:collection.status === 'active' ? 'Active' : 'InActive',
+                    label:collection.status === 'active' ? 'Active' : 'Inactive',
                     value:collection.status
                   },
                   image:collection.image
