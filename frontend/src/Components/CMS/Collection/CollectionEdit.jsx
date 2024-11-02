@@ -8,94 +8,97 @@ import CollectionForm from './CollectionForm'
 import LoadingComponent from '../../../Middlewares/Loading/Loading.component';
 
 const CollectionEdit = () => {
-    const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
-    const [imageFile, setImageFile] = useState(null);
-    const [collection, setCollection] = useState()
-    const params = useParams();
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
+  const [imageFile, setImageFile] = useState(null);
+  const [collection, setCollection] = useState()
+  const params = useParams();
 
-    const getDetail = async()=>{
-      try{
-        const detail = await collectionSvc.getRequest("/collection/"+params.id,{auth:true})       
-        
-        setCollection(detail.result)
-        setLoading(false)
-      }catch(exception){
-        console.log(exception)
-        toast.error("Error while fetching collection", {
-          onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
-        }); 
-      }
+  const getDetail = async () => {
+    try {
+      const detail = await collectionSvc.getRequest("/collection/" + params.id, { auth: true })
+
+      setCollection(detail.result)
+      setLoading(false)
+    } catch (exception) {
+      console.log(exception)
+      toast.error("Error while fetching collection", {
+        onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
+      });
     }
+  }
 
-    useEffect(()=>{
-      getDetail()
-    },[])
+  useEffect(() => {
+    getDetail()
+  }, [])
 
-    const submitEvent = async (data) => {
-        setLoading(true);
-        try {
-            // Set up FormData to handle file upload
-            // console.log(data)
-            const formData = new FormData();
-            formData.append("name", data.name);
-            formData.append("description", data.description || "");  // Make sure this aligns with server field name
-            formData.append("status", data.status.value);  // Adjust based on object structure
-            formData.append("image", imageFile);  // Ensure file upload
-            
-             await collectionSvc.putRequest("/collection/"+params.id, formData, { auth: true, file: true });
+  const submitEvent = async (data) => {
+    setLoading(true);
+    try {
+      // Set up FormData to handle file upload
+      // console.log(data)
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("description", data.description || "");  // Make sure this aligns with server field name
+      formData.append("status", data.status.value);  // Adjust based on object structure
 
-             if(typeof data.image === 'string'){
-              delete formData.image
-            }
-             
-            //  for (let [key, value] of formData.entries()) {
-            //   console.log(key, value);
-            // }
+      if (imageFile) {
+        formData.append("image", imageFile);  // Ensure file upload
+      }
 
-            toast.success("Collection Updated Successfully", {
-                onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
-              }); 
-            
-        } catch (exception) {
-             // Default error message
-            let errorMessage = "Error while updating collection";
-            toast.error(errorMessage);
-            console.error(exception, "Error here");
-        } finally {
-            setLoading(false);
-        }
-    };
+      if (typeof data.image === 'string') {
+        delete formData.image
+      }
 
-    return (
-        <div className='admin_margin_box'>
-            <ToastContainer />
-            <div className="admin_titles">
-                <AdminTitle label1=" Collection List" label2="/Edit Collection" url="/admin/collection" />
-                <div className='Dashboard_title'>
-                    <h1>Edit Collection</h1>
-                </div>
-            </div>
+      // formData.forEach(element => {
+      //   console.log(element)
+      // });
 
-            <div className="banner_form">
-               {loading ? <><LoadingComponent/></>:
-               <>
-               <CollectionForm detail ={
-                {
-                  name:collection.name,
-                  description:collection.description,
-                  status:{
-                    label:collection.status === 'active' ? 'Active' : 'Inactive',
-                    value:collection.status
-                  },
-                  image:collection.image
-                }
-               } submitEvent={submitEvent} loading={loading} setImageFile={setImageFile} />
-               </>}
-            </div>
+      await collectionSvc.putRequest("/collection/" + params.id, formData, { auth: true, file: true });
 
+      toast.success("Collection Updated Successfully", {
+        onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
+      });
+
+    } catch (exception) {
+      // Default error message
+      let errorMessage = "Error while updating collection";
+      toast.error(errorMessage);
+      console.error(exception, "Error here");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className='admin_margin_box'>
+      <ToastContainer />
+      <div className="admin_titles">
+        <AdminTitle label1=" Collection List" label2="/Edit Collection" url="/admin/collection" />
+        <div className='Dashboard_title'>
+          <h1>Edit Collection</h1>
         </div>
-    )
+      </div>
+
+      <div className="banner_form">
+        {loading ? <><LoadingComponent /></> :
+          <>
+            <CollectionForm detail={
+              {
+                name: collection.name,
+                description: collection.description,
+                status: {
+                  label: collection.status === 'active' ? 'Active' : 'Inactive',
+                  value: collection.status
+                },
+                image: collection.image
+              }
+            } submitEvent={submitEvent} loading={loading} setImageFile={setImageFile} />
+          </>}
+      </div>
+
+    </div>
+  )
 }
 
 export default CollectionEdit

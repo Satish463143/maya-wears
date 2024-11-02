@@ -108,11 +108,11 @@ class CollectionController {
             const id = req.params.id
             await this.#validate(id)
             const data = req.body
+
             if (req.file) {
                 data.image = await uploadImage('./public/uploads/collection/' + req.file.filename)
+                deleteFile('./public/uploads/collection/' + req.file.filename)
             }
-
-            deleteFile('./public/uploads/collection/' + req.file.filename)
 
             const response = await collectionService.updateCollection(data, id)
             res.json({
