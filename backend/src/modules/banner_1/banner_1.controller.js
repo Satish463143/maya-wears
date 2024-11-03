@@ -38,6 +38,23 @@ class Banner_1Controller {
             next(exception)
         }
     }
+    show = async (req, res, next) => {
+        try {
+            const id = req.params.id
+            await this.#validateId(id)
+            res.json({
+                result: this.banner_1Details,
+                message: "Collection fetched By Id",
+                meta: null
+            })
+
+        }
+        catch (exception) {
+            console.log(exception + " error")
+            next(exception)
+        }
+
+    }
     update = async (req, res, next) => {
         try {
             const id = req.params.id;

@@ -50,9 +50,6 @@ const CollectionEdit = () => {
         delete formData.image
       }
 
-      // formData.forEach(element => {
-      //   console.log(element)
-      // });
 
       await collectionSvc.putRequest("/collection/" + params.id, formData, { auth: true, file: true });
 

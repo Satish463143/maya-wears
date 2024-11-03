@@ -235,7 +235,7 @@
     grid-template-columns: 48% 48%;
     
 }
-.banner_form form input,.banner_form form textarea,.banner_form form select{
+.banner_form form input,.banner_form form textarea,.banner_form form select, .banner_form form video{
     height: 40px;
     border: 1px solid var(--sec_dark);
     background: none;

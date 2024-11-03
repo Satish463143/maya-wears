@@ -45,7 +45,7 @@ const uplaodFile = (fileType = FileFilterType.IMAGE) => {
     })
 }
 
-// for both image and video at once wiwth diffeerent size limit
+// for both image and video at once with different size limit
 const uploadImageAndVideo = () => {
     return multer({
         storage: myStorage,  // Reuse the existing storage config

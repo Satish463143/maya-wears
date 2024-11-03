@@ -23,8 +23,7 @@ const Banner_1List = () => {
       const response = await collectionSvc.getRequest('/banner_1', {
         auth: true,
       });
-      setBanner(response.result);
-      
+      setBanner(response.result);      
     } catch (exception) {
       console.log(exception);
       Toast.error('Error Getting Banner');
@@ -63,7 +62,7 @@ const Banner_1List = () => {
                 <tr>  
                   <td colSpan="6"><LoadingComponent/></td>
                 </tr>
-              ) : (
+              ) : ( 
                 banner.map((row,index)=>(
                   <tr>
                     <td className='table_sn'>{index + 1}</td>

@@ -106,17 +106,19 @@ export const OptionsCompoentt = ({control,name,errMsg,required})=>{
         </>
     )
 }
-export const CategoryOptionsCompoent = ({control,name,errMsg,required})=>{
+export const CategoryOptionsCompoent = ({control,name,errMsg,required,onChange,value})=>{
     return(
         <>
             <SelectComponent 
                 options ={
-                    [{label:"Image", value:"image"},{label:"Video", value:"Video"}]
+                    [{label:"Image", value:"image"},{label:"Video", value:"video"}]
                 }
                 control={control}
+                onChange={onChange}  
                 name={name}
                 errMsg={errMsg}
                 required={required}
+                value={value || ""}
             />
         </>
     )

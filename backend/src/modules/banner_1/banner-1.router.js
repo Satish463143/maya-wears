@@ -15,7 +15,7 @@ router.route('/')
     .get(loginCheck,hasPermission('admin'),banner_1Controller.index) // list
 
 router.route('/:id')
-    
+    .get(loginCheck, hasPermission('admin'), banner_1Controller.show) //get banner by id
     .put(
         loginCheck,
         hasPermission('admin'),

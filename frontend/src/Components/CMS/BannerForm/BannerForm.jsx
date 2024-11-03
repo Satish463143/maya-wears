@@ -6,7 +6,14 @@ import { CategoryOptionsCompoent,  TextAreaInput, TextInputComponent } from '../
 
 
 
-const BannerForm = ({submitEvent,loading,setImageFile,detail=null}) => {
+const BannerForm = ({submitEvent,loading,detail=null}) => {
+
+    const [selectedCategory, setSelectedCategory] = useState(detail?.category?.value || "");
+
+    const handleCategoryChange = (e) => {
+        const category = e.target.value;
+        setSelectedCategory(category);  // Update the selectedCategory in the parent component
+      };
     const bannerDTO = Yup.object({
         title: Yup.string().min(3).max(50).required(),
         content: Yup.string().min(3).max(50).nullable().optional().default(null),
@@ -75,6 +82,7 @@ const BannerForm = ({submitEvent,loading,setImageFile,detail=null}) => {
 
                 />
             </div>
+            
             <div>
                 <label htmlFor="category">Category</label><br />
                 <CategoryOptionsCompoent 
@@ -82,56 +90,56 @@ const BannerForm = ({submitEvent,loading,setImageFile,detail=null}) => {
                     control={control}
                     errMsg={errors?.category?.message}
                     required:true
+                    value={selectedCategory}
+                    onChange={handleCategoryChange}
                 />
             </div>
-            <div>
+            {selectedCategory === 'image' && <div>
                 <label htmlFor="mobileImage"> Mobile Image</label><br />
                 <input
                     type='file'
                     onChange={(e) => {
                         const image = e.target.files['0']
-                        setImageFile(image)
                         setValue('mobileImage', image)
                     }}
                 /><br />
-            </div>
-            <div>
+            </div>}
+            {selectedCategory === 'image' && <div>
                 <label htmlFor="desktopImage"> Desktop Image</label><br />
                 <input
                     type='file'
                     onChange={(e) => {
                         const image = e.target.files['0']
-                        setImageFile(image)
                         setValue('desktopImage', image)
                     }}
                 /><br />
-            </div>
-            <div>
+            </div>}
+            {selectedCategory === 'video' && <div>
                 <label htmlFor="desktopVideo"> Desktop Video</label><br />
-                <video
+                
+                <input
                     type='file'
                     onChange={(e) => {
                         const image = e.target.files['0']
-                        setImageFile(image)
                         setValue('desktopVideo', image)
                     }}
                 /><br />
-            </div>
-            <div>
+            </div>}
+            {selectedCategory === 'video' && <div>
                 <label htmlFor="mobileVideo"> Mobile Video</label><br />
-                <video
+                <input
                     type='file'
                     onChange={(e) => {
                         const image = e.target.files['0']
-                        setImageFile(image)
                         setValue('mobileVideo', image)
                     }}
                 /><br />
-            </div>
+            </div>}
+            
+            
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            
+        <div style={{ display: 'flex', justifyContent: 'center' }}>            
             <input className='submit_btn' type="submit" value="Update Banner" disabled={loading}/>
         </div>
     </form>
