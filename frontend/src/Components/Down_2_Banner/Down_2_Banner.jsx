@@ -1,39 +1,53 @@
-import React,{useContext} from 'react'
-import { StoreContext } from '../../context/StoreContext';
-
+import React,{useEffect,useState} from 'react'
+import collectionSvc from '../CMS/Collection/Collection.service';
 const Down_2_Banner = () => {
-    const {Down_2_BannerContent} = useContext(StoreContext);
-    const downBannerData = Down_2_BannerContent[0];
+    
+    const [bannerData, setBannerData] =useState()
+  
+  const getAllBanner = async()=>{
+    try{
+      const response = await collectionSvc.getRequest('/banner_3/list')
+      setBannerData(response.result.data[0])
+
+    }catch(exception){
+      console.log(exception)
+    }
+  }
+
+
+  useEffect(()=>{
+    getAllBanner()
+  },[])
     return (
       <div className='down_banner div_container'>
         <div data-aos="fade-up">
-        {downBannerData?.category === "Video" && (
+        {bannerData?.category === "video" && (
           <>
               <div className="down_desktop_img">
               <video  autoPlay muted loop>
-                <source src={downBannerData?.desktopVideo} type="video/mp4" />
+                <source src={bannerData?.desktopVideo} type="video/mp4" />
               </video>
             </div>
             <div className="down_mobile_img">
               <video autoPlay muted loop>
-                <source src={downBannerData?.mobielVideo} type="video/mp4" />
+                <source src={bannerData?.mobielVideo} type="video/mp4" />
               </video>
             </div>
           </>
         ) }
-        {downBannerData?.category === "Image" && (
+        {bannerData?.category === "image" && (
           <>
             <div className="down_desktop_img">
-                <img src={downBannerData?.desktopImage} alt="" />            
+                <img src={bannerData?.desktopImage} alt="" />            
             </div>
             <div className="down_mobile_img">
-              <img src={downBannerData?.mobileImage} alt="" />             
+              <img src={bannerData?.mobileImage} alt="" />             
             </div>
           </>
         ) }
         <div className='down_banner_content'>
-          <h2>{downBannerData?.title || "abc"} </h2>
-          <p>{downBannerData?.content}</p>
+          <h2>{bannerData?.title} </h2>
+          <p>{bannerData?.content}</p>
         </div>
         </div>
       </div>

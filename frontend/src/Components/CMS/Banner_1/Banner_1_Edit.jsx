@@ -54,11 +54,13 @@ const Banner_1_Edit = () => {
                 delete submitData.desktopVideo
             }
 
-            console.log(submitData)
 
             // api call for edit operation
+            await collectionSvc.putRequest("/banner_1/" + params.id, submitData, { auth: true, file: true });
 
-            
+
+            toast.success("Banner Updated Successfully");
+            setTimeout(() => navigate("/admin/banner_1"), 1000);
 
         }catch(exception){
             let errorMessage = "Error while updating banner";
@@ -79,27 +81,27 @@ const Banner_1_Edit = () => {
                 <h1>Edit Banner 1</h1>
             </div>
         </div>
-
+        <ToastContainer />
         <div className="banner_form">
             {loading ? (
                 <LoadingComponent />
             ) : banner ? (
                 <BannerForm 
-                detail={{
-                    title: banner.title,
-                    content: banner.content,
-                    category: {
-                    label: banner.category === 'image' ? 'Image' : 'Video',
-                    value: banner.category
-                    },
-                    link: banner.link,
-                    desktopImage: banner.desktopImage,
-                    mobileImage: banner.mobileImage,
-                    desktopVideo: banner.desktopVideo,
-                    mobileVideo: banner.mobileVideo
-                }}
-                submitEvent={submitEvent}
-                loading={loading}
+                    detail={{
+                        title: banner.title,
+                        content: banner.content,
+                        category: {
+                        label: banner.category === 'image' ? 'Image' : 'Video',
+                        value: banner.category
+                        },
+                        link: banner.link,
+                        desktopImage: banner.desktopImage,
+                        mobileImage: banner.mobileImage,
+                        desktopVideo: banner.desktopVideo,
+                        mobileVideo: banner.mobileVideo
+                    }}
+                    submitEvent={submitEvent}
+                    loading={loading}
                 />
             ) : (
                 <LoadingComponent /> // Optional: Display a message if `banner` is not yet loaded

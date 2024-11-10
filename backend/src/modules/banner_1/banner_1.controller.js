@@ -55,6 +55,20 @@ class Banner_1Controller {
         }
 
     }
+    listForHome = async (req, res, next) => {
+        try {
+
+            const list = await banner_1Service.listData()
+            res.json({
+                result: list,
+                message: "List of active Collection",
+                meta: null
+            })
+        } catch (exception) {
+            next(exception)
+        }
+
+    }
     update = async (req, res, next) => {
         try {
             const id = req.params.id;

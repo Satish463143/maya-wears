@@ -8,25 +8,25 @@ import { CategoryOptionsCompoent,  TextAreaInput, TextInputComponent } from '../
 
 const BannerForm = ({submitEvent,loading,detail=null}) => {
 
-    const [selectedCategory, setSelectedCategory] = useState(detail?.category?.value || "");
+    // const [selectedCategory, setSelectedCategory] = useState(detail?.category?.value || "");
 
-    const handleCategoryChange = (e) => {
-        const category = e.target.value;
-        setSelectedCategory(category);  // Update the selectedCategory in the parent component
-      };
+    // const handleCategoryChange = (e) => {
+    //     const category = e.target.value;
+    //     setSelectedCategory(category);  // Update the selectedCategory in the parent component
+    //   };
     const bannerDTO = Yup.object({
         title: Yup.string().min(3).max(50).required(),
         content: Yup.string().min(3).max(50).nullable().optional().default(null),
         category: Yup.object({
-            label:Yup.string().matches(/^(Image|Video)$/),
+            label: Yup.string().matches(/^(Image|Video)$/),
             value: Yup.string().matches(/^(image|video)$/).required()
         }).required(),
-        link:Yup.string().url().nullable().optional().default(null),
-        desktopImage: Yup.string().required(),
-        mobileImage: Yup.string().required(),
-        desktopVideo: Yup.string().required(),
-        mobileVideo: Yup.string().required()
-    })
+        link: Yup.string().url().nullable().optional().default(null),
+        desktopImage: Yup.mixed().required("Desktop Image is required"),
+        mobileImage: Yup.mixed().required("Mobile Image is required"),
+        desktopVideo: Yup.mixed().required("Desktop Video is required"),
+        mobileVideo: Yup.mixed().required("Mobile Video is required")
+    });
      
     const { control, handleSubmit, setValue,  formState: { errors } } = useForm({
         resolver: yupResolver(bannerDTO)
@@ -44,7 +44,7 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
             setValue("mobileVideo", detail.mobileVideo)
 
         }
-    },[detail])
+    },[detail, setValue])
   return (
     <form onSubmit={handleSubmit(submitEvent)}>
         <h3>Content</h3>
@@ -90,11 +90,12 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                     control={control}
                     errMsg={errors?.category?.message}
                     required:true
-                    value={selectedCategory}
-                    onChange={handleCategoryChange}
+                    // value={selectedCategory}
+                    // onChange={handleCategoryChange}
                 />
             </div>
-            {selectedCategory === 'image' && <div>
+            {/* {selectedCategory === 'image' && */}
+             <div>
                 <label htmlFor="mobileImage"> Mobile Image</label><br />
                 <input
                     type='file'
@@ -103,8 +104,10 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                         setValue('mobileImage', image)
                     }}
                 /><br />
-            </div>}
-            {selectedCategory === 'image' && <div>
+            </div>
+             {/* } */}
+            {/* {selectedCategory === 'image' &&  */}
+            <div>
                 <label htmlFor="desktopImage"> Desktop Image</label><br />
                 <input
                     type='file'
@@ -113,8 +116,10 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                         setValue('desktopImage', image)
                     }}
                 /><br />
-            </div>}
-            {selectedCategory === 'video' && <div>
+            </div>
+            {/* } */}
+            {/* {selectedCategory === 'video' && */}
+             <div>
                 <label htmlFor="desktopVideo"> Desktop Video</label><br />
                 
                 <input
@@ -124,8 +129,10 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                         setValue('desktopVideo', image)
                     }}
                 /><br />
-            </div>}
-            {selectedCategory === 'video' && <div>
+            </div>
+            {/* } */}
+            {/* {selectedCategory === 'video' &&  */}
+            <div>
                 <label htmlFor="mobileVideo"> Mobile Video</label><br />
                 <input
                     type='file'
@@ -134,13 +141,14 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                         setValue('mobileVideo', image)
                     }}
                 /><br />
-            </div>}
+            </div>
+            {/* } */}
             
             
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>            
-            <input className='submit_btn' type="submit" value="Update Banner" disabled={loading}/>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <input className='submit_btn' type="submit" value="Update Banner" disabled={loading} />
         </div>
     </form>
   )

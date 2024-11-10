@@ -53,9 +53,8 @@ const CollectionEdit = () => {
 
       await collectionSvc.putRequest("/collection/" + params.id, formData, { auth: true, file: true });
 
-      toast.success("Collection Updated Successfully", {
-        onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
-      });
+      toast.success("Collection Updated Successfully");
+      setTimeout(() => navigate("/admin/collection"), 1000);
 
     } catch (exception) {
       // Default error message

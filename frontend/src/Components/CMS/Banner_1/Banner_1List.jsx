@@ -67,7 +67,9 @@ const Banner_1List = () => {
                   <tr>
                     <td className='table_sn'>{index + 1}</td>
                     <td className='table_img'>
-                      <img src="" alt=""/>
+                      {row.category ===  "image" && <img src={row.desktopImage} alt=""/>}
+                      {row.category ===  "video" && <video src={row.desktopVideo}></video>}
+
                     </td>
                     <td className='table_title'>{row.title}</td>
                     <td className=' table_content'>{truncateContent(row.content, 10)}</td>

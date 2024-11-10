@@ -1,27 +1,20 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Banner.css';
-import { StoreContext } from '../../context/StoreContext';
+import collectionSvc from '../CMS/Collection/Collection.service';
 
 const Banner = () => {
-  const {BannerContent} = useContext(StoreContext);
-  const bannerData = BannerContent[0];
+  
 
-  const [bannerData1, setBannerData] =useState()
-  const getAllBanner = ()=>{
-    const response=[
-      {
-        _id:"",
-        title:"",
-        category:"",
-        link:"",
-        desktopImage:"",
-        mobileImage:"",
-        desktopVideo:"",
-        mobileVideo:""
-      }
-    ]
+  const [bannerData, setBannerData] =useState()
+  
+  const getAllBanner = async()=>{
+    try{
+      const response = await collectionSvc.getRequest('/banner_1/list')
+      setBannerData(response.result.data[0])
 
-    setBannerData(response)
+    }catch(exception){
+      console.log(exception)
+    }
   }
 
 
@@ -32,21 +25,21 @@ const Banner = () => {
 
   return (
     <div className="banner">
-      {bannerData?.category === "Video" && (
+      {bannerData?.category === "video" && (
         <>
             <div className="desktop_img">
             <video  autoPlay muted loop>
-              <source src={bannerData?.desktopVideo} type="video/mp4" />
+              <source src={bannerData?.desktopVideo}/>
             </video>
           </div>
           <div className="mobile_img">
             <video autoPlay muted loop>
-              <source src={bannerData?.mobielVideo} type="video/mp4" />
+              <source src={bannerData?.mobileVideo}/>
             </video>
           </div>
         </>
       ) }
-      {bannerData?.category === "Image" && (
+      {bannerData?.category === "image" && (
         <>
           <div className="desktop_img">
               <img src={bannerData?.desktopImage} alt="" />            
@@ -58,17 +51,8 @@ const Banner = () => {
       ) }
       
 
-      {/* Controls */}
-      {/* <div className="controls">
-        <button onClick={togglePlayPause}>
-          {isPlaying ? <img src="../src/assets/images/resume.png" />: <img src="../src/assets/images/Play.webp" />}
-        </button>
-        <button onClick={toggleMuteUnmute}>
-          {isMuted ? <img src="../src/assets/images/unmute.png" /> : <img src="../src/assets/images/mute.png" />}
-        </button>
-      </div> */}
       <div className='banner_content' data-aos="fade-up">
-        <h2>{bannerData?.title || "abc"} </h2>
+        <h2>{bannerData?.title} </h2>
         <p>{bannerData?.content}</p>
       </div>
     </div>

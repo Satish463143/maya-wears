@@ -38,6 +38,37 @@ class Banner_3Controller {
             next(exception)
         }
     }
+    show = async (req, res, next) => {
+        try {
+            const id = req.params.id
+            await this.#validateId(id)
+            res.json({
+                result: this.banner_3Details,
+                message: "Collection fetched By Id",
+                meta: null
+            })
+
+        }
+        catch (exception) {
+            console.log(exception + " error")
+            next(exception)
+        }
+
+    }
+    listForHome = async (req, res, next) => {
+        try {
+
+            const list = await banner_3Service.listData()
+            res.json({
+                result: list,
+                message: "List of active Collection",
+                meta: null
+            })
+        } catch (exception) {
+            next(exception)
+        }
+
+    }
     update = async (req, res, next) => {
         try {
             const id = req.params.id;
