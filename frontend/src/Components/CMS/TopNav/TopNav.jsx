@@ -1,13 +1,42 @@
 import React,{useContext, useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../../context/StoreContext'
-
+import { useSelector } from 'react-redux'
+import authSvc from '../../../pages/LoginPage/auth.service'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const TopNav = ({ isMenuActive, toggleMenu }) => {
-    const {loggedInUser} = useContext(StoreContext)
+    const navigate = useNavigate()
+    const loggedInUser = useSelector((root)=>{
+        return root.user.loggedInUser
+    })
+    const logout = async () => {
+        try {
+            toast.loading("Logging out...");
+            // Call the logout endpoint to clear tokens in the database
+            await authSvc.postRequest('/auth/logout');
+            // Remove tokens from localStorage
+            localStorage.removeItem('_at');
+            localStorage.removeItem('_rt');
+    
+            toast.dismiss(); // Remove the loading toast
+            toast.success("You have been logged out successfully", {
+                onClose: () => navigate('/'), // Navigate to '/' after the toast closes
+            }); // Show success message
+    
+            // Delay navigation to ensure the toast shows
+            
+        } catch (error) {
+            toast.dismiss();
+            toast.error("Logout failed, please try again");
+        }
+    };
 
   return (
+    
     <div className='top_nav'>
+        <ToastContainer/>
         <div className='welcome_message'>
             <div className={`hamburg_menu ${isMenuActive ? 'menuActive' : ''}`} onClick={toggleMenu}>
                 <div className='menu_1'></div>
@@ -19,7 +48,7 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
           
         <div className="top_nav_end">
             <ul>
-                <div className='admin_box ' style={{margin:'0'}}>
+                <div className='admin_box ' style={{margin:'0'}} onClick={logout}>
                     <div>
                     <span>
                         <svg height="24" version="1.1" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -33,8 +62,8 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
                         </svg>
                     </span>
                     </div>
-                    <div>
-                    <p>Log Out</p>
+                    <div >
+                        <p>Log Out</p>
                     </div>
                 </div>                
             </ul>

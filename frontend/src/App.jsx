@@ -1,5 +1,7 @@
 import React,{useEffect} from 'react'
 import { HashRouter as Router, Routes, Route} from 'react-router-dom'
+
+
 import Home from './pages/Home/Home'
 import AOS from 'aos';
 import ProductPage from './pages/ProductPage/ProductPage'
@@ -21,11 +23,24 @@ import Banner_3List from './Components/CMS/Banner_3/Banner_3List';
 import Banner_3_Edit from './Components/CMS/Banner_3/Banner_3_Edit';
 import Banner_4List from './Components/CMS/Banner_4/Banner_4List';
 import Banner_4_Edit from './Components/CMS/Banner_4/Banner_4_Edit';
+import { useDispatch } from 'react-redux';
+import { getLoggedInUserRedux } from './reducer/user.reducer';
 
 
 
 const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
-  
+
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    let token  = localStorage.getItem("_at");
+    if(token){
+      dispatch(getLoggedInUserRedux())
+      
+    }
+    
+  },[])
 
   useEffect(() => {
     AOS.init({ duration: 1200 });

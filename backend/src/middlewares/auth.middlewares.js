@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 const jwt = require("jsonwebtoken")
 const userSvc = require("../modules/user/user.service");
@@ -40,6 +41,8 @@ const loginCheck = async (req, res, next) => {
         next({ status: exception.status || 401, message: exception.message || "Unauthorized" });
     }
 };
+
+
 
 
 module.exports = loginCheck;

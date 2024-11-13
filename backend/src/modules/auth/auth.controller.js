@@ -3,6 +3,7 @@ const userSvc = require("../user/user.service")
 const {Status} = require("../../config/constants.config")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const UserModel = require("../user/user.model")
 
 class AuthController {
     activateUser =async (req, res,next)=>{
@@ -98,6 +99,7 @@ class AuthController {
                     expiresIn:"1 day",
                 }
                 )
+                await UserModel.findByIdAndUpdate(user._id,{token, refreshToken})
                 res.json({
                     result:{
                         userDetails:{
@@ -122,6 +124,22 @@ class AuthController {
            
         }
         catch(exception){
+            next(exception)
+        }
+    }
+    logout= async(req,res,next)=>{
+        try{
+            const userId = req.user._id
+
+            await UserModel.findByIdAndUpdate(userId,{token:null, refreshToken:null})
+            res.json({
+                result:null,
+                message:"Logout sucessfull",
+                meta:null
+            })
+
+        }catch(exception){
+            console.log("Logout error:", exception); 
             next(exception)
         }
     }

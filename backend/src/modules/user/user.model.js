@@ -50,6 +50,14 @@ const UserSchema = new mongoose.Schema({
         default:null,
 
     },
+    token:{
+        type:String,
+        default:null
+    },
+    refreshToken:{
+        type:String,
+        default:null
+    },
     activeFor:{ type: Date },
     forgetToken:String,
     forgetFor:String,

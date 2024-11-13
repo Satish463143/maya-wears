@@ -9,7 +9,6 @@ class UserService {
     generateUserActivationToken = (data)=>{
         data.activationToken = randomStringGenerator(100)
         data.activeFor = new Date(Date.now() + (parseInt(process.env.ACTIVE_FOR, 10) * 60 * 60 * 1000));
-
         return data
     }
     //Create user

@@ -6,7 +6,7 @@ import {useLocation, useNavigate} from 'react-router-dom'
 import ForgotPassword from '../../Components/ForgotPassword/ForgotPassword'
 import Token from '../../Components/Token/Token'
 import GeneratePassword from '../../Components/GeneratePassword/GeneratePassword'
-import { StoreContext } from '../../context/StoreContext'
+import { useSelector } from 'react-redux'
 
 const LoginPage = ({ isVisible,toggleVisible }) => {
   const location = useLocation();
@@ -38,7 +38,13 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
   }
  
 
-  const {loggedInUser} = useContext(StoreContext)
+
+
+  // from redux
+  const loggedInUser = useSelector((root)=>{
+    return root.user.loggedInUser || null
+  })
+
   useEffect(()=>{
     if(loggedInUser){
       if(loggedInUser.role === "admin"){ 

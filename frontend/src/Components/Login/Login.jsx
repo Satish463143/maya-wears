@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css'
 import { useForm } from 'react-hook-form';
 import {useNavigate} from 'react-router-dom'
@@ -8,11 +8,13 @@ import * as Yup from 'yup';
 import authSvc from '../../pages/LoginPage/auth.service'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { StoreContext } from '../../context/StoreContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoggedInUserForRedux } from '../../reducer/user.reducer';
 
 const Login = ({ setCurrentView,setLoggedIn}) => {
     
     const [loading, setLoading] = useState(false);
+    const dispatch  = useDispatch()
     const navigate = useNavigate()
 
 
@@ -25,8 +27,10 @@ const Login = ({ setCurrentView,setLoggedIn}) => {
         resolver: yupResolver(loginDTO),
     });
 
-    const {loggedInUser} = useContext(StoreContext)
 
+    const loggedInUser = useSelector((root)=>{
+        return root.user.loggedInUser
+    })
     useEffect(()=>{
         if(loggedInUser){
             if(loggedInUser.role === "admin") {
@@ -44,6 +48,7 @@ const Login = ({ setCurrentView,setLoggedIn}) => {
             toast.success('Welcome to Maya Wears');
             localStorage.setItem("_at", response.result.token.token);
             localStorage.setItem("_rt", response.result.token.refreshToken);
+            dispatch(setLoggedInUserForRedux(response.result.userDetail))
             // After successful login, get the logged-in user
             // loggedInUser(); // Ensure the profile is shown after login
             setLoggedIn(true)         

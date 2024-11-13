@@ -1,10 +1,14 @@
-import { useContext, useEffect } from "react";
-import { StoreContext } from "../context/StoreContext";
+import {  useEffect } from "react";
+
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CheckPermission = ({ allowedBy, children }) => {
-  const { loggedInUser } = useContext(StoreContext);
+ 
+  const loggedInUser = useSelector((root)=>{
+    return root.user.loggedInUser
+  })
   const navigate = useNavigate();
 
   useEffect(() => {

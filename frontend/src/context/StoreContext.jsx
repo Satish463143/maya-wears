@@ -8,8 +8,6 @@ const StoreContextProvider = (props)=>{
     // Initialize the cartList state as an empty array
     const [cartList, setCartList] = useState([]);
     const [selectedSize, setSelectedSize] = useState(null);
-    const [loggedInUser, setLoggedInUser] = useState(false); 
-    // let [loggedIn, setLoggedIn] = useState();
    
     const addToCartList = (product) => {
         setCartList(prevCartList => {
@@ -21,17 +19,6 @@ const StoreContextProvider = (props)=>{
       const removeFromCartList = (productId) => {
         setCartList(prevCartList => prevCartList.filter(item => item._id !== productId ));
       };
-      const getLoggedInUser = async()=>{
-        try{
-            const response = await authSvc.getRequest('/auth/me',{auth:true})
-            setLoggedInUser(response.result)
-        }catch(exception){
-          console.log(exception)
-        }
-      }
-      useEffect(()=>{
-        getLoggedInUser()
-      },[])
     const contextValue ={
         ProductList,
         BannerContent,
@@ -42,10 +29,7 @@ const StoreContextProvider = (props)=>{
         cartList,
         addToCartList,
         removeFromCartList,
-        loggedInUser,
-        // loggedIn,
-    }
-   
+    }  
 
     return(
         <StoreContext.Provider value ={contextValue}>
