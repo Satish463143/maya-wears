@@ -13,21 +13,22 @@ router.get('/list')
 
 router.route('/')
     .post(
-        loginCheck, 
+        loginCheck,
         hasPermission('admin'),
         setPath('product'),
-        // uplaodFile(FileFilterType.IMAGE).array('images',10),
-        // uplaodFile(FileFilterType.VIDEO).single('video'),
-        uplaodFile(FileFilterType.IMAGE).fields([
-            {name:'images', maxCount:10},
-            {name:'video', maxCount:1}
+        uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
+            { name: 'images', maxCount: 10 },
+            { name: 'video', maxCount: 1 },
         ]),
         bodyValidator(productDTO),
         productController.create,
-        )//create
+    )//create
 
 
-    .get(loginCheck, hasPermission('admin'),productController.index) // list all product
+    .get(
+        loginCheck,
+        hasPermission('admin'),
+        productController.index) // list all product
 
 router.route('/:id')
     .get(loginCheck, hasPermission('admin'),) // get by id
