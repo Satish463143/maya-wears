@@ -16,8 +16,12 @@ router.route('/')
         loginCheck, 
         hasPermission('admin'),
         setPath('product'),
-        uplaodFile(FileFilterType.IMAGE).array('images',10),
-        uplaodFile(FileFilterType.VIDEO).single('video'),
+        // uplaodFile(FileFilterType.IMAGE).array('images',10),
+        // uplaodFile(FileFilterType.VIDEO).single('video'),
+        uplaodFile(FileFilterType.IMAGE).fields([
+            {name:'images', maxCount:10},
+            {name:'video', maxCount:1}
+        ]),
         bodyValidator(productDTO),
         productController.create,
         )//create
