@@ -1,28 +1,28 @@
 const ProductModel = require('./product.model')
 class ProductService {
-    createProduct = async(data)=>{
-        try{
+    createProduct = async (data) => {
+        try {
             const product = new ProductModel(data)
             return await product.save()
 
-        }catch(exception){
+        } catch (exception) {
             console.log(exception)
-            throw exception            
+            throw exception
         }
     }
-    listData = async()=>{
-        try{
+    listData = async ({ skip, limit, filter }) => {
+        try {
             const count = await ProductModel.countDocuments(filter)
             const data = await ProductModel.find(filter)
-            .populate("createdBy", ["_id","email", "name", "role"])
-                .sort({_id: "desc"})
+                .populate("createdBy", ["_id", "email", "name", "role"])
+                .sort({ _id: "desc" })
                 .limit(limit)
                 .skip(skip)
-                
 
-                return {count, data}
-                
-        }catch(exception){
+
+            return { count, data }
+
+        } catch (exception) {
             throw exception
         }
     }
