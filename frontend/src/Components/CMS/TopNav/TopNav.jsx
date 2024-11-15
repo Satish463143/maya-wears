@@ -23,9 +23,7 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
             toast.dismiss(); // Remove the loading toast
             toast.success("You have been logged out successfully", {
                 onClose: () => navigate('/'), // Navigate to '/' after the toast closes
-            }); // Show success message
-    
-            // Delay navigation to ensure the toast shows
+            }); 
             
         } catch (error) {
             toast.dismiss();
@@ -46,9 +44,10 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
             <p>Hi, Welcome Back {loggedInUser.name}</p>
         </div>
           
+          
         <div className="top_nav_end">
             <ul>
-                <div className='admin_box ' style={{margin:'0'}} onClick={logout}>
+                <div className='admin_box ' style={{margin:'0', cursor:'pointer'}} onClick={logout}>
                     <div>
                     <span>
                         <svg height="24" version="1.1" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -63,7 +62,7 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
                     </span>
                     </div>
                     <div >
-                        <p>Log Out</p>
+                        <p style={{color:'white'}}>Log Out</p>
                     </div>
                 </div>                
             </ul>

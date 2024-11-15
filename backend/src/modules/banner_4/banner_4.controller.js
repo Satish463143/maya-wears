@@ -74,9 +74,7 @@ class Banner_4Controller {
             const id = req.params.id;
             await this.#validateId(id);
     
-            const data = req.body;
-            console.log(data)
-    
+            const data = req.body;    
             // Process the uploaded files
             if (req.files) {
                 if (req.files.desktopVideo) {

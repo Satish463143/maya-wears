@@ -75,7 +75,6 @@ class Banner_2Controller {
             await this.#validateId(id);
 
             const data = req.body;
-            console.log(req.files)
 
             // Process the uploaded files
             if (req.files) {

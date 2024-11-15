@@ -17,7 +17,6 @@ class HttpService {
     }
     // If handling file uploads
     if (config && config.file) {
-
       this.#headers = {
         ...this.#headers,
         "Content-Type": "multipart/form-data",

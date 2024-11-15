@@ -25,12 +25,17 @@ import Banner_4List from './Components/CMS/Banner_4/Banner_4List';
 import Banner_4_Edit from './Components/CMS/Banner_4/Banner_4_Edit';
 import { useDispatch } from 'react-redux';
 import { getLoggedInUserRedux } from './reducer/user.reducer';
+import ProductList from './Components/CMS/Product/ProductList';
+import ProductAdd from './Components/CMS/Product/ProductAdd';
+import ProductEdit from './Components/CMS/Product/ProductEdit';
 
 
 
 const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
 
-
+  if (typeof global === 'undefined') {
+    window.global = window;
+  }
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -73,6 +78,9 @@ const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
             <Route path='collection' element={<CollectionList/>} />
             <Route path='add_collection' element={<CollectionAdd/>} />
             <Route path='edit_collection/:id' element={<CollectionEdit/>} />
+            <Route path='product' element={<ProductList/>} />
+            <Route path='add_product' element={<ProductAdd/>} />
+            <Route path='edit_product' element={<ProductEdit/>} />
           </Route>
 
         </Routes>

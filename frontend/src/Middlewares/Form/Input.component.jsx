@@ -1,6 +1,9 @@
-import {useController} from "react-hook-form"
+import { useController } from 'react-hook-form'
 import Select from 'react-select'
+import { Editor } from '@tinymce/tinymce-react';
 import '../../pages/AdminPage/CMSLayout.css'
+import { useState } from 'react';
+
 export const TextInputComponent = ({type="text",control,name, defaultValue="",required=false, errMsg= null})=>{
     const {field} = useController({
         control:control,
@@ -23,6 +26,40 @@ export const TextInputComponent = ({type="text",control,name, defaultValue="",re
     )
 
 }
+
+export const DescriptionInput = ({ type = "text", control, name, defaultValue = "",  errMsg = null,}) => {
+    const { field } = useController({
+        control:control,
+        name:name,
+        defaultValue: defaultValue,
+        // rules: { required },
+    });
+    const handleEditorChange = (content) => {
+        field.onChange(content); // Update the form value in React Hook Form
+    };
+    
+
+    return (
+        <>           
+            <Editor
+                apiKey="yuzlcp10h3jo0z3gne1gkc2fubxfufx3q1jp5q041aqu0qgg"
+                init={{
+                height: 150,
+                menubar: false,
+                plugins: ['link', 'table', 'lists', 'image'],
+                toolbar:
+                    'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
+                }}
+                
+                value={field.value || ""}
+                onEditorChange={handleEditorChange}
+            />
+            
+            <br />
+            {errMsg && <span style={{ color: 'red', fontStyle: 'italic' }}>{errMsg}</span>}
+        </>
+    );
+};
 
 export const TextAreaInput = ({control,name, defaultValue="",required=false, errMsg= null,row=5})=>{
     const {field} = useController({
@@ -116,6 +153,40 @@ export const CategoryOptionsCompoent = ({control,name,errMsg,required,onChange,v
                 control={control}
                 onChange={onChange}  
                 name={name}
+                errMsg={errMsg}
+                required={required}
+                value={value || ""}
+            />
+        </>
+    )
+}
+export const FeaturedOptionsCompoent = ({control,name,errMsg,required,onChange,value})=>{
+    return(
+        <>
+            <SelectComponent 
+                options ={
+                    [{label:"Yes", value:"true"},{label:"No", value:"false"}]
+                }
+                control={control}
+                onChange={onChange}  
+                name={name}
+                errMsg={errMsg}
+                required={required}
+                value={value || ""}
+            />
+        </>
+    )
+}
+export const WearableOptionsCompoent = ({control,name,errMsg,required,onChange,value})=>{
+    return(
+        <>
+            <SelectComponent 
+                options ={
+                    [{label:"Summer", value:"summer"},{label:"Winter", value:"winter"},{label:"Both", value:"summer and winter"}]
+                }
+                control={control}
+                onChange={onChange}  
+                name={name} 
                 errMsg={errMsg}
                 required={required}
                 value={value || ""}

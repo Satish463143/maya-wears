@@ -31,7 +31,7 @@ const uplaodFile = (fileType = FileFilterType.IMAGE) => {
     return multer({
         storage: myStorage,
         limits: {
-            fileSize: 3000000
+            fileSize: 300000000
         },
         fileFilter: (req, file, cb) => {
             const ext = file.originalname.split(".").pop()

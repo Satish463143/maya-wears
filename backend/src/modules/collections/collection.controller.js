@@ -1,7 +1,6 @@
 const { uploadImage } = require("../../config/cloudinary.config");
 const { Status } = require("../../config/constants.config");
 const { deleteFile } = require("../../utilies/helper");
-const { meta } = require("../banner/banner.request");
 const collectionService = require("./collection.service")
 const slugify = require("slugify")
 

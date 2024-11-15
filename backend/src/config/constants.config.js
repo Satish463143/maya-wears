@@ -20,9 +20,15 @@ const BannerCategory={
     VIDEO:"video"
 }
 
+const Wearable={
+    SUMMER:'summer',
+    WINTER:'winter',
+    BOTH:'summer and winter'
+}
 module.exports ={
     FileFilterType,
     UserRoles,
     Status,
-    BannerCategory
+    BannerCategory,
+    Wearable
 }

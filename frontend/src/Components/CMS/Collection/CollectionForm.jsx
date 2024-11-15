@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import * as Yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -6,6 +6,7 @@ import { OptionsCompoentt,  TextAreaInput, TextInputComponent } from '../../../M
 
 
 const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
+    
 
     const collectionDTO = Yup.object({
         name: Yup.string().min(3).max(50).required(),
@@ -57,7 +58,7 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
                 />
             </div>
             <div>
-                <label htmlFor="status">status</label><br />
+                <label htmlFor="status">Status</label><br />
                 <OptionsCompoentt
                     name="status"
                     control={control}
@@ -66,7 +67,7 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
                 />
             </div>
             <div>
-                <label htmlFor="image"> Image</label><br />
+                <label htmlFor="image">Image</label><br />
                 <input
                     type='file'
                     onChange={(e) => {
@@ -78,9 +79,8 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
             </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            
-            <input className='submit_btn' type="submit" value="Add Collection" disabled={loading}/>
+        <div style={{ display: 'flex', justifyContent: 'center'}}>            
+            <input className='submit_btn' type="submit" value="Add Collection" disabled={loading} style={{cursor:'pointer'}}/>
         </div>
     </form>
   )
