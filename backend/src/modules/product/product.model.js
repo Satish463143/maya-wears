@@ -28,13 +28,11 @@ const productSchema = new mongoose.Schema({
     sizes: [
         {
             size: {
-                type: String,
-                // required: true 
-            }, // e.g., "M", "L", etc.
+                type: String,                
+            }, 
             quantity: {
-                type: Number,
-                // required: true 
-            }, // e.g., 10, 20, etc.
+                type: Number,                
+            }, 
         },
     ],
     wearable: {

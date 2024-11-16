@@ -2,7 +2,8 @@ const FileFilterType = {
     IMAGE : 'image',
     VIDEO : 'video',
     DOCUMENT : 'doc',
-    AUDIO : 'audio'
+    AUDIO : 'audio',
+    IMAGE_VIDEO: ['image', 'video'],
 
 }
 const UserRoles ={

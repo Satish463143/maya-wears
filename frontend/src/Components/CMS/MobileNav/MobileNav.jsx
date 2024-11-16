@@ -81,7 +81,7 @@ const MobileNav = ({ isMenuActive, toggleMenu }) => {
                 <Link to="/admin">
                   <li onClick={() => { toggleMenu(); setMenu("admin"); }} className={menu === "admin" ? "liActive" : "" }>
                     <span>
-                      <svg  version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <svg  version="1.1" viewBox="0 0 24 24" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                         <g id="info"/><g id="icons"><g id="dashboard">
                           <path d="M5,18H3c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h2c1.1,0,2-0.9,2-2C7,18.9,6.1,18,5,18z"/>
                           <path d="M13,16h-2c-1.1,0-2,0.9-2,2v2c0,1.1,0.9,2,2,2h2c1.1,0,2-0.9,2-2v-2C15,16.9,14.1,16,13,16z"/>

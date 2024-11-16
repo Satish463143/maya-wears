@@ -21,9 +21,13 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
             localStorage.removeItem('_rt');
     
             toast.dismiss(); // Remove the loading toast
-            toast.success("You have been logged out successfully", {
-                onClose: () => navigate('/'), // Navigate to '/' after the toast closes
-            }); 
+            toast.success("You have been logged out successfully")
+            setTimeout(() => {
+                navigate('/')
+            }, 2000);
+            // toast.success("You have been logged out successfully", {
+            //     onClose: () => navigate('/'), // Navigate to '/' after the toast closes
+            // }); 
             
         } catch (error) {
             toast.dismiss();

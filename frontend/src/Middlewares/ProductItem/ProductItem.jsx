@@ -2,13 +2,13 @@ import React from 'react'
 import './ProductItem.css'
 import {Link} from 'react-router-dom'
 
-const ProductItem = ({_id,image,title,crossPrice,price,quantity,category}) => {
+const ProductItem = ({_id,slug,images,title,price}) => {
   return (
     <>
-      <Link to={`/product/${_id}`}>
+      <Link to={`/product/${slug}/${_id}`}>
         <div className='item_div'>
           <div className="img">
-            <img src={image} alt="" />
+            <img src={images} alt="" />
             <div className='wishlist_btn'>
             <span >
               <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">

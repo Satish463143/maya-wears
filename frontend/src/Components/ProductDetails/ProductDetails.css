@@ -2,13 +2,7 @@
     margin-top: 60px;
 
 }
-.details_grid{
-    display: grid;
-    grid-template-columns: 60%  40%;
-    justify-content: space-between;
-    
 
-}
 .product_img_grid{
     width: 100%;
     grid-template-columns: 48% 48%;

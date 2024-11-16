@@ -10,23 +10,37 @@ class ProductService {
             throw exception
         }
     }
-<<<<<<< HEAD
-    listData = async({ skip , limit , filter })=>{
-        try{
-=======
-    listData = async ({ skip, limit, filter }) => {
+    listData = async ({ skip = 0, limit = 0, filter = {} } = {}) => {
         try {
->>>>>>> 824ed21c44c561dc98faae166b1fd158eead41bd
-            const count = await ProductModel.countDocuments(filter)
+            const count = await ProductModel.countDocuments(filter);
             const data = await ProductModel.find(filter)
                 .populate("createdBy", ["_id", "email", "name", "role"])
                 .sort({ _id: "desc" })
                 .limit(limit)
-                .skip(skip)
+                .skip(skip);
+            return { count, data };
+        } catch (exception) {
+            throw exception;
+        }
+    };
+    getIdbyFilter = async (filter) => {
+        try {
+            const collectionDetails = await ProductModel.findOne(filter)
+                .populate("createdBy", ["_id", "email", "name", "role"])
+            return collectionDetails
 
+        } catch (exception) {
+            throw exception
+        }
 
-            return { count, data }
-
+    }
+    deleteProduct = async (id) => {
+        try {
+            const response = await ProductModel.findByIdAndDelete(id)
+            if (!response) {
+                throw { status: 404, message: "Product Not Found" }
+            }
+            return response
         } catch (exception) {
             throw exception
         }

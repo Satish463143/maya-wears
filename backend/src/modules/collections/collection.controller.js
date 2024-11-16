@@ -93,7 +93,7 @@ class CollectionController {
                 message: "Collection fetched By Id",
                 meta: null
             })
-
+ 
         }
         catch (exception) {
             console.log(exception + " error")
