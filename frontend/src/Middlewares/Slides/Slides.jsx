@@ -1,6 +1,11 @@
 import React from 'react';
 import './Slides.css';
 import {Link} from 'react-router-dom'
+import fabricImg from '../../../src/assets/images/fabric.webp'
+import styleImg from '../../../src/assets/images/style.webp'
+import patternImg from '../../../src/assets/images/pattern.png'
+import sizeImg from '../../../src/assets/images/size.webp'
+
 
 const Slides = ({_id,image,fabric, title, pattern, sizes, wearable, price }) => {
   return (
@@ -14,19 +19,19 @@ const Slides = ({_id,image,fabric, title, pattern, sizes, wearable, price }) => 
                 </div>
                 <div className='details_grid'>
                     <div className='details_grid_box'>
-                        <img src="../src/assets/images/fabric.webp" alt="" />
+                        <img src={fabricImg} alt="" />
                         <p>{fabric}</p>  
                     </div>              
                     <div className='details_grid_box'>
-                        <img src="../src/assets/images/pattern.png" alt="" />
+                        <img src={patternImg} alt="" />
                         <p>{pattern}</p>  
                     </div>              
                     <div className='details_grid_box'>
-                        <img src="../src/assets/images/size.webp" alt="" />
+                        <img src={sizeImg} alt="" />
                         <p>{sizes + ' , '}</p> 
                     </div>              
                     <div className='details_grid_box'>
-                        <img src="../src/assets/images/style.webp" alt="" />
+                        <img src={styleImg} alt="" />
                         <p>{wearable}</p> 
                     </div>   
                 </div>
