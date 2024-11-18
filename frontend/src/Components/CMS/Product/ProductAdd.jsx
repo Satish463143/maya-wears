@@ -10,44 +10,44 @@ const ProductAdd = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    const submitEvent = async(data)=>{
+    const submitEvent = async (data) => {
         setLoading(true)
-        try{
+        try {
             const productData = {
                 ...data,
-                wearable:data.wearable.value,
-                isFeatured:data.isFeatured.value,
+                wearable: data.wearable.value,
+                isFeatured: data.isFeatured.value,
                 productCollections: data.productCollections.map((item) => item.value),
             }
-            await productSvc.postRequest('/product',productData, {auth:true, file:true} )
+            await productSvc.postRequest('/product', productData, { auth: true, file: true })
             toast.success("product added sucessfully")
-            setTimeout(()=> navigate('/admin/product'),2000)
+            setTimeout(() => navigate('/admin/product'), 2000)
 
-        }catch(exception){
+        } catch (exception) {
             console.log(exception)
             toast.error("Error while adding  product")
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
 
-  return (
-    <div className='admin_margin_box'>
-        <ToastContainer />
-        <div className="admin_titles">
-            <AdminTitle label1=" Product List" label2="/Add Product" url="/admin/product" />
-            <div className='Dashboard_title'>
-                <h1>Add Product</h1>
+    return (
+        <div className='admin_margin_box'>
+            <ToastContainer />
+            <div className="admin_titles">
+                <AdminTitle label1=" Product List" label2="/Add Product" url="/admin/product" />
+                <div className='Dashboard_title'>
+                    <h1>Add Product</h1>
+                </div>
+            </div>
+            <div className="banner_form">
+                <ProductForm
+                    submitEvent={submitEvent}
+                    loading={loading}
+                />
             </div>
         </div>
-        <div className="banner_form">
-            <ProductForm 
-                submitEvent={submitEvent}
-                loading={loading}
-            />
-        </div>
-    </div>
-  )
+    )
 }
 
 export default ProductAdd
