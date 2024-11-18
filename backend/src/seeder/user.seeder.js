@@ -5,9 +5,9 @@ const UserModel = require("../modules/user/user.model")
  
 const adminUser =[
     {
-        name:"Satish Mahato",
-        email:"mahatosatish463@gmail.com",
-        password: bcrypt.hashSync("Admin@123",10),
+        name:"Atish Mahato",
+        email:"mahatoatish25@gmail.com",
+        password: bcrypt.hashSync("@!Admin@123",10),
         role:UserRoles.ADMIN,
         status:Status.ACTIVE
     }
