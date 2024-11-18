@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useListAllQuery } from '../../../api/collection.api'
 import LoadingComponent from '../../../Middlewares/Loading/Loading.component'
 import Select from "react-select";
+import '../../../pages/AdminPage/CMSLayout.css'
 
 const ProductForm = ({submitEvent,loading,detail=null}) => {
     const {data,error, isLoading} = useListAllQuery(null)
@@ -35,7 +36,7 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
             lable:Yup.string().matches(/^(Yes|No)$/),
             value:Yup.string().matches(/^(true|false)$/)
         }),
-        images:Yup.array().required(),
+        image:Yup.array().required(),
         video:Yup.string().nullable().optional().default(null)  
 
     })
@@ -221,14 +222,14 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         <h3 style={{marginTop:'30px'}}>Media</h3>
         <div className="from_grid">
             <div>
-                <label htmlFor="images"> Images</label><br />
+                <label htmlFor="image"> Images</label><br />
                 <input
-                    name='images'
+                    name='image'
                     type='file'
                     multiple
                     onChange={(e) => {
-                        const images = Array.from(e.target.files)
-                        setValue('images', images)
+                        const image = Array.from(e.target.files)
+                        setValue('image', image)
                     }}
                 /><br />
             </div>

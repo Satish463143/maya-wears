@@ -16,13 +16,12 @@ const ProductAdd = () => {
             const productData = {
                 ...data,
                 wearable: data.wearable.value,
-                isFeatured: data.isFeatured.value
+                isFeatured: data.isFeatured.value,
+                productCollections: data.productCollections.map((item) => item.value),
             }
-            console.log(productData)
-            const response = await productSvc.postRequest('/product', productData, { file: true })
-            console.log(response)
-            toast.success(response.message)
-            // setTimeout(()=> navigate('/admin/product'))
+            await productSvc.postRequest('/product', productData, { auth: true, file: true })
+            toast.success("product added sucessfully")
+            setTimeout(() => navigate('/admin/product'), 2000)
 
         } catch (exception) {
             console.log(exception)

@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import { useParams } from 'react-router-dom';
 import './ProductDetails.css';
+import { useListForHomeQuery } from '../../api/product.api';
+import LoadingComponent from '../../Middlewares/Loading/Loading.component';
 
 const ProductDetails = ({  toogleCart, toogleAddToCart }) => {
-  const { _id } = useParams();
+  const { slug,_id } = useParams();
   const { ProductList } = useContext(StoreContext);
   const [product, setProduct] = useState(null);
   const [Loading, setLoading] = useState(true);
@@ -12,12 +14,17 @@ const ProductDetails = ({  toogleCart, toogleAddToCart }) => {
   const [isInCart, setIsInCart] = useState(false);
   const [activeTab, setActiveTab] = useState('description');
 
-  useEffect(() => {
-    const foundProduct = ProductList.find(item => item._id === _id);
+  const {data, error, isLoading} = useListForHomeQuery(null)
+
+  if(isLoading)<LoadingComponent/>
+  const productsById = data?.result?.data || []
+
+  useEffect(() => {    
+    const foundProduct = productsById.find(item => item._id === _id);
     setProduct(foundProduct);
     setLoading(false);
     setIsInCart(foundProduct ? isProductInCart(foundProduct._id) : false);
-  }, [_id, ProductList]);
+  }, [_id, productsById]);
 
   const isProductInCart = (productId) => {
     // Normally, this should use the cartList from context

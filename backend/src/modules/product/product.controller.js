@@ -7,54 +7,24 @@ class ProductController {
     productDetails;
 
     create = async (req, res, next) => {
-        // try {
-        //     const data = req.body
-
-        //     if (req.files && req.files.length > 0) {
-        //         data.images = await Promise.all(
-        //             req.files.map(file => uploadImage('./public/uploads/product/' + file.filename))
-        //         );
-        //     }
-
-        //     data.video = await uploadVideo('./public/uploads/product/' + req.file.filename)
-
-        //     data.slug = slugify(data.title, { lower: true })
-
-        //     // deleteFile('./public/uploads/product/' + req.files[0].filename)
-        //     console.log(req.authUser)
-        //     data.createdBy = req.authUser._id
-
-        //     const product = await productService.createProduct(data)
-
-        //     res.json({
-        //         result: product,
-        //         message: "product Created",
-        //         meta: null
-        //     })
-
-        // }
-        // catch (exception) {
-        //     console.log(exception)
-        //     next(exception)
-        // }
         try {
             const data = req.body;
 
-            if (req.files && req.files['images'] && req.files['images'].length > 0) {
+            if (req.files && req.files['image[]'] && req.files['image[]'].length > 0) {
                 data.images = await Promise.all(
-                    req.files['images'].map(file => uploadImage('./public/uploads/product/' + file.filename))
+                    req.files['image[]'].map(file => uploadImage('./public/uploads/product/' + file.filename))
                 );
             } else {
                 throw new Error('"images" field is required and must be an array of files');
             }
 
             // Handle video upload
-            if (req.file) {
-                data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
+            if (req.file && req.file['video']) {
+                data.video = await uploadVideo('./public/uploads/product/' + req.file['video'].filename);
             } else {
-                data.video = null; // Optional video field
+                data.video = null; // Set to null if no video is uploaded
             }
-
+           
             // Generate slug
             data.slug = slugify(data.title, { lower: true });
 
@@ -113,8 +83,46 @@ class ProductController {
         }
 
     }
+    listForHome = async (req, res, next) => {
+        try {
+            const list = await productService.listData();
+            res.json({
+                result: list,
+                message: "List of product",
+                meta: null,
+            });
+        } catch (exception) {
+            next(exception);
+        }
+    };
+    #validate = async (id) => {
+        try {
+            if (!id) {
+                throw { status: 400, message: "Id is required" }
+            }
+            this.productDetails = await productService.getIdbyFilter({
+                _id: id
+            })
+
+            if (!this.productDetails) {
+                throw { status: 400, message: "product Doesn't Exit" }
+            }
+        } catch (exception) {
+            throw exception
+        }
+
+    }
+
     show = async (req, res, next) => {
         try {
+            const id = req.params._id
+            await this.#validate(id)
+            res.json({
+                result: this.productDetails,
+                message: "Product fetched By Id",
+                meta: null
+            })
+
 
         }
         catch (exception) {
@@ -135,10 +143,17 @@ class ProductController {
     }
     delete = async (req, res, next) => {
         try {
+            const id = req.params.id
+            await this.#validate(id)
+            const response = await productService.deleteProduct(id)
+            res.json({
+                result: response,
+                message: "Product deleted Sucessfuly",
+                meta: null
+            })
 
         }
         catch (exception) {
-            console.log(exception)
             next(exception)
         }
 

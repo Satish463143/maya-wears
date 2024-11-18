@@ -1,17 +1,17 @@
-import React, { useContext,useEffect } from 'react'
-import './BestSellingItem.css'
-import { StoreContext } from '../../context/StoreContext' 
+import React from 'react'
+import './BestSellingItem.css' 
 import ProductItem from '../../Middlewares/ProductItem/ProductItem'
 import { Link } from 'react-router-dom'
+import { useListForHomeQuery } from '../../api/product.api'
+import LoadingComponent from '../../Middlewares/Loading/Loading.component'
 
 const BestSellingItem = () => {
+  const {data, error, isLoading}  = useListForHomeQuery(null)
+  if(isLoading) <LoadingComponent/>
 
-  
+  const product = data?.result?.data || []
 
-  const {ProductList} = useContext(StoreContext)
-  const bestSelling = ProductList.filter(item=>
-    item.category === "Best Selling"
-  )
+
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -20,7 +20,7 @@ const BestSellingItem = () => {
     return array;
   };
   
-  const bestShuffleArray =  shuffleArray([...bestSelling])
+  const bestShuffleArray =  shuffleArray([...product])
   const limitedbestShuffleArray = bestShuffleArray.slice(0,8)
 
   return (
@@ -30,7 +30,7 @@ const BestSellingItem = () => {
         <div className="container best_container">
           <div className='best_flex'  >
             {limitedbestShuffleArray.map((item,index)=>{
-              return <ProductItem key={index} _id={item._id} image={item.image} title={item.title} crossPrice={item.crossPrice} price={item.price} quantity={item.quantity}/>
+              return <ProductItem key={item._id} slug={item.slug} _id={item._id} images={item.images?.[0]} title={item.title}  price={item.price}/>
             })}
             <Link>
               <div className='view_all_box' >

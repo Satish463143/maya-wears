@@ -3,7 +3,6 @@ import AdminTitle from '../../../Middlewares/AdminTitle/AdminTitle';
 import { Link } from 'react-router-dom';
 import { Pagination, Toast } from 'flowbite-react';
 import collectionSvc from './Collection.service';
-// import '../../../pages/AdminPage/CMSLayout.css'
 import LoadingComponent from '../../../Middlewares/Loading/Loading.component';
 
 import { toast } from 'react-toastify';

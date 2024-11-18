@@ -33,16 +33,12 @@ import ProductEdit from './Components/CMS/Product/ProductEdit';
 
 const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
 
-  if (typeof global === 'undefined') {
-    window.global = window;
-  }
   const dispatch = useDispatch();
 
   useEffect(()=>{
     let token  = localStorage.getItem("_at");
     if(token){
-      dispatch(getLoggedInUserRedux())
-      
+      dispatch(getLoggedInUserRedux())      
     }
     
   },[])
@@ -59,7 +55,7 @@ const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
           <Route path='/' element={<LayoutPage/>}>
             <Route index element={<Home/>}/>
             <Route path="activate/:token" element={<UserActivation setIsVisible={setIsVisible} setCurrentView={setCurrentView}/>}/>
-            <Route path='product/:_id' element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart} />}/>
+            <Route path='product/:slug/:id' element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart} />}/>
             <Route path='collection/:slug' element={<CollectionPage/>}/>
             <Route path='*' element={<>Page not Found</>}/>
           </Route>

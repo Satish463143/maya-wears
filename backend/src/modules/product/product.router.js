@@ -9,7 +9,7 @@ const productDTO = require("./product.request")
 
 const router = require("express").Router()
 
-router.get('/list')
+router.get('/list',productController.listForHome)
 
 router.route('/')
     .post(
@@ -17,8 +17,8 @@ router.route('/')
         hasPermission('admin'),
         setPath('product'),
         uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
-            { name: 'images', maxCount: 10 },
-            { name: 'video', maxCount: 1 },
+            { name: 'image[]', maxCount: 10 }, // Match the exact field name from the request
+            { name: 'video', maxCount: 1 },    // Video field remains unchanged
         ]),
         bodyValidator(productDTO),
         productController.create,
@@ -31,8 +31,8 @@ router.route('/')
         productController.index) // list all product
 
 router.route('/:id')
-    .get(loginCheck, hasPermission('admin'),) // get by id
+    .get(loginCheck, hasPermission('admin'),productController.show) // get by id
     .put(loginCheck, hasPermission('admin'),) // update by id
-    .delete(loginCheck, hasPermission('admin'),) // delete by id
+    .delete(loginCheck, hasPermission('admin'),productController.delete) // delete by id
 
 module.exports = router
