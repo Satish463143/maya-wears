@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import { Link, useLocation } from 'react-router-dom';
+import logos from '../../assets/images/logo-1.png'
 
 const Navbar = ({ isVisible,toggleVisible }) => {
     const [isMenuActive, setIsMenuActive] = useState(false);
@@ -83,7 +84,7 @@ const Navbar = ({ isVisible,toggleVisible }) => {
                             </div>
                             <div className='menu_logo'>
                                 <Link to=''>
-                                    <img src="../src/assets/images/logo-1.png" alt="" />
+                                    <img src={logos} alt="" />
                                 </Link>
                             </div>
                             <div className='end_menu'>

@@ -8,8 +8,9 @@ import LoadingComponent from '../../Middlewares/Loading/Loading.component'
 const BestSellingItem = () => {
   const {data, error, isLoading}  = useListForHomeQuery(null)
   if(isLoading) <LoadingComponent/>
-
+ 
   const product = data?.result?.data || []
+
 
 
   const shuffleArray = (array) => {

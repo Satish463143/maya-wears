@@ -9,9 +9,8 @@ const Banner = () => {
   
   const getAllBanner = async()=>{
     try{
-      const response = await collectionSvc.getRequest('/banner_1/list')
-      setBannerData(response.result.data[0])
-
+      const response = await collectionSvc.getRequest('/banner_1/list');
+      setBannerData(response.result.data[0] )
     }catch(exception){
       console.log(exception)
     }

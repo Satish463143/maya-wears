@@ -24,7 +24,7 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
             toast.success("You have been logged out successfully")
             setTimeout(() => {
                 navigate('/')
-            }, 2000);
+            }, 1000);
             // toast.success("You have been logged out successfully", {
             //     onClose: () => navigate('/'), // Navigate to '/' after the toast closes
             // }); 

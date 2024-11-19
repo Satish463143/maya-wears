@@ -25,13 +25,13 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         color:Yup.string().nullable().optional().default(null),
         fabric:Yup.string().nullable().optional().default(null),
         pattern:Yup.string().nullable().optional().default(null),
-        price:Yup.number().required(),
+        price:Yup.number().required('Price is required'),
         sizes:Yup.array().of(sizeDTO).min(1, 'At least one size is required').required(),
         wearable:Yup.object({
             label:Yup.string().matches(/^(Summer|Winter|Both)$/),
             value:Yup.string().matches(/^(summer|winter|summer and winter)$/)
         }),
-        productCollections:Yup.array().optional(),
+        productCollections:Yup.array().nullable().optional().default([]),
         isFeatured:Yup.object({
             lable:Yup.string().matches(/^(Yes|No)$/),
             value:Yup.string().matches(/^(true|false)$/)
