@@ -16,7 +16,7 @@ const productDTO = Joi.object({
     price: Joi.number().required(),
     sizes: Joi.array().items(sizeDTO).min(1),
     wearable: Joi.string().valid(...Object.values(Wearable)).required().default(Wearable.BOTH),
-    productCollections: Joi.array().optional(),
+    productCollections: Joi.array().empty(null, "").optional().default([]),
     isFeatured: Joi.boolean().required().default(false),
     image: Joi.array(),
     video: Joi.string().empty(null, '').optional().default(null)

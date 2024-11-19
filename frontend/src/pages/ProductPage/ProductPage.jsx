@@ -1,9 +1,9 @@
 import React, { useContext,useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import ProductDetails from '../../Components/ProductDetails/ProductDetails';
-import SimilarProperties from '../../Components/SimilarProperties/SimilarProperties';
 import Faq from '../../Components/Faq/Faq';
 import { StoreContext } from '../../context/StoreContext';
+import BestSellingItem from '../../Components/BestSellingItem/BestSellingItem';
 
 const ProductPage = () => {
   const { isCartActive, toogleCart } = useOutletContext();
@@ -34,7 +34,8 @@ const ProductPage = () => {
         toogleCart={toogleCart} 
         toogleAddToCart={toogleAddToCart} 
       />
-      <SimilarProperties />
+      <BestSellingItem/>
+     
       <Faq />        
     </div>
   );

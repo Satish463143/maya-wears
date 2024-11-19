@@ -42,6 +42,7 @@ const ProductSlides = () => {
               {limitedFilteredProduct.map(item => (
                 <Slides
                   key={item._id} // Ensure this key is unique
+                  slug={item.slug}
                   _id={item._id}
                   image={item.images?.[0] || 'defaultImage.jpg'} // Handle cases where `images` might be undefined
                   title={item.title}

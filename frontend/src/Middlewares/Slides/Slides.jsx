@@ -7,9 +7,9 @@ import patternImg from '../../../src/assets/images/pattern.png'
 import sizeImg from '../../../src/assets/images/size.webp'
 
 
-const Slides = ({_id,image,fabric, title, pattern, sizes, wearable, price }) => {
+const Slides = ({_id,slug,image,fabric, title, pattern, sizes, wearable, price }) => {
   return (
-    <Link to={`/product/${_id}`}>
+    <Link to={`/product/${slug}/${_id}`}>
         <div className='slides_box'>
             <div className='slidex_box_flex'>
                 <h1>MAYA</h1>

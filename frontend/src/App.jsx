@@ -28,6 +28,7 @@ import { getLoggedInUserRedux } from './reducer/user.reducer';
 import ProductList from './Components/CMS/Product/ProductList';
 import ProductAdd from './Components/CMS/Product/ProductAdd';
 import ProductEdit from './Components/CMS/Product/ProductEdit';
+import AllProductPage from './pages/AllProductPage/AllProductPage';
 
 
 
@@ -57,6 +58,7 @@ const App = ({isCartActive,toogleCart,setIsVisible,setCurrentView}) => {
             <Route path="activate/:token" element={<UserActivation setIsVisible={setIsVisible} setCurrentView={setCurrentView}/>}/>
             <Route path='product/:slug/:id' element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart} />}/>
             <Route path='collection/:slug' element={<CollectionPage/>}/>
+            <Route path='all_product' element={<AllProductPage/>}/>
             <Route path='*' element={<>Page not Found</>}/>
           </Route>
            

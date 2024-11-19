@@ -4,6 +4,7 @@ const productSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        unique: true,
     },
     slug: {
         type: String,
@@ -46,7 +47,8 @@ const productSchema = new mongoose.Schema({
     productCollections: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'Collection'
+            ref: 'Collection',
+            
         }
     ],
     isFeatured: {
