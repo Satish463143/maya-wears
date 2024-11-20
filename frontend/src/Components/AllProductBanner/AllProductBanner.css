@@ -33,6 +33,7 @@
 .product_banner_content h2{
     font-size: 35px;
     font-weight: 600;
+    color: var(--white);
 
 }
 .product_banner_content p{
