@@ -1,118 +1,135 @@
-.product_page{
-    margin-top: 60px;
-
+.product_page {
+  margin-top: 60px;
 }
 
-.product_img_grid{
-    width: 100%;
-    grid-template-columns: 48% 48%;
-    display: grid;
-    justify-content: center;
-    gap: 10px; 
-    height: 100vh;
-    overflow-y: scroll; 
-    scrollbar-width: none;  
-    
+.product_img_grid {
+  width: 100%;
+  /* grid-template-columns: 48% 48%; */
+  /* display: grid; */
+  justify-content: center;
+  /* gap: 10px; */
+  /* height: 100vh; */
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
-.product_img{
-    width: 100%;
-    height: auto;
+.product_img {
+  width: 100%;
+  height: auto;
+}
+.product_img img,
+.product_img video {
+  width: 100%;
+  height: auto;
+}
 
-}
-.product_img img, .product_img video{
-    width: 100%;
-    height: auto;
-}
-.product_details{
-    width: 100%;
-
+.product_details {
+  width: 100%;
 }
 /* .product_details h2{
 
 } */
-.product_details button{
+.product_details button {
   width: 100px;
-  margin:20px  10px 20px 0;
+  margin: 20px 10px 20px 0;
   height: 35px;
   border-radius: 5px;
   border: 2px solid var(--sec_dark);
   transition: 0.4s ease;
 }
-.product_details .selected_size, .product_details button:hover{
-    color: var(--white);
-    background-color: var(--sec_dark);
+.product_details .selected_size,
+.product_details button:hover {
+  color: var(--white);
+  background-color: var(--sec_dark);
 }
-.product_details .price{
-    padding: 10px 0;
-    font-weight: 500;
-    font-size: 20px;
+.product_details .price {
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 20px;
 }
-.product_details .color{
-    font-size: 20px;
-
+.product_details .color {
+  font-size: 20px;
 }
-.product_details .buy_btn, .product_details .cart_btn{
-    width: 48%;
-    height: 50px;
-    border-radius: 0;
-    font-weight: 600;
-    font-size: 20px;
-    background: none;
+.product_details .buy_btn,
+.product_details .cart_btn {
+  width: 48%;
+  height: 50px;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 20px;
+  background: none;
 }
-.product_details .cart_btn{
-    background-color: var(--sec_dark);
-    color: var(--white);
+.product_details .cart_btn {
+  background-color: var(--sec_dark);
+  color: var(--white);
 }
-.product_details .cart_btn:hover{
-    background: none;
-    color: var(--pri_text);
+.product_details .cart_btn:hover {
+  background: none;
+  color: var(--pri_text);
 }
 .product_details #wishlist {
-    cursor: pointer;
+  cursor: pointer;
 }
-.product_details #wishlist:hover{
-    color: var(--sec_dark);
+.product_details #wishlist:hover {
+  color: var(--sec_dark);
 }
 
 .product-tabs {
-    width: 100%;
-  }
-  
-  .tab-buttons {
+  width: 100%;
+}
+
+.tab-buttons {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.tab-buttons button {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+}
+.tab-buttons button:hover {
+  background: none;
+  color: #000;
+}
+
+.tab-buttons button.active {
+  border-bottom: 2px solid #000;
+  border-radius: 0;
+  color: #000;
+  transition: none;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.tab-pane {
+  display: block;
+}
+@media (max-width: 600px) {
+  .details_grid {
     display: flex;
-    margin-bottom: 20px;
-    justify-content: space-between;
+    flex-direction: column;
+    width: 98vw;
+    border-bottom: #ffd79f8a solid 1px;
+    border-radius: 10px;
+    padding-bottom: 4%;
   }
+
+  .product_img img {
+    width:97vw;
+    margin: auto;
+    border-radius: 20px;
+  }
+  /* .product_details{
+    /* border: solid 1px black; */
   
-  .tab-buttons button {
-    flex: 1;
-    padding: 10px 15px;
-    background-color: transparent;
-    border: none;
-    
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    color: #555;
-    text-align: center;
-  }
-  .tab-buttons button:hover{
-    background: none;
-    color: #000;
-  }
-  
-  .tab-buttons button.active {
-    border-bottom: 2px solid #000;
-    border-radius: 0;
-    color: #000;
-    transition: none;
-  }
-  
-  .tab-content {
-    padding: 20px;
-  }
-  
-  .tab-pane {
-    display: block;
-  }
-  
+}

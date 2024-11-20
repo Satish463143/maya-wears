@@ -13,6 +13,7 @@ const Collection = () => {
         <Link to='/collection/collection-one'>
           {collections.map((key,index)=>(
             <button>{key.name}</button> 
+            
           ))}
             
             <button>Collection one</button>

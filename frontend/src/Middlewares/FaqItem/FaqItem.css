@@ -5,13 +5,9 @@
     transition:  0.3s ease;
   }
   
-  .faq-item:hover {
-    background-color: #f9f9f9;
-  }
-  
   .faq-question {
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 1.3em;
+    font-weight: 900;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,6 +45,14 @@
   }
   @media(max-width:600px){
     .faq-answer p,.faq-question{
-      font-size: 13px;
+      font-size: 14px;
+      text-align: justify;
+    }
+    .faq-question{
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .faq-answer p{
+      font-weight:600 ;
     }
   }
