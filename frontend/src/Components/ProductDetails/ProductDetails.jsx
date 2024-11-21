@@ -72,33 +72,32 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                   {product.color} */}
                 </p>
               </div>
-              <div className="buyNow__cartBtn">
-                <button
-                  className="cart_btn"
-                  // onClick={() => {
-                  //     if (!selectedSize) {
-                  //     alert("Please select a size!"); // Alert user if no size is selected
-                  //     return;
-                  //     }
-                  //
-                  //     toogleAddToCart(product, selectedSize); // Pass selected size explicitly
-                  // }}
-                  // disabled={isInCart}
-                  //
-                  onClick={() => {
-                    toogleCart();
-                  }}
-                >
-                  {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
-                  Add To Bag
-                </button>
-                <button
-                  className="buy_btn"
-                  style={{ borderRadius: "5px", margin: "none" }}
-                >
-                  Buy Now
-                </button>
-              </div>
+            </div>
+            <div className="buyNow__cartBtn">
+              <button
+                className="cart_btn cart__buy"
+                // onClick={() => {
+                //     if (!selectedSize) {
+                //     alert("Please select a size!"); // Alert user if no size is selected
+                //     return;
+                //     }
+                //
+                //     toogleAddToCart(product, selectedSize); // Pass selected size explicitly
+                // }}
+                // disabled={isInCart}
+                //
+                onClick={() => {
+                  toogleCart();
+                }}
+              >
+                {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
+                Add To Bag
+              </button>
+              <button
+                className="buy_btn cart__buy"
+              >
+                Buy Now
+              </button>
             </div>
           </div>
           {/* <div className="product-tabs">

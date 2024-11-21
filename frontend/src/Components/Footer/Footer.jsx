@@ -77,6 +77,34 @@ const Footer = () => {
       </div> */}
       <div>
         <div className="footer_part">
+          <div className="new__logo">
+            <img src="../src/assets/images/Untitled-1.png" alt="" />
+          </div>
+
+          <div className="footer_menu">
+            <ul>
+              <li>
+                <a href="">Home</a>
+                <p>+</p>
+              </li>
+              <li>
+                <a href="">Newsfeed</a>
+                <p>+</p>
+              </li>
+              <li>
+                <a href="">About</a>
+                <p>+</p>
+              </li>
+              <li>
+                <a href="">Contact Us</a>
+                <p>+</p>
+              </li>
+              <li>
+                <a href="">Our Team</a>
+                <p>+</p>
+              </li>
+            </ul>
+          </div>
           <div className="social_media ">
             <a href="https://www.instagram.com/mayawears.np/" target="_blank">
               <li>
@@ -179,30 +207,6 @@ const Footer = () => {
                 </svg>
               </li>
             </a>
-          </div>
-          <div className="footer_menu">
-            <ul>
-              <li>
-                <a href="">Home</a>
-                <p>+</p>
-              </li>
-              <li>
-                <a href="">Newsfeed</a>
-                <p>+</p>
-              </li>
-              <li>
-                <a href="">About</a>
-                <p>+</p>
-              </li>
-              <li>
-                <a href="">Contact Us</a>
-                <p>+</p>
-              </li>
-              <li>
-                <a href="">Our Team</a>
-                <p>+</p>
-              </li>
-            </ul>
           </div>
         </div>
 

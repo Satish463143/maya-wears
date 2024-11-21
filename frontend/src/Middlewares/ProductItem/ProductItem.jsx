@@ -20,10 +20,10 @@ const ProductItem = ({_id,slug,images,title,price}) => {
           </div>
           
           <div className='produc_content'>
-            <h4>{title}</h4>
+            <h2>{title}</h2>
             {/* <div style={{display:'flex', alignItems:'center',gap:'10px'}}> */}
               {/* <h5>Rs.{crossPrice}/-</h5> */}
-              <h3>Rs.{price}/-</h3>
+              <h3>NRP.{price}.00</h3>
             {/* </div> */}
             {/* <div className='quantity'>
               {quantity >0 && <p ><div style={{background:'green',boxShadow: '0px 0px 2px 2px green'}}></div>In Stock</p>}
