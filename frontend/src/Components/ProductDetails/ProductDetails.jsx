@@ -47,7 +47,7 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
             </div>
             <div className="product_details">
               <p className="price price__off">NRP.{product.price}.00</p>
-              <p className="product__title">{product.title}</>
+              <p className="product__title">{product.title}</p>
               <div className="size__color">
                 <div className="size__">
                   <p className="size__guide">Size</p>
