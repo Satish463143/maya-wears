@@ -46,14 +46,8 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
               ))}
             </div>
             <div className="product_details">
-              {/* <span className="catogories__name">Jacket</span>
-              <span className="rating__number">⭐️4.9</span>
-              <span className="total__rating__count">(310)</span> */}
-              <div className="wishlist__Product">
-                <h1 className="headers product__title">{product.title}</h1>
-                {/* <h3 id="wishlist">❤️</h3> */}
-              </div>
               <p className="price price__off">NRP.{product.price}.00</p>
+              <p className="product__title">{product.title}</>
               <div className="size__color">
                 <div className="size__">
                   <p className="size__guide">Size</p>
@@ -98,7 +92,12 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                   {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
                   Add To Bag
                 </button>
-                <button className="buy_btn" style={{borderRadius:"5px",margin:'none'}}>Buy Now</button>
+                <button
+                  className="buy_btn"
+                  style={{ borderRadius: "5px", margin: "none" }}
+                >
+                  Buy Now
+                </button>
               </div>
             </div>
           </div>

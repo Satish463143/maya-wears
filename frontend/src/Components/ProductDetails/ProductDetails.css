@@ -1,15 +1,10 @@
-.product_page {
-  margin-top: 60px;
-  /* position: relative; */
-}
+/* .product_page {
+  /* margin-top: 60px; */
+/* position: relative; */
 
 .product_img_grid {
   width: 100%;
-  /* grid-template-columns: 48% 48%; */
-  /* display: grid; */
   justify-content: center;
-  /* gap: 10px; */
-  /* height: 100vh; */
   overflow-y: scroll;
   scrollbar-width: none;
 }
@@ -26,9 +21,6 @@
 .product_details {
   width: 100%;
 }
-/* .product_details h2{
-
-} */
 .product_details button {
   width: 100px;
   margin: 20px 0px 20px 0;
@@ -115,6 +107,53 @@
 .tab-pane {
   display: block;
 }
+.size__ select {
+  background: #f7e6d3;
+  border: none !important;
+  border-top: solid 1px #8d6b4d !important;
+  border-bottom: solid 1px #8d6b4d !important;
+  border-radius: 0 !important;
+}
+
+.onn {
+  border: none;
+}
+
+.size__plus{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-top: solid;
+  border-bottom: solid;
+}
+.size__popup{
+  height: 40vh;
+  width: 80vw;
+  background-color:#8d6b4d
+}
+.size__{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.size__haru{
+  /* background-color: #8d6b4d; */
+  padding:0 20px;
+  transition: 1s;
+  display: none;
+}
+.size_show{
+  display: block;
+}
+.size__haru .size__button{
+  border-top: solid;
+  border-bottom: solid 0.5px;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 @media (max-width: 600px) {
   .details_grid {
     display: flex;
@@ -124,13 +163,14 @@
     border-radius: 10px;
   }
 
-  .product_img img {
+  .product_img img,
+  .product_img video {
     width: 100vw;
     margin: auto;
     /* border-radius: 20px; */
   }
   .product__title {
-    font-size: 1.5em;
+    font-size: 1.6em;
     margin-bottom: 10px;
     font-family: "Outfit", sans-serif;
     font-weight: 900;
@@ -148,22 +188,8 @@
   }
   .price {
     color: #8d6b4d;
-    margin-top: -10px;
-  }
-  .size__color {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .size__color button {
-    height: 50px;
-    width: 70px;
-    border-radius:5%;
-    margin: auto 2px;
-  }
-  .buyNow__cartBtn {
-    /* display: flex; */
-    justify-content: space-between;
+    font-size: 18px !important;
+    /* margin-top: -10px; */
   }
   .buyNow__cartBtn .cart_btn {
     border-radius: 5px;
