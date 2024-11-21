@@ -7,6 +7,7 @@
     display: none;     
     z-index: 9999;
     transition:  0.5s ease;
+    border-top: solid 1px #D3BFAD;
 }
 .footnav.hidden {
     bottom: -100%;

@@ -1,5 +1,6 @@
 .product_page {
   margin-top: 60px;
+  /* position: relative; */
 }
 
 .product_img_grid {
@@ -30,7 +31,7 @@
 } */
 .product_details button {
   width: 100px;
-  margin: 20px 10px 20px 0;
+  margin: 20px 0px 20px 0;
   height: 35px;
   border-radius: 5px;
   border: 2px solid var(--sec_dark);
@@ -118,18 +119,53 @@
   .details_grid {
     display: flex;
     flex-direction: column;
-    width: 98vw;
-    border-bottom: #ffd79f8a solid 1px;
+    width: 100vw;
+    border-bottom: #442800be solid 1px;
     border-radius: 10px;
-    padding-bottom: 4%;
   }
 
   .product_img img {
-    width:97vw;
+    width: 100vw;
     margin: auto;
-    border-radius: 20px;
+    /* border-radius: 20px; */
   }
-  /* .product_details{
-    /* border: solid 1px black; */
-  
+  .product__title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 900;
+  }
+  .wishlist__Product {
+    display: flex;
+    justify-content: space-between;
+  }
+  .product_details {
+    padding: 5%;
+  }
+  .product_details span {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  .price {
+    color: #8d6b4d;
+    margin-top: -10px;
+  }
+  .size__color {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .size__color button {
+    height: 50px;
+    width: 70px;
+    border-radius:5%;
+    margin: auto 2px;
+  }
+  .buyNow__cartBtn {
+    /* display: flex; */
+    justify-content: space-between;
+  }
+  .buyNow__cartBtn .cart_btn {
+    border-radius: 5px;
+  }
 }
