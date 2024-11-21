@@ -26,8 +26,8 @@
   --pri_text:#000;
   --white:#fff;
   --pri_color:#F7E6D3;
-  --sec_color:#D3BFAD;
-  --sec_dark:#8D6B4D;
+  --sec_color:#F7E6D3;/*  #D3BFAD */
+  --sec_dark:#F7E6D3;/*  #8D6B4D */
 }
 Link, a, button{
   cursor: pointer;
@@ -38,7 +38,8 @@ h1,h2,h3,h4,h5,p{
   color: var(--pri_text);
 }
 .headers{
-  font-family: "havelock-titling-variable", sans-serif;
+  font-family: "Outfit", sans-serif;
+
   font-variation-settings: "wght" 559;
 }
 .container{
@@ -46,7 +47,7 @@ h1,h2,h3,h4,h5,p{
   margin: auto;  
 }
 .container {
-  max-width: 97%;
+  max-width: 100%;
 }
 
 @media (min-width: 601px) and (max-width: 1300px) {
@@ -62,7 +63,7 @@ h1,h2,h3,h4,h5,p{
 }
 body{
   background: var(--pri_color);
-  font-family: "enra-sans-variable", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-variation-settings: "wght" 400;
 }
  

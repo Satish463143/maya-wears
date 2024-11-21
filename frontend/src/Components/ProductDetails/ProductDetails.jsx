@@ -46,12 +46,15 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
               ))}
             </div>
             <div className="product_details">
-              <h1 className="headers">{product.title}</h1>
-              <p className="price">Rs.{product.price}/-</p>
-              <span style={{ fontWeight: "600" }}>Size:</span>{" "}
-              <span>Size Guide</span>
-              <br />
-              {/* {product.availableSize.map((size) => (
+              <p className="price price__off">NRP.{product.price}.00</p>
+              <p className="product__title">{product.title}</p>
+              <div className="size__color">
+                <div className="size__">
+                  <p className="size__guide">Size</p>
+                  {""}
+                  {/* <span>Size Guide</span> */}
+
+                  {/* {product.availableSize.map((size) => (
                 <button
                     key={size}
                     // onClick={() => handleSize(size)}
@@ -60,15 +63,19 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                     {size }
                 </button>
                 ))} */}
-              {product.sizes.map((item) => (
-                <button>{item.size}</button>
-              ))}
-              <p className="color">
-                <span style={{ fontWeight: "600" }}>Color:</span>
-                {product.color}
-              </p>
+                  {product.sizes.map((item) => (
+                    <button className="size__button">{item.size}</button>
+                  ))}
+                </div>
+                <p className="color">
+                  {/* <span style={{ fontWeight: "600" }}>Color:</span>
+                  {product.color} */}
+                </p>
+              </div>
+            </div>
+            <div className="buyNow__cartBtn">
               <button
-                className="cart_btn"
+                className="cart_btn cart__buy"
                 // onClick={() => {
                 //     if (!selectedSize) {
                 //     alert("Please select a size!"); // Alert user if no size is selected
@@ -86,11 +93,14 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                 {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
                 Add To Bag
               </button>
-              <button className="buy_btn">Buy Now</button>
-              <h3 id="wishlist">+ Add To My List</h3>
+              <button
+                className="buy_btn cart__buy"
+              >
+                Buy Now
+              </button>
             </div>
           </div>
-          <div className="product-tabs">
+          {/* <div className="product-tabs">
             <div className="tab-buttons">
               <button
                 className={activeTab === "description" ? "active" : ""}
@@ -135,7 +145,7 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

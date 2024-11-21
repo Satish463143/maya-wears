@@ -22,12 +22,12 @@
     align-items: center;
     width: 250px;
     height: 395px;
-    border-radius: 20px;
+    border-radius: 5px;
     background: var(--sec_color);
 }
 @media (max-width:600px){
     .best_flex{
-    gap: 15px;
+    gap: 5px;
 }
 .best_container{
     width: 100%;
