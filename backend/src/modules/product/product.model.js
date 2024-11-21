@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const { Wearable } = require("../../config/constants.config")
+const { type } = require('./product.request')
+const { required } = require('joi')
 const productSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -13,9 +15,11 @@ const productSchema = new mongoose.Schema({
     },
     summary: {
         type: String,
+        default:null
     },
     description: {
         type: String,
+        default:null
     },
     price: {
         type: Number,
@@ -24,15 +28,21 @@ const productSchema = new mongoose.Schema({
     },
     promoCode: {
         type: String,
+        default:null
     },
-    color: String,
+    color:{
+        type:String,
+        default: null
+    },
     sizes: [
         {
             size: {
-                type: String,                
+                type: String, 
+                required:true               
             }, 
             quantity: {
-                type: Number,                
+                type: Number, 
+                required:true                
             }, 
         },
     ],
@@ -42,8 +52,14 @@ const productSchema = new mongoose.Schema({
         default: (Wearable.BOTH),
         required: true
     },
-    fabric: String,
-    pattern: String,
+    fabric:{
+        type:String,
+        default: null
+    },
+    pattern: {
+        type:String,
+        default: null
+    },
     productCollections: [
         {
             type: mongoose.Types.ObjectId,
@@ -51,6 +67,7 @@ const productSchema = new mongoose.Schema({
             
         }
     ],
+
     isFeatured: {
         type: Boolean,
         default: false
@@ -58,6 +75,22 @@ const productSchema = new mongoose.Schema({
     images: {
         type: Array,
         required: true
+    },
+    mainImage:{
+        type:String,
+        required:true
+    },
+    featureDesktopImage:{
+        type:String,
+        default: null
+    },
+    featureMobileImage:{
+        type:String,
+        default: null
+    },
+    discount:{
+        type:Number,
+        default: null
     },
     video: String,
     createdBy: {

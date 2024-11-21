@@ -18,13 +18,17 @@ class ProductController {
                 throw new Error('"images" field is required and must be an array of files');
             }
 
+            data.mainImage = await uploadImage('./public/uploads/product/' + req.file.filename)
+            data.featureDesktopImage = await uploadImage('./public/uploads/product/' + req.file.filename)
+            data.featureMobileImage = await uploadImage('./public/uploads/product/' + req.file.filename)
+           
             // Handle video upload
             if (req.file && req.file['video']) {
                 data.video = await uploadVideo('./public/uploads/product/' + req.file['video'].filename);
             } else {
                 data.video = null; // Set to null if no video is uploaded
             }
-           
+            deleteFile('./public/uploads/product/' + req.file.filename)
             // Generate slug
             data.slug = slugify(data.title, { lower: true });
 

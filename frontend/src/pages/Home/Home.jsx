@@ -9,14 +9,15 @@ import GoogleReview from '../../Components/GoogleReview/GoogleReview'
 import ProductSlides from '../../Components/ProductSlides/ProductSlides'
 import Faq from '../../Components/Faq/Faq'
 import Collection from '../../Components/Collection/Collection'
+import ProductCarousel from '../../Components/ProductCarousel/ProductCarousel'
 
 const Home = () => {
   
   return (
     <div>
         <Banner/>
-        <ProductSlides/> 
-               
+        {/* <ProductSlides/>  */}
+        <ProductCarousel/>
         <DownBannerItem/>
         <BestSellingItem/>
         <Down_2_Banner/>

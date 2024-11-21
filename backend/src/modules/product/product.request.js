@@ -2,25 +2,34 @@ const Joi = require("joi");
 const { Wearable } = require("../../config/constants.config");
 
 const sizeDTO = Joi.object({
-    size: Joi.string().min(1).max(5).required(), // e.g., "M", "L", etc.
-    quantity: Joi.number().integer().min(0).required() // quantity as a non-negative integer
+    size: Joi.string().min(1).max(5).required(), // Example: "M", "L"
+    quantity: Joi.number().integer().min(0).required(), // Non-negative integer
 });
+
 const productDTO = Joi.object({
     title: Joi.string().min(3).max(50).required(),
-    summary: Joi.string().empty(null, "").optional().default(null),
-    description: Joi.string().empty(null, "").optional().default(null),
-    promoCode: Joi.string().empty(null, "").optional().default(null),
-    color: Joi.string().empty(null, "").optional().default(null),
-    fabric: Joi.string().empty(null, "").optional().default(null),
-    pattern: Joi.string().empty(null, "").optional().default(null),
-    price: Joi.number().required(),
-    sizes: Joi.array().items(sizeDTO).min(1),
-    wearable: Joi.string().valid(...Object.values(Wearable)).required().default(Wearable.BOTH),
-    productCollections: Joi.array().empty(null, "").optional().default([]),
+    summary: Joi.string().allow(null, "").optional(),
+    description: Joi.string().allow(null, "").optional(),
+    promoCode: Joi.string().allow(null, "").optional(),
+    discount:Joi.number().allow(null, "").optional(),
+    color: Joi.string().allow(null, "").optional(),
+    fabric: Joi.string().allow(null, "").optional(),
+    pattern: Joi.string().allow(null, "").optional(),
+    price: Joi.number().min(0).required(),
+    sizes: Joi.array().items(sizeDTO).min(1).optional(), // Array of size objects
+    wearable: Joi.string()
+        .valid(...Object.values(Wearable))
+        .required()
+        .default(Wearable.BOTH),
+    productCollections: Joi.array()
+        .optional()
+        .default([]),
     isFeatured: Joi.boolean().required().default(false),
-    image: Joi.array(),
-    video: Joi.string().empty(null, '').optional().default(null)
-
-})
+    image: Joi.array().items(Joi.string()).min(1).required(), // Validate as array of URLs
+    mainImage: Joi.string().required(),
+    featureDesktopImage: Joi.string(),
+    featureMobileImage: Joi.string(),
+    video: Joi.string().allow(null, '').optional(),
+});
 
 module.exports = productDTO;

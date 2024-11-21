@@ -20,6 +20,9 @@ router.route('/')
             { name: 'image[]', maxCount: 10 }, // Match the exact field name from the request
             { name: 'video', maxCount: 1 },    // Video field remains unchanged
         ]),
+        uplaodFile(FileFilterType.IMAGE).single('mainImage'),
+        uplaodFile(FileFilterType.IMAGE).single('featureDesktopImage'),
+        uplaodFile(FileFilterType.IMAGE).single('featureMobileImage'),
         bodyValidator(productDTO),
         productController.create,
     )//create

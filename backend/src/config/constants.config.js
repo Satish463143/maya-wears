@@ -22,9 +22,9 @@ const BannerCategory={
 }
 
 const Wearable={
-    SUMMER:'summer',
-    WINTER:'winter',
-    BOTH:'summer and winter'
+    SUMMER:'Summer',
+    WINTER:'Winter',
+    BOTH:'Summer and Winter'
 }
 module.exports ={
     FileFilterType,

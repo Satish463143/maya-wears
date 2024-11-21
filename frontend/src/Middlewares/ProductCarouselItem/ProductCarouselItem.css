@@ -1,0 +1,106 @@
+.product_carousel{
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.product_carousel .carousel_img{
+    width: 100%;
+    height: auto;
+}
+.product_carousel .carousel_img img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.product_carousel .carousel_overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+}
+.carousel_content{
+    position: absolute;
+    top: 30%;
+    
+}
+.carousel_content .carousel_desc h1{
+    font-size: 40px;
+    font-weight: 800;
+    text-transform: capitalize;
+    color: var(--white);
+    
+}
+.carousel_content .carousel_desc h2{
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--white);
+}
+.carousel_content .carousel_desc  button{
+    padding: 10px 20px ;
+    border-radius: 10px;
+    border: 2px solid var(--white);
+    font-size: 20px;
+}
+
+
+/* Custom styles for the slider dots */
+.slick-dots li button:before {
+    color: var(--w); /* Change the color of the dots */
+    font-size: 12px; /* Change the size of the dots */
+    
+  }
+  
+  /* Active dot */
+  .slick-dots li.slick-active button:before {
+    color: var(--w); /* Change the color of the active dot */
+  }
+  
+  .slick-prev {
+    left: 150px;
+}
+.slick-next{
+    right: 50px;
+}
+  
+  .slick-prev:before, .slick-next:before {
+    color: var(--sec_dark) !important; /* Change the color of the arrow icons */
+    font-size: 20px; /* Change the size of the arrow icons */
+    border: 1px solid var(--sec_dark);
+    padding: 15px;
+    border-radius: 50%;
+    z-index: 999999999999999999999999999;
+  }
+  /* @media (max-width:900px){
+    .slick-prev {
+        left: -100px;
+    }
+    .slick-next{
+        right: -80px;
+    }
+  } */
+  /* @media (max-width:800px){
+    .slick-prev {
+        left: -60px;
+    }
+    .slick-next{
+        right: -30px;
+    }
+  } */
+  @media (max-width:600px){
+    .slick-prev:before, .slick-next:before{
+    padding: 10px;
+    font-size: 15px;
+    }
+    .slides_box{   
+        width: 300px;
+        margin: auto; 
+    }
+    .slick-prev {
+        left: 0px;
+    }
+    .slick-next{
+        right: 18px;
+    }
+}
