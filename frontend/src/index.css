@@ -25,9 +25,9 @@
 :root{
   --pri_text:#000;
   --white:#fff;
-  --pri_color:#F7E6D3;
-  --sec_color:#F7E6D3;/*  #D3BFAD */
-  --sec_dark:#F7E6D3;/*  #8D6B4D */
+ --pri_color:#edc9af; /* #F7E6D3 */
+  --sec_color: #D3BFAD;
+  --sec_dark: #8D6B4D;
 }
 Link, a, button{
   cursor: pointer;

@@ -26,8 +26,9 @@
 
 .background_nav {
   transition: 0.5s;
-  background: #f7e6d31c;
-  backdrop-filter: blur(10px);
+  /* background: #f7e6d31c; */
+  backdrop-filter: blur(5px);
+  border-bottom: solid 0.5px var(--sec_color) ;
 
 }
 

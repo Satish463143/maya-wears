@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Footer.css";
+import mayuuu from '../../assets/images/untitled-1.png'
 
 const Footer = () => {
   const [isactivated, setActivated] = useState("false");
@@ -78,7 +79,7 @@ const Footer = () => {
       <div>
         <div className="footer_part">
           <div className="new__logo">
-            <img src="../src/assets/images/Untitled-1.png" alt="" />
+            <img src={mayuuu} alt="" />
           </div>
 
           <div className="footer_menu">

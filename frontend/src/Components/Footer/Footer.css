@@ -49,7 +49,7 @@
 
 } */
 .footer_part {
-  background: var(--sec_color);
+  background: var(--pri_color);
   width: 100%;
   height: auto;
   padding-top: 50px;
@@ -74,7 +74,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--sec_dark);
+  background-color: var(--pri_color);
   border-radius: 50%;
 }
 .footer_menu ul {
@@ -96,7 +96,7 @@
 }
 
 .copyright {
-  background-color: var(--sec_dark);
+  background-color: var(--pri_color);
   width: 100%;
   height: auto;
   padding: 20px;

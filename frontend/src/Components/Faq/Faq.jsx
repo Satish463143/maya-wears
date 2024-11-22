@@ -17,7 +17,7 @@ const Faq = () => {
                 <div className="container">
                 <div data-aos="fade-up">
                     <div className='home_loan'>
-                        <div style={{ textAlign: 'center',marginTop:'-40px'}}>
+                        <div style={{ textAlign: 'center'}}>
                             <h1>FAQ </h1>
                         </div>
                         
