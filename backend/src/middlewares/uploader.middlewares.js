@@ -21,29 +21,28 @@ const myStorage = multer.diskStorage({
 
 
 const uplaodFile = (fileType = FileFilterType.IMAGE) => {
-    let allowed = ['jpg', 'png', 'webp', 'gif']
+    let allowed = ['jpg', 'png', 'webp', 'gif'];
     if (fileType === FileFilterType.DOCUMENT) {
-        allowed = ['pdf', 'txt', 'docs']
+        allowed = ['pdf', 'txt', 'docs'];
     } else if (fileType === FileFilterType.VIDEO) {
-        allowed = ['mp4', 'mov', 'mkv']
+        allowed = ['mp4', 'mov', 'mkv'];
     }
 
     return multer({
         storage: myStorage,
         limits: {
-            fileSize: 300000000
+            fileSize: 300000000, // 300MB
         },
         fileFilter: (req, file, cb) => {
-            const ext = file.originalname.split(".").pop()
-
-            if (allowed.includes(ext.toLowerCase())) {
-                cb(null, true)
+            const ext = file.originalname.split('.').pop().toLowerCase();
+            if (allowed.includes(ext)) {
+                cb(null, true);
             } else {
-                cb({ code: 400, message: "File format not supproted" })
+                cb(new Error('File format not supported'));
             }
-        }
-    })
-}
+        },
+    });
+};
 
 // for both image and video at once with different size limit
 const uploadImageAndVideo = () => {

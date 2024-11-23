@@ -1,4 +1,4 @@
-
+const multer = require("multer")
 const { FileFilterType } = require("../../config/constants.config")
 const loginCheck = require("../../middlewares/auth.middlewares")
 const hasPermission = require("../../middlewares/rbac.middlewares")
@@ -16,15 +16,14 @@ router.route('/')
         loginCheck,
         hasPermission('admin'),
         setPath('product'),
-        uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
-            { name: 'images[]', maxCount: 10 }, // Match the exact field name from the request
-            { name: 'video', maxCount: 1 },    // Video field remains unchanged
+        uplaodFile(FileFilterType.IMAGE).fields([
+            { name: 'images', maxCount: 10 },            
+            { name: 'mainImage', maxCount: 1 },       // Single main image
+            { name: 'featureDesktopImage', maxCount: 1 }, // Single desktop image
+            { name: 'featureMobileImage', maxCount: 1 },  // Single mobile image
         ]),
-        // uplaodFile(FileFilterType.IMAGE).array('images'),
-        // uplaodFile(FileFilterType.VIDEO).single('video'),
-        uplaodFile(FileFilterType.IMAGE).single('mainImage'),
-        uplaodFile(FileFilterType.IMAGE).single('featureDesktopImage'),
-        uplaodFile(FileFilterType.IMAGE).single('featureMobileImage'),
+        uplaodFile(FileFilterType.VIDEO).single('video'), 
+       
         bodyValidator(productDTO),
         productController.create,
     )//create

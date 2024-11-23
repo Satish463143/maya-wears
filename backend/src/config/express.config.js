@@ -33,7 +33,6 @@ app.use((error, req, res, next) => {
     if (error.code === 11000) {
         const uniqueFailedKeys = Object.keys(error.keyPattern)
         details = {}
-
         uniqueFailedKeys.map((field) => {
             details[field] = field + " should be unique"
         })
