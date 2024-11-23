@@ -9,6 +9,9 @@
   color: var(--g);
   /* background-color: red; */
 }
+.help__section{
+  font-size:2em;
+}
 @media (max-width: 800px) {
   .faq_width {
     width: 100%;
@@ -16,18 +19,15 @@
   .faq_width h2 {
     font-size: 20px;
   }
-  .home_loan h1 {
-    font-size: 25px;
-  }
+ 
 }
 @media (max-width: 600px) {
   .faq_width h2 {
-    font-size: 18px;
-  }
-  .home_loan h1 {
     font-size: 20px;
   }
-  /* .home_loan{
-    margin-top: 80px;
-  } */
+  .help__section{
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 700;
+   }
 }

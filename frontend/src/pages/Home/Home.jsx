@@ -10,6 +10,7 @@ import ProductSlides from '../../Components/ProductSlides/ProductSlides'
 import Faq from '../../Components/Faq/Faq'
 import Collection from '../../Components/Collection/Collection'
 import ProductCarousel from '../../Components/ProductCarousel/ProductCarousel'
+import CustomerGallery from '../../Components/CustomerGallery/CustomerGallery'
 
 const Home = () => {
   
@@ -25,6 +26,7 @@ const Home = () => {
         <GoogleReview/>          
         <Faq/>
         <Collection/>
+        <CustomerGallery/>
     </div>
   )
 }
