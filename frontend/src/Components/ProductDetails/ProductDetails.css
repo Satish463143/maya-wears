@@ -1,7 +1,9 @@
 /* .product_page {
   /* margin-top: 60px; */
 /* position: relative; */
-
+.details_grid{
+  display: flex;
+}
 .product_img_grid {
   width: 100%;
   justify-content: center;
@@ -19,17 +21,10 @@
   height: 550px;
     object-fit: cover; 
 }
-
-
-
-
 .product_details {
   width: 100%;
 }
 .product_details button {
-
- 
-
   width: 100px;
   margin:10px 0px 10px 0;
   height: 35px;
@@ -163,7 +158,6 @@
     display: flex;
     flex-direction: column;
     width: 100vw;
-    /* border-bottom: #442800be solid 1px; */
     border-radius: 10px;
   }
 .product-tabs{
