@@ -22,7 +22,7 @@ const ProductAdd = () => {
             // console.log(productData)
             await productSvc.postRequest('/product', productData, { auth: true, file: true })
             toast.success("product added sucessfully")
-            setTimeout(() => navigate('/admin/product'), 1000)
+            // setTimeout(() => navigate('/admin/product'), 1000)
 
         } catch (exception) {
             console.log(exception)
