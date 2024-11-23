@@ -45,79 +45,31 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                 </div>
               ))}
             </div>
+            <p className="model__wearing__size"><span>Model is <span>5'8</span>,wearing a size <span>Xl</span></span></p>
             <div className="product_details">
+             
               <p className="price price__off">NRP.{product.price}.00</p>
               <p className="product__title">{product.title}</p>
               <div className="size__color">
+                <p className="sizeeee">Select the Size:</p>
+                <div className="size__flex">
                 <div className="size__">
-                <select name="" id="" className="size__selec">
-                  <option value="" className="size__option">Select Size</option>
                   {product.sizes.map((item) => (
-                    <option className="size__option">{item.size}</option>
+                    <button className="size__option">{item.size}</button>
                   ))}
-                  
-                </select>
                 </div>
-                  <p>Size Guide</p>
+                <p className="size__guideee">Size Guide</p></div>
                 {/* <p className="color">
                   { <span style={{ fontWeight: "600" }}>Color:</span>
                   {product.color} }
                 </p> */}
               </div>
-            </div>
-           
-          </div>
-          <div className="product-tabs">
-            <div className="tab-buttons">
-              <button
-                className={activeTab === "description" ? "active" : ""}
-                onClick={() => handleTabClick("description")}
-              >
-                Description
-              </button>
-              {/* <button
-                className={activeTab === "sizeFit" ? "active" : ""}
-                onClick={() => handleTabClick("sizeFit")}
-              >
-                Size Guide
-              </button> */}
-              {/* <button
-                className={activeTab === "aboutBrand" ? "active" : ""}
-                onClick={() => handleTabClick("aboutBrand")}
-              >
-                About The Brand
-              </button> */}
-            </div>
-
-            <div className="tab-content">
-              {activeTab === "description" && (
-                <div className="tab-pane">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: product.description,
-                    }}
-                  ></div>
-                </div>
-              )}
-              {activeTab === "sizeFit" && (
-                <div className="tab-pane">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi ipsa voluptates nihil veniam sit voluptatem dicta, aspernatur debitis earum voluptas.</p>
-                </div>
-              )}
-              {activeTab === "aboutBrand" && (
-                <div className="tab-pane">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: product.summary }}
-                  ></div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="buyNow__cartBtn">
-              <button className="buy_btn cart__buy">
+            <div className="buyNow__cartBtn">
+              {/* <button className="buy_btn  cart__buy1">
                 Buy Now
-              </button>
-              <button className="cart_btn cart__buy1"
+              </button> */}
+              <button
+                className="cart_btn cart__buy"
                 // onClick={() => {
                 //     if (!selectedSize) {
                 //     alert("Please select a size!"); // Alert user if no size is selected
@@ -133,9 +85,79 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                 }}
               >
                 {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
-                🛒
+                Add to Cart
               </button>
             </div>
+            </div>
+          </div> 
+            
+
+          <div className="product__discription">
+            <ul>
+              <li>
+                <a href="">Description</a>
+                <p>◿</p>
+              </li>
+              <li>
+                <a href="">fit</a>
+                <p>◿</p>
+              </li>
+              <li>
+                <a href="">Material and care</a>
+                <p>◿</p>
+              </li>
+            </ul>
+          </div>
+          {/* <div className="product-tabs">
+            <div className="tab-buttons">
+              <button
+                className={activeTab === "description" ? "active" : ""}
+                onClick={() => handleTabClick("description")}
+              >
+                Description
+              </button>
+              <button
+                className={activeTab === "sizeFit" ? "active" : ""}
+                onClick={() => handleTabClick("sizeFit")}
+              >
+                Size Guide
+              </button>
+              <button
+                className={activeTab === "aboutBrand" ? "active" : ""}
+                onClick={() => handleTabClick("aboutBrand")}
+              >
+                About The Brand
+              </button>
+            </div>
+
+            <div className="tab-content">
+              {activeTab === "description" && (
+                <div className="tab-pane">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: product.description,
+                    }}
+                  ></div>
+                </div>
+              )}
+              {activeTab === "sizeFit" && (
+                <div className="tab-pane">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Animi ipsa voluptates nihil veniam sit voluptatem dicta,
+                    aspernatur debitis earum voluptas.
+                  </p>
+                </div>
+              )}
+              {activeTab === "aboutBrand" && (
+                <div className="tab-pane">
+                  <div
+                    dangerouslySetInnerHTML={{ __html: product.summary }}
+                  ></div>
+                </div>
+              )}
+            </div>
+          </div> */}
         </div>
       </div>
     </div>
@@ -144,13 +166,18 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
 
 export default ProductDetails;
 
+{
+  /* <p className="size__guide">Size</p> */
+}
+{
+  ("");
+}
+{
+  /* <span>Size Guide</span> */
+}
 
-
- {/* <p className="size__guide">Size</p> */}
- {""}
- {/* <span>Size Guide</span> */}
-
- {/* {product.availableSize.map((size) => (
+{
+  /* {product.availableSize.map((size) => (
 <button
    key={size}
    // onClick={() => handleSize(size)}
@@ -158,4 +185,5 @@ export default ProductDetails;
 >
    {size }
 </button>
-))} */}
+))} */
+}

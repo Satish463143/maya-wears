@@ -88,7 +88,7 @@
 }
 .footer_menu ul li {
   list-style: none;
-  border-top: solid 0.5px black;
+  border-bottom: solid 0.5px black;
   padding: 20px;
   display: flex;
   justify-content:space-between;
