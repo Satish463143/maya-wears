@@ -10,25 +10,63 @@ class ProductController {
         try {
             const data = req.body;
 
-            if (req.files && req.files['image[]'] && req.files['image[]'].length > 0) {
+            if (req.files && req.files['images[]'] && req.files['images[]'].length > 0) {
                 data.images = await Promise.all(
-                    req.files['image[]'].map(file => uploadImage('./public/uploads/product/' + file.filename))
+                    req.files['images[]'].map(file => uploadImage('./public/uploads/product/' + file.filename))
                 );
             } else {
                 throw new Error('"images" field is required and must be an array of files');
             }
+            // if (req.files.images) {
+            //     data.images = await Promise.all(
+            //         req.files.images.map(async (file) =>
+            //             uploadImage('./public/uploads/product/' + file.filename)
+            //         )
+            //     );
+            // }else {
+            //         throw new Error('"images" field is required and must be an array of files');
+            //     }
+            console.log("Images uploaded:", data.images);
+            if (req.file) {
+                data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
+            }
+            console.log("Images uploaded:", data.video);
+            // Handle `mainImage`
+            // Handle `mainImage` (single file)
+            // if (req.files.mainImage?.[0]) {
+            //     data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
+            // }
+            data.mainImage = await uploadVideo('./public/uploads/product/' + req.file.filename);
 
-            data.mainImage = await uploadImage('./public/uploads/product/' + req.file.filename)
-            data.featureDesktopImage = await uploadImage('./public/uploads/product/' + req.file.filename)
-            data.featureMobileImage = await uploadImage('./public/uploads/product/' + req.file.filename)
+            console.log("Images uploaded:", data.mainImage);
+
+            // Handle `featureDesktopImage` (single file)
+            // if (req.files.featureDesktopImage?.[0]) {
+            //     data.featureDesktopImage = await uploadImage(
+            //         './public/uploads/product/' + req.files.featureDesktopImage[0].filename
+            //     );
+            // }
+            data.featureDesktopImage = await uploadVideo('./public/uploads/product/' + req.file.filename);
+            console.log("Images uploaded:", data.featureDesktopImage);
+
+            // Handle `featureMobileImage` (single file)
+            // if (req.files.featureMobileImage?.[0]) {
+            //     data.featureMobileImage = await uploadImage(
+            //         './public/uploads/product/' + req.files.featureMobileImage[0].filename
+            //     );
+            // }
+            data.featureMobileImage = await uploadVideo('./public/uploads/product/' + req.file.filename);
+            console.log("Images uploaded:", data.featureMobileImage);
            
             // Handle video upload
-            if (req.file && req.file['video']) {
-                data.video = await uploadVideo('./public/uploads/product/' + req.file['video'].filename);
-            } else {
-                data.video = null; // Set to null if no video is uploaded
-            }
-            deleteFile('./public/uploads/product/' + req.file.filename)
+            // if (req.file && req.file['video']) {
+            //     data.video = await uploadVideo('./public/uploads/product/' + req.file['video'].filename);
+            // } else {
+            //     data.video = null; // Set to null if no video is uploaded
+            // }
+
+            
+
             // Generate slug
             data.slug = slugify(data.title, { lower: true });
 
@@ -38,13 +76,25 @@ class ProductController {
             // Save the product to the database
             const product = await productService.createProduct(data);
 
+            
+            //delete the files from the backend after saved in db
+            const allFiles = [
+                ...(req.files.images || []),
+                req.file,
+                req.file,
+                req.file,
+            ];
+            for (const file of allFiles) {
+                deleteFile('./public/uploads/product/' + file.filename);
+            }
+
             res.json({
                 result: product,
                 message: "Product created successfully",
                 meta: null,
             });
         } catch (exception) {
-            console.error(exception);
+            console.error('controller exception',exception);
             next(exception);
         }
 

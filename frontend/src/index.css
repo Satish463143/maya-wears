@@ -1,7 +1,7 @@
 @import 'flowbite'; /* Import Flowbite styles */
 @import url("https://use.typekit.net/jza0yuk.css");
 @import url("https://use.typekit.net/jza0yuk.css");
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'); */
 
 @tailwind base;
 @tailwind components;
@@ -26,8 +26,8 @@
   --pri_text:#000;
   --white:#fff;
   --pri_color:#F7E6D3;
-  --sec_color:#F7E6D3;/*  #D3BFAD */
-  --sec_dark:#F7E6D3;/*  #8D6B4D */
+  --sec_color: #D3BFAD;
+  --sec_dark: #8D6B4D;
 }
 Link, a, button{
   cursor: pointer;

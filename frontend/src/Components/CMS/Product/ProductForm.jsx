@@ -38,11 +38,11 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
             value:Yup.string().matches(/^(true|false)$/)
         }),
 
-        image:Yup.array().of(Yup.string()).min(1).required(),
-        mainImage:Yup.string().required(),
+        images: Yup.array().of(Yup.mixed().required("Gallery Images are required")),
+        mainImage: Yup.mixed().required("Main image is required"),
         featureDesktopImage:Yup.string(),
         featureMobileImage:Yup.string(),
-        video:Yup.string().nullable().optional().default(null)  
+        video: Yup.mixed().nullable(),  
     })
     const {control, handleSubmit,register, setValue, formState:{errors} } = useForm({
         resolver: yupResolver(productDTO),
@@ -227,24 +227,26 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         <div className="from_grid">
             <div>
                 <label htmlFor="mainImage">Main Images</label><br />
-                <input
-                    name='mainImage'
-                    type='file'
-                    onChange={(e) => {
-                        const image = e.target.files['0']
-                        setValue('mainImage', image)
-                    }}
+                <Controller
+                    name="mainImage"
+                    control={control}
+                    render={({ field }) => (
+                        <input
+                        type="file"
+                        onChange={(e) => field.onChange(e.target.files[0])}
+                        />
+                    )}
                 /><br />
             </div>
             <div>
-                <label htmlFor="image"> Images gallery</label><br />
+                <label htmlFor="images"> Images gallery</label><br />
                 <input
-                    name='image'
+                    name='images'
                     type='file'
                     multiple
                     onChange={(e) => {
                         const image = Array.from(e.target.files)
-                        setValue('image', image)
+                        setValue('images', image)
                     }}
                 /><br />
             </div>
@@ -273,24 +275,28 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
             </div>
             <div>
                 <label htmlFor="featureDesktopImage">Featured Desktop Image</label><br />
-                <input
-                    name='featureDesktopImage'
-                    type='file'
-                    onChange={(e) => {
-                        const image = e.target.files['0']
-                        setValue('featureDesktopImage', image)
-                    }}
+                <Controller
+                    name="featureDesktopImage"
+                    control={control}
+                    render={({ field }) => (
+                        <input
+                        type="file"
+                        onChange={(e) => field.onChange(e.target.files[0])}
+                        />
+                    )}
                 /><br />
             </div>
             <div>
                 <label htmlFor="featureMobileImage">Featured Mobile Image</label><br />
-                <input
-                    name='featureMobileImage'
-                    type='file'
-                    onChange={(e) => {
-                        const image = e.target.files['0']
-                        setValue('featureMobileImage', image)
-                    }}
+                <Controller
+                    name="featureMobileImage"
+                    control={control}
+                    render={({ field }) => (
+                        <input
+                        type="file"
+                        onChange={(e) => field.onChange(e.target.files[0])}
+                        />
+                    )}
                 /><br />
             </div>
 

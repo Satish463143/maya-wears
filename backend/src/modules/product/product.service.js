@@ -6,7 +6,7 @@ class ProductService {
             return await product.save()
 
         } catch (exception) {
-            console.log(exception)
+            console.error('service exception',exception);
             throw exception
         }
     }

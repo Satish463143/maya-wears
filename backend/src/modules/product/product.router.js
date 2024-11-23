@@ -17,9 +17,11 @@ router.route('/')
         hasPermission('admin'),
         setPath('product'),
         uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
-            { name: 'image[]', maxCount: 10 }, // Match the exact field name from the request
+            { name: 'images[]', maxCount: 10 }, // Match the exact field name from the request
             { name: 'video', maxCount: 1 },    // Video field remains unchanged
         ]),
+        // uplaodFile(FileFilterType.IMAGE).array('images'),
+        // uplaodFile(FileFilterType.VIDEO).single('video'),
         uplaodFile(FileFilterType.IMAGE).single('mainImage'),
         uplaodFile(FileFilterType.IMAGE).single('featureDesktopImage'),
         uplaodFile(FileFilterType.IMAGE).single('featureMobileImage'),

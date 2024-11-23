@@ -19,6 +19,7 @@ const ProductAdd = () => {
                 isFeatured: data.isFeatured.value,
                 productCollections: data.productCollections.map((item) => item.value),
             }
+            // console.log(productData)
             await productSvc.postRequest('/product', productData, { auth: true, file: true })
             toast.success("product added sucessfully")
             setTimeout(() => navigate('/admin/product'), 1000)

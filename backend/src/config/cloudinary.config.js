@@ -25,7 +25,7 @@ exports.uploadImage = async (imagePath) => {
     const result = await cloudinary.uploader.upload(imagePath, options);
     return result.url;
   } catch (error) {
-    console.error(error);
+    console.error('uploadImage',error);
     throw error;
   }
   
@@ -46,7 +46,7 @@ exports.uploadVideo = async (videoPath) => {
     const result = await cloudinary.uploader.upload(videoPath, options);
     return result.url;
   } catch (error) {
-    console.error(error);
+    console.error('uploadVideo',error);
     throw error;
   }
 };

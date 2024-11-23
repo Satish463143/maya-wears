@@ -182,7 +182,7 @@ export const WearableOptionsCompoent = ({control,name,errMsg,required,onChange,v
         <>
             <SelectComponent 
                 options ={
-                    [{label:"Summer", value:"summer"},{label:"Winter", value:"winter"},{label:"Both", value:"summer and winter"}]
+                    [{label:"Summer", value:"Summer"},{label:"Winter", value:"Winter"},{label:"Both", value:"Summer and Winter"}]
                 }
                 control={control}
                 onChange={onChange}  
