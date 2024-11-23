@@ -45,6 +45,7 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                 </div>
               ))}
             </div>
+            <div>
             <p className="model__wearing__size"><span>Model is <span>5'8</span>,wearing a size <span>Xl</span></span></p>
             <div className="product_details">
              
@@ -87,6 +88,7 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                 {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
                 Add to Cart
               </button>
+            </div>
             </div>
             </div>
           </div> 
