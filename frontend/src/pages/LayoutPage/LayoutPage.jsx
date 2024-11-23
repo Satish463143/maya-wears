@@ -7,6 +7,7 @@ import FooterNav from '../../Components/FooterNav/FooterNav'
 import Cart from '../../Components/Cart/Cart'
 import {ToastContainer} from 'react-toastify'
 import "react-toastify/ReactToastify.css"
+import CompanyPromisses from '../../Components/CompanyPromisses/companyPromisses'
 
 
 
@@ -52,11 +53,12 @@ const LayoutPage = () => {
             <Navbar isVisible={isVisible} toggleVisible={toggleVisible} setIsVisible={setIsVisible}/>
             <LoginPage isVisible={isVisible} toggleVisible={toggleVisible} />
             <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
+            
             <FooterNav/>
             <ScrollToTop/>
 
                 <Outlet context={{ isCartActive, toogleCart, setIsVisible}}/>
-
+            <CompanyPromisses/>
             <Footer/> 
         </div>
     )
