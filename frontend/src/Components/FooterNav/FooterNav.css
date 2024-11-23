@@ -19,8 +19,9 @@
 .foornav_box{    
     /* padding:10px 20px; */
     
-    background: var(--sec_dark);
+    /* background: ; */
     /* border-radius: 10px;    */
+    backdrop-filter: blur(5px);
 }
 .foornav_box ul {
     height: 60px;

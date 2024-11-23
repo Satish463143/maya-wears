@@ -16,21 +16,29 @@
 .product_img video {
   width: 100%;
   height: auto;
+  height: 550px;
+    object-fit: cover; 
 }
+
+
+
 
 .product_details {
   width: 100%;
 }
 .product_details button {
+
+ 
+
   width: 100px;
-  margin: 20px 0px 20px 0;
+  margin:10px 0px 10px 0;
   height: 35px;
   border-radius: 5px;
-  border: 2px solid var(--sec_dark);
+  border: 0.8px solid var(--sec_dark);
   transition: 0.4s ease;
 }
 .product_details .selected_size,
-.product_details button:hover {
+.product_details .cart_btn:hover {
   /* color: var(--white); */
   background-color: var(--sec_dark);
 }
@@ -46,13 +54,14 @@
 .product_details .cart_btn {
   width: 48%;
   height: 50px;
-  border-radius: 0;
+  border-radius:5px;
   font-weight: 600;
   font-size: 20px;
   background: none;
 }
 .product_details .cart_btn {
-  background-color: var(--sec_dark);
+  background-color: var(--pri_color);
+  /* width: 100%; */
   /* color: var(--white); */
 }
 .product_details .cart_btn:hover {
@@ -68,17 +77,18 @@
 
 .product-tabs {
   width: 100%;
+  /* padding:10px 0; */
 }
 
 /* .tab-buttons {
-  display: flex;
+  display: flex; 
   margin-bottom: 20px;
   justify-content: space-between;
 } */
 
-/* .tab-buttons button {
+.tab-buttons button {
   flex: 1;
-  padding: 10px 15px;
+  /* padding: 10px 15px; */
   background-color: transparent;
   border: none;
 
@@ -86,34 +96,68 @@
   font-size: 16px;
   font-weight: 600;
   color: #555;
-  text-align: center;
-} */
-/* .tab-buttons button:hover {
+  /* text-align: center; */
+}
+.tab-buttons button:hover {
   background: none;
   color: #000;
-} */
+}
 
-/* .tab-buttons button.active {
-  border-bottom: 2px solid #000;
+.tab-buttons button.active {
+  /* border-bottom: 2px solid #000; */
   border-radius: 0;
   color: #000;
   transition: none;
-} */
+  /* transition: 1s; */
+}
 
-/* .tab-content {
-  padding: 20px;
-} */
+.tab-content {
+  /* padding: 10px; */
+  text-align: justify;
+}
 
-/* .tab-pane {
+
+.tab-pane {
   display: block;
-} */
+  margin-bottom: 15px;
+  transition: 1s;
+  padding:10px 0;
+}
 
 
 .size__{
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
+  width: 100%;
+  margin-bottom:15px;
 }
+ .size__color .size__guideee{
+  width: 30%;
+  height: 45px;
+  display: flex;
+  text-decoration: underline;
+  align-items: center;
+  color: var(--sec_dark);
+ }
+ .size__color .size__flex{
+  display: flex;
+ }
+ .model__wearing__size{
+  opacity: 0.5;
+  margin-left: 5%;
+  margin-top: 2%;
+
+ }
+.product__discription ul li {
+  list-style: none;
+  border-bottom: solid 0.5px black;
+  padding: 20px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.product__discription ul li p {
+  transform: rotate(45deg);
+}
+ 
 @media (max-width: 600px) {
   .details_grid {
     display: flex;
@@ -122,54 +166,48 @@
     /* border-bottom: #442800be solid 1px; */
     border-radius: 10px;
   }
-
+.product-tabs{
+  padding: 5%;
+  padding-top:0 ;
+}
   .product_img img,
   .product_img video {
     width: 100vw;
     margin: auto;
-
-    /* border-radius: 20px; */
   }
   .product__title {
     font-size: 1.6em;
-    margin-bottom: 10px;
     font-family: "Outfit", sans-serif;
     font-weight: 900;
+    margin-bottom: 10px;
+    
   }
-  /* .wishlist__Product {
-    display: flex;
-    justify-content: space-between;
-  } */
   .product_details {
     padding: 5%;
+    padding-top: 0;
   }
-  /* .product_details span {
-    margin-right: 5px;
-    margin-bottom: 5px;
-  } */
   .price {
     color: #8d6b4d;
     font-size: 18px !important;
-    /* margin-top: -10px; */
-  }
-  .buyNow__cartBtn .cart_btn {
-    border-radius: 5px;
-    border: solid;
-  }
-  .size__guide{
-    font-size: 20px ;
   }
 .buyNow__cartBtn{
   display: flex;
+  justify-content: center;
   width: 100%;
-  gap: 1px;
 }
 .buyNow__cartBtn .cart__buy{
-  width: 50%;
+  width:100% ;
   height: 50px;
-  margin: 0;
-  border: solid;
-  border-radius: 1px;
-  /* height: ; */
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
+
+.size__ button {
+  background-color: var(--pri_color);
+  width: 25%;
+  margin:0  2% 0 0;
+  border: none;
+  border: solid var(--sec_dark);
+  height: 45px;
+ }
 }
