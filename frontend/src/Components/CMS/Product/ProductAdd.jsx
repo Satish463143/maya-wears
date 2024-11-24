@@ -30,27 +30,30 @@ const ProductAdd = () => {
             formData.append("fabric", data.fabric || null);
             formData.append("pattern", data.pattern || null);
             formData.append("discount", data.discount || null);
-    
+
             // Handle nested fields
             formData.append("wearable", data.wearable?.value); // Send `value` of wearable
             data.sizes.forEach((size, index) => {
                 formData.append(`sizes[${index}][size]`, size.size);
                 formData.append(`sizes[${index}][quantity]`, size.quantity);
             });
-    
+
             // Handle array fields
             data.productCollections?.forEach((collection) => {
                 formData.append("productCollections[]", collection.value); // Send collection IDs
             });
-    
+
             // Add images and files
             data.images?.forEach((file) => formData.append("images", file));
             if (data.mainImage) formData.append("mainImage", data.mainImage);
             if (data.featureDesktopImage) formData.append("featureDesktopImage", data.featureDesktopImage);
             if (data.featureMobileImage) formData.append("featureMobileImage", data.featureMobileImage);
             if (data.video) formData.append("video", data.video);
+            formData.forEach((key, element) => {
+                console.log(key + element)
+            });
             // console.log(productData)
-            const response=await productSvc.postRequest('/product', formData, { auth: true, file: true })
+            const response = await productSvc.postRequest('/product', formData, { auth: true, file: true })
             console.log(response)
             toast.success("product added sucessfully")
             // setTimeout(() => navigate('/admin/product'), 1000)

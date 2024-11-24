@@ -19,15 +19,15 @@ class ProductController {
             } else {
                 throw new Error('"images" field is required and must be an array of files');
             }
-    
+
             if (req.files.mainImage) {
                 data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
             }
-    
+
             if (req.files.featureDesktopImage) {
                 data.featureDesktopImage = await uploadImage('./public/uploads/product/' + req.files.featureDesktopImage[0].filename);
             }
-    
+
             if (req.files.featureMobileImage) {
                 data.featureMobileImage = await uploadImage('./public/uploads/product/' + req.files.featureMobileImage[0].filename);
             }
@@ -35,7 +35,7 @@ class ProductController {
             if (req.file) {
                 data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
             }
-             
+
 
             // Generate slug
             data.slug = slugify(data.title, { lower: true });
@@ -46,7 +46,7 @@ class ProductController {
             // Save the product to the database
             const product = await productService.createProduct(data);
 
-            
+
             //delete the files from the backend after saved in db
             const allFiles = [
                 ...(req.files.images || []),
@@ -54,12 +54,12 @@ class ProductController {
                 ...(req.files.featureDesktopImage || []),
                 ...(req.files.featureMobileImage || []),
             ];
-    
+
             // Include the video file if present
             if (req.file) {
                 allFiles.push(req.file);
             }
-    
+
             for (const file of allFiles) {
                 await deleteFile('./public/uploads/product/' + file.filename);
             }
@@ -70,7 +70,7 @@ class ProductController {
                 meta: null,
             });
         } catch (exception) {
-            console.error('controller exception',exception);
+            console.error('controller exception', exception);
             next(exception);
         }
 

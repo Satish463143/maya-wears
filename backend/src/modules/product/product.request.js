@@ -11,7 +11,7 @@ const productDTO = Joi.object({
     summary: Joi.string().allow(null, "").optional(),
     description: Joi.string().allow(null, "").optional(),
     promoCode: Joi.string().allow(null, "").optional(),
-    discount:Joi.number().allow(null, "").optional(),
+    discount: Joi.number().allow(null, "").optional(),
     color: Joi.string().allow(null, "").optional(),
     fabric: Joi.string().allow(null, "").optional(),
     pattern: Joi.string().allow(null, "").optional(),
@@ -24,7 +24,7 @@ const productDTO = Joi.object({
     productCollections: Joi.array()
         .optional()
         .default([]),
-    isFeatured: Joi.boolean().required().default(false),
+    isFeatured: Joi.boolean().default(false),
     images: Joi.array().items(Joi.string()).min(1), // Validate as array of URLs
     mainImage: Joi.string(),
     featureDesktopImage: Joi.string(),
