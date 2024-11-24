@@ -30,7 +30,11 @@ import ProductEdit from "./Components/CMS/Product/ProductEdit";
 import AllProductPage from "./pages/AllProductPage/AllProductPage";
 
 const App = ({ isCartActive, toogleCart, setIsVisible, setCurrentView }) => {
+  if (window.location.href.includes('https://maya-wears.com/')) {
+    window.location.href = 'https://themayawears.com/';
+}
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     let token = localStorage.getItem("_at");

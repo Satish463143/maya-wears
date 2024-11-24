@@ -50,12 +50,13 @@ const ProductAdd = () => {
             if (data.featureMobileImage) formData.append("featureMobileImage", data.featureMobileImage);
             if (data.video) formData.append("video", data.video);
             // console.log(productData)
-            await productSvc.postRequest('/product', formData, { auth: true, file: true })
+            const response=await productSvc.postRequest('/product', formData, { auth: true, file: true })
+            console.log(response)
             toast.success("product added sucessfully")
             // setTimeout(() => navigate('/admin/product'), 1000)
 
         } catch (exception) {
-            console.log(exception)
+            console.log(response, exception)
             toast.error("Error while adding  product")
         } finally {
             setLoading(false)
