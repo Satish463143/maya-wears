@@ -25,8 +25,8 @@ const productDTO = Joi.object({
         .optional()
         .default([]),
     isFeatured: Joi.boolean().required().default(false),
-    images: Joi.array().items(Joi.string()).min(1).required(), // Validate as array of URLs
-    mainImage: Joi.string().required(),
+    images: Joi.array().items(Joi.string()).min(1), // Validate as array of URLs
+    mainImage: Joi.string(),
     featureDesktopImage: Joi.string(),
     featureMobileImage: Joi.string(),
     video: Joi.string().allow(null, '').optional(),

@@ -50,12 +50,18 @@ class ProductController {
             //delete the files from the backend after saved in db
             const allFiles = [
                 ...(req.files.images || []),
-                req.file,
-                req.file,
-                req.file,
+                ...(req.files.mainImage || []),
+                ...(req.files.featureDesktopImage || []),
+                ...(req.files.featureMobileImage || []),
             ];
+    
+            // Include the video file if present
+            if (req.file) {
+                allFiles.push(req.file);
+            }
+    
             for (const file of allFiles) {
-                deleteFile('./public/uploads/product/' + file.filename);
+                await deleteFile('./public/uploads/product/' + file.filename);
             }
 
             res.json({
