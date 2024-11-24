@@ -44,7 +44,7 @@ const DownBannerItem = () => {
 
   return (
     <div id="stickyDiv" className={`down_banner div_container sticky-div ${isSticky ? 'sticky' : ''}`}>
-      <div data-aos="fade-up">
+      <div >
         {bannerData?.category === "video" && (
           <>
             <div className="down_desktop_img">

@@ -19,8 +19,8 @@ const Down_2_Banner = () => {
     getAllBanner()
   },[])
     return (
-      <div className='down_banner div_container'>
-        <div data-aos="fade-up">
+      <div className='down_banner div_container' style={{paddingTop:"20px"}}>
+        <div >
         {bannerData?.category === "video" && (
           <>
               <div className="down_desktop_img">

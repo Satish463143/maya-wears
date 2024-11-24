@@ -84,7 +84,7 @@ const Footer = () => {
         <div className="call_me">
              <p><svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#5f6368"><path d="M243-401.5h308.5V-459H243v57.5Zm0-129h474V-588H243v57.5Zm0-129h474V-717H243v57.5ZM85-87.5V-818q0-22.97 17.27-40.23 17.26-17.27 40.23-17.27h675q22.97 0 40.23 17.27Q875-840.97 875-818v516q0 22.97-17.27 40.23-17.26 17.27-40.23 17.27H242L85-87.5ZM217.5-302h600v-516h-675v597l75-81Zm-75 0v-516 516Z"/></svg></p>
              <p> Need Help? </p> 
-             <p className="chat__with__us"> <a href="">Chat with us</a></p>
+             <p className="chat__with__us"> <a href="https://www.instagram.com/mayawears.np/">Chat with us</a></p>
            </div>
           <div className="new__logo">
             <img src={mayuuu} alt="" />

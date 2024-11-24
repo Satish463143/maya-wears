@@ -46,53 +46,56 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
               ))}
             </div>
             <div>
-            <p className="model__wearing__size"><span>Model is <span>5'8</span>,wearing a size <span>Xl</span></span></p>
-            <div className="product_details">
-             
-              <p className="price price__off">NRP.{product.price}.00</p>
-              <p className="product__title">{product.title}</p>
-              <div className="size__color">
-                <p className="sizeeee">Select the Size:</p>
-                <div className="size__flex">
-                <div className="size__">
-                  {product.sizes.map((item) => (
-                    <button className="size__option">{item.size}</button>
-                  ))}
-                </div>
-                <p className="size__guideee">Size Guide</p></div>
-                {/* <p className="color">
+              <p className="model__wearing__size">
+                <span>
+                  Model is <span>5'8</span>,wearing a size <span>Xl</span>
+                </span>
+              </p>
+              <div className="product_details">
+                <p className="price price__off">NRP.{product.price}.00</p>
+                <p className="product__title">{product.title}</p>
+                <div className="size__color">
+                  <p className="sizeeee">Select the Size:</p>
+                  <div className="size__flex">
+                    <div className="size__">
+                      {product.sizes.map((item) => (
+                        <button className="size__option">{item.size}</button>
+                      ))}
+                    </div>
+                    <p className="size__guideee">Size Guide</p>
+                  </div>
+                  {/* <p className="color">
                   { <span style={{ fontWeight: "600" }}>Color:</span>
                   {product.color} }
                 </p> */}
-              </div>
-            <div className="buyNow__cartBtn">
-              {/* <button className="buy_btn  cart__buy1">
+                </div>
+                <div className="buyNow__cartBtn">
+                  {/* <button className="buy_btn  cart__buy1">
                 Buy Now
               </button> */}
-              <button
-                className="cart_btn cart__buy"
-                // onClick={() => {
-                //     if (!selectedSize) {
-                //     alert("Please select a size!"); // Alert user if no size is selected
-                //     return;
-                //     }
-                //
-                //     toogleAddToCart(product, selectedSize); // Pass selected size explicitly
-                // }}
-                // disabled={isInCart}
-                //
-                onClick={() => {
-                  toogleCart();
-                }}
-              >
-                {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
-                Add to Cart
-              </button>
+                  <button
+                    className="cart_btn cart__buy"
+                    // onClick={() => {
+                    //     if (!selectedSize) {
+                    //     alert("Please select a size!"); // Alert user if no size is selected
+                    //     return;
+                    //     }
+                    //
+                    //     toogleAddToCart(product, selectedSize); // Pass selected size explicitly
+                    // }}
+                    // disabled={isInCart}
+                    //
+                    onClick={() => {
+                      toogleCart();
+                    }}
+                  >
+                    {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
             </div>
-            </div>
-            </div>
-          </div> 
-            
+          </div>
 
           <div className="product__discription">
             <ul>

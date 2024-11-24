@@ -26,7 +26,7 @@ const BestSellingItem = () => {
 
   return (
     <div className='bestSelling div_container'>
-      <div data-aos="fade-up">
+      <div >
         <h1>Best of MAYA.</h1>
         <div className="container best_container">
           <div className='best_flex'  >

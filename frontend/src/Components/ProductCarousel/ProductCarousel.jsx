@@ -30,7 +30,7 @@ const ProductCarousel = () => {
 
   return (
     <div  className='div_container' style={{ marginTop: '100vh' }}>
-        <div data-aos="fade-up">
+        <div >
             <Slider {...settings}>
                 {limitedFilteredProduct.map(item=>(
                     <ProductCarouselItem key={item._id} _id={item._id} slug={item.slug}/>
