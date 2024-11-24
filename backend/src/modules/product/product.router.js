@@ -16,13 +16,13 @@ router.route('/')
         loginCheck,
         hasPermission('admin'),
         setPath('product'),
-        uplaodFile(FileFilterType.IMAGE).fields([
-            { name: 'images', maxCount: 10 },            
-            { name: 'mainImage', maxCount: 1 },       // Single main image
-            { name: 'featureDesktopImage', maxCount: 1 }, // Single desktop image
-            { name: 'featureMobileImage', maxCount: 1 },  // Single mobile image
+        uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
+            { name: 'images', maxCount: 10 },
+            { name: 'mainImage', maxCount: 1 },
+            { name: 'featureDesktopImage', maxCount: 1 },
+            { name: 'featureMobileImage', maxCount: 1 },
+            { name: 'video', maxCount: 1 }, // Add video here
         ]),
-        uplaodFile(FileFilterType.VIDEO).single('video'), 
        
         bodyValidator(productDTO),
         productController.create,

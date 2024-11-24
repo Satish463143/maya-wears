@@ -38,8 +38,8 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
             value:Yup.string().matches(/^(true|false)$/)
         }),
 
-        images: Yup.array().of(Yup.mixed().required("Gallery Images are required")),
-        mainImage: Yup.mixed().required("Main image is required"),
+        images: Yup.array(),
+        mainImage: Yup.mixed(),
         featureDesktopImage:Yup.string(),
         featureMobileImage:Yup.string(),
         video: Yup.mixed().nullable(),  
@@ -244,10 +244,7 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
                     name='images'
                     type='file'
                     multiple
-                    onChange={(e) => {
-                        const image = Array.from(e.target.files)
-                        setValue('images', image)
-                    }}
+                    onChange={(e) => setValue("images", Array.from(e.target.files))}
                 /><br />
             </div>
             <div>
