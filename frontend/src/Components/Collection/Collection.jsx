@@ -16,7 +16,7 @@ const Collection = () => {
             
           ))}
             
-            <button>Collection one</button>
+            {/* <button>Collection one</button> */}
         </Link>        
     </div>
   )

@@ -3,6 +3,7 @@
     width: 100%;
     height: 100vh;
     position: fixed;
+    /* backdrop-filter: blur(5px); */
     top: 0;
     z-index: 9999;
     display: none;    
@@ -39,16 +40,21 @@
 .loginform_box{
     border: 1px solid var(--sec_dark);
     box-shadow: var(--sec_dark) 0px 5px 15px;;
-    background: linear-gradient(-110deg, var(--sec_dark) 45%, var(--sec_color) 0%);
+    /* background: linear-gradient(-110deg, var(--sec_dark) 45%, var(--sec_color) 0%);
+     */
+     background-color: #edc9;
+     /* background-color: red; */
     padding: 50px 25px;
     border-radius: 5px;
     position: relative;
+    /* display: flex;
+    flex-direction: column-reverse; */
 }
 .loginform_box_grid{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 180px;
+    /* gap: 180px; */
 }
 .loginpage_messaage {
     text-align: end;
@@ -63,4 +69,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media (max-width:600px){
+    /* .login_page{
+        margin-top: 70px;
+    } */
+    .loginform_box_grid{
+        display: flex;
+        flex-direction:column-reverse;
+    }
+    .loginform_box{
+        background-color: #edc9;
+        /* height: 70vh; */
+        width: 95vw;
+        box-shadow: none;
+        border: none;
+        margin-top: 10%;
+    }
+    .loginpage_message{
+        display:flex;
+        margin-top: -5%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .loginpage_message .login__page__imgae{
+        width: 20% !important;
+    }
+    .loginpage_message h2{
+        font-weight: bolder;
+        font-size: 1.2em;
+        line-height: 2;
+    }
 }

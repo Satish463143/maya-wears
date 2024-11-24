@@ -20,8 +20,8 @@ const Down_3_Banner = () => {
       getAllBanner()
     },[])
     return (
-      <div className='down_banner div_container' style={{paddingTop:'3px'}}>
-        <div data-aos="fade-up">
+      <div className='down_banner div_container' style={{paddingTop:'0px'}}>
+        <div>
         {bannerData?.category === "video" && (
           <>
               <div className="down_desktop_img">

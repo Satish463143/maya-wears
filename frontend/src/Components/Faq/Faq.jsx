@@ -15,10 +15,10 @@ const Faq = () => {
         <div className='div_container'>
             
                 <div className="container">
-                <div data-aos="fade-up">
+                <div >
                     <div className='home_loan'>
-                        <div style={{ textAlign: 'center'}}>
-                            <h1>FAQ </h1>
+                        <div >
+                            <h1 className='help__section'>Help Section </h1>
                         </div>
                         
                         <div className='faq_width'>

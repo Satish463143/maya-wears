@@ -6,7 +6,7 @@ import product_banner_mobile from '../../assets/images/mobileImage_4.jpg'
 const AllProductBanner = () => {
   return (
     <div className='product_banner'>
-        <div data-aos="fade-up">
+        <div >
             <div className="product_desktop_img">
                 <img src={product_banner} alt="" />  
                  <div className='img_overlay'></div>         

@@ -21,9 +21,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 250px;
+    width: 280px;
     /* margin-bottom:50px; */
-    /* height: 4000px; */
+    height: 446px;
     border-radius: 5px;
     background: var(--sec_color);
 }

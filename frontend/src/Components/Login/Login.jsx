@@ -64,10 +64,6 @@ const Login = ({ setCurrentView,setLoggedIn}) => {
   return (
         <div className='login_box'>
             <form action=""method="post" onSubmit={handleSubmit(login)} >
-                <div className="fromtitle">
-                    <h2>Login</h2>
-                    <div className='login_hr'></div>
-                </div>
                 <div className="form_body">
                     <label htmlFor="email">Email<span>*</span></label><br />
                     <TextInputComponent

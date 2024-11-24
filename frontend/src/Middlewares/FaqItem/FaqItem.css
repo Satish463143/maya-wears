@@ -7,7 +7,7 @@
   
   .faq-question {
     font-size: 1.3em;
-    font-weight: 900;
+    /* font-weight: 900; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,13 +32,13 @@
   }
   
   .faq-item.active .faq-question::after {
-    content: '▼';
+    content: '-';
     font-size: 1em;
-    transform: rotate(180deg); /* Rotate 180 degrees */
+    /* transform: rotate(45deg); Rotate 180 degrees */
   }
   
   .faq-question::after {
-    content: '▼';
+    content: '+';
     font-size: 1em;
     margin-left: 10px; /* Add some space between the text and the symbol */
     transition: transform 0.3s ease; /* Smooth transition */
@@ -50,9 +50,8 @@
     }
     .faq-question{
       font-size: 15px;
-      font-weight: 900;
-    }
-    .faq-answer p{
-      font-weight:600 ;
+      
+      /* letter-spacing: 2px; */
+      /* font-weight: 900; */
     }
   }

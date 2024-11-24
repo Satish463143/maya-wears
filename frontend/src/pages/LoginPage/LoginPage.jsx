@@ -7,6 +7,9 @@ import ForgotPassword from '../../Components/ForgotPassword/ForgotPassword'
 import Token from '../../Components/Token/Token'
 import GeneratePassword from '../../Components/GeneratePassword/GeneratePassword'
 import { useSelector } from 'react-redux'
+// import logo from '../../../assets/images/logo-png'
+import main_logo from '../../assets/images/Maya-logo.png'
+
 
 const LoginPage = ({ isVisible,toggleVisible }) => {
   const location = useLocation();
@@ -123,17 +126,19 @@ const LoginPage = ({ isVisible,toggleVisible }) => {
             <div className="loginform_box_grid">
               {renderComponent()}
               <div className="login_message">
+
+
+
                 <div className="loginpage_message">
-                  <h2>Welcome <br /> Again!</h2>
+                  <img src={main_logo} alt="" className='login__page__imgae'/>
+                  <h2>Welcome Again!</h2>
                   <p>
-                    We're happy to see <br />
-                    you again. Please log <br />
-                    in to access your account <br />
-                    and continue exploring <br />
-                    all the features we <br />
-                    have to offer.
+                   Please enter your details to Sign In
                   </p>
                 </div>
+
+
+
               </div>
             </div>
           </div>

@@ -1,0 +1,22 @@
+.company__promises{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    /* gap: 5; */
+    padding: 5%;
+}
+.company__promises .pro__tags{
+    font-weight: 900;
+}
+.pro__disc span a {
+    text-decoration: underline;
+    color: var(--sec_dark);
+}
+.company__promises p{
+    margin:1%;
+}
+svg{
+    fill:black;
+}

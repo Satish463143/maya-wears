@@ -1,0 +1,28 @@
+.image__slider__main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image__slider{
+    width: 60%;
+}
+.img__1 img{
+  width:100%;
+  object-fit: cover;
+}
+.slider__name{
+text-align: center;
+}
+.slider__name h1{
+    font-size: 2em;
+    padding: 15px 0;
+}
+.slider__name .share__text{
+    font-size: 1em;
+    font-weight: bold;
+}
+.slider__name .add__photo__text{
+    text-decoration: underline;
+    color: var(--sec_dark);
+    margin-bottom: 10px;
+}
