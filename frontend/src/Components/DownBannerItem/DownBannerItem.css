@@ -25,6 +25,7 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
+    text-align: center;
 }
 .down_banner_content h2,.down_banner_content p {
     color: var(--white);

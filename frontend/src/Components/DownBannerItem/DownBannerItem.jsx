@@ -43,7 +43,7 @@ const DownBannerItem = () => {
   }, []);
 
   return (
-    <div id="stickyDiv" className={`down_banner div_container sticky-div ${isSticky ? 'sticky' : ''}`}>
+    <div style={{paddingTop:'0'}} id="stickyDiv" className={`down_banner div_container sticky-div ${isSticky ? 'sticky' : ''}`}>
       <div >
         {bannerData?.category === "video" && (
           <>
