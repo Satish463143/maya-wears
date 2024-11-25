@@ -1,5 +1,5 @@
 .product_banner{
-    height: 50vh;
+    height: 40vh;
     width: 100%;
     position: relative;
 }
@@ -12,7 +12,7 @@
     background: rgba(0, 0, 0, 0.5);
 }
 .product_banner .product_desktop_img img , .product_mobile_img img{
-    height: 50vh !important;
+    height: 40vh !important;
     object-fit: cover;
     width: 100%;
 
@@ -23,9 +23,9 @@
 .product_banner_content{
    
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 0;
+    /* transform: translate(-50%, -50%); */
     text-align: center;
     color: var(--white);
 
@@ -48,5 +48,12 @@
     }
     .product_desktop_img{
         display: none;
+    }
+    .product_banner_content h2{
+        font-size: 25px;
+        font-weight: 700;
+    }
+    .product_banner_content p{
+        font-size: 15px;
     }
 }
