@@ -64,7 +64,7 @@ const ProductList = () => {
                 <th>S.N</th>
                 <th>Image</th>
                 <th>Title</th>
-                <th>Featuured</th>
+                <th>Featured</th>
                 <th>Price</th>
                 <th>Action</th>
               </tr>
@@ -83,7 +83,7 @@ const ProductList = () => {
                   <tr key={index}>
                     <td className="table_sn">{index + 1}</td>
                     <td className="table_img">
-                      <img src={row?.images?.[0]} alt="" />
+                      <img src={row?.mainImage} alt="" />
                     </td>
                     <td>{row.title}</td>
                     <td>{row.isFeatured ? 'Yes' : 'No' }</td>

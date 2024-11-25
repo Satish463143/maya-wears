@@ -87,7 +87,7 @@ const productSchema = new mongoose.Schema({
         default: null
     },
     discount:{
-        type:Number,
+        type:String,
         default: null
     },
     video: String,

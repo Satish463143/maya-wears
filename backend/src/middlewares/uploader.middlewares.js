@@ -21,7 +21,7 @@ const myStorage = multer.diskStorage({
 
 
 const uplaodFile = (fileType = FileFilterType.IMAGE) => {
-    let allowed = ['jpg', 'png', 'webp', 'gif'];
+    let allowed = ['jpg','jpeg', 'png', 'webp', 'gif'];
     if (fileType === FileFilterType.DOCUMENT) {
         allowed = ['pdf', 'txt', 'docs'];
     } else if (fileType === FileFilterType.VIDEO) {
@@ -38,7 +38,7 @@ const uplaodFile = (fileType = FileFilterType.IMAGE) => {
             if (allowed.includes(ext)) {
                 cb(null, true);
             } else {
-                cb(new Error('File format not supported'));
+                cb(new Error('File format not supported here'));
             }
         },
     });

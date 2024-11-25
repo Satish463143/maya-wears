@@ -9,7 +9,7 @@ class ProductController {
     create = async (req, res, next) => {
         try {
             const data = req.body;
-
+            console.log('data',data)
             if (req.files.images) {
                 data.images = await Promise.all(
                     req.files.images.map(file =>

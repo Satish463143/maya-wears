@@ -22,12 +22,15 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         summary:Yup.string().nullable().optional().default(null),
         description:Yup.string().nullable().optional().default(null),
         promoCode:Yup.string().nullable().optional().default(null),
-        discount:Yup.number().nullable().optional().default(null),
+        discount: Yup.number().nullable().optional().transform((value, originalValue) => (originalValue === "" ? null : value)).default(null),
         color:Yup.string().nullable().optional().default(null),
         fabric:Yup.string().nullable().optional().default(null),
         pattern:Yup.string().nullable().optional().default(null),
-        price:Yup.number().required('Price is required'),
-        sizes:Yup.array().of(sizeDTO).min(1, 'At least one size is required').required(),
+        price: Yup.number()
+        .transform((value, originalValue) => (originalValue === "" ? undefined : value)) // Handle empty string
+        .min(0, "Price must be greater than or equal to 0.")
+        .required("Price is required."),
+        sizes:Yup.array('Must add at least one size').of(sizeDTO).min(1, 'At least one size is required').required(),
         wearable:Yup.object({
             label:Yup.string().matches(/^(Summer|Winter|Both)$/),
             value:Yup.string().matches(/^(Summer|Winter|Summer and Winter)$/)
@@ -40,8 +43,8 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
 
         images: Yup.array(),
         mainImage: Yup.mixed(),
-        featureDesktopImage:Yup.string(),
-        featureMobileImage:Yup.string(),
+        featureDesktopImage:Yup.mixed(),
+        featureMobileImage:Yup.mixed(),
         video: Yup.mixed().nullable(),  
     })
     const {control, handleSubmit,register, setValue, formState:{errors} } = useForm({
@@ -192,6 +195,7 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
                 <TextInputComponent
                     name='discount'
                     control={control}
+                    type='text'
                     defaultValue=''
                     errMsg={errors?.discount?.message}
                 />

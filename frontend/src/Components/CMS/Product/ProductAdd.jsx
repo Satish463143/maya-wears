@@ -11,60 +11,64 @@ const ProductAdd = () => {
     const navigate = useNavigate()
 
     const submitEvent = async (data) => {
-        setLoading(true)
+        setLoading(true);
         try {
-            // const productData = {
-            //     ...data,
-            //     wearable: data.wearable.value,
-            //     isFeatured: data.isFeatured.value,
-            //     productCollections: data.productCollections.map((item) => item.value),
-            // }
             const formData = new FormData();
-
+    
+            // Required fields
             formData.append("title", data.title);
+            formData.append("price", data.price);
+    
+            // Optional fields with safe defaults
             formData.append("summary", data.summary || null);
             formData.append("description", data.description || null);
-            formData.append("price", data.price);
             formData.append("promoCode", data.promoCode || null);
             formData.append("color", data.color || null);
             formData.append("fabric", data.fabric || null);
             formData.append("pattern", data.pattern || null);
             formData.append("discount", data.discount || null);
-
-            // Handle nested fields
-            formData.append("wearable", data.wearable?.value); // Send `value` of wearable
-            data.sizes.forEach((size, index) => {
-                formData.append(`sizes[${index}][size]`, size.size);
-                formData.append(`sizes[${index}][quantity]`, size.quantity);
-            });
-
-            // Handle array fields
-            data.productCollections?.forEach((collection) => {
-                formData.append("productCollections[]", collection.value); // Send collection IDs
-            });
-
-            // Add images and files
-            data.images?.forEach((file) => formData.append("images", file));
+    
+            // Handle nested fields safely
+            if (data.wearable?.value) {
+                formData.append("wearable", data.wearable.value); // Send `value` only if it exists
+            }
+            if (data.isFeatured?.value) {
+                formData.append("isFeatured", data.isFeatured.value); // Send `value` only if it exists
+            }
+    
+            if (data.sizes && data.sizes.length > 0) {
+                data.sizes.forEach((size, index) => {
+                    formData.append(`sizes[${index}][size]`, size.size);
+                    formData.append(`sizes[${index}][quantity]`, size.quantity);
+                });
+            }
+    
+            if (data.productCollections && data.productCollections.length > 0) {
+                data.productCollections.forEach((collection) => {
+                    formData.append("productCollections[]", collection.value); // Send collection IDs
+                });
+            }
+    
+            // Add images and files safely
+            if (data.images && data.images.length > 0) {
+                data.images.forEach((file) => formData.append("images", file));
+            }
             if (data.mainImage) formData.append("mainImage", data.mainImage);
             if (data.featureDesktopImage) formData.append("featureDesktopImage", data.featureDesktopImage);
             if (data.featureMobileImage) formData.append("featureMobileImage", data.featureMobileImage);
             if (data.video) formData.append("video", data.video);
-            formData.forEach((key, element) => {
-                console.log(key + element)
-            });
-            // console.log(productData)
-            const response = await productSvc.postRequest('/product', formData, { auth: true, file: true })
-            console.log(response)
-            toast.success("product added sucessfully")
-            // setTimeout(() => navigate('/admin/product'), 1000)
-
+    
+            const response = await productSvc.postRequest('/product', formData, { auth: true, file: true });
+            console.log("Form Data Response", response);
+            toast.success("Product added successfully");
+            // Redirect or reset form after success if needed
         } catch (exception) {
-            console.log(response, exception)
-            toast.error("Error while adding  product")
+            console.error("Error while adding product:", exception);
+            toast.error("Error while adding product");
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
     return (
         <div className='admin_margin_box'>
