@@ -14,13 +14,10 @@ import CompanyPromisses from '../../Components/CompanyPromisses/companyPromisses
 const LayoutPage = () => {
 
     const [isCartActive , setCartActive] = useState(null);
-  
-    const [isVisible, setIsVisible] = useState(false)
-    
+    const location = useLocation();
 
-    const toggleVisible =()=>{
-        setIsVisible(!isVisible)        
-    }
+    // Check if the current route is the Login page
+    const isLoginPage = location.pathname === '/login';
 
     const ScrollToTop = () => {
         const { hash, pathname } = useLocation();
@@ -50,16 +47,25 @@ const LayoutPage = () => {
     return (
         <div>
             <ToastContainer style={{ zIndex: 9999999 }}/>
-            <Navbar isVisible={isVisible} toggleVisible={toggleVisible} setIsVisible={setIsVisible}/>
-            <LoginPage isVisible={isVisible} toggleVisible={toggleVisible} />
+             {!isLoginPage && (
+                <>
+                <Navbar />
+                <FooterNav />
+                </>
+            )}
+            
             <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
             
-            <FooterNav/>
+            
             <ScrollToTop/>
 
-                <Outlet context={{ isCartActive, toogleCart, setIsVisible}}/>
-            <CompanyPromisses/>
-            <Footer/> 
+                <Outlet context={{ isCartActive, toogleCart}}/>
+                {!isLoginPage && (
+                    <>
+                    <CompanyPromisses />
+                    <Footer />
+                    </>
+                )}
         </div>
     )
 }

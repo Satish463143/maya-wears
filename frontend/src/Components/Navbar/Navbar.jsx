@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import logos from "../../assets/images/logo-1.png";
 
-const Navbar = ({ isVisible, toggleVisible }) => {
+const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -103,8 +103,9 @@ const Navbar = ({ isVisible, toggleVisible }) => {
                       </svg>
                     </li>
                   </Link>
+                  <Link to="login">
 
-                  <li onClick={toggleVisible} style={{ cursor: "pointer" }}>
+                  <li style={{ cursor: "pointer" }}>
                     <svg
                       viewBox="0 0 32 32"
                       height="25px"
@@ -129,6 +130,7 @@ const Navbar = ({ isVisible, toggleVisible }) => {
                       </g>
                     </svg>
                   </li>
+                  </Link>
                 </ul>
               </div>
             </div>

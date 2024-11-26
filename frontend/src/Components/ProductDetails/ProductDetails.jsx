@@ -17,12 +17,12 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
   useEffect(() => {
     if (data) {
       const productsById = data?.result?.data || [];
-      console.log("products", productsById);
+      console.log("products", productsById); // Log all products to see what data is available
       const foundProduct = productsById.find(
         (item) => item._id === _id || item.slug === slug
       );
-      setProduct(foundProduct || null);
-      console.log("found product", product);
+      console.log("Found Product", foundProduct);
+      setProduct(foundProduct || null); // Set the found product
     }
   }, [data, _id, slug]);
   if (isLoading) <LoadingComponent />;
@@ -35,7 +35,7 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
 
   return (
     <div className="product_page">
-      <div data-aos="fade-up">
+      <div>
         <div className="container">
           <div className="details_grid">
             <div className="product_img_grid">

@@ -28,11 +28,12 @@ import ProductList from "./Components/CMS/Product/ProductList";
 import ProductAdd from "./Components/CMS/Product/ProductAdd";
 import ProductEdit from "./Components/CMS/Product/ProductEdit";
 import AllProductPage from "./pages/AllProductPage/AllProductPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
-const App = ({ isCartActive, toogleCart, setIsVisible, setCurrentView }) => {
-  if (window.location.href.includes('https://maya-wears.com/')) {
-    window.location.href = 'https://themayawears.com/';
-}
+const App = ({ isCartActive, toogleCart, setCurrentView }) => {
+//   if (window.location.href.includes('https://maya-wears.com/')) {
+//     window.location.href = 'https://themayawears.com/';
+// }
   const dispatch = useDispatch();
 
 
@@ -56,7 +57,7 @@ const App = ({ isCartActive, toogleCart, setIsVisible, setCurrentView }) => {
             path="activate/:token"
             element={
               <UserActivation
-                setIsVisible={setIsVisible}
+                
                 setCurrentView={setCurrentView}
               />
             }
@@ -72,7 +73,7 @@ const App = ({ isCartActive, toogleCart, setIsVisible, setCurrentView }) => {
           />
           <Route path="collection/:slug" element={<CollectionPage />} />
           <Route path="all_product" element={<AllProductPage />} />
-          
+          <Route path="login" element={<LoginPage/>}/>
           <Route path="*" element={<>Page not Found</>} />
         </Route>
 
