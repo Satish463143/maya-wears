@@ -36,7 +36,19 @@ router.route('/')
 
 router.route('/:id')
     .get(loginCheck, hasPermission('admin'),productController.show) // get by id
-    .put(loginCheck, hasPermission('admin'),) // update by id
+    .put(loginCheck,
+        hasPermission('admin'),
+        setPath('product'),
+        uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
+            { name: 'images', maxCount: 10 },
+            { name: 'mainImage', maxCount: 1 },
+            { name: 'featureDesktopImage', maxCount: 1 },
+            { name: 'featureMobileImage', maxCount: 1 },
+            { name: 'video', maxCount: 1 }, // Add video here
+        ]),
+       
+        bodyValidator(productDTO),
+        productController.update,) // update by id
     .delete(loginCheck, hasPermission('admin'),productController.delete) // delete by id
 
 module.exports = router

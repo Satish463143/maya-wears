@@ -47,7 +47,7 @@ class CollectionService {
 
         } catch (exception) {
             throw exception
-        }
+        } 
     }
     deleteCollection = async (id) => {
         try {

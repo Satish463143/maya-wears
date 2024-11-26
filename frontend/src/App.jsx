@@ -72,6 +72,7 @@ const App = ({ isCartActive, toogleCart, setIsVisible, setCurrentView }) => {
           />
           <Route path="collection/:slug" element={<CollectionPage />} />
           <Route path="all_product" element={<AllProductPage />} />
+          
           <Route path="*" element={<>Page not Found</>} />
         </Route>
 

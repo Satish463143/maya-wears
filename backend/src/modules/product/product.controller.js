@@ -9,7 +9,6 @@ class ProductController {
     create = async (req, res, next) => {
         try {
             const data = req.body;
-            console.log('data',data)
             if (req.files.images) {
                 data.images = await Promise.all(
                     req.files.images.map(file =>
@@ -163,7 +162,58 @@ class ProductController {
     }
     update = async (req, res, next) => {
         try {
+            const id = req.params.id
+            await this.#validate(id)
+            const data = req.body
 
+            if (req.files.images) {
+                data.images = await Promise.all(
+                    req.files.images.map(file =>
+                        uploadImage('./public/uploads/product/' + file.filename)
+                    )
+                );
+            } else {
+                throw new Error('"images" field is required and must be an array of files');
+            }
+
+            if (req.files.mainImage) {
+                data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
+            }
+
+            if (req.files.featureDesktopImage) {
+                data.featureDesktopImage = await uploadImage('./public/uploads/product/' + req.files.featureDesktopImage[0].filename);
+            }
+
+            if (req.files.featureMobileImage) {
+                data.featureMobileImage = await uploadImage('./public/uploads/product/' + req.files.featureMobileImage[0].filename);
+            }
+
+            if (req.file) {
+                data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
+            }
+
+            const response = await productService.updateProduct(data, id)
+            const allFiles = [
+                ...(req.files.images || []),
+                ...(req.files.mainImage || []),
+                ...(req.files.featureDesktopImage || []),
+                ...(req.files.featureMobileImage || []),
+            ];
+
+            // Include the video file if present
+            if (req.file) {
+                allFiles.push(req.file);
+            }
+
+            for (const file of allFiles) {
+                await deleteFile('./public/uploads/product/' + file.filename);
+            }
+
+            res.json({
+                result:response,
+                message:"product updated sucessfully",
+                meta:null
+            })
         }
         catch (exception) {
             console.log(exception)

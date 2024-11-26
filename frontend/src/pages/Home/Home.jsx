@@ -6,23 +6,21 @@ import DownBannerItem from "../../Components/DownBannerItem/DownBannerItem";
 import Down_2_Banner from "../../Components/Down_2_Banner/Down_2_Banner";
 import Down_3_Banner from "../../Components/Down_3_Banner/Down_3_Banner";
 import GoogleReview from "../../Components/GoogleReview/GoogleReview";
-import ProductSlides from "../../Components/ProductSlides/ProductSlides";
 import Faq from "../../Components/Faq/Faq";
 import Collection from "../../Components/Collection/Collection";
-import ProductCarousel from "../../Components/ProductCarousel/ProductCarousel";
 import CustomerGallery from "../../Components/CustomerGallery/CustomerGallery";
+import ProductSliders3 from "../../Components/ProductSliders3/ProductSliders3";
 
 const Home = () => {
   return (
     <div>
-      <Banner />
-      {/* <ProductSlides/>  */}
-      <ProductCarousel />
+      <Banner />      
+      <ProductSliders3/>
       <DownBannerItem />
       <BestSellingItem />
       <Down_2_Banner />
       <Down_3_Banner />
-      <CustomerGallery />
+      {/* <CustomerGallery /> */}
       {/* <GoogleReview/>           */}
       <Faq />
       <Collection />

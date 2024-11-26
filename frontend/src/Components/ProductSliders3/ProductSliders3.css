@@ -1,0 +1,38 @@
+
+
+.carousel-cell {
+    width: 70%;
+    height: 75vh;
+    margin: 20px 10px 10px 10px;    
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+  }
+.featured_mobile{
+    display: none;
+}
+  .carousel-cell img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+@media (max-width:1000px){
+    .carousel-cell {
+        width: 80%;
+    }
+}
+@media (max-width:700px){
+    .featured_desktop{
+        display: none;
+    }
+    .featured_mobile{
+        display: block;
+    }
+    .carousel-cell{
+        margin: 10px 5px 5px 5px;
+        height: 80vh;
+    }
+
+}
+
+
+

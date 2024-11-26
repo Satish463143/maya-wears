@@ -34,6 +34,18 @@ class ProductService {
         }
 
     }
+    updateProduct = async(data,id)=>{
+        try{
+            const response = await ProductModel.findByIdAndUpdate(id, { $set: data }, { new: true })
+            return response
+
+        }catch(exception){
+            console.log(exception)
+            throw exception
+        }
+        
+
+    }
     deleteProduct = async (id) => {
         try {
             const response = await ProductModel.findByIdAndDelete(id)

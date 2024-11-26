@@ -36,6 +36,15 @@ export const ProductApi = createApi({
                 url:`/product/${id}`,
                 method:"DELETE"
             })
+        }),
+        editProduct:builder.mutation({
+            query:(id)=>({
+                url: `/product/${id}`,
+                method:'PUT',
+                headers:()=>([
+                    {"Content-Type" :"multipart/form-data"}
+                ])
+            })
         })
 
     })
