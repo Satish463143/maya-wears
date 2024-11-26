@@ -48,6 +48,9 @@ const Down_2_Banner = () => {
         <div className='down_banner_content'>
           <h2>{bannerData?.title} </h2>
           <p>{bannerData?.content}</p>
+          <p className="shop__now__button">
+            <a href="">Shop Now</a>
+          </p>
         </div>
         </div>
       </div>

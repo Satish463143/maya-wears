@@ -13,9 +13,9 @@ const AllProducts = () => {
   return (
     <div className='container'>
         <div>
-            <div className="prouct_title">
+            {/* <div className="prouct_title">
                 <h1>"Find Your Perfect Match – Explore Our Collection!"</h1>
-            </div>
+            </div> */}
             <div className="products_grid">
                 {products.map((item)=>(
                     <AllProductItem key={item._id} _id={item._id} slug={item.slug} images={item.images[0]} title={item.title} price={item.price}/>

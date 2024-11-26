@@ -20,7 +20,7 @@ const Down_3_Banner = () => {
       getAllBanner()
     },[])
     return (
-      <div className='down_banner div_container' style={{paddingTop:'0px'}}>
+      <div className='down_banner div_container' style={{paddingTop:'8px'}}>
         <div>
         {bannerData?.category === "video" && (
           <>
@@ -49,6 +49,9 @@ const Down_3_Banner = () => {
         <div className='down_banner_content'>
           <h2>{bannerData?.title || "abc"} </h2>
           <p>{bannerData?.content}</p>
+          <p className="shop__now__button">
+            <a href="">Shop Now</a>
+          </p>
         </div>
         </div>
       </div>

@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import FaqItem from '../../Middlewares/FaqItem/FaqItem';
 import { StoreContext } from '../../context/StoreContext';
 import './Faq.css'
+import line_svg from '../../assets/images/headline-curve.svg'
+
 
 const Faq = () => {
     const { FAQList } = useContext(StoreContext);
@@ -17,8 +19,9 @@ const Faq = () => {
                 <div className="container">
                 <div >
                     <div className='home_loan'>
-                        <div >
+                        <div className='best__of__' style={{padding:'20px 0'}}>
                             <h1 className='help__section'>Help Section </h1>
+                            <img src={line_svg} alt="" style={{top:'80%' ,left:'35%'}}/>
                         </div>
                         
                         <div className='faq_width'>

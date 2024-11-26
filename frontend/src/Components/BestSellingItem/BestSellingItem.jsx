@@ -4,6 +4,7 @@ import ProductItem from '../../Middlewares/ProductItem/ProductItem'
 import { Link } from 'react-router-dom'
 import { useListForHomeQuery } from '../../api/product.api'
 import LoadingComponent from '../../Middlewares/Loading/Loading.component'
+import line_svg from '../../assets/images/headline-curve.svg'
 
 const BestSellingItem = () => {
   const {data, error, isLoading}  = useListForHomeQuery(null)
@@ -27,7 +28,10 @@ const BestSellingItem = () => {
   return (
     <div className='bestSelling div_container'>
       <div >
-        <h1>Best of MAYA.</h1>
+        <div className='best__of__'>
+        <h1 >Best of MAYA.</h1>
+        <img src={line_svg} alt="" srcset="" />
+        </div>
         <div className="container best_container">
           <div className='best_flex'  >
             {limitedbestShuffleArray.map((item,index)=>{

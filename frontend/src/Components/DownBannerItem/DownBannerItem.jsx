@@ -1,29 +1,26 @@
-import React, {  useState, useEffect } from 'react';
-import './DownBannerItem.css';
-import collectionSvc from '../CMS/Collection/Collection.service';
+import React, { useState, useEffect } from "react";
+import "./DownBannerItem.css";
+import collectionSvc from "../CMS/Collection/Collection.service";
 
 const DownBannerItem = () => {
-
   const [isSticky, setIsSticky] = useState(false);
-  const [bannerData, setBannerData] =useState()
-  
-  const getAllBanner = async()=>{
-    try{
-      const response = await collectionSvc.getRequest('/banner_2/list')
-      setBannerData(response.result.data[0])
+  const [bannerData, setBannerData] = useState();
 
-    }catch(exception){
-      console.log(exception)
+  const getAllBanner = async () => {
+    try {
+      const response = await collectionSvc.getRequest("/banner_2/list");
+      setBannerData(response.result.data[0]);
+    } catch (exception) {
+      console.log(exception);
     }
-  }
+  };
 
-
-  useEffect(()=>{
-    getAllBanner()
-  },[])
+  useEffect(() => {
+    getAllBanner();
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
-      const stickyDiv = document.getElementById('stickyDiv');
+      const stickyDiv = document.getElementById("stickyDiv");
       if (stickyDiv) {
         const stickyOffset = stickyDiv.offsetTop;
 
@@ -35,10 +32,10 @@ const DownBannerItem = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -69,9 +66,12 @@ const DownBannerItem = () => {
             </div>
           </>
         )}
-        <div className='down_banner_content'>
-          <h2>{bannerData?.title }</h2>
-          <p>{bannerData?.content }</p>
+        <div className="down_banner_content">
+          <h2>{bannerData?.title}</h2>
+          <p>{bannerData?.content}</p>
+          <p className="shop__now__button">
+            <a href="">Shop Now</a>
+          </p>
         </div>
       </div>
     </div>

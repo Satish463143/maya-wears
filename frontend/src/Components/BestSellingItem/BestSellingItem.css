@@ -25,7 +25,19 @@
     /* margin-bottom:50px; */
     height: 446px;
     border-radius: 5px;
-    background: var(--sec_color);
+    background: #edc9;
+    color: var(--sec_dark);
+    text-decoration: underline;
+
+}
+.best__of__{
+    position: relative;
+}
+.best__of__ img{
+    position: absolute;
+    top: 70%;
+    left: 30%;
+    filter: invert(47%) sepia(4%) saturate(3622%) hue-rotate(346deg) brightness(90%) contrast(84%);
 }
 @media (max-width:600px){
     .best_flex{

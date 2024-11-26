@@ -40,9 +40,7 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
           <div className="details_grid">
             <div className="product_img_grid">
               {product.images.map((item) => (
-                <div className="product_img">
                   <img src={item} alt="" />
-                </div>
               ))}
             </div>
             <div>
@@ -101,15 +99,15 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
             <ul>
               <li>
                 <a href="">Description</a>
-                <p>◿</p>
+                <p>+</p>
               </li>
               <li>
                 <a href="">fit</a>
-                <p>◿</p>
+                <p>+</p>
               </li>
               <li>
                 <a href="">Material and care</a>
-                <p>◿</p>
+                <p>+</p>
               </li>
             </ul>
           </div>
