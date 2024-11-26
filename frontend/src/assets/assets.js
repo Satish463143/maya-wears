@@ -355,37 +355,34 @@ export const ProductList =[
 export const FAQList=[
     {
         _id:"1",
-        question:"How much loan can be obtained to buy property?",
-        answer:"Banks and financial institutions provide home loans up to a maximum of 1.5 crores. However, the central bank has made arrangements to provide home loans up to 3 crores for first-time home buyers. First-time home buyers can get home loans up to 1.5 crores, and for any amount above that, they can get an additional Home Loan Plus up to another 1.5 crores."
+        question:"Do you ship just within International or worldwide?",
+        answer:"We provide shipping to International locations. We have arrangements with leading International logistics providers to handle your orders."
     },
     {
         _id:"2",
-        question:"How much percentage of the collateral value can first-time home buyers get as a home loan?",
-        answer:"The central bank has made arrangements for first-time home buyers to obtain loans from banks and financial institutions up to 70% of the collateral value."
+        question:"Can I cancel an order?",
+        answer:"Do note: We do not offer refund for cancelled orders but offer credit notes against the cancellations. You can cancel your order within 24 hours of placing it, without any extra charges. To make a cancellation, please write to us on maya-wears.com or contact us on Whatsapp. Once your order is found eligible for cancellation, our team will issue a refund against it in the form of a credit note, that is redeemable within 180 days from the issue date."
     },
     {
         _id:"3",
-        question:"Do home loan installments remain fixed throughout the loan period?",
-        answer:"The central bank has stated that if banks increase the interest rate during the loan period, they must arrange for the predetermined monthly installment amount to remain unchanged. This means that if the interest rate increases, the size of the installment will increase accordingly. However, the loan period cannot be extended."
+        question:"How much time will it take for an order to be delivered?",
+        answer:"All orders are shipped from our central warehouse in Kathmandu. We will share regular updates about your order from dispatch to delivery via Email & SMS details provided by you when placing the order. The delivery status is also available on your registered account on maya-wears.com Domestic Orders: The Standard Delivery for within Nepal is 2-3 business days. International Orders: The Standard Delivery for international orders is 10-14 business days. While we service worldwide, there may be countries or regions that are under restrictions or political sanctions."
     },
     {
         _id:"4",
-        question:"What types of financial institutions provide home loans in Nepal?",
-        answer:"According to the central bank, commercial banks, development banks, and finance companies in Nepal can provide home loans. Microfinance companies are not allowed to offer home loans."
+        question:"How can I pay for my order?",
+        answer:`"We accept the following modes of payment:
+
+            1. Debit Card
+            2. Net Banking
+            3. Digital/ Mobile Wallet"
+            In case of any issues, you can simply get in touch with us at maya-wears.com or contact us on Whatsapp and our Customer Operations team will assist you.
+                    
+        `
     },
     {
         _id:"5",
-        question:"When should the EMI for a home loan be paid?",
-        answer:"If you have taken a loan to purchase land, you need to start paying the EMI regularly from the 10th of the next month. If you have taken a loan to build a house, you can request a grace period from the bank for repaying the loan. This grace period, which is a concession period, can be up to a maximum of one year."
+        question:"What do I do if my order is received in a damaged condition?",
+        answer:"You can simply get in touch with us at maya-wears.com or contact us on Whatsapp and our Customer Operations team will assist you with reverse pickup and arranging a replacement piece."
     },
-    {
-        _id:"6",
-        question:"Do financial institutions provide joint home loans?",
-        answer:"Yes, joint home loans can be taken by two or more individuals collectively. Such loans can be taken in collaboration with a family member. Spouses, parents, siblings, or children can be involved in a joint home loan. The main reasons for opting for a joint home loan are either the insufficient income of one individual to cover the EMI or the inability to extend the loan tenure due to age constraints."
-    },
-    {
-        _id:"7",
-        question:"How can individuals who have reached an advanced age obtain a joint home loan for a relatively longer tenure?",
-        answer:"If you are 60 years old and require a loan for a tenure of 10 or 15 years, you may not be eligible for such a long-term loan on your own. However, if you apply for the loan as a joint applicant with your spouse, siblings, or children, the bank will consider the age of the joint applicants. The bank will then approve the loan based on the age of the joint applicants, allowing for a longer loan tenure."
-    }
 ]

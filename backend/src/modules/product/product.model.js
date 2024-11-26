@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 const { Wearable } = require("../../config/constants.config")
-const { type } = require('./product.request')
-const { required } = require('joi')
 const productSchema = new mongoose.Schema({
     title: {
         type: String,

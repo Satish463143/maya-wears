@@ -18,7 +18,6 @@ const ProductSliders3 = () => {
       const flkty = new Flickity(carouselRef.current, {
         wrapAround: true,
         contain: true,
-        autoPlay: true,
       });
 
       return () => {
@@ -40,7 +39,7 @@ const ProductSliders3 = () => {
 
   return (
     <div className="div_container" style={{ marginTop: '100vh' }}>
-      <div className="carousel" ref={carouselRef} data-flickity='{ "autoPlay": true, "wrapAround":true }'>
+      <div className="carousel" ref={carouselRef} data-flickity='{ "wrapAround":true }'>
         {limitedFilteredProduct.map((item, index) => (
           <div className="carousel-cell" key={index}>
             <Link to={`product/${item.slug}/${item._id}`}>

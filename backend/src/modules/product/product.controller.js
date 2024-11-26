@@ -170,9 +170,7 @@ class ProductController {
                         uploadImage('./public/uploads/product/' + file.filename)
                     )
                 );
-            } else {
-                throw new Error('"images" field is required and must be an array of files');
-            }
+            } 
 
             if (req.files.mainImage) {
                 data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);

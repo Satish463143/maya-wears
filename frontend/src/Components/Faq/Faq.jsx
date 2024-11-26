@@ -8,7 +8,7 @@ import line_svg from '../../assets/images/headline-curve.svg'
 const Faq = () => {
     const { FAQList } = useContext(StoreContext);
     const [activeIndex, setActiveIndex] = useState(null);
-  
+     
     const toggleFAQ = (index) => {
       setActiveIndex(activeIndex === index ? null : index);
     };

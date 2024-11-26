@@ -5,7 +5,7 @@ const hasPermission = require("../../middlewares/rbac.middlewares")
 const { setPath, uplaodFile } = require("../../middlewares/uploader.middlewares")
 const { bodyValidator } = require("../../middlewares/validator.middlewares")
 const productController = require("./product.controller")
-const productDTO = require("./product.request")
+const {productDTO,productUpdateDTO} = require("./product.request")
 
 const router = require("express").Router()
 
@@ -46,8 +46,7 @@ router.route('/:id')
             { name: 'featureMobileImage', maxCount: 1 },
             { name: 'video', maxCount: 1 }, // Add video here
         ]),
-       
-        bodyValidator(productDTO),
+        bodyValidator(productUpdateDTO),
         productController.update,) // update by id
     .delete(loginCheck, hasPermission('admin'),productController.delete) // delete by id
 

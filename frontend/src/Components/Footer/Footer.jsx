@@ -6,79 +6,15 @@ import { Link } from "react-router-dom";
 
 
 const Footer = () => {
-  const [isactivated, setActivated] = useState("false");
-  const toogleActivate = () => {};
+   const [activeIndex, setActiveIndex] = useState(null);
+     
+    const toggleFAQ = (index) => {
+      setActiveIndex(activeIndex === index ? null : index);
+    };
+
+    
   return (
     <div className="div_container">
-      {/* <div className='footer_div'>
-          <div className='container'>
-            <div style={{padding:'50px 0'}}>
-            <div className="footer_first_section">
-              <div className="community">
-                <h4>
-                  Join Our Community
-                </h4>
-                <p>Be a part of Maya Wears. Get updates on the latest trends, personalized recommendations, and more! </p>
-                <button onClick={toogleActivate}>Activate Alerts</button>
-              </div>
-              <div></div>
-            </div>
-            <div className="footer_second_section">
-              <div className="logo_part">
-                <img src="../src/assets/images/logo.png" alt="" />
-                <p>Your one-stop shop for all your products, delivered to your doorstep.</p>
-              </div>
-              <div className="links">
-                
-                <li>About </li>
-                <li>Shop</li>
-                <li>FAQ</li>
-              </div>
-              <div className="terms">
-                
-                <li>Terms & Condition</li>
-                <li>Privicy Policy</li>
-                <li>Cookie Policy</li>
-              </div>
-              <div className="media">
-                <p>Let’s Chat!</p>
-                <div style={{margin:'5px 0'}}><a href="">mayawear@gmail.com</a></div>
-                <a href="" target='_blank'>
-                  <li>
-                    <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 512 512" height="24px" width="24px" xmlns="http://www.w3.org/2000/svg"><path d="M480,257.35c0-123.7-100.3-224-224-224s-224,100.3-224,224c0,111.8,81.9,204.47,189,221.29V322.12H164.11V257.35H221V208c0-56.13,33.45-87.16,84.61-87.16,24.51,0,50.15,4.38,50.15,4.38v55.13H327.5c-27.81,0-36.51,17.26-36.51,35v42h62.12l-9.92,64.77H291V478.66C398.1,461.85,480,369.18,480,257.35Z" fill-rule="evenodd"/></svg>
-                  </li>
-                </a>
-                <a href="" target='_blank'>
-                  <li>               
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"height="24px" width="24px" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 56.7 56.7" enableBackground="new 0 0 56.7 56.7" xmlSpace="preserve">
-                    <g>
-                      <path d="M28.2,16.7c-7,0-12.8,5.7-12.8,12.8s5.7,12.8,12.8,12.8S41,36.5,41,29.5S35.2,16.7,28.2,16.7z M28.2,37.7
-                        c-4.5,0-8.2-3.7-8.2-8.2s3.7-8.2,8.2-8.2s8.2,3.7,8.2,8.2S32.7,37.7,28.2,37.7z"/>
-                      <circle cx="41.5" cy="16.4" r="2.9"/>
-                      <path d="M49,8.9c-2.6-2.7-6.3-4.1-10.5-4.1H17.9c-8.7,0-14.5,5.8-14.5,14.5v20.5c0,4.3,1.4,8,4.2,10.7c2.7,2.6,6.3,3.9,10.4,3.9
-                        h20.4c4.3,0,7.9-1.4,10.5-3.9c2.7-2.6,4.1-6.3,4.1-10.6V19.3C53,15.1,51.6,11.5,49,8.9z M48.6,39.9c0,3.1-1.1,5.6-2.9,7.3
-                        s-4.3,2.6-7.3,2.6H18c-3,0-5.5-0.9-7.3-2.6C8.9,45.4,8,42.9,8,39.8V19.3c0-3,0.9-5.5,2.7-7.3c1.7-1.7,4.3-2.6,7.3-2.6h20.6
-                        c3,0,5.5,0.9,7.3,2.7c1.7,1.8,2.7,4.3,2.7,7.2V39.9L48.6,39.9z"/>
-                    </g>
-                    </svg>
-                  </li>
-                </a>
-                <a href="" target='_blank'>
-                  <li>
-                    <svg enableBackground="new 0 0 100 100" height="24px" version="1.1" viewBox="0 0 100 100" width="24px" xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                      <g id="color_x5F_fill">
-                        <path d="M40.294,85.885c1.106-2.086,2.237-4.548,2.896-6.831c0.608-2.111,2.055-8.001,2.34-10.115   c2.143,4.371,7.407,4.889,11.848,4.643c6.618-0.366,13.398-5.242,16.019-11.226c2.362-5.395,4.064-11.963,3.477-17.878   c-0.453-4.562-2.69-10.157-6.039-13.439c-2.548-2.498-5.896-4.468-8.956-5.955c-3.818-1.855-9.06-2-13.133-1.656   c-2.486,0.21-4.827,0.575-7.215,1.403c-2.116,0.734-3.997,2.048-6.027,3.066c-1.906,0.956-3.552,1.896-4.913,3.369   c-1.456,1.576-2.901,3.477-4.209,5.159c-1.553,1.998-2.204,4.436-3.132,6.884c-0.825,2.178-0.988,4.984-0.618,7.375   c0.652,4.213,2.023,7.953,5.219,10.9c1.117,1.03,3.403,3.562,4.906,2.277c1.491-1.275,1.584-4.838,0.75-6.335   c-0.9-1.617-2.54-2.891-2.753-4.823c-0.624-5.656,1.153-11.761,4.777-16.143c5.999-7.253,18.488-8.484,25.97-2.913   c3.132,2.333,5.138,5.89,5.503,9.781c0.371,3.963,0.592,8.756-1.003,12.482c-1.044,2.44-2.482,4.927-4.077,7.051   c-1.633,2.176-4.394,3.659-7.116,3.676c-3.751,0.024-4.722-2.388-7.035-4.74c0.717-1.421,1.071-3.846,1.391-5.469   c0.452-2.3,1.075-4.163,1.868-6.341c1.109-3.044,1.686-7.69-1.305-9.86c-3.292-2.388-8.127,0.041-9.998,3.195   c-1.146,1.932-1.187,4.31-1.133,6.49c0.052,2.097,0.765,4.152,0.669,6.258c-0.093,2.042-0.973,3.952-1.282,5.959   c-0.373,2.42-0.756,4.741-1.393,7.11c-1.184,4.399-2.751,8.742-2.638,13.323c0.031,1.285,0.064,2.71-0.224,3.964   c-1.489,0.074-3.688-1.793-4.981-2.57c-2.197-1.32-3.482-2.698-5.212-4.532c-1.89-2.003-3.978-3.593-5.781-5.752   c-1.549-1.855-2.804-4.02-3.906-6.113c-5.168-9.804-4.717-22.094-1.182-32.453c1.909-5.593,6.486-10.235,10.31-14.623   c5.896-6.771,17.617-10.462,26.528-10.306c5.858,0.103,11.107,1.33,16.605,3.256c8.58,3.006,16.897,10.877,19.991,19.486   c1.471,4.093,3.276,8.167,3.779,12.527c0.478,4.136-0.403,8.273-1.001,12.35c-1.245,8.487-6.29,16.587-12.779,22.062   c-1.917,1.617-4,3.141-6.138,4.453c-7.396,4.537-15.667,5.645-24.151,5.502c-1.635-0.027-3.268-0.003-4.862-0.415   c-2.115-0.545-1.695-1.598-0.852-3.144C40.162,86.133,40.229,86.009,40.294,85.885z" fill="#000"/>
-                      </g>
-                      <g id="offset_x5F_print_x5F_outline"/>
-                      </svg>
-                  </li>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div>
         <div className="footer_part">
         <div className="call_me">
@@ -93,23 +29,15 @@ const Footer = () => {
           <div className="footer_menu">
             <ul>
               <li>
-                <a href="">Home</a>
+                Help
                 <p>+</p>
               </li>
               <li>
-                <a href="">Newsfeed</a>
+                Services
                 <p>+</p>
               </li>
               <li>
-                <a href="">About</a>
-                <p>+</p>
-              </li>
-              <li>
-                <a href="">Contact Us</a>
-                <p>+</p>
-              </li>
-              <li>
-                <a href="">Our Team</a>
+                About Maya Wears
                 <p>+</p>
               </li>
             </ul>
