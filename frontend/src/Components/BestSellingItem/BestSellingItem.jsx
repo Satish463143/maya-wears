@@ -1,18 +1,16 @@
-import React from 'react'
-import './BestSellingItem.css' 
-import ProductItem from '../../Middlewares/ProductItem/ProductItem'
-import { Link } from 'react-router-dom'
-import { useListForHomeQuery } from '../../api/product.api'
-import LoadingComponent from '../../Middlewares/Loading/Loading.component'
-import line_svg from '../../assets/images/headline-curve.svg'
+import React from "react";
+import "./BestSellingItem.css";
+import ProductItem from "../../Middlewares/ProductItem/ProductItem";
+import { Link } from "react-router-dom";
+import { useListForHomeQuery } from "../../api/product.api";
+import LoadingComponent from "../../Middlewares/Loading/Loading.component";
+import line_svg from "../../assets/images/headline-curve.svg";
 
 const BestSellingItem = () => {
-  const {data, error, isLoading}  = useListForHomeQuery(null)
-  if(isLoading) <LoadingComponent/>
- 
-  const product = data?.result?.data || []
+  const { data, error, isLoading } = useListForHomeQuery(null);
+  if (isLoading) <LoadingComponent />;
 
-
+  const product = data?.result?.data || [];
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -21,32 +19,39 @@ const BestSellingItem = () => {
     }
     return array;
   };
-  
-  const bestShuffleArray =  shuffleArray([...product])
-  const limitedbestShuffleArray = bestShuffleArray.slice(0,8)
+
+  const bestShuffleArray = shuffleArray([...product]);
+  const limitedbestShuffleArray = bestShuffleArray.slice(0, 8);
 
   return (
-    <div className='bestSelling div_container'>
-      <div >
-        <div className='best__of__'>
-        <h1 >Best of MAYA.</h1>
-        <img src={line_svg} alt="" srcset="" />
+    <div className="bestSelling div_container">
+      <div>
+        <div className="best__of__">
+          <h1>Best of MAYA.</h1>
+          <img src={line_svg} alt="" srcset="" />
         </div>
         <div className="container best_container">
-          <div className='best_flex'  >
-            {limitedbestShuffleArray.map((item,index)=>{
-              return <ProductItem key={item._id} slug={item.slug} _id={item._id} images={item.images?.[0]} title={item.title}  price={item.price}/>
+          <div className="best_flex">
+            {limitedbestShuffleArray.map((item, index) => {
+              return (
+                <ProductItem
+                  key={item._id}
+                  slug={item.slug}
+                  _id={item._id}
+                  images={item.images?.[0]}
+                  title={item.title}
+                  price={item.price}
+                />
+              );
             })}
             <Link to="/all_product">
-              <div className='view_all_box' >
-                View  all
-              </div>
+              <div className="view_all_box">View all</div>
             </Link>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BestSellingItem
+export default BestSellingItem;

@@ -36,7 +36,7 @@
 .best__of__ img{
     position: absolute;
     top: 70%;
-    left: 30%;
+    left: 43%;
     filter: invert(47%) sepia(4%) saturate(3622%) hue-rotate(346deg) brightness(90%) contrast(84%);
 }
 @media (max-width:600px){
@@ -45,5 +45,11 @@
 }
 .best_container{
     width: 100%;
+}
+.best__of__ img{
+    position: absolute;
+    top: 70%;
+    left: 30%;
+    filter: invert(47%) sepia(4%) saturate(3622%) hue-rotate(346deg) brightness(90%) contrast(84%);
 }
 }

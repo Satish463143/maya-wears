@@ -11,6 +11,7 @@
 }
 .help__section{
   font-size:2em;
+  text-align: center;
 }
 @media (max-width: 800px) {
   .faq_width {

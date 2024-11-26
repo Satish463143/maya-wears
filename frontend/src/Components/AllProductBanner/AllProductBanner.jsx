@@ -17,7 +17,7 @@ const AllProductBanner = () => {
             </div>
             <div className='product_banner_content'>
                 <h2>Discover Quality, Style, and Value </h2>
-                <p>– All in One Place!</p>
+                <p> All in One Place!</p>
             </div>
         </div>
       </div>

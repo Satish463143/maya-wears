@@ -1,10 +1,15 @@
-.company__promises{
+.company{
+
+    display: flex;
+    padding: 0 15%;
+}.company__promises{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     /* gap: 5; */
+    width: 33%;
     padding: 5%;
 }
 .company__promises .pro__tags{
@@ -19,4 +24,35 @@
 }
 svg{
     fill:black;
+}
+
+@media(max-width:600px){
+    .company{
+        flex-direction: column;
+       padding: 0;
+    }
+    .company__promises{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        /* gap: 5; */
+        width: 100%;
+        padding: 5%;
+    }
+    .company__promises .pro__tags{
+        font-weight: 900;
+    }
+    .pro__disc span a {
+        text-decoration: underline;
+        color: var(--sec_dark);
+    }
+    .company__promises p{
+        margin:1%;
+    }
+    svg{
+        fill:black;
+    }
+
 }
