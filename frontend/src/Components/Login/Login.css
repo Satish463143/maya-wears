@@ -1,17 +1,17 @@
-.fromtitle {
+
+.login_box form{
+    width: 100%;
+}
+/* .fromtitle {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-.fromtitle .login_hr{
-    width: 50px;
-    height: 2px;
-    background-color: var(--sec_dark);
-}
+} */
 .sign_up_p{
-    margin-top: 20px;
+    margin: 10% 0;
     text-align: center;
+
 
 }
 .sign_up_p h5{
@@ -29,22 +29,22 @@
     margin-top: 30px;
 }
 .login_box form .form_body input{
-    width: 250px;
-    height: 30px;
-    border: none;
+    width: 100%;
+    border-radius: 5px;
+    height: 50px;
+    border: 0.8px solid var(--sec_dark);
     background: none;
-    border-bottom: 1px solid var(--sec_dark);
-    padding-left: 10px;
-    margin-bottom: 15px;
     
 }
 .login_box form .form_body .submit_btn{
-    background: var(--sec_dark);
-    height: 40px;
-    color: var(--white);
-    border-radius: 20px;
-    margin-top: 20px;
+    /* background: var(--sec_dark); */
+    height: 50px;
+    color:var(--sec_dark);
+    text-decoration: underline;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: larger;
+
 }
 .login_box form .form_body .submit_btn:disabled, #popup-modal button:disabled{
     cursor: not-allowed;
@@ -55,3 +55,4 @@
     color: red;
     
 }
+

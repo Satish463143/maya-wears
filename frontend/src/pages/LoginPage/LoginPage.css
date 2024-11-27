@@ -1,89 +1,86 @@
-.login_page{
-    background: var(--pri_color);
-    width: 100%;  
-    height: 100vh;  
-    z-index: 9999;
-      position: relative;    
+.login_page {
+  background: var(--pri_color);
+  /* background-color: red; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-.loginform_box .cross_btn{
+.loginform_box .cross_btn {
+  position: absolute;
+  top: -20px;
+  right: 0;
+}
+
+.loginform {
+  width: 375px;
+  /* position: relative; */
+  /* padding: 5%; */
+}
+
+.activation {
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginform_box_grid {
+  display: flex;
+  flex-direction: column;
+}
+.loginform_box {
+  /* width: 95vw; */
+  box-shadow: none;
+  position: relative;
+  border: none;
+  margin-top: 10%;
+}
+.loginpage_message {
+  margin-top: 5%;
+}
+.loginpage_message .login__page__imgae {
+  width: 20% !important;
+}
+.loginpage_message h2 {
+  font-weight: bolder;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  line-height: 2;
+  margin-bottom: 5%;
+}
+.account__photo {
+    position: relative;
+}
+.account__photo p{
     position: absolute;
-    top: 10px;
-    right: 10px;
-}
-.login_overlay{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.loginform{
-    width: 100%;
-    height: 100%;
+    top: 67%;
+    width:100px;
+    height: 100px;
+    left:45%;
+    background:var(--sec_dark);
+    color: var(--pri_color);
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
+    font-weight: 900;
+    border-radius: 50%;
+    font-size: 3em;
+    border: 10px solid var(--pri_color);
     
 }
-.loginpage_messaage .login_hr{
-    background-color: var(--sec_color) !important;
-    width: 100px !important;
-    margin: 5px 0px 20px 0 !important;
-}
-.loginform_box{
-    border: 1px solid var(--sec_dark);
-    box-shadow: var(--sec_dark) 0px 5px 15px;
-    padding: 50px 25px;
-    border-radius: 5px;
-    position: relative;
-    overflow-y:scroll ;
-    white-space: nowrap;
-}
-.loginform_box_grid{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.loginpage_messaage {
-    text-align: end;
-}
-.loginpage_messaage  h2{
-    padding-bottom: 5px;
-
-}
-.activation{
-    margin-top: 80px;
-    height: calc(100vh - 80px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.account_cover_poto{
+    height: 115px;
+    width: 100%;
+    object-fit: cover;
 }
 @media (max-width:600px){
-   
-    .loginform_box_grid{
-        display: flex;
-        flex-direction:column-reverse;
-    }
-    .loginform_box{
-        width: 95vw;
-        box-shadow: none;
-        border: none;
-        margin-top: 10%;
-    }
-    .loginpage_message{
-        display:flex;
-        margin-top: -5%;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .loginpage_message .login__page__imgae{
-        width: 20% !important;
-    }
-    .loginpage_message h2{
-        font-weight: bolder;
-        font-size: 1.2em;
-        line-height: 2;
+    .loginform {
+        
+        padding: 5%;
+      }
+      .account__photo p{
+        
+        left: 37%;
+        
     }
 }
