@@ -17,7 +17,6 @@ const CollectionEdit = () => {
   const getDetail = async () => {
     try {
       const detail = await collectionSvc.getRequest("/collection/" + params.id, { auth: true })
-
       setCollection(detail.result)
       setLoading(false)
     } catch (exception) {
@@ -35,15 +34,13 @@ const CollectionEdit = () => {
   const submitEvent = async (data) => {
     setLoading(true);
     try {
-      // Set up FormData to handle file upload
-      // console.log(data)
       const formData = new FormData();
       formData.append("name", data.name);
-      formData.append("description", data.description || "");  // Make sure this aligns with server field name
-      formData.append("status", data.status.value);  // Adjust based on object structure
+      formData.append("description", data.description || "");  
+      formData.append("status", data.status.value);  
 
       if (imageFile) {
-        formData.append("image", imageFile);  // Ensure file upload
+        formData.append("image", imageFile);  
       }
 
       if (typeof data.image === 'string') {

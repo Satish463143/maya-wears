@@ -5,7 +5,6 @@ import * as Yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import authSvc from '../../pages/LoginPage/auth.service'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
  
 
 const SignUp = ({ setCurrentView }) => {
@@ -30,7 +29,6 @@ const SignUp = ({ setCurrentView }) => {
             setCurrentView('login')
         }catch(exception){
             if(exception.status === 400){
-
                 //Object.keys({email:""})=>["email"].map((filed))
                 Object.keys( exception.data.result).map((field)=>{
                     setError(field, {message:exception.data.result[field]} )

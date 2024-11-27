@@ -8,6 +8,7 @@ const banner_1Router = require("../modules/banner_1/banner-1.router")
 const banner_4Router = require("../modules/banner_4/banner-4.router")
 const collectionRouter = require("../modules/collections/collection.router")
 const productRouter = require("../modules/product/product.router")
+const cartRouter = require("../modules/cart/cart.router")
 
 
 router.use("/auth",authRouter)
@@ -19,5 +20,6 @@ router.use("/banner_3",banner_3Router)
 router.use("/banner_4",banner_4Router)
 router.use("/collection",collectionRouter)
 router.use("/product",productRouter)
+router.use('/cart', cartRouter)
 
 module.exports = router

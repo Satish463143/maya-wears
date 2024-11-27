@@ -100,7 +100,7 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path="edit_collection/:id" element={<CollectionEdit />} />
           <Route path="product" element={<ProductList />} />
           <Route path="add_product" element={<ProductAdd />} />
-          <Route path="edit_product" element={<ProductEdit />} />
+          <Route path="edit_product/:id" element={<ProductEdit />} />
         </Route>
       </Routes>
     </div>
