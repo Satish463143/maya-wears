@@ -3,25 +3,31 @@ import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
+import { useCreateCartMutation } from "../../api/cart.api";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
-const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
+const ProductDetails = ({ toogleCart }) => {
   const { slug, _id } = useParams();
   const [product, setProduct] = useState(null);
-  //   const [loading, setLoading] = useState(true);
-  //   const [selectedSize, setSelectedSize] = useState(null);
-  //   const [isInCart, setIsInCart] = useState(false);
-  const [activeTab, setActiveTab] = useState("description");
+  const [activeTab, setActiveTab] = useState("description"); 
+  const [selectedSize, setSelectedSize] = useState(""); // State for size
+  const [quantity, setQuantity] = useState(1); // State for quantity
 
-  const { data, error, isLoading } = useListForHomeQuery(null);
+
+
+  const { data, isLoading } = useListForHomeQuery(null);
+  const [createCart, {isLoading:isCreatingCart}] = useCreateCartMutation()
+  const loggedInUser  = useSelector((root)=>{
+    return root.user.loggedInUser || null
+  })
 
   useEffect(() => {
     if (data) {
       const productsById = data?.result?.data || [];
-      console.log("products", productsById); // Log all products to see what data is available
       const foundProduct = productsById.find(
         (item) => item._id === _id || item.slug === slug
       );
-      console.log("Found Product", foundProduct);
       setProduct(foundProduct || null); // Set the found product
     }
   }, [data, _id, slug]);
@@ -31,6 +37,33 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  
+
+  const handleAddToCart = async () => {
+    
+      if(!loggedInUser){
+        toast.error("Please login to add the item to cart")
+        return;
+      } 
+
+      if (!selectedSize) {
+        toast.error('Plase select a size to add the product in cart')
+        return;
+      }
+
+    try {
+      const response = await createCart({
+        productId: product._id,
+        size: selectedSize,
+        quantity,
+      }).unwrap();
+      toast.success("Product added to cart!")
+      toogleCart(); // Update cart badge
+    } catch (error) {
+      toast.error(error.data?.message || "Failed to add product to cart.")
+    }
   };
 
   return (
@@ -56,45 +89,29 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
                   <p className="sizeeee">Select the Size:</p>
                   <div className="size__flex">
                     <div className="size__">
-                      {product.sizes.map((item) => (
-                        <button className="size__option">{item.size}</button>
+                      {product.sizes.map((item,index) => (
+                        <button
+                          key={index}
+                          className={`size__option ${
+                            selectedSize === item.size ? "activeSize" : ""
+                          }`}
+                          onClick={() => setSelectedSize(item.size)}
+                        >
+                          {item.size}
+                        </button>
                       ))}
                     </div>
                     <p className="size__guideee">Size Guide</p>
-                  </div>
-                  {/* <p className="color">
-                  { <span style={{ fontWeight: "600" }}>Color:</span>
-                  {product.color} }
-                </p> */}
+                  </div>                  
                 </div>
-                <div className="buyNow__cartBtn">
-                  {/* <button className="buy_btn  cart__buy1">
-                Buy Now
-              </button> */}
-                  <button
-                    className="cart_btn cart__buy"
-                    // onClick={() => {
-                    //     if (!selectedSize) {
-                    //     alert("Please select a size!"); // Alert user if no size is selected
-                    //     return;
-                    //     }
-                    //
-                    //     toogleAddToCart(product, selectedSize); // Pass selected size explicitly
-                    // }}
-                    // disabled={isInCart}
-                    //
-                    onClick={() => {
-                      toogleCart();
-                    }}
-                  >
-                    {/* {isInCart ? 'View In Cart' : 'Add To Bag'} */}
+                <div className="buyNow__cartBtn">                 
+                  <button className="cart_btn cart__buy"  onClick={handleAddToCart}>
                     Add to Cart
                   </button>
                 </div>
               </div>
             </div>
           </div>
-
           <div className="product__discription">
             <ul>
               <li>
@@ -169,24 +186,24 @@ const ProductDetails = ({ toogleCart, toogleAddToCart }) => {
 
 export default ProductDetails;
 
-{
-  /* <p className="size__guide">Size</p> */
-}
-{
-  ("");
-}
-{
-  /* <span>Size Guide</span> */
-}
+// {
+//   /* <p className="size__guide">Size</p> */
+// }
+// {
+//   ("");
+// }
+// {
+//   /* <span>Size Guide</span> */
+// }
 
-{
-  /* {product.availableSize.map((size) => (
-<button
-   key={size}
-   // onClick={() => handleSize(size)}
-   className={selectedSize === size ? 'selected_size' : ''}
->
-   {size }
-</button>
-))} */
-}
+// {
+//   /* {product.availableSize.map((size) => (
+// <button
+//    key={size}
+//    // onClick={() => handleSize(size)}
+//    className={selectedSize === size ? 'selected_size' : ''}
+// >
+//    {size }
+// </button>
+// ))} */
+// }

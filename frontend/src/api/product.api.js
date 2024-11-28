@@ -45,7 +45,8 @@ export const ProductApi = createApi({
                     {"Content-Type" :"multipart/form-data"}
                 ])
             })
-        })
+        }),
+       
 
     })
 

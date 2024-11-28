@@ -23,7 +23,6 @@ const UserSlicer = createSlice({
     reducers:{
         setLoggedInUserForRedux:(state,action)=>{
             state.loggedInUser = action.payload
-            console.log('i am on action',action)
         }
     },
     extraReducers:(builder)=>{

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./LoginPage.css";
 import Login from "../../Components/Login/Login";
 import SignUp from "../../Components/SignUp/SignUp";
@@ -7,11 +7,9 @@ import ForgotPassword from "../../Components/ForgotPassword/ForgotPassword";
 import Token from "../../Components/Token/Token";
 import GeneratePassword from "../../Components/GeneratePassword/GeneratePassword";
 import { useSelector } from "react-redux";
-// import logo from '../../../assets/images/logo-png'
-import main_logo from "../../assets/images/Maya-logo.png";
 import { Link } from "react-router-dom";
 import cover__pic from "../../assets/images/desktopImage_2.jpg";
-import logoo from "../../assets/images/logo.png"
+
 
 const LoginPage = () => {
   const location = useLocation();
