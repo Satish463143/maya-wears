@@ -1,0 +1,31 @@
+.contact_banner{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+}
+.contact_details{
+    width: 50%;
+    text-align: center;
+}
+.contact__{
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 3%;
+}
+.contact__info{
+    margin-bottom: 10px;
+}
+@media (max-width:600px){
+
+    .contact_banner{
+        margin-top: 20%;
+    }
+    .contact_details{
+        width: 80%;
+        text-align: center;
+    }
+    .contact__{
+        font-size: 1.5em;
+    }
+}

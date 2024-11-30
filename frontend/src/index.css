@@ -1,8 +1,9 @@
 @import 'flowbite'; /* Import Flowbite styles */
 @import url("https://use.typekit.net/jza0yuk.css");
 @import url("https://use.typekit.net/jza0yuk.css");
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,398;1,398&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'); */
-
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;1,300&family=Cormorant:ital,wght@0,398;1,398&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,6 +18,9 @@
   padding: 0;
   box-sizing: border-box; 
   font-family: "Outfit", sans-serif;
+  font-family: "Cormorant", serif;
+  font-family: "Albert Sans", sans-serif;
+
   /* font-optical-sizing: auto; */
   /* font-weight: 600; */
   /* font-style: normal;  */
@@ -39,6 +43,7 @@ h1,h2,h3,h4,h5,p{
 }
 .headers{
   font-family: "Outfit", sans-serif;
+  font-family: "Albert Sans", sans-serif;
 
   font-variation-settings: "wght" 559;
 }
@@ -64,6 +69,9 @@ h1,h2,h3,h4,h5,p{
 body{
   background: var(--pri_color);
   font-family: "Outfit", sans-serif;
+  font-family: "Cormorant", serif;
+  font-family: "Albert Sans", sans-serif;
+
   font-variation-settings: "wght" 400;
 }
  

@@ -54,6 +54,9 @@ const Navbar = ({toogleCart}) => {
       setMenu("Home");
     } else if (path === "/about") {
       setMenu("About");
+    }
+    else if (path === "/contact") {
+      setMenu("Contact");
     } else {
       setMenu("");
     }
@@ -180,8 +183,14 @@ const Navbar = ({toogleCart}) => {
                     Cart
                   </li>
                 </Link>
-                <Link>
-                  <li onClick={toggleNav} style={{ background: "none" }}>
+                <Link to='/contact'>
+                  <li onClick={() => {
+                      toggleNav();
+                      setMenu("Contact");
+                    }}
+                    className={menu === "Contact" ? "liActive" : ""}
+                    style={{ background: "none" }}
+                  >
                     Contact Us
                   </li>
                 </Link>
