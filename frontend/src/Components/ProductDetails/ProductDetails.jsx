@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
-import { useCreateCartMutation } from "../../api/cart.api";
+import { useCreateCartMutation,useListAllCartQuery } from "../../api/cart.api";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
@@ -12,12 +12,11 @@ const ProductDetails = ({ toogleCart }) => {
   const [product, setProduct] = useState(null);
   const [activeTab, setActiveTab] = useState("description"); 
   const [selectedSize, setSelectedSize] = useState(""); // State for size
-  const [quantity, setQuantity] = useState(1); // State for quantity
-
-
-
+  const { refetch } = useListAllCartQuery();
+  
   const { data, isLoading } = useListForHomeQuery(null);
   const [createCart, {isLoading:isCreatingCart}] = useCreateCartMutation()
+
   const loggedInUser  = useSelector((root)=>{
     return root.user.loggedInUser || null
   })
@@ -41,8 +40,7 @@ const ProductDetails = ({ toogleCart }) => {
 
   
 
-  const handleAddToCart = async () => {
-    
+  const handleAddToCart = async () => {    
       if(!loggedInUser){
         toast.error("Please login to add the item to cart")
         return;
@@ -61,6 +59,7 @@ const ProductDetails = ({ toogleCart }) => {
       }).unwrap();
       toast.success("Product added to cart!")
       toogleCart(); // Update cart badge
+      refetch()
     } catch (error) {
       toast.error(error.data?.message || "Failed to add product to cart.")
     }

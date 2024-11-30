@@ -1,41 +1,56 @@
 import React, { useState } from 'react'
 import './CartItem.css'
+import {Link} from 'react-router-dom'
+import {  useUpdateCartMutation } from '../../api/cart.api'
 
-const CartItem = ({_id,title, image, color, price,selectedSize,removeFromCartList}) => {
-    const [counter, setCounter] = useState(1);
+const CartItem = ({_id,title,slug, image,amount, quantity, price,size,deleteCartItem}) => {
+   
+    const [updateCart] = useUpdateCartMutation()
+    
+
+    const updateQuanitity =async(newQuantity)=>{
+        try{
+            await updateCart({productId: _id, size, quantity:newQuantity}).unwrap();
+            refetchCart()
+        }catch(exception){
+            console.log(exception)
+        }
+        
+    }
+   
    
     const sub = ()=>{
-        if(counter > 1 ){
-            setCounter(counter-1);
+        if(quantity > 1 ){
+            updateQuanitity(quantity - 1);
         }
     }
     const add = ()=>{
-        if(counter<10){
-            setCounter(counter+1)
+        if(quantity < 10){
+            updateQuanitity(quantity + 1)
         }
     }
-    const totalPrice = counter*price;
     
   return (
     <div className='cart_grid'>
         <div className="cart_img">
-            <img src={image} alt="" />
+            <Link to={`/product/${slug}/${_id}`}>
+                <img src={image} alt="" />
+            </Link>            
         </div>
         <div className='cart_title'>
             <h3>{title}</h3>
-            <p style={{padding:'5px 0'}}>{color}</p>
-            <p style={{ paddingBottom: '5px' }}>Size: {selectedSize || "N/A"}</p>
+            <p style={{padding:'5px 0'}}>Rs.{price}/-</p>
+            <p style={{ paddingBottom: '5px' }}>Size: {size || "N/A"}</p>
             <div className='quantity'>
                 <button onClick={sub}>-</button>
-                    <h4>{counter}</h4>
+                    <h4>{quantity}</h4>
                 <button onClick={add}>+</button>
             </div>
         </div>
         <div className='cart_price'>
-            <span>
+            <span onClick={deleteCartItem}>
                 <svg
                     style={{ enableBackground: 'new 0 0 24 24',cursor:'pointer' }}
-                    onClick={() => removeFromCartList(_id)}
                     version="1.1"
                     viewBox="0 0 24 24"
                     width='20px'
@@ -53,7 +68,7 @@ const CartItem = ({_id,title, image, color, price,selectedSize,removeFromCartLis
                     </g>
                 </svg>
             </span>
-            <h5>Rs.{totalPrice}/-</h5>
+            <h5>Total: <br /> Rs.{amount}/-</h5>
         </div>
     </div>
   )

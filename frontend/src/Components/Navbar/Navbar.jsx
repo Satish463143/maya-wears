@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import logos from "../../assets/images/logo-1.png";
 
-const Navbar = () => {
+const Navbar = ({toogleCart}) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -176,7 +176,7 @@ const Navbar = () => {
                   </li>
                 </Link>
                 <Link>
-                  <li onClick={toggleNav} style={{ background: "none" }}>
+                  <li onClick={()=> { toogleCart(); toggleNav(); }} style={{ background: "none" }}>
                     Cart
                   </li>
                 </Link>

@@ -6,8 +6,7 @@ class CartController {
        
         try{
             const { productId, size, quantity } = req.body; 
-            const product = await ProductModel.findById(productId)
-                       
+            const product = await ProductModel.findById(productId)                       
 
             if(!product)  {
                 console.log("Product ID from request:", productId);
@@ -26,7 +25,7 @@ class CartController {
                 cart = new CartModel ({
                     userId:req.authUser._id,
                     items:[
-                        {productId, size, quantity, price : unitPrice, amount : totalAmount, productImage:product.mainImage}
+                        {productId, size, quantity, title:product.title, price : unitPrice, amount : totalAmount, productImage:product.mainImage,}
                     ]
                 })
             }else{
@@ -43,7 +42,8 @@ class CartController {
                         quantity,
                         price:product.price,
                         amount: totalAmount,
-                        productImage:product.mainImage
+                        productImage:product.mainImage,
+                        title:product.title,
                     })
                 }
 
@@ -59,6 +59,8 @@ class CartController {
             next(exception)
         }
     }
+
+    
     index= async(req,res,next)=>{
         try{
             const cart = await CartModel.findOne({userId:req.authUser._id}).populate('items.productId', 'name price mainImage slug')
@@ -73,6 +75,39 @@ class CartController {
             next(exception)
         }
     }
+
+    edit = async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const { size, quantity } = req.body;
+    
+            // Find the cart item
+            const cart = await CartModel.findOne({ "items._id": id });
+            if (!cart) return res.status(404).json({ message: "Cart item not found" });
+    
+            const item = cart.items.find(item => item._id.toString() === id);
+            if (!item) return res.status(404).json({ message: "Item not found in cart" });
+    
+            // Update the item values
+            item.size = size;
+            item.quantity = quantity;
+            item.amount = quantity * item.price; // Recalculate amount
+    
+            // Save the updated cart
+            await cart.save();
+    
+            res.json({
+                result: cart,
+                message: "Cart updated",
+                meta: null,
+            });
+        } catch (exception) {
+            console.log(exception);
+            next(exception);
+        }
+    };
+    
+    
     delete= async(req,res,next)=>{
         try{
             const cart = await CartModel.findOne({userId:req.authUser._id})
@@ -80,9 +115,7 @@ class CartController {
             
             cart.items = cart.items.filter(item=> item._id.toString() !== req.params.id)
 
-            await cart.save().catch(err => {
-                console.error("Error saving cart:", err);
-            });
+            await cart.save()
             res.json({
                 result: cart,
                 message: "Cart deleted ",
