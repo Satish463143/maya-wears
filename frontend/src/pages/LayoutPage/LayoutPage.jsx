@@ -47,12 +47,14 @@ const LayoutPage = () => {
     return (
         <div>
             <ToastContainer style={{ zIndex: 9999999 }}/>
-             {!isLoginPage && (
+             {!isLoginPage &&  (
                 <>
                 <Navbar />
                 <FooterNav />
                 </>
+
             )}
+
             
             <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
             
