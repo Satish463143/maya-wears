@@ -1,11 +1,8 @@
 import React, {  useContext } from 'react'
 import './Cart.css'
 import CartItem from '../../Middlewares/CartItem/CartItem'
-import { StoreContext } from '../../context/StoreContext'
 
 const Cart = ({isCartActive , toogleCart,}) => {
-    const {cartList,removeFromCartList} = useContext(StoreContext)
-    const netTotal = cartList.reduce((total,product)=>total+product.price * product.counter,0);
   return (
     
     <div className={`cart ${isCartActive?'cart_active': ''}`}>
@@ -38,23 +35,23 @@ const Cart = ({isCartActive , toogleCart,}) => {
                     </div>
                     <hr />
                     <div className='cart_details_box'>
-                        {cartList.length>0 ? (
+                        {/* {cartList.length>0 ? (
                             cartList.map(product =>(  
                                 <div>     
-                                    <CartItem key={product._id} {...product} removeFromCartList={removeFromCartList}/>                                   
+                                    <CartItem key={product._id} />                                   
                                     <hr />                                    
                                 </div> 
                             ))
                         ):(
                             <p style={{margin:'50px 0', textAlign:'center'}}>No items in the Cart</p>
-                        )}
+                        )} */}
                         </div> 
                         <div className='checkout_btn'>
                             <button>
                                 Checkout
                             </button>
                             <button>
-                                Rs./-{netTotal}
+                                Rs./-
                             </button>
 
                         </div>

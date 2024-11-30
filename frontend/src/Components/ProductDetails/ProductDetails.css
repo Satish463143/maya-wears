@@ -28,6 +28,9 @@
   border: 0.8px solid var(--sec_dark);
   transition: 0.4s ease;
 }
+.activeSize{
+  background: var(--pri_color);
+}
 .product_details .selected_size,
 .product_details .cart_btn:hover {
   /* color: var(--white); */

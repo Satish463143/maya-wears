@@ -45,9 +45,10 @@ export const ProductApi = createApi({
                     {"Content-Type" :"multipart/form-data"}
                 ])
             })
-        })
+        }),
+       
 
     })
 
 }) 
-export const {useListAllQuery, useListForHomeQuery,useCreateProductMutation, useListByIdQuery, useDeleteProductMutation} = ProductApi
+export const {useListAllQuery, useListForHomeQuery,useCreateProductMutation, useListByIdQuery, useDeleteProductMutation, useEditProductMutation} = ProductApi
