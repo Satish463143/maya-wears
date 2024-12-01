@@ -57,7 +57,8 @@ const Navbar = ({toogleCart}) => {
     }
     else if (path === "/contact") {
       setMenu("Contact");
-    } else {
+    }
+     else {
       setMenu("");
     }
   }, [location]);
