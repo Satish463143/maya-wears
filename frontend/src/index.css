@@ -90,6 +90,7 @@ body{
   background-color: #888;
   border-radius: 10px;
   border: 3px solid #f1f1f1;
+  border: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -98,8 +99,8 @@ body{
 
 /* For Firefox */
 body {
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
+  scrollbar-width: 2px;
+  scrollbar-color:var(--sec_dark) var(--pri_color);
 }
 svg path{
   stroke: 29px;
