@@ -2,6 +2,7 @@
     height: 40vh;
     width: 100%;
     position: relative;
+    text-align: center;
 }
 .img_overlay{
     position: absolute;

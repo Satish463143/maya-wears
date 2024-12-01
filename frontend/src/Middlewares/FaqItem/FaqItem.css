@@ -6,7 +6,7 @@
   }
   
   .faq-question {
-    font-size: 1.3em;
+    /* font-size: 1.3em; */
     /* font-weight: 900; */
     display: flex;
     justify-content: space-between;
@@ -48,10 +48,5 @@
       font-size: 14px;
       text-align: justify;
     }
-    .faq-question{
-      font-size: 15px;
-      
-      /* letter-spacing: 2px; */
-      /* font-weight: 900; */
-    }
+    
   }
