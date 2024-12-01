@@ -16,6 +16,12 @@ const Status={
     ACTIVE:"active",
     INACTIVE:"inactive"
 }
+const orderStatus={
+    PENDING:"pending",
+    SHIPPED:'shipped',
+    CANCEL:"canceled",
+    DELEVERED:"delevered"
+}
 const BannerCategory={
     IMAGE:"image",
     VIDEO:"video"
@@ -31,5 +37,6 @@ module.exports ={
     UserRoles,
     Status,
     BannerCategory,
-    Wearable
+    Wearable,
+    orderStatus
 }
