@@ -7,7 +7,7 @@ export const cartApi = createApi({
         prepareHeaders: (headers)=>{
             const token = localStorage.getItem('_at') || null
 
-            if(!token) {
+            if(token) {
                 headers.set("Authorization", "Bearer "+token)
             }
         }
@@ -26,12 +26,20 @@ export const cartApi = createApi({
                 ])
             })
         }),
+
         deleteCart:builder.mutation({
             query:(id)=>({
                 url:`/cart/${id}`,
                 method:"DELETE"
             })
+        }),
+        updateCart:builder.mutation({
+            query:({productId, size, quantity })=>({
+                url:`/cart/${productId}`,
+                method:"PUT",
+                body:{size, quantity}
+            })
         })
     })
 })
-export const {useListAllCartQuery, useCreateCartMutation, useDeleteCartMutation} = cartApi
+export const {useListAllCartQuery, useCreateCartMutation, useDeleteCartMutation, useUpdateCartMutation} = cartApi

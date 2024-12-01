@@ -8,6 +8,7 @@ router.route('/')
     .get(loginCheck, CartController.index)
 router.route('/:id')
      //list all cart
+    .put(loginCheck, CartController.edit)
     .delete(loginCheck, CartController.delete) // delete cart
 
 module.exports = router
