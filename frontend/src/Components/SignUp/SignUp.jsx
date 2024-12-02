@@ -135,7 +135,7 @@ const SignUp = ({ setCurrentView }) => {
 
             <br />
             <input
-              className="submit_btn"
+              className="submit_btn hoverBotton"
               type="submit"
               value="Sign Up"
               name="signUp_submit"

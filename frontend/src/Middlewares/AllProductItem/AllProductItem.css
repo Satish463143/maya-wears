@@ -16,7 +16,8 @@
     object-fit: cover;
 }
 .Product__catalog .name__{
-    font-size: 15px;
+    font-size: var(--pre_font_size);
+    font-weight: 600;
 }
 .name__price .price__{
     color: var(--sec_dark);

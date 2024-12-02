@@ -8,10 +8,11 @@
 }
 .contact_info_item {
   width: 33%;
+  font-size: var(--pri_font_size);
 }
 .contact_info_item h2 {
-  font-size: 1em;
-  font-weight: 600;
+  font-size:var(--font_for_header);
+  font-weight: 500;
   margin-bottom: 10px;
 }
 .contact_info_item h3 {
@@ -56,7 +57,7 @@
     width: 100%;
     /* margin-bottom: ; */
     /* border: solid; */
-    border-bottom: solid;
+    border-bottom:solid 0.8px;
     padding: 10% 0;
   }
 }

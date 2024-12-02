@@ -26,6 +26,7 @@
         text-align: center;
     }
     .contact__{
-        font-size: 1.5em;
+        font-weight: 500;
+        margin-bottom: 3%;
     }
 }

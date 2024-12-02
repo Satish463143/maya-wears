@@ -20,7 +20,7 @@ const Home = () => {
       <BestSellingItem />
       <Down_2_Banner />
       <Down_3_Banner />
-      {/* <CustomerGallery /> */}
+      <CustomerGallery />
       {/* <GoogleReview/>           */}
       <Faq />
       <Collection />

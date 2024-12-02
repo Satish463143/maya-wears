@@ -80,6 +80,7 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path="about_us" element={<AboutUs/>}/>
 
 
+           
           <Route path="*" element={<>Page not Found</>} />
         </Route>
 

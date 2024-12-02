@@ -23,12 +23,12 @@
   border-radius: 5px;
   border: 0.8px solid var(--sec_dark);
   transition: 0.4s ease;
-  font-size: 20px;
+  font-size: var(--pri_font_size);
 }
 .product_details .price {
   padding: 10px 0;
   font-weight: 600;
-  font-size: 20px;
+  font-size:var(--pri_font_size);
 }
 
 .size__ {
@@ -59,6 +59,20 @@
   justify-content: space-between;
   align-items: center;
 }
+.hoverBotton:hover{
+  background:var(--sec_color) !important;
+  color: var(--sec_dark);
+  text-decoration: underline;
+  transform: scale(1.05);
+  font-size: var(--font_for_header) !important;
+  transition: 1s;
+}
+.activeSize{
+  background:var(--sec_color) !important;
+  color: var(--sec_dark);
+  text-decoration: underline;
+  transform: scale(1.05);
+}
 @media (max-width: 600px) {
   .details_grid {
     display: flex;
@@ -83,9 +97,9 @@
     display: inline-block;
   }
   .product__title {
-    font-size: 1.6em;
+    font-size: var(--font_for_header);
     font-family: "Outfit", sans-serif;
-    font-weight: 900;
+    font-weight: 600;
     margin-bottom: 10px;
   }
   .product_details {
@@ -94,7 +108,7 @@
   }
   .price {
     color: #8d6b4d;
-    font-size: 18px !important;
+    font-size: var(--pri_font_size) !important;
   }
   .buyNow__cartBtn {
     display: flex;

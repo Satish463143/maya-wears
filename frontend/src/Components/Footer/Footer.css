@@ -89,7 +89,7 @@
     padding: 0;
   }
   .copyright p {
-    font-size: 12px;
+    font-size: var(--sec_font_size);
     color: black;
   }
   .new__logo img {

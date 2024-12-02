@@ -1,0 +1,12 @@
+.aboutusbanner{
+    margin-top: 12vh;
+    text-align: center;
+    padding: 0 8vw;
+}
+.aboutusbanner h1{
+    font-size: var(--font_for_header);
+    font-weight: 600;
+}
+.aboutusbanner p{
+    font-size: var(--pri_font_size);
+}
