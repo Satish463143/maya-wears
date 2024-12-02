@@ -174,9 +174,15 @@ const Navbar = ({toogleCart}) => {
                     About Us
                   </li>
                 </Link>
-                <Link>
-                  <li onClick={toggleNav} style={{ background: "none" }}>
-                    Products
+                <Link to='/all_product'>
+                  <li onClick={() => {
+                      toggleNav();
+                      setMenu("all_product");
+                    }}
+                    className={menu === "all_product" ? "liActive" : ""}
+                    style={{ background: "none" }}
+                  >
+                    All Products
                   </li>
                 </Link>
                 <Link>

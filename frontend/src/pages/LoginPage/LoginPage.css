@@ -5,11 +5,7 @@
   display: flex;
   justify-content: center;
 }
-.loginform_box .cross_btn {
-  position: absolute;
-  top: -20px;
-  right: 0;
-}
+
 
 .loginform {
   width: 375px;
@@ -49,38 +45,38 @@
   line-height: 2;
   margin-bottom: 5%;
 }
-.account__photo {
-    position: relative;
+.account__photo{
+  position: relative;
 }
-.account__photo p{
-    position: absolute;
-    top: 67%;
+.account__photo .logoooooo{
+   
     width:100px;
     height: 100px;
-    left:45%;
     background:var(--sec_dark);
     color: var(--pri_color);
-    display: flex;
-    justify-content: center;
-    font-weight: 900;
+    margin: -4vh auto;
     border-radius: 50%;
-    font-size: 3em;
     border: 10px solid var(--pri_color);
+    padding: 2vh;
+position: relative;
     
 }
 .account_cover_poto{
     height: 115px;
     width: 100%;
     object-fit: cover;
+    position: relative;
+}
+.cross_btn {
+  position:absolute;
+  top: 0;
+  right: 0px;
+  z-index: 9;
+
 }
 @media (max-width:600px){
     .loginform {
         
         padding: 5%;
       }
-      .account__photo p{
-        
-        left: 37%;
-        
-    }
 }

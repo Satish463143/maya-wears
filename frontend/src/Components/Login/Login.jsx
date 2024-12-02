@@ -91,7 +91,7 @@ const Login = ({ setCurrentView, setLoggedIn }) => {
           />
           <br />
           <input
-            className="submit_btn"
+            className="submit_btn hoverBotton"
             type="submit"
             value="Sign In"
             name="login_submit"

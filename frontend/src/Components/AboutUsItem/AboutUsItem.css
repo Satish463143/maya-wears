@@ -1,0 +1,18 @@
+.about_item{
+    margin: 5vh 15vw;
+    text-align: center;
+}
+.about_first_item p{
+    font-weight: 500;
+    margin: 5vh 0;
+}
+.about_second_item h1{
+    font-size: var(--font_for_header);
+    font-weight: 600;
+    margin-top: 5vh;
+}
+.about_second_item p{
+    font-size: var(--pri_font_size);
+    margin-top: 5vh;
+    font-weight: 500;
+}

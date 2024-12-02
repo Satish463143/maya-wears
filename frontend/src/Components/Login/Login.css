@@ -55,4 +55,11 @@
     color: red;
     
 }
+/* .hoverBotton:hover{
+    background:var(--sec_color) !important;
+    color: var(--sec_dark);
+    text-decoration: underline;
+    transform: scale(1.05);
+    transition: 1s;
+  } */
 

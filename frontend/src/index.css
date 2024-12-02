@@ -3,7 +3,11 @@
 @import url("https://use.typekit.net/jza0yuk.css");
 /* @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,398;1,398&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;1,300&family=Cormorant:ital,wght@0,398;1,398&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;1,300&family=Cormorant:ital,wght@0,398;1,398&display=swap');
+ */
+
+ @import url("https://use.typekit.net/rdu3esw.css");
+ @import url("https://use.typekit.net/rdu3esw.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,21 +21,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box; 
-  font-family: "Outfit", sans-serif;
-  font-family: "Cormorant", serif;
-  font-family: "Albert Sans", sans-serif;
-
-  /* font-optical-sizing: auto; */
-  /* font-weight: 600; */
-  /* font-style: normal;  */
-  /* font-size: ; */
+  font-family: "mr-eaves-modern", sans-serif;
 }
 :root{
   --pri_text:#000;
   --white:#fff;
  --pri_color:#edc9af; /* #F7E6D3 */
-  --sec_color: #D3BFAD;
+  --sec_color: #edc9;
   --sec_dark: #8D6B4D;
+  --pri_font_size:20px;
+  --sec_font_size:17px;
+  --font_for_header:30px;
 }
 Link, a, button{
   cursor: pointer;
@@ -42,9 +42,7 @@ h1,h2,h3,h4,h5,p{
   color: var(--pri_text);
 }
 .headers{
-  font-family: "Outfit", sans-serif;
-  font-family: "Albert Sans", sans-serif;
-
+  font-family: "mr-eaves-modern", sans-serif;
   font-variation-settings: "wght" 559;
 }
 .container{
@@ -68,11 +66,9 @@ h1,h2,h3,h4,h5,p{
 }
 body{
   background: var(--pri_color);
-  font-family: "Outfit", sans-serif;
-  font-family: "Cormorant", serif;
-  font-family: "Albert Sans", sans-serif;
-
+  font-family: "mr-eaves-modern", sans-serif;
   font-variation-settings: "wght" 400;
+  font-size: var(--pri_font_size);
 }
  
 

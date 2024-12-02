@@ -1,3 +1,7 @@
+.galleryyy{
+    padding: 4vh 0;
+}
+
 .image__slider__main{
     display: flex;
     justify-content: center;
@@ -14,11 +18,11 @@
 text-align: center;
 }
 .slider__name h1{
-    font-size: 2em;
-    padding: 15px 0;
+    font-size:var(--font_for_header);
+    /* padding: 15px 0; */
 }
 .slider__name .share__text{
-    font-size: 1em;
+    font-size: var(--pri_font_size);
     font-weight: bold;
 }
 .slider__name .add__photo__text{

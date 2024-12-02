@@ -76,12 +76,12 @@
 @media (max-width: 600px){
   
     .down_banner_content h2 {
-      font-size: 22px;
+      font-size: var(--font_for_header);
       font-weight: 600;
 
     }
     .down_banner_content p{
-      font-size: 15px;
+      font-size: var(--pri_font_size);
     }
     .shop__now__button a{
       color: var(--sec_dark);
