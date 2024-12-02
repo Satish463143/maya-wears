@@ -30,6 +30,7 @@ import ProductEdit from "./Components/CMS/Product/ProductEdit";
 import AllProductPage from "./pages/AllProductPage/AllProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import AboutUs from "./pages/AboutPage/AboutUs";
 
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 //   if (window.location.href.includes('https://maya-wears.com/')) {
@@ -76,6 +77,8 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path="all_product" element={<AllProductPage />} />
           <Route path="login" element={<LoginPage/>}/>
           <Route path="contact" element={<ContactPage/>}/>
+          <Route path="about_us" element={<AboutUs/>}/>
+
 
           <Route path="*" element={<>Page not Found</>} />
         </Route>

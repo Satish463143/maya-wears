@@ -10,6 +10,7 @@ const collectionRouter = require("../modules/collections/collection.router")
 const productRouter = require("../modules/product/product.router")
 const cartRouter = require("../modules/cart/cart.router")
 const orderRouter = require("../modules/Order/Order.router")
+const promoRouter = require("../modules/promo/promo.router")
 
 
 router.use("/auth",authRouter)
@@ -23,5 +24,6 @@ router.use("/collection",collectionRouter)
 router.use("/product",productRouter)
 router.use('/cart', cartRouter)
 router.use('/order',orderRouter)
+router.use('/promo', promoRouter)
 
 module.exports = router

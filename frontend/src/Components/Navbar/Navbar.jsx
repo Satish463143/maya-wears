@@ -58,6 +58,15 @@ const Navbar = ({toogleCart}) => {
     else if (path === "/contact") {
       setMenu("Contact");
     }
+    else if (path === "/about_us") {
+      setMenu("About Us");
+    }
+    else if (path === "/all_product") {
+      setMenu("Products");
+    }
+    else if (path === "/product/:slug/:id") {
+      setMenu("Products");
+    }
      else {
       setMenu("");
     }
@@ -162,25 +171,28 @@ const Navbar = ({toogleCart}) => {
                     Home
                   </li>
                 </Link>
-                <Link to="/about">
+                <Link to="/about_us">
                   <li
                     onClick={() => {
                       toggleNav();
-                      setMenu("About");
+                      setMenu("About Us");
                     }}
-                    className={menu === "About" ? "liActive" : ""}
+                    className={menu === "About Us" ? "liActive" : ""}
                     style={{ background: "none" }}
                   >
                     About Us
                   </li>
                 </Link>
-                <Link>
-                  <li onClick={toggleNav} style={{ background: "none" }}>
+                <Link to="/all_product">
+                  <li onClick={() => {
+                      toggleNav();
+                      setMenu("Products");
+                    }} style={{ background: "none" }}>
                     Products
                   </li>
                 </Link>
                 <Link>
-                  <li onClick={()=> { toogleCart(); toggleNav(); }} style={{ background: "none" }}>
+                  <li onClick={()=> { toogleCart(); toggleNav(); setMenu("Cart");}} style={{ background: "none" }}>
                     Cart
                   </li>
                 </Link>
