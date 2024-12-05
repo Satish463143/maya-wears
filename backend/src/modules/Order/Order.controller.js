@@ -3,6 +3,7 @@ const CartModel = require("../cart/cart.model");
 const ProductModel = require("../product/product.model");
 const PromoModel = require("../promo/promo.model");
 const OrderModel = require("./Order.model");
+const OrderService = require("./Order.service");
 
 class OrderController {
     create = async (req, res, next) => {
@@ -80,6 +81,63 @@ class OrderController {
             next(exception);
         }
     };
+    index= async(req,res,next)=>{
+        try{
+            const limit = parseInt(req.query.limit) || 10
+            const page = parseInt(req.query.page) || 1 
+            const skip = (page-1 )*limit
+
+            let filter = {}
+
+            if(req.query.search){
+                filter =  {name : new RegExp(req.query.search, 'i')}
+
+            }
+            const {count, data } = await OrderService.listData({
+                skip:skip,
+                limit:limit,
+                filter:filter
+            })
+
+            res.json({
+                result:data,
+                message:"List of order",
+                meta:{
+                    currentPage:page,
+                    limit:limit,
+                    total:count
+                }
+            })
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
+    }
+    updateForUser=async(req,res,next)=>{
+        try{
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
+    }
+    show=async(req,res,next)=>{
+        try{
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
+    }
+    update=async(req,res,next)=>{
+        try{
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
+    }
 }
 
 
