@@ -5,7 +5,6 @@ import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import { useCreateCartMutation,useListAllCartQuery } from "../../api/cart.api";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 
 const ProductDetails = ({ toogleCart }) => {
   const { slug, _id } = useParams();
@@ -17,9 +16,7 @@ const ProductDetails = ({ toogleCart }) => {
   const { data, isLoading } = useListForHomeQuery(null);
   const [createCart, {isLoading:isCreatingCart}] = useCreateCartMutation()
 
-  const loggedInUser  = useSelector((root)=>{
-    return root.user.loggedInUser || null
-  })
+  
 
   useEffect(() => {
     if (data) {
@@ -41,17 +38,18 @@ const ProductDetails = ({ toogleCart }) => {
   
 
   const handleAddToCart = async () => {    
-      if(!loggedInUser){
-        toast.error("Please login to add the item to cart")
-        return;
-      } 
-
       if (!selectedSize) {
         toast.error('Plase select a size to add the product in cart')
         return;
       }
 
     try {
+      // Get or generate cartId for anonymous users
+      let cartId = localStorage.getItem('cartId');
+      if (!cartId) {
+        cartId = new Date().getTime().toString();  // Generate unique cart ID
+        localStorage.setItem('cartId', cartId);  // Store cartId in localStorage
+      }
       const response = await createCart({
         productId: product._id,
         size: selectedSize,
