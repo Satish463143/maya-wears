@@ -21,7 +21,7 @@ const Faq = () => {
                     <div className='home_loan'>
                         <div className='best__of__' style={{padding:'20px 0'}}>
                             <h1 className='help__section'>Help Section </h1>
-                            <img src={line_svg} alt="" style={{top:'12%'}} />
+                            <img src={line_svg} alt=""  />
                         </div>
                         
                         <div className='faq_width'>

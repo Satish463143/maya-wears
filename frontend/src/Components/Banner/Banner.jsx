@@ -17,7 +17,29 @@ const Banner = () => {
   useEffect(() => {
     getAllBanner();
   }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      const mobileImg = document.querySelector(".mobile_img img");
+      const desktopImg = document.querySelector(".desktop_img img");
+      const banner = document.querySelector(".banner");
 
+      if (!mobileImg || !desktopImg || !banner) return;
+
+      const scrollY = window.scrollY;
+      const containerHeight = banner.offsetHeight;
+      const opacity = Math.max(1 - scrollY / containerHeight, 0);
+
+      // Apply calculated opacity
+      if (desktopImg) desktopImg.style.opacity = opacity;
+      if (mobileImg) mobileImg.style.opacity = opacity;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div className="banner">
       {bannerData?.category === "video" && (
@@ -40,15 +62,15 @@ const Banner = () => {
             <img src={bannerData?.desktopImage} alt="" />
           </div>
           <div className="mobile_img">
-            <img src={bannerData?.mobileImage} alt="" />
+            <img src={bannerData?.mobileImage}  alt="" />
           </div>
         </>
       )}
 
-      <div className="banner_content" >
+      {/* <div className="banner_content">
         <h2>{bannerData?.title} </h2>
         <p>{bannerData?.content}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

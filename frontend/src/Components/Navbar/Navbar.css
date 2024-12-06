@@ -65,8 +65,10 @@
   }
   .active .menu-bar1 {
     transform: rotate(-45deg) translate(-0.29rem, 0.25rem);
-    width: 18px;
-    height: 1px;
+    width: 20px;
+    height: 2.5px;
+    border-radius: 0 !important;
+
   }
   
   .active .menu-bar2,.active .menu-bar4 {
@@ -74,9 +76,10 @@
   }
   
   .active .menu-bar3 {
-    transform: rotate(45deg) translate(-0.1rem, -0.05rem);
-    width: 18px;
-    height: 1px;
+    transform: rotate(45deg) translate(-0.13rem, -0.13rem);
+    width: 20px;
+    height: 2.5px;
+    border-radius: 0 !important;
   }
   .menu_logo{
     display: flex;
