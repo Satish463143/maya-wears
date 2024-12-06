@@ -5,7 +5,6 @@ import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import { useCreateCartMutation, useListAllCartQuery } from "../../api/cart.api";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 
 const ProductDetails = ({ toogleCart }) => {
   const { slug, _id } = useParams();
@@ -15,22 +14,11 @@ const ProductDetails = ({ toogleCart }) => {
   const { refetch } = useListAllCartQuery();
 
   const { data, isLoading } = useListForHomeQuery(null);
-  const [createCart, { isLoading: isCreatingCart }] = useCreateCartMutation();
+  const [createCart, {isLoading:isCreatingCart}] = useCreateCartMutation()
 
-  //
-  const [isDiscriptionOpen, setDiscriptionOpen] = useState(false);
-  const [isFitOpen, setFitOpen] = useState(false);
-  const [isMaterialCareOpen, setMaterialCareOpen] = useState(false);
-
-  const togglediscription = () => setDiscriptionOpen(!isDiscriptionOpen);
-  const toggleFit = () => setFitOpen(!isFitOpen);
-  const toggleMaterialCare = () => setMaterialCareOpen(!isMaterialCareOpen);
-
-  //
-
-  const loggedInUser = useSelector((root) => {
-    return root.user.loggedInUser || null;
-  });
+  const loggedInUser  = useSelector((root)=>{
+    return root.user.loggedInUser || null
+  })
 
   useEffect(() => {
     if (data) {
@@ -49,18 +37,24 @@ const ProductDetails = ({ toogleCart }) => {
     setActiveTab(tab);
   };
 
-  const handleAddToCart = async () => {
-    if (!loggedInUser) {
-      toast.error("Please login to add the item to cart");
-      return;
-    }
+  const handleAddToCart = async () => {    
+      if(!loggedInUser){
+        toast.error("Please login to add the item to cart")
+        return;
+      } 
 
-    if (!selectedSize) {
-      toast.error("Plase select a size to add the product in cart");
-      return;
-    }
+      if (!selectedSize) {
+        toast.error('Plase select a size to add the product in cart')
+        return;
+      }
 
     try {
+      // Get or generate cartId for anonymous users
+      let cartId = localStorage.getItem('cartId');
+      if (!cartId) {
+        cartId = new Date().getTime().toString();  // Generate unique cart ID
+        localStorage.setItem('cartId', cartId);  // Store cartId in localStorage
+      }
       const response = await createCart({
         productId: product._id,
         size: selectedSize,

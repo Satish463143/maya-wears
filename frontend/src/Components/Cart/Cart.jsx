@@ -4,8 +4,8 @@ import CartItem from '../../Middlewares/CartItem/CartItem'
 import { useListAllCartQuery, useDeleteCartMutation } from "../../api/cart.api";
 
 const Cart = ({isCartActive , toogleCart,}) => {
-
-    const {data, refetch} = useListAllCartQuery(null)
+    const cartId = localStorage.getItem('cartId');
+    const {data, refetch} = useListAllCartQuery(cartId ? { cartId } : null)
     const [deleteCart] = useDeleteCartMutation()
 
     const cartList  = data?.result?.items || []
@@ -15,12 +15,24 @@ const Cart = ({isCartActive , toogleCart,}) => {
     };
     const totalAmount = calculateTotal(cartList);
 
-    const handleDelete = async(cartItemId)=>{
+    const handleDelete = async (cartItemId) => {
         try {
-            await deleteCart(cartItemId).unwrap()
-            refetch()
-        }catch(exception){
-            console.log(exception)
+            const cartId = localStorage.getItem('cartId'); // Get the cartId for anonymous users
+            const token = localStorage.getItem('_at'); // Check if the user is logged in
+    
+            // Perform the delete operation based on whether the user is logged in or not
+            if (token) {
+                // If the user is logged in, use the token for authentication
+                await deleteCart(cartItemId).unwrap();
+            } else if (cartId) {
+                // If the user is not logged in, use the cartId for the anonymous user's cart
+                await deleteCart({ cartId, cartItemId }).unwrap();
+            }
+    
+            // Refetch the cart or update the state if necessary
+            refetch(); // Refetch the cart data to reflect the updated cart
+        } catch (exception) {
+            console.log(exception);
         }
     }
   return (    

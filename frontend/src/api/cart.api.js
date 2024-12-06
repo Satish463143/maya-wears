@@ -3,15 +3,22 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const cartApi = createApi({
     reducerPath:'cartApi',
     baseQuery: fetchBaseQuery({
-        baseUrl:import.meta.env.VITE_API_URL,
-        prepareHeaders: (headers)=>{
-            const token = localStorage.getItem('_at') || null
-
-            if(token) {
-                headers.set("Authorization", "Bearer "+token)
-            }
-        }
-    }),
+        baseUrl: import.meta.env.VITE_API_URL,
+        prepareHeaders: (headers) => {
+          const token = localStorage.getItem('_at') || null; // Check for token
+          const cartId = localStorage.getItem('cartId'); // Check for cartId for anonymous users
+    
+          if (token) {
+            headers.set("Authorization", "Bearer " + token); // If logged in, add token to headers
+          }
+    
+          if (cartId) {
+            headers.set("Cart-Id", cartId); // If anonymous, add cartId to headers
+          }
+    
+          return headers;
+        },
+      }),
     endpoints:(builder)=>({
         listAllCart : builder.query({
             query:()=> "/cart"

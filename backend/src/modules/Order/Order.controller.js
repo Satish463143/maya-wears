@@ -3,8 +3,10 @@ const CartModel = require("../cart/cart.model");
 const ProductModel = require("../product/product.model");
 const PromoModel = require("../promo/promo.model");
 const OrderModel = require("./Order.model");
+const OrderService = require("./Order.service");
 
 class OrderController {
+    
     create = async (req, res, next) => {
         try {
             const { cartId, cartTotal, promoCode } = req.body;
@@ -80,6 +82,167 @@ class OrderController {
             next(exception);
         }
     };
+    index= async(req,res,next)=>{
+        try{
+            const limit = parseInt(req.query.limit) || 10
+            const page = parseInt(req.query.page) || 1 
+            const skip = (page-1 )*limit
+
+            let filter = {}
+
+            if(req.query.search){
+                filter =  {name : new RegExp(req.query.search, 'i')}
+
+            }
+            const {count, data } = await OrderService.listData({
+                skip:skip,
+                limit:limit,
+                filter:filter
+            })
+
+            res.json({
+                result:data,
+                message:"List of order",
+                meta:{
+                    currentPage:page,
+                    limit:limit,
+                    total:count
+                }
+            })
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
+    }
+    indexForUser= async(req,res,next)=>{
+        try{
+            const limit = parseInt(req.query.limit) || 10; // Pagination limit
+            const page = parseInt(req.query.page) || 1; // Current page
+            const skip = (page - 1) * limit; 
+            const userId = req.authUser._id
+
+            let filter = { userId };
+
+            if (req.query.search) {
+                filter = {
+                    ...filter,
+                    name: new RegExp(req.query.search, 'i'),
+                };
+            }
+            const { count, data } = await OrderService.listData({
+                skip: skip,
+                limit: limit,
+                filter: filter,
+            });
+            res.json({
+                result: data,
+                message: "List of orders for user",
+                meta: {
+                    currentPage: page,
+                    limit: limit,
+                    total: count,
+                },
+            });
+
+        }catch(exception){
+            next(exception)
+        }
+    }
+    updateForUser = async (req, res, next) => {
+        try {
+            const userId = req.authUser._id;
+            const orderId = req.params.id;
+    
+            // Find the order with the specified ID, belonging to the user, and in PENDING status
+            const order = await OrderModel.findOne({ _id: orderId, userId});
+    
+            if (!order) {
+                return res.status(400).json({
+                    message: "Order not found or cannot be canceled.",
+                });
+            } else if (order.orderStatus === orderStatus.CANCEL) {
+                return res.status(400).json({
+                    message: "Your order is already canceled.",
+                });
+            } else if (order.orderStatus !== orderStatus.PENDING) {
+                return res.status(400).json({
+                    message: "Order cannot be canceled. It's already shipped and will be delivered soon to you.",
+                });
+            }
+           
+    
+            // Update the order status to CANCEL
+            order.orderStatus = orderStatus.CANCEL;
+            await order.save();
+    
+            res.json({
+                detail: order,
+                message: "Order canceled successfully",
+                meta: null,
+            });
+        } catch (exception) {
+            console.log(exception);
+            next(exception);
+        }
+    };
+    
+    show=async(req,res,next)=>{
+        try{
+            const orderId = req.params.id
+
+            const order = await OrderModel.findOne({ _id: orderId,})
+                .populate("userId", "name email")
+            if (!order) {
+                return res.status(404).json({
+                    message: "Order not found",
+                    meta: null,
+                });
+            }
+            
+            res.json({
+                detail:order,
+                message:"Order detail by id",
+                meta:null
+            })
+
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
+    }
+    update=async(req,res,next)=>{
+        try{
+            const orderId = req.params.id;
+            const updateStatus = req.body.orderStatus;
+
+
+            const order = await OrderModel.findOne({ _id: orderId});
+
+            if (!order) {
+                return res.status(404).json({
+                    message: "Order not found.",
+                });
+            }
+
+            order.orderStatus = updateStatus
+
+            await order.save();
+            res.json({
+                detail: order,
+                message: "Order Updated successfully",
+                meta: null,
+            });
+
+
+
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
+    }
 }
 
 

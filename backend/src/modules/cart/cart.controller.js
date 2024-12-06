@@ -9,7 +9,6 @@ class CartController {
             const product = await ProductModel.findById(productId)                       
 
             if(!product)  {
-                console.log("Product ID from request:", productId);
                 res.status(404).json({message:"Product not found"})
             }
             const selectedSize = product.sizes.find(s => s.size === size)
@@ -20,7 +19,16 @@ class CartController {
             const unitPrice = product.price
             const totalAmount = unitPrice * quantity
 
-            let cart = await CartModel.findOne({userId:req.authUser._id})
+
+            const userId = req.authUser ? req.authUser._id : req.cookies.cartId;
+
+            let cart;
+            if (userId) {
+                cart = await CartModel.findOne({ userId });
+            } else {
+                // For anonymous users, use cartId from cookies (or localStorage on frontend)
+                cart = await CartModel.findOne({ cartId: req.cookies.cartId });
+            }
             if(!cart){
                 cart = new CartModel ({
                     userId:req.authUser._id,
@@ -63,8 +71,16 @@ class CartController {
     
     index= async(req,res,next)=>{
         try{
-            const cart = await CartModel.findOne({userId:req.authUser._id}).populate('items.productId', 'name price mainImage slug')
-            if(!cart) return res.status(404).json({message:"Cart is Empty"})
+            const userId = req.authUser ? req.authUser._id : req.cookies.cartId;
+
+            if (!userId) {
+                return res.status(400).json({ message: "No cart found" });
+            }
+
+            const cart = await CartModel.findOne({ userId });
+            if (!cart) {
+                return res.status(404).json({ message: "Cart not found" });
+            }
             res.json({
                 result: cart,
                 message: "Cart list ",
@@ -81,10 +97,13 @@ class CartController {
             const { id } = req.params;
             const { size, quantity } = req.body;
     
-            // Find the cart item
-            const cart = await CartModel.findOne({ "items._id": id });
-            if (!cart) return res.status(404).json({ message: "Cart item not found" });
+            const cartId = req.authUser ? req.authUser._id : req.cookies.cartId; // Check for logged-in user or anonymous user
     
+            // Find the cart for the logged-in user or anonymous user
+            const cart = await CartModel.findOne({ userId: cartId });
+            if (!cart) return res.status(404).json({ message: "Cart not found" });
+    
+            // Find the cart item by id
             const item = cart.items.find(item => item._id.toString() === id);
             if (!item) return res.status(404).json({ message: "Item not found in cart" });
     
@@ -108,24 +127,41 @@ class CartController {
     };
     
     
-    delete= async(req,res,next)=>{
-        try{
-            const cart = await CartModel.findOne({userId:req.authUser._id})
-            if (!cart) return res.status(404).json({message:"Cart not found"})
-            
-            cart.items = cart.items.filter(item=> item._id.toString() !== req.params.id)
-
-            await cart.save()
+    
+    delete = async (req, res, next) => {
+        try {
+            const { cartId } = req.body; // For anonymous users
+            const cartItemId = req.params.id;
+    
+            let cart;
+            if (cartId) {
+                // If cartId exists (anonymous user), find the cart using cartId
+                cart = await CartModel.findOne({ cartId });
+            } else if (req.authUser) {
+                // If the user is logged in, find the cart using userId
+                cart = await CartModel.findOne({ userId: req.authUser._id });
+            }
+    
+            if (!cart) {
+                return res.status(404).json({ message: "Cart not found" });
+            }
+    
+            // Remove the item from the cart
+            cart.items = cart.items.filter(item => item._id.toString() !== cartItemId);
+    
+            await cart.save();
             res.json({
                 result: cart,
-                message: "Cart deleted ",
-                meta:null
-            })
-        }catch(exception){
-            console.log(exception)
-            next(exception)
+                message: "Cart item deleted",
+                meta: null
+            });
+        } catch (exception) {
+            console.log(exception);
+            next(exception);
         }
     }
+    
+    
 }
 
 module.exports = new CartController
