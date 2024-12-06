@@ -132,7 +132,8 @@ const ProductDetails = ({ toogleCart }) => {
                   {isDiscriptionOpen && (
                     <div
                       className={`product_desc ${
-                        isDiscriptionOpen ? "open" : ""
+                        
+                      isDiscriptionOpen ? "open" : ""
                       }`}
                     >
                       <p className="disc_pad_top">
