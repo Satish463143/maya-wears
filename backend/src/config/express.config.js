@@ -3,6 +3,7 @@ const cors = require('cors')
 require("./db.config") // databsae connection
 const router = require("./router.config");
 const { MulterError } = require('multer')
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
 
 // Router mounting point
 app.use(router);

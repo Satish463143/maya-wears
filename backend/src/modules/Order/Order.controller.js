@@ -1,6 +1,6 @@
 const { orderStatus } = require("../../config/constants.config");
 const CartModel = require("../cart/cart.model");
-const ProductModel = require("../product/product.model");
+const CustomerModel = require("../customerDetails/customer.model")
 const PromoModel = require("../promo/promo.model");
 const OrderModel = require("./Order.model");
 const OrderService = require("./Order.service");
@@ -9,13 +9,20 @@ class OrderController {
     
     create = async (req, res, next) => {
         try {
-            const { cartId, cartTotal, promoCode } = req.body;
+
+            const { cartId, cartTotal, promoCode,customerId } = req.body;
             const cart = await CartModel.findById(cartId)
                 .populate("userId")
                 .populate("items.productId");
 
             if (!cart) {
                 return res.status(404).json({ message: "Cart not found" });
+            }
+            const customer = await CustomerModel.findById(customerId)
+                .populate("userId")
+
+            if (!customer) {
+                return res.status(404).json({ message: "Customer  not found" });
             }
 
             const cartTotalNumber = parseFloat(cartTotal);
@@ -61,15 +68,16 @@ class OrderController {
 
             // Create a new order
             const newOrder = await OrderModel.create({
+                customerId:customer._id,
                 cartId: cart._id,
-                userId: cart.userId._id,
+                userId: cart.userId,
                 subTotal: calculatedSubtotal,
                 discount,
                 serviceCharge,
                 vat,
                 total,
                 orderStatus: orderStatus.PENDING, // Default order status
-                createdBy: cart.userId._id,
+                createdBy: cart.userId,
             });
 
             res.json({

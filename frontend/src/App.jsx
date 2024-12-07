@@ -55,44 +55,19 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route index element={<Home />} />
-          <Route
-            path="activate/:token"
-            element={
-              <UserActivation
-                
-                setCurrentView={setCurrentView}
-              />
-            }
-          />
-          <Route
-            path="product/:slug/:id"
-            element={
-              <ProductPage
-                isCartActive={isCartActive}
-                toogleCart={toogleCart}
-              />
-            }
-          />
+          <Route path="activate/:token" element={<UserActivation setCurrentView={setCurrentView} />}/>
+          <Route path="product/:slug/:id" element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart}/>}/>
           <Route path="collection/:slug" element={<CollectionPage />} />
           <Route path="all_product" element={<AllProductPage />} />
           <Route path="login" element={<LoginPage/>}/>
           <Route path="contact" element={<ContactPage/>}/>
           <Route path="about_us" element={<AboutUs/>}/>
-
-
            
           <Route path="*" element={<>Page not Found</>} />
         </Route>
 
-        <Route
-          path="/admin"
-          element={
-            <CheckPermission allowedBy={"admin"}>
-              <CMSLayout />
-            </CheckPermission>
-          }
-        >
-          {/* routes down */}
+        <Route path="/admin" element={<CheckPermission allowedBy={"admin"}> <CMSLayout /> </CheckPermission>}>
+          {/* admin routes down */}
           <Route index element={<Dashboard />} />
           <Route path="banner_1" element={<Banner_1List />} />
           <Route path="banner_1_edit/:id" element={<Banner_1_Edit />} />

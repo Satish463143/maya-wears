@@ -3,12 +3,16 @@ const { orderStatus } = require('../../config/constants.config')
 
 const orderSchema = new mongoose.Schema({
     cartId:{
-        type:mongoose.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref : "cart"
     },
     userId:{
-        type:mongoose.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'User'
+    },
+    customerId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"CustomerDetails"
     },
     subTotal:{
         type:Number
