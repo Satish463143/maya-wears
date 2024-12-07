@@ -3,20 +3,32 @@ import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
-import { useCreateCartMutation,useListAllCartQuery } from "../../api/cart.api";
+import { useCreateCartMutation, useListAllCartQuery } from "../../api/cart.api";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const ProductDetails = ({ toogleCart }) => {
   const { slug, _id } = useParams();
   const [product, setProduct] = useState(null);
-  const [activeTab, setActiveTab] = useState("description"); 
+  const [activeTab, setActiveTab] = useState("description");
   const [selectedSize, setSelectedSize] = useState(""); // State for size
   const { refetch } = useListAllCartQuery();
-  
-  const { data, isLoading } = useListForHomeQuery(null);
-  const [createCart, {isLoading:isCreatingCart}] = useCreateCartMutation()
 
-  
+  const { data, isLoading } = useListForHomeQuery(null);
+  const [createCart, { isLoading: isCreatingCart }] = useCreateCartMutation();
+
+  const [isDiscriptionOpen, setDiscriptionOpen] = useState(false);
+  const [isFitOpen, setFitOpen] = useState(false);
+  const [isMaterialCareOpen, setMaterialCareOpen] = useState(false);
+
+  const togglediscription = () => setDiscriptionOpen(!isDiscriptionOpen);
+  const toggleFit = () => setFitOpen(!isFitOpen);
+  const toggleMaterialCare = () => setMaterialCareOpen(!isMaterialCareOpen);
+
+
+  const loggedInUser = useSelector((root) => {
+    return root.user.loggedInUser || null;
+  });
 
   useEffect(() => {
     if (data) {
@@ -35,31 +47,28 @@ const ProductDetails = ({ toogleCart }) => {
     setActiveTab(tab);
   };
 
-  
+  const handleAddToCart = async () => {
+    if (!loggedInUser) {
+      toast.error("Please login to add the item to cart");
+      return;
+    }
 
-  const handleAddToCart = async () => {    
-      if (!selectedSize) {
-        toast.error('Plase select a size to add the product in cart')
-        return;
-      }
+    if (!selectedSize) {
+      toast.error("Plase select a size to add the product in cart");
+      return;
+    }
 
     try {
-      // Get or generate cartId for anonymous users
-      let cartId = localStorage.getItem('cartId');
-      if (!cartId) {
-        cartId = new Date().getTime().toString();  // Generate unique cart ID
-        localStorage.setItem('cartId', cartId);  // Store cartId in localStorage
-      }
       const response = await createCart({
         productId: product._id,
         size: selectedSize,
         quantity,
       }).unwrap();
-      toast.success("Product added to cart!")
+      toast.success("Product added to cart!");
       toogleCart(); // Update cart badge
-      refetch()
+      refetch();
     } catch (error) {
-      toast.error(error.data?.message || "Failed to add product to cart.")
+      toast.error(error.data?.message || "Failed to add product to cart.");
     }
   };
 
@@ -70,7 +79,7 @@ const ProductDetails = ({ toogleCart }) => {
           <div className="details_grid">
             <div className="product_img_grid">
               {product.images.map((item) => (
-                  <img src={item} alt="" />
+                <img src={item} alt="" />
               ))}
             </div>
             <div>
@@ -86,7 +95,7 @@ const ProductDetails = ({ toogleCart }) => {
                   <p className="sizeeee">Select the Size:</p>
                   <div className="size__flex">
                     <div className="size__">
-                      {product.sizes.map((item,index) => (
+                      {product.sizes.map((item, index) => (
                         <button
                           key={index}
                           className={`size__option  ${
@@ -99,10 +108,13 @@ const ProductDetails = ({ toogleCart }) => {
                       ))}
                     </div>
                     <p className="size__guideee">Size Guide</p>
-                  </div>                  
+                  </div>
                 </div>
-                <div className="buyNow__cartBtn">                 
-                  <button className="cart_btn cart__buy hoverBotton"  onClick={handleAddToCart}>
+                <div className="buyNow__cartBtn">
+                  <button
+                    className="cart_btn cart__buy hoverBotton"
+                    onClick={handleAddToCart}
+                  >
                     Add to Cart
                   </button>
                 </div>
@@ -112,16 +124,68 @@ const ProductDetails = ({ toogleCart }) => {
           <div className="product__discription">
             <ul>
               <li>
-                <a href="">Description</a>
-                <p>+</p>
+                <div>
+                  <p onClick={togglediscription}>
+                    <span>Discription</span>
+                    <span>{isDiscriptionOpen ? "-" : "+"}</span>
+                  </p>
+                  {isDiscriptionOpen && (
+                    <div
+                      className={`product_desc ${
+                        
+                      isDiscriptionOpen ? "open" : ""
+                      }`}
+                    >
+                      <p className="disc_pad_top">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ipsum minima fuga omnis culpa nesciunt modi voluptate,
+                        aut laboriosam tempore temporibus!
+                      </p>
+                    </div>
+                  )}
+                </div>
               </li>
               <li>
-                <a href="">fit</a>
-                <p>+</p>
+                <div>
+                  <p onClick={toggleFit}>
+                    <span>Fit</span>
+                    <span>{isFitOpen ? "-" : "+"}</span>
+                  </p>
+                  {isFitOpen && (
+                    <div
+                      className={`sub_fotter_menu ${isFitOpen ? "open" : ""}`}
+                    >
+                      <p className="disc_pad_top">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Nobis saepe minima fugiat accusantium dignissimos dicta
+                        alias ex omnis! Excepturi optio voluptate incidunt
+                        assumenda, necessitatibus autem!
+                      </p>
+                    </div>
+                  )}
+                </div>
               </li>
               <li>
-                <a href="">Material and care</a>
-                <p>+</p>
+                <div>
+                  <p onClick={toggleMaterialCare}>
+                    <span>Material and Care</span>
+                    <span>{isMaterialCareOpen ? "-" : "+"}</span>
+                  </p>
+                  {isMaterialCareOpen && (
+                    <div
+                      className={`sub_fotter_menu ${
+                        isMaterialCareOpen ? "open" : ""
+                      }`}
+                    >
+                      <p className="disc_pad_top">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Aperiam officia autem dicta iure consequuntur? Nostrum
+                        officiis corporis nesciunt blanditiis quam? Totam
+                        pariatur omnis labore qui quo optio enim hic sunt?
+                      </p>
+                    </div>
+                  )}
+                </div>
               </li>
             </ul>
           </div>

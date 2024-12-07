@@ -158,7 +158,7 @@ const Navbar = ({toogleCart}) => {
           >
             <div className="overlay_bg" onClick={toggleNav}></div>
             <nav>
-              <ul>
+              <ul className="">
                 <Link to="/">
                   <li
                     onClick={() => {
@@ -171,26 +171,19 @@ const Navbar = ({toogleCart}) => {
                     Home
                   </li>
                 </Link>
-                <Link to="/about_us">
-                  <li
-                    onClick={() => {
-                      toggleNav();
-                      setMenu("About Us");
-                    }}
-                    className={menu === "About Us" ? "liActive" : ""}
-                    style={{ background: "none" }}
-                  >
-                    About Us
-                  </li>
-                </Link>
                 <Link to="/all_product">
                   <li onClick={() => {
                       toggleNav();
                       setMenu("Products");
                     }} style={{ background: "none" }}>
-                    Products
+                    All Products
                   </li>
                 </Link>
+                <Link>
+                  <li onClick={toggleNav} style={{ background: "none" }}>
+                    Gallery
+                  </li>
+                </Link>               
                 <Link>
                   <li onClick={()=> { toogleCart(); toggleNav(); setMenu("Cart");}} style={{ background: "none" }}>
                     Cart
@@ -204,12 +197,19 @@ const Navbar = ({toogleCart}) => {
                     className={menu === "Contact" ? "liActive" : ""}
                     style={{ background: "none" }}
                   >
-                    Contact Us
+                    Contact Maya
                   </li>
                 </Link>
-                <Link>
-                  <li onClick={toggleNav} style={{ background: "none" }}>
-                    Store
+                <Link to="/about_us">
+                  <li
+                    onClick={() => {
+                      toggleNav();
+                      setMenu("About Us");
+                    }}
+                    className={menu === "About Us" ? "liActive" : ""}
+                    style={{ background: "none" }}
+                  >
+                    About Maya
                   </li>
                 </Link>
               </ul>

@@ -38,7 +38,7 @@ const ProductSliders3 = () => {
   const limitedFilteredProduct = filteredProduct.slice(0, 10);
 
   return (
-    <div className="div_container" style={{ marginTop: '100vh' }}>
+    <div className="div_container">
       <div className="carousel" ref={carouselRef} data-flickity='{ "wrapAround":true }'>
         {limitedFilteredProduct.map((item, index) => (
           <div className="carousel-cell" key={index}>
