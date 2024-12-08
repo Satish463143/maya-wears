@@ -10,11 +10,11 @@ class CartController {
         try {
             const { productId, size, quantity } = req.body;
             const product = await ProductModel.findById(productId);
-    
+
             if (!product) {
                 return res.status(404).json({ message: "Product not found" });
             }
-    
+
             const selectedSize = product.sizes.find(s => s.size === size);
             if (!selectedSize) {
                 return res.status(400).json({ message: "Invalid size" });
@@ -22,53 +22,14 @@ class CartController {
             if (selectedSize.quantity < quantity) {
                 return res.status(400).json({ message: "Insufficient stock" });
             }
-    
+
             const unitPrice = product.price;
             const totalAmount = unitPrice * quantity;
-    
+
             let userId = req.userId;
-    
-            if (!userId) {
-                // Generate a new cartId for anonymous users if not found
-                userId = new mongoose.Types.ObjectId().toString();
-                res.cookie('cartId', userId, { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 }); // Set cartId cookie
-            }
-    
+
             let cart = await CartModel.findOne({ userId });
-    
-            // Handle case where user logs in and has an anonymous cart
-            if (req.authUser && req.cookies.cartId) {
-                const anonymousCart = await CartModel.findOne({ userId: req.cookies.cartId });
-    
-                if (anonymousCart) {
-                    if (!cart) {
-                        // Link anonymous cart to logged-in user
-                        anonymousCart.userId = req.authUser._id;
-                        cart = anonymousCart;
-                    } else {
-                        // Merge anonymous cart into the user's existing cart
-                        anonymousCart.items.forEach(item => {
-                            const existingItem = cart.items.find(
-                                i => i.productId.toString() === item.productId.toString() && i.size === item.size
-                            );
-    
-                            if (existingItem) {
-                                existingItem.quantity += item.quantity;
-                                existingItem.amount = existingItem.quantity * existingItem.price;
-                            } else {
-                                cart.items.push(item);
-                            }
-                        });
-    
-                        // Delete the anonymous cart after merging
-                        await anonymousCart.deleteOne();
-                    }
-                }
-    
-                // Update `userId` for the merged cart
-                userId = req.authUser._id;
-            }
-    
+
             if (!cart) {
                 // Create a new cart if no existing cart
                 cart = new CartModel({
@@ -105,7 +66,7 @@ class CartController {
                     });
                 }
             }
-    
+
             await cart.save();
             res.json({
                 result: cart,
@@ -121,7 +82,7 @@ class CartController {
     
     index = async (req, res, next) => {
         try {
-            const userId = req.userId
+            const userId = req.userId; 
         
             // Fetch the cart for the user (logged-in or anonymous)
             const cart = await CartModel.findOne({ userId });

@@ -1,6 +1,6 @@
-require("dotenv").config();
 const jwt = require('jsonwebtoken');
-const UserModel  = require('../modules/user/user.model')
+const UserModel = require('../modules/user/user.model');
+const mongoose = require('mongoose');
 
 const authOrAnonymous = async (req, res, next) => {
     try {
@@ -9,7 +9,7 @@ const authOrAnonymous = async (req, res, next) => {
         // Check if token exists in the Authorization header
         const token = req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null;
 
-        if (token) {   
+        if (token) {
             try {
                 // Validate the token
                 const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -19,7 +19,7 @@ const authOrAnonymous = async (req, res, next) => {
                     throw { status: 401, message: 'Invalid token: user not found' };
                 }
 
-                // Set authUser for logged-in user
+                // If the token belongs to a logged-in user, set userId
                 req.authUser = {
                     id: user._id,
                     name: user.name,
@@ -34,10 +34,12 @@ const authOrAnonymous = async (req, res, next) => {
             // For anonymous users, use cartId from cookies
             userId = req.cookies.cartId;
         } else {
-            return res.status(400).json({ message: 'No token or cartId provided' });
+            // If no token or cartId, create a new anonymous userId (cartId)
+            userId = new mongoose.Types.ObjectId().toString(); // Generate a new ObjectId
+            res.cookie('cartId', userId, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); // Set cartId cookie for anonymous users
         }
 
-        // Attach userId (either logged-in or anonymous) to the request
+        // Attach the resolved userId (from token, cookie, or newly generated) to the request
         req.userId = userId;
         next();
     } catch (err) {

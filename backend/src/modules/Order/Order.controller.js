@@ -193,8 +193,7 @@ class OrderController {
             console.log(exception);
             next(exception);
         }
-    };
-    
+    };    
     show=async(req,res,next)=>{
         try{
             const orderId = req.params.id

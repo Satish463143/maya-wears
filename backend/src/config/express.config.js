@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors')
 require("./db.config") // databsae connection
+require('dotenv').config()
 const router = require("./router.config");
 const { MulterError } = require('multer')
 const cookieParser = require('cookie-parser');
@@ -8,8 +9,12 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 //cors allowed
-app.use(cors())
+const corsOptions = {
+    origin: process.env.FRONTEND_URL,  // Specify the frontend origin
+    credentials: true,  // Allow sending cookies and credentials
+};
 
+app.use(cors(corsOptions));
 // Parser
 app.use(express.json());
 app.use(express.urlencoded({

@@ -4,6 +4,7 @@ export const cartApi = createApi({
     reducerPath:'cartApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_API_URL,
+        credentials: 'include',
         prepareHeaders: (headers) => {
           const token = localStorage.getItem('_at') || null; // Check for token
           const cartId = localStorage.getItem('cartId'); // Check for cartId for anonymous users
@@ -21,7 +22,8 @@ export const cartApi = createApi({
       }),
     endpoints:(builder)=>({
         listAllCart : builder.query({
-            query:()=> "/cart"
+            query:(id)=> `/cart/${id}`,
+            method:"GET"
         }),
         createCart :builder.mutation({
             query:(args)=>({

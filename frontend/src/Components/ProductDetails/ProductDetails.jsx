@@ -5,17 +5,17 @@ import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import { useCreateCartMutation, useListAllCartQuery } from "../../api/cart.api";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 
 const ProductDetails = ({ toogleCart }) => {
   const { slug, _id } = useParams();
   const [product, setProduct] = useState(null);
-  const [activeTab, setActiveTab] = useState("description");
+
   const [selectedSize, setSelectedSize] = useState(""); // State for size
-  const { refetch } = useListAllCartQuery();
+  
 
   const { data, isLoading } = useListForHomeQuery(null);
   const [createCart, { isLoading: isCreatingCart }] = useCreateCartMutation();
+  const { data: cartData, refetch } = useListAllCartQuery();
 
   const [isDiscriptionOpen, setDiscriptionOpen] = useState(false);
   const [isFitOpen, setFitOpen] = useState(false);
@@ -24,11 +24,6 @@ const ProductDetails = ({ toogleCart }) => {
   const togglediscription = () => setDiscriptionOpen(!isDiscriptionOpen);
   const toggleFit = () => setFitOpen(!isFitOpen);
   const toggleMaterialCare = () => setMaterialCareOpen(!isMaterialCareOpen);
-
-
-  const loggedInUser = useSelector((root) => {
-    return root.user.loggedInUser || null;
-  });
 
   useEffect(() => {
     if (data) {
@@ -39,36 +34,33 @@ const ProductDetails = ({ toogleCart }) => {
       setProduct(foundProduct || null); // Set the found product
     }
   }, [data, _id, slug]);
-  if (isLoading) <LoadingComponent />;
+
+  if (isLoading) return <LoadingComponent />;
 
   if (!product) return <div>Product not found</div>;
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
   const handleAddToCart = async () => {
-    if (!loggedInUser) {
-      toast.error("Please login to add the item to cart");
-      return;
-    }
-
     if (!selectedSize) {
-      toast.error("Plase select a size to add the product in cart");
+      toast.error("Please select a size to add the product to the cart");
       return;
     }
-
+  
     try {
+      // Optimistically add product to the cart by modifying the cache
       const response = await createCart({
         productId: product._id,
         size: selectedSize,
-        quantity,
+        quantity: 1,
       }).unwrap();
+  
       toast.success("Product added to cart!");
       toogleCart(); // Update cart badge
-      refetch();
+
+      // Refetch cart data to get the updated cart
+      refetch(); 
     } catch (error) {
       toast.error(error.data?.message || "Failed to add product to cart.");
+      console.log(error);
     }
   };
 
