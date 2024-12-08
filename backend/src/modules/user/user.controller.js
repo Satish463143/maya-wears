@@ -6,8 +6,7 @@ const userSvc = require("./user.service")
 
 class UserController {
      userCreate = async (req,res,next)=>{
-    try{
-
+        try{
         //user create 
         const data = userSvc.transformUserCreate(req)  
        

@@ -6,7 +6,15 @@ class OrderService {
         try{
             const count = await OrderModel.countDocuments(filter)
             const data = await OrderModel.find(filter)
-                .populate("createdBy", ["_id", "email", "name", "role"])
+                .populate({
+                    path: "cartId", // Populate cart details
+                    populate: {
+                        path: "items.productId", // Populate product details in the cart
+                        model: "products", // Replace with your product model name
+                        select: "title price mainImage", // Include necessary fields
+                    },
+                })
+                .populate("userId", ["_id", "email", "name"])
                 .sort({ _id: "desc" })
                 .limit(limit)
                 .skip(skip)

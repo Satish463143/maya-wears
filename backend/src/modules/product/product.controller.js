@@ -145,7 +145,6 @@ class ProductController {
     show = async (req, res, next) => {
         try {
             const id = req.params._id
-            console.log('Product ID:', id); 
             await this.#validate(id)
             res.json({
                 result: this.productDetails,

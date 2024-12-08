@@ -1,4 +1,5 @@
 const ProductModel = require('./product.model')
+
 class ProductService {
     createProduct = async (data) => {
         try {
