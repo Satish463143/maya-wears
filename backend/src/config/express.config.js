@@ -8,12 +8,19 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
-//cors allowed
-const corsOptions = {
-    origin: process.env.FRONTEND_URL,  // Specify the frontend origin
-    credentials: true,  // Allow sending cookies and credentials
-};
+const allowedOrigins = ['http://localhost:5173', 'https://maya-wears.com']; 
 
+const corsOptions = {
+    origin: (origin, callback) => {
+        // Allow requests from allowed origins or no origin (e.g., mobile apps or Postman)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true, // Allow cookies and credentials
+};
 app.use(cors(corsOptions));
 // Parser
 app.use(express.json());
