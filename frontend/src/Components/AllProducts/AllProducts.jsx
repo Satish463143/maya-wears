@@ -18,7 +18,7 @@ const AllProducts = () => {
             </div>
             <div className="products_grid">
                 {products.map((item)=>(
-                    <AllProductItem key={item._id} _id={item._id} slug={item.slug} images={item.images[0]} title={item.title} price={item.price}/>
+                    <AllProductItem key={item._id} _id={item._id} slug={item.slug} images={item.mainImage} title={item.title} price={item.price}/>
                 ))}
             </div>
         </div>

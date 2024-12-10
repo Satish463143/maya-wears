@@ -38,7 +38,7 @@ const BestSellingItem = () => {
                   key={item._id}
                   slug={item.slug}
                   _id={item._id}
-                  images={item.images?.[0]}
+                  images={item.mainImage}
                   title={item.title}
                   price={item.price}
                 />

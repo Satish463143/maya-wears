@@ -10,7 +10,7 @@ const app = express();
 
 //cors allowed
 const corsOptions = {
-    origin: process.env.FRONTEND_URL,  // Specify the frontend origin
+    origin:'https://maya-wears.com/',  // Specify the frontend origin
     credentials: true,  // Allow sending cookies and credentials
 };
 
