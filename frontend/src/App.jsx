@@ -33,9 +33,7 @@ import ContactPage from "./pages/ContactPage/ContactPage";
 import AboutUs from "./pages/AboutPage/AboutUs";
 
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
-//   if (window.location.href.includes('https://maya-wears.com/')) {
-//     window.location.href = 'https://themayawears.com/';
-// }
+
   const dispatch = useDispatch();
 
 
