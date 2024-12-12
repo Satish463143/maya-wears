@@ -72,7 +72,9 @@ const ProductDetails = ({ toogleCart }) => {
         <div className="container">
           <div className="details_grid">
             <div className="product_img_grid">
+              <img src={product.mainImage} alt="" />
               {product.images.map((item) => (
+                
                 <img src={item} alt="" />
               ))}
             </div>
