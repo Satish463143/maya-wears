@@ -194,6 +194,23 @@ export const WearableOptionsCompoent = ({control,name,errMsg,required,onChange,v
         </>
     )
 }
+export const PaymentOptionsCompoent = ({control,name,errMsg,required,onChange,value})=>{
+    return(
+        <>
+            <SelectComponent 
+                options ={
+                    [{label:"Cash on delivery", value:"Cash on delivery"},{label:"Pay by E-sewa", value:"Esewa"}]
+                }
+                control={control}
+                onChange={onChange}  
+                name={name} 
+                errMsg={errMsg}
+                required={required}
+                value={value || ""}
+            />
+        </>
+    )
+}
 
 export const SubmitButton = ({loading=false,value})=>{
     return (

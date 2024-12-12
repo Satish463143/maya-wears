@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-export const cartApi = createApi({
-    reducerPath:'cartApi',
+export const customerApi = createApi({
+    reducerPath:'customerApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_API_URL,
         credentials: 'include',
@@ -13,14 +12,14 @@ export const cartApi = createApi({
           return headers;
         },
       }),
-    endpoints:(builder)=>({
-        listAllCart : builder.query({
-            query:(cartId)=> `/cart/${cartId}`,
+      endpoints:(builder)=>({
+        listForAdmin:builder.query({
+            query:()=> '/customer',
             method:"GET"
         }),
-        createCart :builder.mutation({
+        createCustomer :builder.mutation({
             query:(args)=>({
-                url:'/cart',
+                url:'/customer',
                 body:args,
                 method:"POST",
                 headers:()=>([
@@ -28,19 +27,20 @@ export const cartApi = createApi({
                 ])
             })
         }),
-        deleteCart:builder.mutation({
-            query:(id)=>({
-                url:`/cart/${id}`,
-                method:"DELETE"
+        updateCustomer:builder.mutation({
+            query:(userId)=>({
+                url:`/customer/${userId}`,
+                method:"PUT",
+                headers:()=>([
+                    {"Content-Type" :"multipart/form-data"}
+                ])                
             })
         }),
-        updateCart:builder.mutation({
-            query:({productId, quantity })=>({
-                url:`/cart/${productId}`,
-                method:"PUT",
-                body:{quantity}
-            })
+        listForUser:builder.query({
+            query:(userId)=> `/customer/${userId}`,
+            method:"GET"
         })
-    })
+      })
+
 })
-export const {useListAllCartQuery, useCreateCartMutation, useDeleteCartMutation, useUpdateCartMutation} = cartApi
+export const {useListForAdminQuery, useListForUserQuery, useUpdateCustomerMutation, useCreateCustomerMutation} = customerApi

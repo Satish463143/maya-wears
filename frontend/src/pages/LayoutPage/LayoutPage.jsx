@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import { Outlet,useLocation } from 'react-router-dom'
-import LoginPage from '../LoginPage/LoginPage'
 import Navbar from '../../Components/Navbar/Navbar'
 import Footer from '../../Components/Footer/Footer'
 import FooterNav from '../../Components/FooterNav/FooterNav'
@@ -54,10 +53,8 @@ const LayoutPage = () => {
                 </>
 
             )}
-
             
-            <Cart isCartActive={isCartActive} toogleCart={toogleCart} />
-            
+            <Cart isCartActive={isCartActive} toogleCart={toogleCart} />           
             
             <ScrollToTop/>
 

@@ -43,7 +43,7 @@ class OrderController {
                         message: `Invalid cart total. Expected: ${calculatedSubtotal}, Received: ${cartTotalNumber}` 
                     });
                 }
-
+ 
             let discount = 0;
 
             // Validate the promo code
@@ -74,6 +74,7 @@ class OrderController {
                 subTotal: calculatedSubtotal,
                 discount,
                 serviceCharge,
+                paymentType,
                 vat,
                 total,
                 orderStatus: orderStatus.PENDING, // Default order status

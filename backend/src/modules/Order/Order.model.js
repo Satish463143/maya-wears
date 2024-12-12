@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const { orderStatus } = require('../../config/constants.config')
+const { orderStatus, paymentType } = require('../../config/constants.config')
+const { string, required } = require('joi')
 
 const orderSchema = new mongoose.Schema({
     cartId:{
@@ -16,6 +17,11 @@ const orderSchema = new mongoose.Schema({
     },
     subTotal:{
         type:Number
+    },
+    paymentType:{
+        type:String,
+        enum:[...Object.values(paymentType)],
+        required:true
     },
     discount:{
         type:Number

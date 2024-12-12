@@ -22,6 +22,10 @@ const orderStatus={
     CANCEL:"canceled",
     DELEVERED:"delevered"
 }
+const paymentType={
+    COD:"Cash on delivery",
+    PAID:"Esewa"
+}
 const BannerCategory={
     IMAGE:"image",
     VIDEO:"video"
@@ -38,5 +42,6 @@ module.exports ={
     Status,
     BannerCategory,
     Wearable,
-    orderStatus
+    orderStatus,
+    paymentType
 }

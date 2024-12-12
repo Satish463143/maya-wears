@@ -83,9 +83,15 @@ class CartController {
     index = async (req, res, next) => {
         try {
             const userId = req.userId; 
+            const cartId = req.cookies.cartId;
         
-            // Fetch the cart for the user (logged-in or anonymous)
-            const cart = await CartModel.findOne({ userId });
+             // Fetch the cart based on userId or cartId
+            const cart = await CartModel.findOne({
+                $or: [
+                { userId }, // Match logged-in user's cart
+                { _id: cartId }, // Match anonymous user's cart by cartId
+                ],
+            });
     
             if (!cart) {
                 return res.status(404).json({ message: "Cart not found" });

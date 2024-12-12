@@ -2,9 +2,11 @@ import React, {  useContext } from 'react'
 import './Cart.css'
 import CartItem from '../../Middlewares/CartItem/CartItem'
 import { useListAllCartQuery, useDeleteCartMutation } from "../../api/cart.api";
+import Cookies from 'js-cookie'
+import {Link} from 'react-router-dom'
 
 const Cart = ({isCartActive , toogleCart,}) => {
-    const cartId = localStorage.getItem('cartId');
+    const cartId = Cookies.get('cartId');
     const {data, refetch} = useListAllCartQuery(cartId ? { cartId } : null)
     const [deleteCart] = useDeleteCartMutation()
 
@@ -17,7 +19,7 @@ const Cart = ({isCartActive , toogleCart,}) => {
 
     const handleDelete = async (cartItemId) => {
         try {
-            const cartId = localStorage.getItem('cartId'); // Get the cartId for anonymous users
+            const cartId = Cookies.get('cartId'); // Get the cartId for anonymous users
             const token = localStorage.getItem('_at'); // Check if the user is logged in
     
             // Perform the delete operation based on whether the user is logged in or not
@@ -77,13 +79,15 @@ const Cart = ({isCartActive , toogleCart,}) => {
                         <p style={{margin:'50px 0', textAlign:'center'}}>No items in the Cart</p>
                     )}
                 </div> 
-                <div className='checkout_btn'>
-                    <button>
-                        Checkout
-                    </button>
-                    <button>
-                        Rs.{totalAmount}/-
-                    </button>
+                <div className='checkout_btn' onClick={toogleCart}>
+                    <Link to='/check_out' >
+                        <button>
+                            Checkout
+                        </button>
+                        <button>
+                            Rs.{totalAmount}/-
+                        </button>
+                    </Link>
                 </div>
             </div>            
         </div>

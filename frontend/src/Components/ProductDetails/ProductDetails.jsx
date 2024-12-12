@@ -5,8 +5,10 @@ import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import { useCreateCartMutation, useListAllCartQuery } from "../../api/cart.api";
 import { toast } from "react-toastify";
+import Cookies from 'js-cookie'
 
 const ProductDetails = ({ toogleCart }) => {
+  const cartId = Cookies.get('cartId');
   const { slug, _id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -15,7 +17,7 @@ const ProductDetails = ({ toogleCart }) => {
 
   const { data, isLoading } = useListForHomeQuery(null);
   const [createCart, { isLoading: isCreatingCart }] = useCreateCartMutation();
-  const { data: cartData, refetch } = useListAllCartQuery();
+  const { data: cartData, refetch } = useListAllCartQuery(cartId);
 
   const [isDiscriptionOpen, setDiscriptionOpen] = useState(false);
   const [isFitOpen, setFitOpen] = useState(false);

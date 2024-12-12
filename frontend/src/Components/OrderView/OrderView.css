@@ -1,0 +1,10 @@
+
+.cart_box{
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 20% 60% 20%;
+    margin-bottom: 20px;
+}
+.ordr_cart_details{
+    margin-left: 20px;
+}
