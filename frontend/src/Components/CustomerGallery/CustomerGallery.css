@@ -3,6 +3,16 @@
     margin: 5vh auto;
     text-align: center;
   }
+  .slick-prev:before, .slick-next:before{
+    color: var(--pri_text) !important;
+
+  }
+  .galleryyy img{
+    width: 90% !important;
+    margin: auto;
+    margin-top: 20px;
+    
+  }
   
   .slider__name h1 {
     font-size: var(--font_for_header);

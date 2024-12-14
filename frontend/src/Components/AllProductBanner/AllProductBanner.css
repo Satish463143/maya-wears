@@ -21,12 +21,11 @@
 .product_mobile_img {
     display: none;
 }
-.product_banner_content{
-   
+.product_banner_content{   
     position: absolute;
-    top: 35%;
-    left: 0;
-    /* transform: translate(-50%, -50%); */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     color: var(--white);
 
