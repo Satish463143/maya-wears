@@ -32,6 +32,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import AboutUs from "./pages/AboutPage/AboutUs";
 import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
+import CheckOut from "./Components/CheckOut/CheckOut";
 
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 
@@ -61,6 +62,7 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path="login" element={<LoginPage/>}/>
           <Route path="contact" element={<ContactPage/>}/>
           <Route path="about_us" element={<AboutUs/>}/>
+          <Route path="checkout" element={<CheckOut/>}/>
           <Route path="check_out" element={<CheckOutPage isCartActive={isCartActive} toogleCart={toogleCart}/>}/>
 
            
