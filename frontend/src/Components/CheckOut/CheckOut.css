@@ -1,0 +1,5 @@
+.submit_btn{
+    border: solid 0.7px var(--sec_dark);
+    color: var(--sec_dark);
+    text-decoration: underline;
+}

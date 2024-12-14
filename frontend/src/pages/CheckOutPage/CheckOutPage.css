@@ -71,3 +71,24 @@
     background:none;
 
 }
+.checkout_page .checkout__name{
+font-size: var(--font_for_header);
+text-align: center;
+font-weight: 600;
+margin-bottom: 5vh;
+}
+@media (max-width:600px){
+    .checkout_page{
+        display: flex;
+        flex-direction: column-reverse;
+        padding:10px;
+
+    }
+    .checkout_box{
+        margin: 20px;
+    }
+    .order_box{
+        border-radius: 5px;
+    }
+    
+}

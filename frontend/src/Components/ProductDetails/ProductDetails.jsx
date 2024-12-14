@@ -56,10 +56,11 @@ const ProductDetails = ({ toogleCart }) => {
       }).unwrap();
   
       toast.success("Product added to cart!");
+      refetch(); 
       toogleCart(); // Update cart badge
 
       // Refetch cart data to get the updated cart
-      refetch(); 
+      
     } catch (error) {
       toast.error(error.data?.message || "Failed to add product to cart.");
       console.log(error);

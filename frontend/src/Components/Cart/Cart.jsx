@@ -43,7 +43,8 @@ const Cart = ({isCartActive , toogleCart,}) => {
         <div className='cart_container' >
             <div className='cart_container_div'></div>
             <div className='cart_details'>
-                <div className='cross_btn'>
+                <div className='cross_btn2'>
+                        <h2 className='headers'>My Cart</h2>
                     <span onClick={toogleCart}>
                         <svg
                             style={{ enableBackground: 'new 0 0 24 24' }}
@@ -64,7 +65,6 @@ const Cart = ({isCartActive , toogleCart,}) => {
                             </g>
                         </svg>
                     </span>
-                    <h2 className='headers'>My Cart</h2>
                 </div>
                 <hr />
                 <div className='cart_details_box'>
@@ -80,12 +80,9 @@ const Cart = ({isCartActive , toogleCart,}) => {
                     )}
                 </div> 
                 <div className='checkout_btn' onClick={toogleCart}>
-                    <Link to='/check_out' >
+                    <Link to='/check_out' className='check_out_text'>
                         <button>
-                            Checkout
-                        </button>
-                        <button>
-                            Rs.{totalAmount}/-
+                            Checkout: Rs.{totalAmount}/-
                         </button>
                     </Link>
                 </div>
