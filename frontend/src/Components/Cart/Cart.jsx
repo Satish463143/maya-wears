@@ -79,7 +79,7 @@ const Cart = ({isCartActive , toogleCart,}) => {
                         <p style={{margin:'50px 0', textAlign:'center'}}>No items in the Cart</p>
                     )}
                 </div> 
-                <div className='checkout_btn' onClick={toogleCart}>
+                <div className='checkout_btn' onClick={toogleCart} >
                     <Link to='/check_out' className='check_out_text'>
                         <button>
                             Checkout: Rs.{totalAmount}/-

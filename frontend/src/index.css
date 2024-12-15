@@ -41,13 +41,13 @@ Link, a, button{
 h1,h2,h3,h4,h5,p{
   color: var(--pri_text);
 }
-@font-face {
+/* @font-face {
   font-family: "mr-eaves-modern";
   src: url("path_to_font_file.woff2") format("woff2"),
        url("path_to_font_file.woff") format("woff");
   font-weight: 559;
   font-style: normal;
-}
+} */
 
 .headers {
   font-family: "mr-eaves-modern", sans-serif;

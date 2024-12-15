@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextInputComponent } from "../../Middlewares/Form/Input.component";
 import './CheckOut.css'
+
 const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
+  
   const customerDTO = Yup.object({
     fullname: isloggedIn
       ? Yup.string().required().nullable().notRequired()
