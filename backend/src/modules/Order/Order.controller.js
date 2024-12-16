@@ -1,4 +1,4 @@
-const { orderStatus } = require("../../config/constants.config");
+const { orderStatus, paymentType } = require("../../config/constants.config");
 const CartModel = require("../cart/cart.model");
 const CustomerModel = require("../customerDetails/customer.model")
 const PromoModel = require("../promo/promo.model");
@@ -74,12 +74,13 @@ class OrderController {
                 subTotal: calculatedSubtotal,
                 discount,
                 serviceCharge,
-                paymentType,
+                paymentType:paymentType.COD  ,
                 vat,
                 total,
                 orderStatus: orderStatus.PENDING, // Default order status
                 createdBy: cart.userId,
             });
+            console.log('Received cartId:', cartId);
 
             res.json({
                 details: newOrder,

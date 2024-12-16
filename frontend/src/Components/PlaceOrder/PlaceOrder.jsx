@@ -9,17 +9,23 @@ import PlaceOrderForm from './PlaceOrder.form';
 
 const PlaceOrder = () => {
     const [loading, setLoading] = useState(false)
-    const customerId = useSelector(state => state.customerId);
+    const customerId = useSelector((state) => state.customer.customerId);
     const [createOrder] = useCreateOrderMutation();
     const cartId = Cookies.get("cartId");
     const { data } = useListAllCartQuery(cartId ? { cartId } : null);
+    const cartIdForOrder = data?.result?._id
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
+    const [promoCode, setPromoCode] = useState('');
+    const handlePromoCodeChange = (e) => {
+      setPromoCode(e.target.value); 
+    };
 
     const calculateTotal = (cartItems) => {
         return cartItems.reduce((total, item) => total + item.amount, 0);
     };
     const totalAmount = calculateTotal(cartList);
+
 
     const submitEvent = async (data) => {
         setLoading(true);
@@ -27,15 +33,18 @@ const PlaceOrder = () => {
           if (!customerId) {
             toast.error("Customer details are missing.");
             return;
-          }
-    
+          }  
+          const paymentTypeValue = data.paymentType.value;   
           const orderData = {
             ...data,
-            paymentType: data.paymentType.value,
+            paymentType: paymentTypeValue,
             customerId,
-            cartId,
-          };
-    
+            cartId:cartIdForOrder,
+            promoCode,
+            subTotal: totalAmount,  
+            cartTotal: totalAmount, 
+          };   
+          console.log("Order Data: ", orderData);  
           const response = await createOrder(orderData).unwrap();
           toast.success("Order has been placed successfully!");
         } catch (exception) {
@@ -76,116 +85,15 @@ const PlaceOrder = () => {
             <hr />
             <div className="order_promo">
               <div className="order_promo_title">
-                <span
-                  style={{ display: "flex", alignItems: "center", gap: "5px" }}
-                >
-                  <svg
-                    viewBox="0 0 256 256"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    height="20px"
-                  >
-                    <rect fill="none" height="256" width="256" />
-                    <path
-                      d="M92.7,216H48a8,8,0,0,1-8-8V163.3a7.9,7.9,0,0,1,2.3-5.6l120-120a8,8,0,0,1,11.4,0l44.6,44.6a8,8,0,0,1,0,11.4l-120,120A7.9,7.9,0,0,1,92.7,216Z"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                    <line
-                      x1="136"
-                      y1="64"
-                      x2="192"
-                      y2="120"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                    <polyline
-                      points="160 192 200 152 192 120"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                    <line
-                      x1="40.5"
-                      y1="160.5"
-                      x2="95.5"
-                      y2="215.5"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                  </svg>
-                  <p>Enter promo code</p>
-                </span>
+                
                 <form action="">
-                  <input type="text" placeholder="Promo code" />
+                  <input type="text" placeholder="Promo code" value={promoCode} onChange={handlePromoCodeChange} />
                 </form>
               </div>
             </div>
             <hr />
             <div className="order_promo">
-              <div className="order_promo_title">
-                <span
-                  style={{ display: "flex", alignItems: "center", gap: "5px" }}
-                >
-                  <svg
-                    viewBox="0 0 256 256"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    height="20px"
-                  >
-                    <rect fill="none" height="256" width="256" />
-                    <path
-                      d="M92.7,216H48a8,8,0,0,1-8-8V163.3a7.9,7.9,0,0,1,2.3-5.6l120-120a8,8,0,0,1,11.4,0l44.6,44.6a8,8,0,0,1,0,11.4l-120,120A7.9,7.9,0,0,1,92.7,216Z"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                    <line
-                      x1="136"
-                      y1="64"
-                      x2="192"
-                      y2="120"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                    <polyline
-                      points="160 192 200 152 192 120"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                    <line
-                      x1="40.5"
-                      y1="160.5"
-                      x2="95.5"
-                      y2="215.5"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="12"
-                    />
-                  </svg>
-                  <p>Select payment option</p>
-                </span>  
+              <div className="order_promo_title">                
                 <PlaceOrderForm submitEvent={submitEvent}  loading={loading}/>              
               </div>
             </div>

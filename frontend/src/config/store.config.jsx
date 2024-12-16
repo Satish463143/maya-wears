@@ -1,6 +1,7 @@
 
 import {configureStore} from '@reduxjs/toolkit'
 import  useReducer  from '../reducer/user.reducer'
+import customerReducer from '../reducer/customer.reducer'
 import { CollectionApi } from '../api/collection.api'
 import { ProductApi } from '../api/product.api'
 import { cartApi } from '../api/cart.api'
@@ -10,6 +11,7 @@ import { orderApi } from '../api/order.api'
 const storeConfig = configureStore({
     reducer:{
         user: useReducer,
+        customer: customerReducer,
         [CollectionApi.reducerPath]: CollectionApi.reducer,
         [ProductApi.reducerPath]:ProductApi.reducer,
         [cartApi.reducerPath]:cartApi.reducer,

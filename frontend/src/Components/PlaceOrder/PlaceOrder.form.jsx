@@ -20,13 +20,14 @@ const PlaceOrderForm = ({submitEvent,loading}) => {
   return (
     <form onSubmit={handleSubmit(submitEvent)}>
         <PaymentOptionsCompoent
-        name="paymentType"
-        control={control}
-        errMsg={errors?.paymentType?.message}
-        required
+          name='paymentType'
+          control={control}
+          errMsg={errors?.paymentType?.message}
+          required
         />
         <div style={{ display: "flex", justifyContent: "center" }}>
           <input
+            
             className="submit_btn hoverBotton cart__buy"
             type="submit"
             value="Place order"
