@@ -26,8 +26,7 @@ const PlaceOrderForm = ({submitEvent,loading}) => {
           required
         />
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <input
-            
+          <input            
             className="submit_btn hoverBotton cart__buy"
             type="submit"
             value="Place order"

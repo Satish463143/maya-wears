@@ -6,6 +6,7 @@ import { useCreateOrderMutation } from '../../api/order.api';
 import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import PlaceOrderForm from './PlaceOrder.form';
+import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
     const [loading, setLoading] = useState(false)
@@ -17,6 +18,7 @@ const PlaceOrder = () => {
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
     const [promoCode, setPromoCode] = useState('');
+    const navigate = useNavigate()
     const handlePromoCodeChange = (e) => {
       setPromoCode(e.target.value); 
     };
@@ -25,16 +27,14 @@ const PlaceOrder = () => {
         return cartItems.reduce((total, item) => total + item.amount, 0);
     };
     const totalAmount = calculateTotal(cartList);
-
-
     const submitEvent = async (data) => {
         setLoading(true);
         try {
           if (!customerId) {
             toast.error("Customer details are missing.");
             return;
-          }  
-          const paymentTypeValue = data.paymentType.value;   
+          }
+          const paymentTypeValue = data.paymentType.value;  
           const orderData = {
             ...data,
             paymentType: paymentTypeValue,
@@ -44,9 +44,10 @@ const PlaceOrder = () => {
             subTotal: totalAmount,  
             cartTotal: totalAmount, 
           };   
-          console.log("Order Data: ", orderData);  
+           
           const response = await createOrder(orderData).unwrap();
           toast.success("Order has been placed successfully!");
+          navigate('/my_account')
         } catch (exception) {
           console.error(exception);
           toast.error("Error while placing order.");

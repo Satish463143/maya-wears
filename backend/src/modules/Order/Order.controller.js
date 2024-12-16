@@ -74,7 +74,7 @@ class OrderController {
                 subTotal: calculatedSubtotal,
                 discount,
                 serviceCharge,
-                paymentType:paymentType.COD  ,
+                paymentType: paymentType === 'Cash on delivery' ? paymentType.COD : paymentType === 'Esewa' ? paymentType.PAID : paymentType.COD,
                 vat,
                 total,
                 orderStatus: orderStatus.PENDING, // Default order status
