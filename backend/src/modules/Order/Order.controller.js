@@ -5,12 +5,11 @@ const PromoModel = require("../promo/promo.model");
 const OrderModel = require("./Order.model");
 const OrderService = require("./Order.service");
 
-class OrderController {
-    
+class OrderController {    
     create = async (req, res, next) => {
         try {
+            const { cartId, cartTotal, promoCode,customerId,paymentType } = req.body;
 
-            const { cartId, cartTotal, promoCode,customerId } = req.body;
             const cart = await CartModel.findById(cartId)
                 .populate("userId")
                 .populate("items.productId");
@@ -74,13 +73,13 @@ class OrderController {
                 subTotal: calculatedSubtotal,
                 discount,
                 serviceCharge,
-                paymentType: paymentType === 'Cash on delivery' ? paymentType.COD : paymentType === 'Esewa' ? paymentType.PAID : paymentType.COD,
+                paymentType,
                 vat,
                 total,
                 orderStatus: orderStatus.PENDING, // Default order status
                 createdBy: cart.userId,
             });
-            console.log('Received cartId:', cartId);
+            console.log('Received cartId:', newOrder);
 
             res.json({
                 details: newOrder,

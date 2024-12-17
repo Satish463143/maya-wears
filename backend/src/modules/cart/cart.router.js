@@ -12,6 +12,9 @@ router.route('/')
 router.route('/:id')
     .get(authOrAnonymous, CartController.index)
     .put(authOrAnonymous, CartController.edit)
-    .delete(authOrAnonymous, CartController.delete) // delete cart
+    .delete(authOrAnonymous, CartController.deleteById) // delete cart by item
+
+router.route('/cartId/:id')
+    .delete(authOrAnonymous, CartController.deleteByCartId)
 
 module.exports = router

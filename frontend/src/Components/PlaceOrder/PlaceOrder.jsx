@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import OrderView from '../OrderView/OrderView';
-import { useListAllCartQuery } from '../../api/cart.api';
+import { useListAllCartQuery,useDeledeEntireCartMutation } from '../../api/cart.api';
 import Cookies from "js-cookie";
 import { useCreateOrderMutation } from '../../api/order.api';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,8 @@ const PlaceOrder = () => {
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
     const [promoCode, setPromoCode] = useState('');
-    const navigate = useNavigate()
+    const navigate = useNavigate()  
+
     const handlePromoCodeChange = (e) => {
       setPromoCode(e.target.value); 
     };
@@ -27,6 +28,7 @@ const PlaceOrder = () => {
         return cartItems.reduce((total, item) => total + item.amount, 0);
     };
     const totalAmount = calculateTotal(cartList);
+    const [deleteCart] = useDeledeEntireCartMutation()
     const submitEvent = async (data) => {
         setLoading(true);
         try {
@@ -47,6 +49,15 @@ const PlaceOrder = () => {
            
           const response = await createOrder(orderData).unwrap();
           toast.success("Order has been placed successfully!");
+          console.log('cartId for delete', cartIdForOrder)
+          const deleteResponse = await deleteCart({ cartIdForOrder }).unwrap();
+         
+
+          if (deleteResponse?.message === 'Cart deleted successfully') {
+            toast.success('Cart has been emptied successfully!');
+          } else {
+              toast.error('Error while emptying the cart.');
+          }
           navigate('/my_account')
         } catch (exception) {
           console.error(exception);

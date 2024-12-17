@@ -146,7 +146,7 @@ class CartController {
     
     
     
-    delete = async (req, res, next) => {
+    deleteById = async (req, res, next) => {
         try {
             const cartItemId = req.params.id; // ID of the item to delete
             const userId = req.userId; // Set by authOrAnonymous middleware
@@ -179,6 +179,36 @@ class CartController {
             next(exception);
         }
     };
+
+    deleteByCartId = async(req,res,next)=>{
+        try{
+            const cartId = req.params.id; // ID of the cart to delete
+            const userId = req.userId;
+
+            if (!mongoose.Types.ObjectId.isValid(cartId)) {
+                return res.status(400).json({ message: "Invalid cart ID" });
+            }
+           // Find the cart (either logged-in user or anonymous user)
+            const cart = await CartModel.findOne({ userId });
+            
+             // Delete the cart from the database
+            const response = await CartModel.findByIdAndDelete({ _id: cartId, userId });
+            if (!response) {
+                return res.status(404).json({
+                    message: "Cart not found or doesn't belong to the user.",
+                });
+            }
+            res.json({
+                details:response,
+                message:"cart deleted sucessfully",
+                meta:null
+            })
+
+        }catch(exception){
+            next(exception)
+            console.log(exception)
+        }
+    }
     
     
     

@@ -40,7 +40,14 @@ export const cartApi = createApi({
                 method:"PUT",
                 body:{quantity}
             })
+        }),
+        deledeEntireCart:builder.mutation({
+            query:(id)=>({
+                url:`/cart/cartId/${id}`,
+                method:"DELETE"
+            })
+
         })
     })
 })
-export const {useListAllCartQuery, useCreateCartMutation, useDeleteCartMutation, useUpdateCartMutation} = cartApi
+export const {useListAllCartQuery, useCreateCartMutation, useDeleteCartMutation, useUpdateCartMutation, useDeledeEntireCartMutation} = cartApi
