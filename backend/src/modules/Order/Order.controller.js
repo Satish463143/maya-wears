@@ -13,7 +13,6 @@ class OrderController {
             const cart = await CartModel.findById(cartId)
                 .populate("userId")
                 .populate("items.productId");
-
             if (!cart) {
                 return res.status(404).json({ message: "Cart not found" });
             }
@@ -65,21 +64,29 @@ class OrderController {
             const vat = 0.13 * discountedSubtotal; // 13% VAT
             const total = discountedSubtotal + serviceCharge + vat;
 
+            const items = cart.items.map((item) => ({
+                productId: item.productId._id, // Only the ID of the product
+                title: item.title,
+                size: item.size,
+                quantity: item.quantity,
+                productImage: item.productImage,
+            }));
+
             // Create a new order
             const newOrder = await OrderModel.create({
-                customerId:customer._id,
+                customerId: customer._id,
                 cartId: cart._id,
                 userId: cart.userId,
+                items, // Save the items array
                 subTotal: calculatedSubtotal,
                 discount,
                 serviceCharge,
-                paymentType,
                 vat,
                 total,
-                orderStatus: orderStatus.PENDING, // Default order status
+                paymentType,
+                orderStatus: orderStatus.PENDING,
                 createdBy: cart.userId,
             });
-            console.log('Received cartId:', newOrder);
 
             res.json({
                 details: newOrder,
@@ -200,6 +207,10 @@ class OrderController {
             const orderId = req.params.id
 
             const order = await OrderModel.findOne({ _id: orderId,})
+                .populate({
+                    path: "customerId",
+                    select: ["fullname", "email", "phone", "optionalNumber","country","province","city","address","landMark","postalCode",], // Fetch specific fields
+                })
                 .populate("userId", "name email")
             if (!order) {
                 return res.status(404).json({
@@ -225,7 +236,6 @@ class OrderController {
             const orderId = req.params.id;
             const updateStatus = req.body.orderStatus;
 
-
             const order = await OrderModel.findOne({ _id: orderId});
 
             if (!order) {
@@ -242,9 +252,6 @@ class OrderController {
                 message: "Order Updated successfully",
                 meta: null,
             });
-
-
-
 
         }catch(exception){
             console.log(exception)

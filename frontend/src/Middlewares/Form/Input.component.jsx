@@ -211,6 +211,23 @@ export const PaymentOptionsCompoent = ({control,name,errMsg,required,onChange,va
         </>
     )
 }
+export const OrderStatusOptionsCompoent = ({control,name,errMsg,required,onChange,value})=>{
+    return(
+        <>
+            <SelectComponent 
+                options ={
+                    [{label:"Pending", value:"pending"},{label:"Shipped", value:"shipped"},{label:"Canceled", value:"canceled"},{label:"Delevered", value:"delevered"}]
+                }
+                control={control}
+                onChange={onChange}  
+                name={name} 
+                errMsg={errMsg}
+                required={required}
+                value={value || ""}
+            />
+        </>
+    )
+}
 
 export const SubmitButton = ({loading=false,value})=>{
     return (

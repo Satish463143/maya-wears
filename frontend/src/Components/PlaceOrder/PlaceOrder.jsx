@@ -13,7 +13,7 @@ const PlaceOrder = () => {
     const customerId = useSelector((state) => state.customer.customerId);
     const [createOrder] = useCreateOrderMutation();
     const cartId = Cookies.get("cartId");
-    const { data } = useListAllCartQuery(cartId ? { cartId } : null);
+    const { data,refetch } = useListAllCartQuery(cartId ? { cartId } : null);
     const cartIdForOrder = data?.result?._id
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
@@ -49,15 +49,12 @@ const PlaceOrder = () => {
            
           const response = await createOrder(orderData).unwrap();
           toast.success("Order has been placed successfully!");
-          console.log('cartId for delete', cartIdForOrder)
-          const deleteResponse = await deleteCart({ cartIdForOrder }).unwrap();
-         
+          await deleteCart(cartIdForOrder).unwrap();
+          toast.success('cart cleared') 
+           
+          //refetch the cleared cart 
+          await refetch({ force: true }); 
 
-          if (deleteResponse?.message === 'Cart deleted successfully') {
-            toast.success('Cart has been emptied successfully!');
-          } else {
-              toast.error('Error while emptying the cart.');
-          }
           navigate('/my_account')
         } catch (exception) {
           console.error(exception);
@@ -96,8 +93,7 @@ const PlaceOrder = () => {
             </div>
             <hr />
             <div className="order_promo">
-              <div className="order_promo_title">
-                
+              <div className="order_promo_title">                
                 <form action="">
                   <input type="text" placeholder="Promo code" value={promoCode} onChange={handlePromoCodeChange} />
                 </form>

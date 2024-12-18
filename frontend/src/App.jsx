@@ -34,6 +34,9 @@ import AboutUs from "./pages/AboutPage/AboutUs";
 import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import MyAccountPage from "./pages/MyAccountPage/MyAccountPage";
+import OrdersList from "./Components/CMS/Orders/OrdersList";
+import OrderView from "./Components/OrderView/OrderView";
+import AdminOrdersView from "./Components/CMS/Orders/AdminOrdersView";
 
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 
@@ -86,6 +89,8 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path="product" element={<ProductList />} />
           <Route path="add_product" element={<ProductAdd />} />
           <Route path="edit_product/:id" element={<ProductEdit />} />
+          <Route path='order_list' element={<OrdersList/>}/>
+          <Route path='order_view/:id' element={<AdminOrdersView/>}/>
         </Route>
       </Routes>
     </div>
