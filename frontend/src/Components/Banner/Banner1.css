@@ -1,0 +1,126 @@
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background-color:var(--pre_color); /* Base color to fade into */
+}
+
+.desktop_img,
+.mobile_img {
+  position: relative;
+  /* height: 80vh; */
+  overflow: hidden;
+}
+
+.desktop_img img,
+.mobile_img img {
+  width: 100%;
+  /* height: 80vh; */
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: opacity 0.3s ease-out; /* Smooth fade transition */
+}
+
+.banner_content {
+  position: relative;
+ z-index: 2;
+  margin-top: 80vh;
+  text-align: center;
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--white);
+}
+
+.banner_content h2 {
+  font-size: 55px;
+}
+
+.banner_content p {
+  font-size: 23px;
+}
+
+/* @media (max-width: 800px) {
+  .mobile_img {
+    display: block !important;
+  }
+  .desktop_img {
+    display: none;
+  }
+  .banner_content h2 {
+    font-size: 35px;
+  }
+  .banner_content p {
+    font-size: 20px;
+  }
+} */
+
+
+.desktop_img video, .mobile_img video{
+    width: 100%;
+    /* height: 100vh; */
+    /* object-fit: cover; */
+}
+.mobile_img{
+    display: none;
+}
+.controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 999;
+  }
+  .controls button {
+    background-color: var(--sec_color);
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .controls button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .controls button:active {
+    transform: scale(0.98); /* Adds a subtle click effect  */
+ 
+} 
+
+@media (max-width: 700px){
+    .mobile_img{
+        display: block !important;
+    }
+    .desktop_img{
+        display: none;
+    }
+    .controls{
+        bottom: 80px;
+    }
+    .controls img {
+      width: 20px;
+      height: auto;
+    }
+
+}
+@media (max-width: 600px){
+  .banner_content h2 {
+    font-size: 35px;
+  }
+  .banner_content p{
+    font-size: 20px;
+  }
+}

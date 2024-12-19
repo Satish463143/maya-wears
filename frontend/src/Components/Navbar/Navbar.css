@@ -3,7 +3,7 @@
   position: fixed;
   z-index: 999999;
   top: 0%;
-  transition: top 0.5s ease, background-color 0.5s ease;
+  transition: top 0.5s ease, 0.5s ease;
 }
 
 .navbar.hidden {
@@ -17,7 +17,7 @@
 .navbar .nav_grid {
   width: 100%;
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 20% 60% 20%;
 }
 
 .navbar_menu {
@@ -26,9 +26,8 @@
 
 .background_nav {
   transition: 0.5s;
-  /* background: #f7e6d31c; */
-  backdrop-filter: blur(5px);
-  /* border-bottom: solid 0.5px var(--sec_color) ; */
+  background: var(--back-c);
+  backdrop-filter: blur(20px);
   position: relative;
   z-index:99;
 
@@ -158,8 +157,8 @@
     z-index: 9;
     width: 35%;
     height: 100vh;
-    background-color:#edc9 ;
-    backdrop-filter: blur(5px);
+    background-color:var(--back-c) ;
+    backdrop-filter: blur(10px);
   }
  
   .overlay nav ul{   
@@ -180,14 +179,16 @@
     width: 0;
     display: block; 
     height: 2px;
-    background: var(--pri_text);
+    background: var(--sec_dark);
     margin-top: 10px; 
     position: absolute; 
     bottom: 0; 
     transition:  width 0.5s ease;
     left: 0;
 }
-
+.overlay nav ul .liActive{
+  color: var(--sec_dark);
+}
 .overlay nav ul li:hover::after,
 .overlay nav ul li.liActive::after {
     width: 100%;

@@ -4,7 +4,7 @@
 .product_img_grid {
   width: 100%;
   overflow-x: scroll;
-  scrollbar-width: 3px;
+  scrollbar-width: none;
   background-color: var(--sec_dark);
   white-space: nowrap;
   scrollbar-color: var(--pri_color);
@@ -23,6 +23,8 @@
   border: 0.8px solid var(--sec_dark);
   transition: 0.4s ease;
   font-size: var(--pri_font_size);
+  color: var(--sec_dark);
+  text-decoration: underline;
 }
 .product_details .price {
   padding: 10px 0;
@@ -108,7 +110,7 @@
   .product_img_grid {
     width: 100%;
     overflow-x: scroll;
-    scrollbar-width: 3px;
+    scrollbar-width: 0px;
     background-color: var(--sec_dark);
     white-space: nowrap;
   }
@@ -144,7 +146,7 @@
   }
 
   .size__ button {
-    background-color: var(--pri_color);
+    background-color: var(--back);
     width: 25%;
     margin: 0 2% 0 0;
     border: none;

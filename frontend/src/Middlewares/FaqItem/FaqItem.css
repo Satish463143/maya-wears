@@ -46,7 +46,7 @@
   @media(max-width:600px){
     .faq-question{
       font-size: var(--pri_font_size);
-      text-align: justify;
+      /* text-align: justify; */
     }
     .faq-answer p{
       font-size: var(--sec_font_size);

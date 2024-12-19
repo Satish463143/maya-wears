@@ -21,7 +21,8 @@
     
     /* background: ; */
     /* border-radius: 10px;    */
-    backdrop-filter: blur(5px);
+    background-color: var(--back-c);
+    backdrop-filter: blur(20px);
 }
 .foornav_box ul {
     height: 60px;
@@ -31,7 +32,7 @@
     align-items: center;
 }
 .nav_foot_active svg,.nav_foot_active svg path {
-    fill: #fff;
+    fill:var(--sec_dark);
 
 }
 

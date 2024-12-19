@@ -11,7 +11,7 @@
 .contact__{
     font-size: 2em;
     font-weight: 600;
-    margin-bottom: 3%;
+    margin-bottom: var(--text-gap);
 }
 .contact__info{
     margin-bottom: 10px;
@@ -27,6 +27,5 @@
     }
     .contact__{
         font-weight: 600;
-        margin-bottom: 3%;
     }
 }

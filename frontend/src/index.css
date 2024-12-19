@@ -22,6 +22,7 @@
   padding: 0;
   box-sizing: border-box; 
   font-family: "mr-eaves-modern", sans-serif;
+  /* background: white !important; */
 }
 :root{
   --pri_text:#000;
@@ -32,6 +33,10 @@
   --pri_font_size:20px;
   --sec_font_size:17px;
   --font_for_header:30px;
+  --back:white;
+  --back-c:rgba(255, 255, 255, 0.847);
+  --div-gap:20px;
+  --text-gap:5px;
 }
 Link, a, button{
   cursor: pointer;
@@ -73,7 +78,7 @@ h1,h2,h3,h4,h5,p{
   }
 }
 body{
-  background: var(--pri_color);
+  /* background: var(--pri_color); */
   font-family: "mr-eaves-modern", sans-serif;
   font-variation-settings: "wght" 400;
   font-size: var(--pri_font_size);
@@ -83,6 +88,7 @@ body{
 /* For WebKit browsers */
 ::-webkit-scrollbar {
   width: 0px;
+  scrollbar-width: none;
 }
 
 ::-webkit-scrollbar-track {
@@ -102,14 +108,14 @@ body{
 
 /* For Firefox */
 body {
-  scrollbar-width: 2px;
+  scrollbar-width: none !important;
   scrollbar-color:var(--sec_dark) var(--pri_color);
 }
 svg path{
   stroke: 29px;
 }
 .div_container{
-  background-color: var(--pri_color);
+  background-color: var(--back);
   width: 100%;
   z-index: 999;
   position: relative;

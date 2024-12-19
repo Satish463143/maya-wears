@@ -18,7 +18,8 @@
     z-index: 9999;
 }
 .cart_container{
-    background-color: var(--pri_color);
+    background-color: var(--back-c);
+    backdrop-filter: blur(20px);
     height: 100vh;
     position: absolute;
     right: 0;

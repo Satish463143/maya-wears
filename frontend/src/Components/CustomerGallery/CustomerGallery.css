@@ -1,6 +1,6 @@
 .galleryyy {
-    max-width: 80vw;
-    margin: 5vh auto;
+    max-width: 100vw;
+    /* margin: 5vh auto; */
     text-align: center;
   }
   .slick-prev:before, .slick-next:before{
@@ -8,16 +8,19 @@
 
   }
   .galleryyy img{
-    width: 90% !important;
-    margin: auto;
-    margin-top: 20px;
+    width:50% !important;
+    margin-left:var(--div-gap);
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+
     
   }
   
   .slider__name h1 {
     font-size: var(--font_for_header);
     font-weight: 600;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
   
 .add__photo__text{
@@ -25,63 +28,11 @@
     color: var(--sec_dark);
     text-decoration: underline;
 }
-  
-  .image__slider__main {
-    position: relative;
-    margin-top: 20px;
-  }
-  
-  .slider {
-    position: relative;
+  .cus__gallery{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .slider-image {
-    width: 80%;
-    height: 300px;
-    border-radius: 5px;
-    object-fit: cover;
-  }
-  
-  button.prev,
-  button.next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    color: var(--sec_dark);
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 50%;
-  }
-  
-  button.prev {
-    left: 0px;
-  }
-  
-  button.next {
-    right: 0px;
-  }
-  
-  .dots-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .dot {
-    width: 5px;
-    height: 5px;
-    background: var(--sec_dark);
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .dot.active {
-    background: var(--sec_dark);
+    overflow: scroll;
+    margin-top: var(--div-gap);
+    white-space: wrap;
+    scrollbar-width: none;
   }
   
