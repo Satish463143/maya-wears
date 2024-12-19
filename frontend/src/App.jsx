@@ -37,7 +37,7 @@ import MyAccountPage from "./pages/MyAccountPage/MyAccountPage";
 import OrdersList from "./Components/CMS/Orders/OrdersList";
 import OrderView from "./Components/OrderView/OrderView";
 import AdminOrdersView from "./Components/CMS/Orders/AdminOrdersView";
-
+import GalleryPage from "./pages/GalleryPage/GalleryPage";
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 
   const dispatch = useDispatch();

@@ -17,9 +17,10 @@ const Home = () => {
       <Banner />      
       <ProductSliders3/>
       <DownBannerItem />
-      <BestSellingItem />
       <Down_2_Banner />
       <Down_3_Banner />
+      <BestSellingItem />
+
       <CustomerGallery />
       {/* <GoogleReview/>           */}
       <Faq />

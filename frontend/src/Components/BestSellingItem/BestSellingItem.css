@@ -13,7 +13,7 @@
     overflow-x: scroll;
     scrollbar-width: none;   
     gap: 30px; 
-    margin-left:var(--div-gap);
+    padding-left:var(--div-gap);
 }
 .view_all_box{
     display: flex;
@@ -39,7 +39,7 @@
 }
 @media (max-width:600px){
     .best_flex{
-    gap: var(--div-gap);
+    gap: 10px;
 }
 .best_container{
     width: 100%;
