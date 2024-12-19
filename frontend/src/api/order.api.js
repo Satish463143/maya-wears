@@ -14,13 +14,16 @@ export const orderApi = createApi({
       }),
       endpoints:(builder)=>({
         listOrderForAdmin:builder.query({
-            query:()=> `/order`,
+            query:({ page = 1, limit = 10, search = '' })=> `/order?page=${page}&limit=${limit}&search=${search}`,
             method:"GET"
-
         }),
         listOrderForUser:builder.query({
             query:(userId)=> `/order/${userId}`,
             method:'GET'
+        }),
+        listOrderDetailByIdForAdmin:builder.query({
+            query:(id)=> `/order/${id}`,
+            method:"GET"
         }),
         createOrder:builder.mutation({
             query:(args)=>({
@@ -50,9 +53,7 @@ export const orderApi = createApi({
                 ])
             })
         })
-
-
       })
 
 })
-export const {useListOrderForAdminQuery, useListOrderForUserQuery, useCreateOrderMutation, useUpdateOrderForAdminMutation, useUpdateOrderForUserMutation} = orderApi
+export const {useListOrderForAdminQuery, useListOrderForUserQuery, useCreateOrderMutation, useUpdateOrderForAdminMutation, useUpdateOrderForUserMutation, useListOrderDetailByIdForAdminQuery} = orderApi

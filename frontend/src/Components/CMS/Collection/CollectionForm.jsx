@@ -16,8 +16,7 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
             value: Yup.string().matches(/^(active|inactive)$/).required()
         }).required(),
         image: Yup.string().required()
-    })
-     
+    })     
     const { control, handleSubmit, setValue,  formState: { errors } } = useForm({
         resolver: yupResolver(collectionDTO)
     })
@@ -45,7 +44,6 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
                     defaultValue=''
                     errMsg={errors?.name?.message}
                     required:true
-
                 />
             </div>
             <div>

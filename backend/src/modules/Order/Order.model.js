@@ -15,9 +15,23 @@ const orderSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"CustomerDetails"
     },
+    items: [
+        {
+            productId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "products",
+            },
+            title: String,
+            size: String,
+            quantity: Number,
+            productImage: String,
+        },
+    ],
+    
     subTotal:{
         type:Number
-    },
+    },   
+   
     paymentType:{
         type:String,
         enum:[...Object.values(paymentType)],

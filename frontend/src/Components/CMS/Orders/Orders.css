@@ -1,0 +1,25 @@
+.order_product_grid {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    justify-content: space-between;
+    width: 100%;
+}
+.order_product_grid input {
+    width: 100%;
+    background: none;
+    font-weight: bold;
+}
+.order_product_grid img{
+    width: 50%;
+
+}
+.order_product_details h1{
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+.order_status h1{
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 20px;
+}
