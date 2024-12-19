@@ -1,18 +1,18 @@
 .about_item{
-    margin: 5vh 15vw;
+    margin:var(--div-gap) 15vw;
     text-align: center;
 }
 .about_first_item p{
     font-weight: 500;
-    margin: 5vh 0;
+    margin: var(--div-gap) 0;
 }
 .about_second_item h1{
     font-size: var(--font_for_header);
     font-weight: 600;
-    margin-top: 5vh;
+    margin-top: var(--div-gap);
 }
 .about_second_item p{
     font-size: var(--pri_font_size);
-    margin-top: 5vh;
+    margin-top: var(--div-gap);
     font-weight: 500;
 }

@@ -34,7 +34,7 @@ import AboutUs from "./pages/AboutPage/AboutUs";
 import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import MyAccountPage from "./pages/MyAccountPage/MyAccountPage";
-
+import GalleryPage from "./pages/GalleryPage/GalleryPage";
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 
   const dispatch = useDispatch();
@@ -60,11 +60,14 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path="product/:slug/:id" element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart}/>}/>
           <Route path="collection/:slug" element={<CollectionPage />} />
           <Route path="all_product" element={<AllProductPage />} />
+          <Route path="gallery" element={<GalleryPage />} />
+
           <Route path="login" element={<LoginPage/>}/>
           <Route path="contact" element={<ContactPage/>}/>
           <Route path="about_us" element={<AboutUs/>}/>
           <Route path="check_out" element={<CheckOutPage isCartActive={isCartActive} toogleCart={toogleCart}/>}/>   
-          <Route path="order" element={<OrderPage/>}/>  
+          <Route path="order" element={<OrderPage/>}/> 
+           
           <Route path='/my_account' element={<MyAccountPage/>}/>      
           <Route path="*" element={<>Page not Found</>} />
         </Route>

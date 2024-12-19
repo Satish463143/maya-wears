@@ -175,17 +175,29 @@ const Navbar = ({toogleCart}) => {
                   <li onClick={() => {
                       toggleNav();
                       setMenu("Products");
-                    }} style={{ background: "none" }}>
+                    }}
+                    className={menu === "Products" ? "liActive" : ""}
+                    
+                    style={{ background: "none" }}>
                     All Products
                   </li>
                 </Link>
-                <Link>
-                  <li onClick={toggleNav} style={{ background: "none" }}>
+                <Link to="/gallery">
+                  <li onClick={() => {
+                      toggleNav();
+                      setMenu("Gallery");
+                    }} 
+                    className={menu === "Gallery" ? "liActive" : ""}
+                    
+                    style={{ background: "none" }}>
                     Gallery
                   </li>
-                </Link>               
+                </Link>              
                 <Link>
-                  <li onClick={()=> { toogleCart(); toggleNav(); setMenu("Cart");}} style={{ background: "none" }}>
+                  <li onClick={()=> { toogleCart(); toggleNav(); setMenu("Cart");}} 
+                    className={menu === "Cart" ? "liActive" : ""}
+                  
+                  style={{ background: "none" }}>
                     Cart
                   </li>
                 </Link>
