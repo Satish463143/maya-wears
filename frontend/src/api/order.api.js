@@ -45,12 +45,13 @@ export const orderApi = createApi({
             })
         }),
         updateOrderForAdmin:builder.mutation({
-            query:(orderId)=>({
+            query:({orderId,payload})=>({
                 url:`/order/${orderId}`,
+                body:payload,
                 method:"PUT",
-                headers:()=>([
-                    {"Content-Type":"multipart/form-data"}
-                ])
+                headers: {
+                    "Content-Type": "application/json", // Use JSON for simplicity
+                },
             })
         })
       })

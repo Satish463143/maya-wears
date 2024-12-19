@@ -204,8 +204,9 @@ const Footer = () => {
 
         <div className="copyright">
           <p>
-            © 2024 Maya Wears. All right reserved <a href="">SATISH</a>
+            © 2024 Maya Wears. All right reserved 
           </p>
+          <p>Designed and Developed by <a href=""> Bleeding Tech</a></p>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const AdminOrdersView = () => {
                 orderStatus:data.orderStatus.value
             }
             console.log(submitData)
-            await editOrder(params.id, submitData).unwrap()
+            await editOrder({orderId:params.id, payload: submitData}).unwrap()
             toast.success("Order updated sucessfully")
 
         }catch(exception){
