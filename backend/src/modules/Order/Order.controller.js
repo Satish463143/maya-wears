@@ -136,7 +136,7 @@ class OrderController {
             const limit = parseInt(req.query.limit) || 10; // Pagination limit
             const page = parseInt(req.query.page) || 1; // Current page
             const skip = (page - 1) * limit; 
-            const userId = req.authUser._id
+            const userId = req.userId._id
 
             let filter = { userId };
 

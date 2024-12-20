@@ -18,7 +18,7 @@ export const orderApi = createApi({
             method:"GET"
         }),
         listOrderForUser:builder.query({
-            query:(userId)=> `/order/${userId}`,
+            query:({ page = 1, limit = 10, search = '' })=> `/order/listForUser?page=${page}&limit=${limit}&search=${search}`,
             method:'GET'
         }),
         listOrderDetailByIdForAdmin:builder.query({
