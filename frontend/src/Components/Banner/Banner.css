@@ -1,6 +1,11 @@
 .banner{
     position:relative;
 }
+.banner_content button{
+    color:var(--sec_dark);
+    text-decoration: underline;
+    font-weight: 600;
+}
 .banner_content{
     position: absolute;
     bottom: 10%;

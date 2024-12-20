@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useLayoutEffect } from 'react';
-import './ProductSliders3.css'; // Ensure this does not conflict with Flickity styles
-import { useListForHomeQuery } from '../../api/product.api';
-import LoadingComponent from '../../Middlewares/Loading/Loading.component';
-import Flickity from 'flickity';
-import 'flickity/css/flickity.css'; // Ensure Flickity CSS is loaded
-import { Link } from 'react-router-dom';
+import React, { useRef, useEffect, useLayoutEffect } from "react";
+import "./ProductSliders3.css"; // Ensure this does not conflict with Flickity styles
+import { useListForHomeQuery } from "../../api/product.api";
+import LoadingComponent from "../../Middlewares/Loading/Loading.component";
+import Flickity from "flickity";
+import "flickity/css/flickity.css"; // Ensure Flickity CSS is loaded
+import { Link } from "react-router-dom";
 
 const ProductSliders3 = () => {
   const { data, isLoading } = useListForHomeQuery(null);
@@ -34,17 +34,34 @@ const ProductSliders3 = () => {
 
   // Safely access product data
   const product = data?.result?.data || [];
-  const filteredProduct = product.filter(item => item.isFeatured);
+  const filteredProduct = product.filter((item) => item.isFeatured);
   const limitedFilteredProduct = filteredProduct.slice(0, 10);
 
   return (
     <div className="div_container">
-      <div className="carousel" ref={carouselRef} data-flickity='{ "wrapAround":true }'>
+      <div
+        className="carousel"
+        ref={carouselRef}
+        data-flickity='{ "wrapAround":true }'
+      >
         {limitedFilteredProduct.map((item, index) => (
-          <div className="carousel-cell" key={index}>
+          <div className="carousel-cell second_car_data" key={index}>
             <Link to={`product/${item.slug}/${item._id}`}>
-                <img className='featured_desktop' src={item.featureDesktopImage} alt={`Product ${index}`} />
-                <img className='featured_mobile' src={item.featureMobileImage} alt={`Product ${index}`} />
+              <img
+                className="featured_desktop"
+                src={item.featureDesktopImage}
+                alt={`Product ${index}`}
+              />
+              <img
+                className="featured_mobile"
+                src={item.featureMobileImage}
+                alt={`Product ${index}`}
+              />
+              <div className="second_car_data">
+                <h2>Made for MAYALUSS</h2>
+                <p>Crafting Creative</p>
+                <button>Buy Now</button>
+              </div>
             </Link>
           </div>
         ))}
