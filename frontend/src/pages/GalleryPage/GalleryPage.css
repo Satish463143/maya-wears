@@ -1,0 +1,14 @@
+.img_containor{
+    display: grid;
+    grid-area: auto;
+    grid-template-columns: auto auto;
+    grid-gap: var(--div-gap);
+    padding: var(--text-gap);
+    margin-top: 5vh;
+}
+.img_containor img{
+    border-radius: 10px;
+    height: auto;
+    display: block;
+
+}

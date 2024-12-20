@@ -64,6 +64,9 @@ const Navbar = ({toogleCart}) => {
     else if (path === "/all_product") {
       setMenu("Products");
     }
+    else if (path === "/gallery") {
+      setMenu("Gallery");
+    }
     else if (path === "/product/:slug/:id") {
       setMenu("Products");
     }
