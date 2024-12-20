@@ -207,9 +207,10 @@
     }
   }
   @media (max-width: 800px){
-    .search_btn, .to_hide_nav, .menu_cont{
+    /* .search_btn, .to_hide_nav, .menu_cont{
         display: none;
     }
+     */
     
     .overlay nav{
         width: 100%;
