@@ -8,14 +8,9 @@ import './CheckOut.css'
 const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
   
   const customerDTO = Yup.object({
-    fullname: isloggedIn
-      ? Yup.string().required().nullable().notRequired()
-      : Yup.string().min(3).max(50).required(),
-    email: isloggedIn
-      ? Yup.string().required().nullable().notRequired()
-      : Yup.string().required(),
-    phone: isloggedIn
-      ? Yup.string().required().nullable().notRequired()
+    fullname: Yup.string().min(2).max(50).required(),
+    email: Yup.string().required(),
+    phone
       : Yup.string()
           .matches(
             /^\+?[1-9]\d{1,14}$/,
@@ -64,11 +59,7 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
     <div>
       <form action="" onSubmit={handleSubmit(submitEvent)}>
         <div className="personal_details">
-          <h1>Personal details</h1>
-          {isloggedIn ? (
-            ""
-          ) : (
-            <>
+          <h1>Personal details</h1>          
               <label htmlFor="fullname">
                 Full name<span>*</span>
               </label>
@@ -106,8 +97,7 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
                 required:true
               />{" "}
               <br />
-            </>
-          )}
+            
           <label htmlFor="optionalNumber">Optional number (if any)</label>
           <br />
           <TextInputComponent
