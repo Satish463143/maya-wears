@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import image1 from "../../assets/images/image2.png";
 import image2 from "../../assets/images/image3.png";
 import image3 from "../../assets/images/image4.png";
@@ -14,12 +14,14 @@ import image12 from "../../assets/images/img-1.jpeg";
 import image13 from "../../assets/images/one.png";
 import image14 from "../../assets/images/three.jpg";
 import image15 from "../../assets/images/vest.png";
-import './GalleryPage.css'
-
+import "./GalleryPage.css";
+import AllProductBanner from "../../Components/AllProductBanner/AllProductBanner";
 
 function GalleryPage() {
   return (
-    <div className='img_containor'>
+    <>
+      <AllProductBanner  />
+      <div className="img_containor">
         <img src={image1} alt="" />
         <img src={image2} alt="" />
         <img src={image3} alt="" />
@@ -35,9 +37,9 @@ function GalleryPage() {
         <img src={image13} alt="" />
         <img src={image14} alt="" />
         <img src={image15} alt="" />
-
-    </div>
-  )
+      </div>
+    </>
+  );
 }
 
-export default GalleryPage
+export default GalleryPage;
