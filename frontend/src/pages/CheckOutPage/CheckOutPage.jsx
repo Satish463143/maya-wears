@@ -39,7 +39,7 @@ const CheckOutPage = ({ toggleCart }) => {
       <div className="checkout_page">
 
         <div className="checkout_box">
-          {!loggedInUser && (
+          {/* {!loggedInUser && (
             <div className="checkout_title">
               <p>
                 Have an account?{" "}
@@ -48,12 +48,12 @@ const CheckOutPage = ({ toggleCart }) => {
                 </span>
               </p>
             </div>
-          )}
+          )} */}
           <div className="checkout_form">
             <CheckOut
               submitEvent={submitEvent}
               loading={loading}
-              isloggedIn={!!loggedInUser}
+              // isloggedIn={!!loggedInUser}
             />
           </div>
         </div>       

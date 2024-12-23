@@ -71,6 +71,9 @@ const Navbar = ({toogleCart}) => {
     else if (path === "/product/:slug/:id") {
       setMenu("Products");
     }
+    else if (path === "/my_account") {
+      setMenu("My Accounts");
+    }
      else {
       setMenu("");
     }
@@ -214,6 +217,18 @@ const Navbar = ({toogleCart}) => {
                     style={{ background: "none" }}
                   >
                     About Maya
+                  </li>
+                </Link>
+                <Link to="/my_account">
+                  <li
+                    onClick={() => {
+                      toggleNav();
+                      setMenu("My Accounts");
+                    }}
+                    className={menu === "My Accounts" ? "liActive" : ""}
+                    style={{ background: "none" }}
+                  >
+                    My Account
                   </li>
                 </Link>
               </ul>

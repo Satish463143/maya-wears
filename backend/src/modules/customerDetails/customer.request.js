@@ -51,33 +51,13 @@ const customerCreateDTO = Joi.object({
     fullname: Joi.string()
         .min(2)
         .max(50)
-        .when(Joi.ref("$isLoggedIn"), {
-            is: true,
-            then: Joi.optional(),
-            otherwise: Joi.required().messages({
-                "string.empty": "Fullname is required field",
-            }),
-        }),
-    email: Joi.string()
-        .email()
-        .when(Joi.ref("$isLoggedIn"), {
-            is: true,
-            then: Joi.optional(),
-            otherwise: Joi.required().messages({
-                "string.empty": "Email is required field",
-            }),
-        }),
-    phone: Joi.string()
-        .min(10)
-        .max(13)
-        .pattern(/^\d+$/)
-        .when(Joi.ref("$isLoggedIn"), {
-            is: true,
-            then: Joi.optional(),
-            otherwise: Joi.required().messages({
-                "string.empty": "Phone is required field",
-            }),
-        }),
+        .required(),
+    email:Joi.string().required().messages({
+        "string.empty": "Email is required",
+    }),
+    phone: Joi.string().required().messages({
+        "string.empty": "Phone is required",
+    }),
     country: Joi.string().required().messages({
         "string.empty": "Country is required",
     }),

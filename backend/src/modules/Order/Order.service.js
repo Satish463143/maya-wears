@@ -14,6 +14,10 @@ class OrderService {
                         select: "title price mainImage", // Include necessary fields
                     },
                 })
+                .populate({
+                    path: "customerId",
+                    select: ["fullname", "email", "phone","address"], // Fetch specific fields
+                })
                 .populate("userId", ["_id", "email", "name"])
                 .sort({ _id: "desc" })
                 .limit(limit)

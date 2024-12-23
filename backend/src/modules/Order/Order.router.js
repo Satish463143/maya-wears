@@ -1,4 +1,5 @@
 const loginCheck = require('../../middlewares/auth.middlewares')
+const authOrAnonymous = require('../../middlewares/authOrAnonymous.middlewares')
 const hasPermission = require('../../middlewares/rbac.middlewares')
 const OrderController = require('./Order.controller')
 const router  = require('express').Router()
