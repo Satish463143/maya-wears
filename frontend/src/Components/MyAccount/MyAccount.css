@@ -8,3 +8,21 @@
     font-weight: 600;
     font-size: 25px;
 }
+.order_list img{
+    width: 200px;
+    height: auto;
+}
+.order_list table{
+    width: 100%;
+    border: 1px solid;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.order_list th,
+.order_list td {
+    border: 1px solid var(--sec_dark);
+}
+.order_list td{
+    padding: 10px;
+    text-align: center;
+}

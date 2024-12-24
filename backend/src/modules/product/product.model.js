@@ -22,10 +22,6 @@ const productSchema = new mongoose.Schema({
         required: true
 
     },
-    promoCode: {
-        type: String,
-        default:null
-    },
     color:{
         type:String,
         default: null
@@ -63,11 +59,6 @@ const productSchema = new mongoose.Schema({
             
         }
     ],
-
-    isFeatured: {
-        type: Boolean,
-        default: false
-    },
     images: {
         type: Array,
         required: true
@@ -75,19 +66,7 @@ const productSchema = new mongoose.Schema({
     mainImage:{
         type:String,
         required:true
-    },
-    featureDesktopImage:{
-        type:String,
-        default: null
-    },
-    featureMobileImage:{
-        type:String,
-        default: null
-    },
-    discount:{
-        type:String,
-        default: null
-    },
+    },    
     video: String,
     createdBy: {
         type: mongoose.Types.ObjectId,

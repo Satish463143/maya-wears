@@ -12,6 +12,7 @@ const cartRouter = require("../modules/cart/cart.router")
 const orderRouter = require("../modules/Order/Order.router")
 const promoRouter = require("../modules/promo/promo.router")
 const customerDetails = require("../modules/customerDetails/customer.router")
+const featuredProduct = require("../modules/featuredProduct/featuredProduct.router")
 
 
 router.use("/auth",authRouter)
@@ -27,6 +28,7 @@ router.use('/cart', cartRouter)
 router.use('/order',orderRouter)
 router.use('/promo', promoRouter)
 router.use('/customer', customerDetails)
+router.use('/featured_product', featuredProduct)
 
 
 module.exports = router

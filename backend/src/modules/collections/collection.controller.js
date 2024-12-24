@@ -93,7 +93,6 @@ class CollectionController {
                 message: "Collection fetched By Id",
                 meta: null
             })
- 
         }
         catch (exception) {
             console.log(exception + " error")
@@ -116,7 +115,7 @@ class CollectionController {
             const response = await collectionService.updateCollection(data, id)
             res.json({
                 result: response,
-                meessage: "Banner Updated Sucessfully",
+                meessage: "Collection Updated Sucessfully",
                 meta: null
             })
 

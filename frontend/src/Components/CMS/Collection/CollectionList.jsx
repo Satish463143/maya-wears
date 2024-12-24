@@ -49,9 +49,7 @@ const CollectionList = () => {
       setLoading(false);
     }
   },[pagination]);
-
   
-
   useEffect(()=>{
     const timeout = setTimeout(()=>{
       getAllCollections({
@@ -99,59 +97,54 @@ const CollectionList = () => {
           }}/>
           <Link to='/admin/add_collection'>
             <button className='edit_btn'>Add Collection</button>
-          </Link>
-          
+          </Link>          
           </div>
         </div>
       </div>
-
-      <div className='blog_table'>
-        
-          <table border='2'>
-            <thead>
-              <tr>
-                <th>S.N</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Action</th>
+      <div className='blog_table'>        
+        <table border='2'>
+          <thead>
+            <tr>
+              <th>S.N</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>  
+                <td colSpan="6"><LoadingComponent/></td>
               </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr>  
-                  <td colSpan="6"><LoadingComponent/></td>
+            ) : error ? (
+              <tr>
+                <td colSpan="6" className="error-message">{error}</td>
+              </tr>
+            ) : collection && collection.length > 0 ? (
+              collection.map((row, index) => (
+                <tr key={index}>
+                  <td className="table_sn">{index + 1}</td>
+                  <td className="table_img">
+                    <img src={row.image} alt="" />
+                  </td>
+                  <td>{row.name}</td>
+                  <td>{truncateContent(row.description, 10)}</td>
+                  <td>{row.status}</td>
+                  <td style={{ textAlign: 'center', width: '150px' }}>
+                    <EditButton editUrl={`/admin/edit_collection/${row._id}`}/>
+                    <DeleteButton deleteAction={deleteData} rowId={row._id}/>                  
+                  </td>
                 </tr>
-              ) : error ? (
-                <tr>
-                  <td colSpan="6" className="error-message">{error}</td>
-                </tr>
-              ) : collection && collection.length > 0 ? (
-                collection.map((row, index) => (
-                  <tr key={index}>
-                    <td className="table_sn">{index + 1}</td>
-                    <td className="table_img">
-                      <img src={row.image} alt="" />
-                    </td>
-                    <td>{row.name}</td>
-                    <td>{truncateContent(row.description, 10)}</td>
-                    <td>{row.status}</td>
-                    <td style={{ textAlign: 'center', width: '150px' }}>
-                      <EditButton editUrl={`/admin/edit_collection/${row._id}`}/>
-                      <DeleteButton deleteAction={deleteData} rowId={row._id}/>                  
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="6">Collection List is Empty</td>
-                </tr>
-              )}
-            </tbody>
-
-          </table>
-       
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6">Collection List is Empty</td>
+              </tr>
+            )}
+          </tbody>
+        </table>       
         <div className='flex overflow-x-auto sm:justify-center'>
           <Pagination
             currentPage={pagination.currentPage}

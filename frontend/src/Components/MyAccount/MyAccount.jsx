@@ -1,12 +1,27 @@
 import React from 'react';
 import './MyAccount.css';
-import { useListOrderForUserQuery } from '../../api/order.api';
+import { useListOrderForUserQuery, useUpdateOrderForUserMutation } from '../../api/order.api';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MyAccountComponent from '../../Middlewares/MyAccountComponent/MyAccountComponent';
+import { toast } from 'react-toastify';
 
 const MyAccount = () => {
-    const loggedInUser = useSelector((root) => root.user.loggedInUser);
+    const loggedInUser = useSelector((root) => root.user.loggedInUser);   
+    const { data, error, isLoading, refetch } = useListOrderForUserQuery({ page: 1, limit: 10, search: '' });
+    const [cancleOrder] = useUpdateOrderForUserMutation()
+
+    const deleteData = async(rowId)=>{
+        try{
+            await cancleOrder(rowId).unwrap()
+            toast.success("Order canceled sucessfully")
+            refetch();
+        }catch(exception){
+            console.log(exception)
+            toast.error("An error occur while canceling the order.")
+        }
+
+    }
 
     if(!loggedInUser) {
         return <>
@@ -14,24 +29,25 @@ const MyAccount = () => {
         </>
     }
 
-    const { data, error, isLoading } = useListOrderForUserQuery({ page: 1, limit: 10, search: '' });
+    
 
     if (isLoading) {
         return <p>Loading...</p>;
     }
+    
 
     const orders = data?.result;
-    console.log(orders)
     const hasOrders = orders && orders.length > 0;
 
     // Extract additional personal details from the first order if orders exist
     const orderDetails = hasOrders ? orders[0] : null;
 
+    
+    
     return (
         <div className="container">
             <div className="my_account">
-                <div className="personal_info">
-                    
+                <div className="personal_info">                    
                     <div className="personal_info_grid">
                         {!loggedInUser ? (
                             // If no logged-in user, show login prompt                            
@@ -88,6 +104,9 @@ const MyAccount = () => {
                                     size={item.items[0].size} 
                                     status={item.orderStatus}
                                     total={item.total}
+                                    ordersStatus={item.orderStatus}
+                                    deleteAction={() => deleteData(item._id)}
+                                    rowId={item._id}
                                 />
                             ))}
                         </ul>

@@ -37,11 +37,11 @@ export const orderApi = createApi({
         }),
         updateOrderForUser:builder.mutation({
             query:(orderId)=>({
-                url:`/order/${orderId}/cancle`,
+                url:`/order/${orderId}/cancel`,
                 method:"PUT",
-                headers:()=>([
-                    {"Content-Type":"multipart/form-data"}
-                ])
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
             })
         }),
         updateOrderForAdmin:builder.mutation({

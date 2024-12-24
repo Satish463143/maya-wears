@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useListOrderDetailByIdForAdminQuery, useUpdateOrderForAdminMutation } from '../../../api/order.api'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useListOrderDetailByIdForAdminQuery, useUpdateOrderForAdminMutation,useListOrderForAdminQuery } from '../../../api/order.api'
 import AdminTitle from '../../../Middlewares/AdminTitle/AdminTitle'
 import OrdersForm from './OrdersForm'
 import './Orders.css'
@@ -12,6 +12,8 @@ const AdminOrdersView = () => {
     const [loading, setLoading] = useState(false)
     const [editOrder] = useUpdateOrderForAdminMutation()
     const { data: orders, isLoading, error } = useListOrderDetailByIdForAdminQuery(params.id)
+    const {  refetch } = useListOrderForAdminQuery();
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (orders) {
@@ -26,9 +28,10 @@ const AdminOrdersView = () => {
                 ...data,
                 orderStatus:data.orderStatus.value
             }
-            console.log(submitData)
             await editOrder({orderId:params.id, payload: submitData}).unwrap()
             toast.success("Order updated sucessfully")
+            navigate('/admin/order_list')
+            refetch()
 
         }catch(exception){
             console.log(exception)
