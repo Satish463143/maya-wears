@@ -19,8 +19,6 @@ router.route('/')
         uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
             { name: 'images', maxCount: 10 },
             { name: 'mainImage', maxCount: 1 },
-            { name: 'featureDesktopImage', maxCount: 1 },
-            { name: 'featureMobileImage', maxCount: 1 },
             { name: 'video', maxCount: 1 }, // Add video here
         ]),
        
@@ -42,8 +40,6 @@ router.route('/:id')
         uplaodFile(FileFilterType.IMAGE_VIDEO).fields([
             { name: 'images', maxCount: 10 },
             { name: 'mainImage', maxCount: 1 },
-            { name: 'featureDesktopImage', maxCount: 1 },
-            { name: 'featureMobileImage', maxCount: 1 },
             { name: 'video', maxCount: 1 }, // Add video here
         ]),
         bodyValidator(productUpdateDTO),

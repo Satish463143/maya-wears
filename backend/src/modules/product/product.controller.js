@@ -23,14 +23,6 @@ class ProductController {
                 data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
             }
 
-            if (req.files.featureDesktopImage) {
-                data.featureDesktopImage = await uploadImage('./public/uploads/product/' + req.files.featureDesktopImage[0].filename);
-            }
-
-            if (req.files.featureMobileImage) {
-                data.featureMobileImage = await uploadImage('./public/uploads/product/' + req.files.featureMobileImage[0].filename);
-            }
-
             if (req.file) {
                 data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
             }
@@ -50,8 +42,6 @@ class ProductController {
             const allFiles = [
                 ...(req.files.images || []),
                 ...(req.files.mainImage || []),
-                ...(req.files.featureDesktopImage || []),
-                ...(req.files.featureMobileImage || []),
             ];
 
             // Include the video file if present
@@ -72,8 +62,6 @@ class ProductController {
             console.error('controller exception', exception);
             next(exception);
         }
-
-
     }
     index = async (req, res, next) => {
         try {
@@ -134,7 +122,7 @@ class ProductController {
             })
 
             if (!this.productDetails) {
-                throw { status: 400, message: "product Doesn't Exit" }
+                throw { status: 400, message: "product doesn't Exit" }
             }
         } catch (exception) {
             throw exception
@@ -144,7 +132,7 @@ class ProductController {
 
     show = async (req, res, next) => {
         try {
-            const id = req.params._id
+            const id = req.params.id
             await this.#validate(id)
             res.json({
                 result: this.productDetails,
@@ -175,13 +163,7 @@ class ProductController {
                 data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
             }
 
-            if (req.files.featureDesktopImage) {
-                data.featureDesktopImage = await uploadImage('./public/uploads/product/' + req.files.featureDesktopImage[0].filename);
-            }
-
-            if (req.files.featureMobileImage) {
-                data.featureMobileImage = await uploadImage('./public/uploads/product/' + req.files.featureMobileImage[0].filename);
-            }
+            
 
             if (req.file) {
                 data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
@@ -191,8 +173,6 @@ class ProductController {
             const allFiles = [
                 ...(req.files.images || []),
                 ...(req.files.mainImage || []),
-                ...(req.files.featureDesktopImage || []),
-                ...(req.files.featureMobileImage || []),
             ];
 
             // Include the video file if present

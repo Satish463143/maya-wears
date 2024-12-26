@@ -13,7 +13,7 @@ const PlaceOrder = () => {
     const customerId = useSelector((state) => state.customer.customerId);
     const [createOrder] = useCreateOrderMutation();
     const cartId = Cookies.get("cartId");
-    const { data,refetch } = useListAllCartQuery(cartId ? { cartId } : null);
+    const { data, refetch } = useListAllCartQuery(cartId ? { cartId } : null);
     const cartIdForOrder = data?.result?._id
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
@@ -49,13 +49,15 @@ const PlaceOrder = () => {
            
           const response = await createOrder(orderData).unwrap();
           toast.success("Order has been placed successfully!");
+
+          //clear the cart when order is placed
           await deleteCart(cartIdForOrder).unwrap();
-          toast.success('cart cleared') 
            
           //refetch the cleared cart 
           await refetch({ force: true }); 
 
           navigate('/my_account')
+          
         } catch (exception) {
           console.error(exception);
           toast.error("Error while placing order.");

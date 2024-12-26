@@ -1,4 +1,4 @@
-const { message } = require("../banner/banner.request")
+
 const CollectionModel = require("./collections.model")
 
 class CollectionService {

@@ -9,8 +9,6 @@ const productDTO = Joi.object({
     title: Joi.string().min(3).max(50).required(), // Mandatory field
     summary: Joi.string().allow(null, "").optional(), // Optional, can be null or empty
     description: Joi.string().allow(null, "").optional(),
-    promoCode: Joi.string().allow(null, "").optional(), // Corrected to explicitly allow optional
-    discount: Joi.string().allow(null, "").optional(),
     color: Joi.string().allow(null, "").optional(),
     fabric: Joi.string().allow(null, "").optional(),
     pattern: Joi.string().allow(null, "").optional(),
@@ -25,11 +23,9 @@ const productDTO = Joi.object({
         .optional()
         .default(Wearable.BOTH), // Optional, with a default value
     productCollections: Joi.array().items(Joi.string()).optional().default([]), // Optional array
-    isFeatured: Joi.boolean().optional().default(false), // Optional boolean
+    
     images: Joi.array().items(Joi.string()).optional().min(1), // Optional array of URLs
     mainImage: Joi.string().optional(), // Optional
-    featureDesktopImage: Joi.string().optional(),
-    featureMobileImage: Joi.string().optional(),
     video: Joi.string().allow(null, "").optional(), // Optional
 });
 
@@ -37,8 +33,6 @@ const productDTO = Joi.object({
     title: Joi.string().min(3).max(50), // Mandatory field
     summary: Joi.string().allow(null, "").optional(), // Optional, can be null or empty
     description: Joi.string().allow(null, "").optional(),
-    promoCode: Joi.string().allow(null, "").optional(), // Corrected to explicitly allow optional
-    discount: Joi.string().allow(null, "").optional(),
     color: Joi.string().allow(null, "").optional(),
     fabric: Joi.string().allow(null, "").optional(),
     pattern: Joi.string().allow(null, "").optional(),
@@ -53,11 +47,8 @@ const productDTO = Joi.object({
         .optional()
         .default(Wearable.BOTH), // Optional, with a default value
     productCollections: Joi.array().items(Joi.string()).optional().default([]), // Optional array
-    isFeatured: Joi.boolean().optional().default(false), // Optional boolean
     images: Joi.array().items(Joi.string()).optional().min(1), // Optional array of URLs
     mainImage: Joi.string().optional(), // Optional
-    featureDesktopImage: Joi.string().optional(),
-    featureMobileImage: Joi.string().optional(),
     video: Joi.string().allow(null, "").optional(), // Optional
 });
 

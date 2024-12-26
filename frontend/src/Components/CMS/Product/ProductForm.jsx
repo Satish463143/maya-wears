@@ -21,8 +21,6 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         title:Yup.string().min(3).max(50).required(),
         summary:Yup.string().nullable().optional().default(null),
         description:Yup.string().nullable().optional().default(null),
-        promoCode:Yup.string().nullable().optional().default(null),
-        discount: Yup.number().nullable().optional().transform((value, originalValue) => (originalValue === "" ? null : value)).default(null),
         color:Yup.string().nullable().optional().default(null),
         fabric:Yup.string().nullable().optional().default(null),
         pattern:Yup.string().nullable().optional().default(null),
@@ -36,15 +34,8 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
             value:Yup.string().matches(/^(Summer|Winter|Summer and Winter)$/)
         }),
         productCollections:Yup.array().nullable().optional().default([]),
-        isFeatured:Yup.object({
-            lable:Yup.string().matches(/^(Yes|No)$/),
-            value:Yup.string().matches(/^(true|false)$/)
-        }),
-
         images: Yup.array(),
         mainImage: Yup.mixed(),
-        featureDesktopImage:Yup.mixed(),
-        featureMobileImage:Yup.mixed(),
         video: Yup.mixed().nullable(),  
     })
     const {control, handleSubmit,register, setValue, formState:{errors} } = useForm({
@@ -180,26 +171,7 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         </div>
         <h3 style={{marginTop:'30px'}}>Other Details</h3>
         <div className="from_grid">            
-            <div>
-                <label htmlFor="promoCode">Promo Code</label><br />
-                <TextInputComponent
-                    name='promoCode'
-                    control={control}
-                    type='text'
-                    defaultValue=''
-                    errMsg={errors?.promoCode?.message}
-                />
-            </div>
-            <div>
-                <label htmlFor="discount">Disocunt (In %)</label><br />
-                <TextInputComponent
-                    name='discount'
-                    control={control}
-                    type='text'
-                    defaultValue=''
-                    errMsg={errors?.discount?.message}
-                />
-            </div>
+            
             <div>
                 <label htmlFor="productCollections">Product Collections</label>
                 <Controller
@@ -262,45 +234,6 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
                     }}
                 /><br />
             </div>
-        </div>
-        <h3 style={{marginTop:'30px'}}>Other Details</h3>
-        <div className="from_grid">
-            <div>
-                <label htmlFor="pattern">Is Featured</label><br />
-                <FeaturedOptionsCompoent
-                    name='isFeatured'
-                    control={control}
-                    errMsg={errors?.isFeatured?.message}
-                    required:true
-                />
-            </div>
-            <div>
-                <label htmlFor="featureDesktopImage">Featured Desktop Image</label><br />
-                <Controller
-                    name="featureDesktopImage"
-                    control={control}
-                    render={({ field }) => (
-                        <input
-                        type="file"
-                        onChange={(e) => field.onChange(e.target.files[0])}
-                        />
-                    )}
-                /><br />
-            </div>
-            <div>
-                <label htmlFor="featureMobileImage">Featured Mobile Image</label><br />
-                <Controller
-                    name="featureMobileImage"
-                    control={control}
-                    render={({ field }) => (
-                        <input
-                        type="file"
-                        onChange={(e) => field.onChange(e.target.files[0])}
-                        />
-                    )}
-                /><br />
-            </div>
-
         </div>
         <div style={{ display: 'flex', justifyContent: 'center',  }}>            
             <input className='submit_btn' type="submit" value="Add Product" disabled={loading} style={{cursor:'pointer'}}/>

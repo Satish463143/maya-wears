@@ -12,7 +12,6 @@ const collectionUpdateDTO = Joi.object({
     description: Joi.string().min(3).max(50).empty(null, "").optional().default(null),
     status: Joi.string().valid(...Object.values(Status)).required(),
     image: Joi.string().optional()
-
 })
 
 

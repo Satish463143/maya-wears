@@ -107,7 +107,7 @@ class OrderController {
             let filter = {}
 
             if(req.query.search){
-                filter =  {name : new RegExp(req.query.search, 'i')}
+                filter =  {orderStatus : new RegExp(req.query.search, 'i')}
 
             }
             const {count, data } = await OrderService.listData({
