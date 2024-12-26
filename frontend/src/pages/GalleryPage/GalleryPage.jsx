@@ -15,12 +15,12 @@ import image13 from "../../assets/images/one.png";
 import image14 from "../../assets/images/three.jpg";
 import image15 from "../../assets/images/vest.png";
 import "./GalleryPage.css";
-import AllProductBanner from "../../Components/AllProductBanner/AllProductBanner";
+import GalleryBanner from "../../Components/GalleryBanner/GalleryBanner.jsx";
 
 function GalleryPage() {
   return (
     <>
-      <AllProductBanner  />
+      <GalleryBanner  />
       <div className="img_containor">
         <img src={image1} alt="" />
         <img src={image2} alt="" />

@@ -14,12 +14,12 @@ const Faq = () => {
     };
   
     return (
-        <div className='div_container'>
+        <div className='div_container faqqqqq'  >
             
                 <div className="container">
                 <div >
                     <div className='home_loan'>
-                        <div className='best__of__' style={{padding:'20px 0'}}>
+                        <div className='best__of__'>
                             <h1 className='help__section'>Help Section </h1>
                             <img src={line_svg} alt=""  />
                         </div>

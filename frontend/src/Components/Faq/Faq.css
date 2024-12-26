@@ -2,29 +2,15 @@
   width: 80%;
   margin: 0px auto;
 }
+.faqqqqq{
+  margin: var(--div-gap) 0;
+}
 .faq_width h2 {
   color: var(--g);
-}
-.help__section{
-  font-size:2em;
-  text-align: center;
 }
 @media (max-width: 800px) {
   .faq_width {
     width: 100%;
   }
-  .faq_width h2 {
-    font-size: 20px;
-  }
  
-}
-@media (max-width: 600px) {
-  .faq_width h2 {
-    font-size: 20px;
-  }
-  .help__section{
-    font-size: 1.5em;
-    text-align: center;
-    font-weight: 700;
-   }
 }
