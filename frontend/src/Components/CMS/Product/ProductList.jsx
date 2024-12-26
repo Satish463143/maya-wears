@@ -64,7 +64,6 @@ const ProductList = () => {
                 <th>S.N</th>
                 <th>Image</th>
                 <th>Title</th>
-                <th>Featured</th>
                 <th>Price</th>
                 <th>Action</th>
               </tr>
@@ -86,7 +85,6 @@ const ProductList = () => {
                       <img src={row?.mainImage} alt="" />
                     </td>
                     <td>{row.title}</td>
-                    <td>{row.isFeatured ? 'Yes' : 'No' }</td>
                     <td>Rs.{row.price}/-</td>
                     <td style={{ textAlign: 'center', width: '150px' }}>
                       <EditButton editUrl={`/admin/edit_product/${row._id}`}/>

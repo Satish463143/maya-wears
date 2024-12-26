@@ -1,5 +1,7 @@
 .banner{
     position:relative;
+    width: 100%;
+    height: auto;
 }
 .banner_content button{
     color:var(--sec_dark);

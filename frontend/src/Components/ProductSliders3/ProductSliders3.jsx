@@ -38,20 +38,12 @@ const ProductSliders3 = () => {
   const limitedFilteredProduct = filteredProduct.slice(0, 10);
 
   return (
-    <div className="div_container">
-      <div
-        className="carousel"
-        ref={carouselRef}
-        data-flickity='{ "wrapAround":true }'
-      >
+    <div className="div_container_slider">
+      <div className="carousel" ref={carouselRef} data-flickity='{ "wrapAround":true }'>
         {limitedFilteredProduct.map((item, index) => (
           <div className="carousel-cell second_car_data" key={index}>
             <Link to={`product/${item.slug}/${item._id}`}>
-              <img
-                className="featured_desktop"
-                src={item.featureDesktopImage}
-                alt={`Product ${index}`}
-              />
+              <img  className="featured_desktop"  src={item.featureDesktopImage} alt={`Product ${index}`} />
               <img
                 className="featured_mobile"
                 src={item.featureMobileImage}

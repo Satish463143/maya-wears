@@ -8,26 +8,29 @@ const { Status } = require("../../config/constants.config");
 class featuredProductController  {
     featuredProductDetails;
     create = async(req,res,next)=>{
+        console.log("req.files:", req.files);
+        console.log("req.body:", req.body);     
         try{
             const data = req.body
 
-            if (req.files.desktopImage) {
-                data.desktopImage = await uploadImage('./public/uploads/FeaturedProduct/' + req.files.desktopImage[0].filename);
+            if (req.files.desktopImage && req.files.desktopImage.length > 0) {
+                const desktopImageFile = req.files.desktopImage[0];
+                data.desktopImage = await uploadImage('./public/uploads/FeaturedProduct/' + desktopImageFile.filename);
+                deleteFile('./public/uploads/FeaturedProduct/' + desktopImageFile.filename);
             }
-            if (req.files.mobileImage) {
-                data.mobileImage = await uploadImage('./public/uploads/FeaturedProduct/' + req.files.mobileImage[0].filename);
+    
+            // Process mobileImage
+            if (req.files.mobileImage && req.files.mobileImage.length > 0) {
+                const mobileImageFile = req.files.mobileImage[0];
+                data.mobileImage = await uploadImage('./public/uploads/FeaturedProduct/' + mobileImageFile.filename);
+                deleteFile('./public/uploads/FeaturedProduct/' + mobileImageFile.filename);
             }
+
             //slug
-            data.slug = slugify(data.name, { lower: true })
+            data.slug = slugify(data.title, { lower: true })
+
             data.createdBy = req.authUser._id
 
-            const allFiles = [
-                ...(req.files.images || []),
-                ...(req.files.mainImage || []),
-            ];
-            for (const file of allFiles) {
-                await deleteFile('./public/uploads/product/' + file.filename);
-            }
             const product = await featuredProductService.createProduct(data)
 
             res.json({
@@ -51,7 +54,7 @@ class featuredProductController  {
             let filter = {}
             if (req.query.search) {
                 filter = {
-                    name: new RegExp(req.query.search, "i")
+                    status: new RegExp(req.query.search, "i")
                 }
             }
             const { data, count } = await featuredProductService.listdata({

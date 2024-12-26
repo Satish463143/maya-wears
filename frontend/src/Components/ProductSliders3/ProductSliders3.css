@@ -1,12 +1,17 @@
 /* .featured_desktop, .featured_mobile{
     margin:  !important;
 } */
+ .div_container_slider{
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+ }
 .carousel-cell {
   width: 70%;
   margin: 20px 10px 10px 10px;
   border-radius: 5px;
-  /* counter-increment: carousel-cell; */
-  /* position: relative; */
+  counter-increment: carousel-cell; 
+  position: relative;
 }
 .featured_mobile {
   display: none;
@@ -17,7 +22,6 @@
 .second_car_data {
   position: absolute;
   bottom: 0%;
-  width: 100%;
   text-align: center;
   margin-bottom: 20%;
 }

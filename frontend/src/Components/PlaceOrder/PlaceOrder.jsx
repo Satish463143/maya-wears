@@ -54,7 +54,7 @@ const PlaceOrder = () => {
           await deleteCart(cartIdForOrder).unwrap();
            
           //refetch the cleared cart 
-          await refetch({ force: true }); 
+          refetch(); 
 
           navigate('/my_account')
           

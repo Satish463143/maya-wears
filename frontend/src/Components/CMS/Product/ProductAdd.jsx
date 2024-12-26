@@ -4,10 +4,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductForm from './ProductForm';
 import { useNavigate } from 'react-router-dom'
-import productSvc from './Product.service';
+import { useCreateProductMutation } from '../../../api/product.api';
 
 const ProductAdd = () => {
     const [loading, setLoading] = useState(false)
+    const [craeteProduct] = useCreateProductMutation()
     const navigate = useNavigate()
 
     const submitEvent = async (data) => {
@@ -22,20 +23,15 @@ const ProductAdd = () => {
             // Optional fields with safe defaults
             formData.append("summary", data.summary || null);
             formData.append("description", data.description || null);
-            formData.append("promoCode", data.promoCode || null);
             formData.append("color", data.color || null);
             formData.append("fabric", data.fabric || null);
             formData.append("pattern", data.pattern || null);
-            formData.append("discount", data.discount || null);
     
             // Handle nested fields safely
             if (data.wearable?.value) {
                 formData.append("wearable", data.wearable.value); // Send `value` only if it exists
             }
-            if (data.isFeatured?.value) {
-                formData.append("isFeatured", data.isFeatured.value); // Send `value` only if it exists
-            }
-    
+               
             if (data.sizes && data.sizes.length > 0) {
                 data.sizes.forEach((size, index) => {
                     formData.append(`sizes[${index}][size]`, size.size);
@@ -54,14 +50,12 @@ const ProductAdd = () => {
                 data.images.forEach((file) => formData.append("images", file));
             }
             if (data.mainImage) formData.append("mainImage", data.mainImage);
-            if (data.featureDesktopImage) formData.append("featureDesktopImage", data.featureDesktopImage);
-            if (data.featureMobileImage) formData.append("featureMobileImage", data.featureMobileImage);
             if (data.video) formData.append("video", data.video);
     
-            const response = await productSvc.postRequest('/product', formData, { auth: true, file: true });
-            console.log("Form Data Response", response);
+            const response = await craeteProduct(formData).unwrap();          
             toast.success("Product added successfully");
-            // Redirect or reset form after success if needed
+            navigate('/admin/product')
+            
         } catch (exception) {
             console.error("Error while adding product:", exception);
             toast.error("Error while adding product");
@@ -83,6 +77,7 @@ const ProductAdd = () => {
                 <ProductForm
                     submitEvent={submitEvent}
                     loading={loading}
+                    value='Add product'
                 />
             </div>
         </div>

@@ -114,9 +114,8 @@ body {
 svg path{
   stroke: 29px;
 }
-.div_container{
+/* .div_container{
   background-color: var(--back);
   width: 100%;
   z-index: 999;
-  position: relative;
-}
+  /* position: relative; */

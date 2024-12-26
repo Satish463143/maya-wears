@@ -16,21 +16,21 @@ export const ProductApi = createApi({
             query: ({ page = 1, limit = 10, search = '' }) => 
               `/product?page=${page}&limit=${limit}&search=${search}`,
           }),
-        // createProduct:builder.mutation({
-        //     query:(args)=> ({
-        //         url: "/product",
-        //         body:args,
-        //         method:"",
-        //         headers:()=>([
-        //             {"Content-Type":"multipart/form-data"}
-        //         ])
-        //     })
-        // }),
+        createProduct:builder.mutation({
+            query:(args)=> ({
+                url: "/product",
+                body:args,
+                method:"POST",
+                headers:()=>([
+                    {"Content-Type":"multipart/form-data"}
+                ])
+            })
+        }),
         listForHome:builder.query({
             query:() => "/product/list"
         }),
         listById:builder.query({
-            query:()=> `/product/${id}`
+            query:(id)=> `/product/${id}`
         }),
         deleteProduct:builder.mutation({
             query:(id)=>({
@@ -39,9 +39,10 @@ export const ProductApi = createApi({
             })
         }),
         editProduct:builder.mutation({
-            query:(id)=>({
+            query:({id,payload})=>({
                 url: `/product/${id}`,
                 method:'PUT',
+                body:payload,
                 headers:()=>([
                     {"Content-Type" :"multipart/form-data"}
                 ])

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import * as Yup from 'yup'
 import { DescriptionInput, FeaturedOptionsCompoent, TextInputComponent, WearableOptionsCompoent } from '../../../Middlewares/Form/Input.component'
 import { useForm,useFieldArray, Controller } from 'react-hook-form'
@@ -8,7 +8,7 @@ import LoadingComponent from '../../../Middlewares/Loading/Loading.component'
 import Select from "react-select";
 import '../../../pages/AdminPage/CMSLayout.css'
 
-const ProductForm = ({submitEvent,loading,detail=null}) => {
+const ProductForm = ({submitEvent,loading,detail=null,value}) => {
     const {data,error, isLoading} = useListAllQuery(null)
     if(isLoading) <LoadingComponent/>
     const collectionList = data?.result
@@ -19,11 +19,11 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
     });
     const productDTO = Yup.object({
         title:Yup.string().min(3).max(50).required(),
-        summary:Yup.string().nullable().optional().default(null),
-        description:Yup.string().nullable().optional().default(null),
-        color:Yup.string().nullable().optional().default(null),
-        fabric:Yup.string().nullable().optional().default(null),
-        pattern:Yup.string().nullable().optional().default(null),
+        summary:Yup.string().required().nullable().notRequired(),
+        description:Yup.string().required().nullable().notRequired(),
+        color:Yup.string().required().nullable().notRequired(),
+        fabric:Yup.string().required().nullable().notRequired(),
+        pattern:Yup.string().required().nullable().notRequired(),
         price: Yup.number()
         .transform((value, originalValue) => (originalValue === "" ? undefined : value)) // Handle empty string
         .min(0, "Price must be greater than or equal to 0.")
@@ -33,12 +33,12 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
             label:Yup.string().matches(/^(Summer|Winter|Both)$/),
             value:Yup.string().matches(/^(Summer|Winter|Summer and Winter)$/)
         }),
-        productCollections:Yup.array().nullable().optional().default([]),
+        productCollections:Yup.array().required().nullable().notRequired().default([]),
         images: Yup.array(),
-        mainImage: Yup.mixed(),
-        video: Yup.mixed().nullable(),  
+        mainImage: Yup.mixed().required('Main Image is required'),
+        video: Yup.mixed().required().nullable().notRequired(),  
     })
-    const {control, handleSubmit,register, setValue, formState:{errors} } = useForm({
+    const {control, handleSubmit,register, setValue,getValues, formState:{errors} } = useForm({
         resolver: yupResolver(productDTO),
         defaultValues: {
             sizes: [{ size: '', quantity: 0 }]
@@ -48,6 +48,38 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         control,
         name: 'sizes'
     });
+
+    useEffect(()=>{
+        if(detail){
+            setValue("title", detail.title)
+            setValue("summary", detail.summary)
+            setValue("description", detail.description)
+            setValue("color", detail.color)
+            setValue("fabric", detail.fabric)
+            setValue("pattern", detail.pattern)
+            setValue("price", detail.price)
+            setValue("wearable", detail.wearable)
+            setValue("images", detail.images || [])
+            setValue("mainImage", detail.mainImage)
+            setValue("video", detail.video)
+            if (detail.sizes && detail.sizes.length > 0) {
+                detail.sizes.forEach((size) => append(size));
+            }
+        
+            // Initialize collections
+            if (detail.productCollections) {
+            setValue("productCollections", detail.productCollections);
+            }
+               
+        }
+    },[detail, append, setValue])
+
+    const handleImageUpload = (e) => {
+        const files = Array.from(e.target.files);
+        const existingImages = getValues("images") || [];
+        setValue("images", [...existingImages, ...files]);
+      };
+    
   return (
     <form onSubmit={handleSubmit(submitEvent)}>
         <h3>Content</h3>
@@ -203,26 +235,51 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
         <div className="from_grid">
             <div>
                 <label htmlFor="mainImage">Main Images</label><br />
-                <Controller
-                    name="mainImage"
-                    control={control}
-                    render={({ field }) => (
-                        <input
-                        type="file"
-                        onChange={(e) => field.onChange(e.target.files[0])}
+                <input
+                    type="file"
+                    onChange={(e) => setValue("mainImage", e.target.files[0])}
+                />
+                    {getValues("mainImage") && typeof getValues("mainImage") === "string" ? (
+                    <img
+                        src={getValues("mainImage")}
+                        alt="Main"
+                        style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                    />
+                    ) : (
+                    getValues("mainImage") && (
+                        <img
+                        src={URL.createObjectURL(getValues("mainImage"))}
+                        alt="Main Preview"
+                        style={{ width: "100px", height: "100px", objectFit: "cover" }}
                         />
+                    )
                     )}
-                /><br />
+                <br />
             </div>
             <div>
-                <label htmlFor="images"> Images gallery</label><br />
-                <input
-                    name='images'
-                    type='file'
-                    multiple
-                    onChange={(e) => setValue("images", Array.from(e.target.files))}
-                /><br />
-            </div>
+                <label>Images</label>
+                <input type="file" multiple onChange={handleImageUpload} />
+                <div className="image-preview">
+                    {(getValues("images") || []).map((image, index) => (
+                        <div key={index} style={{ display: "inline-block", margin: "5px" }}>
+                        {typeof image === "string" ? (
+                            <img
+                            src={image}
+                            alt={`Product ${index + 1}`}
+                            style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                            />
+                        ) : (
+                            <img
+                            src={URL.createObjectURL(image)}
+                            alt={`Preview ${index + 1}`}
+                            style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                            />
+                        )}
+                       
+                        </div>
+                    ))}
+                    </div>
+                </div>
             <div>
                 <label htmlFor="video"> Video</label><br />
                 <input
@@ -236,7 +293,7 @@ const ProductForm = ({submitEvent,loading,detail=null}) => {
             </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center',  }}>            
-            <input className='submit_btn' type="submit" value="Add Product" disabled={loading} style={{cursor:'pointer'}}/>
+            <input className='submit_btn' type="submit" value={value} disabled={loading} style={{cursor:'pointer'}}/>
         </div>
     </form>
   )

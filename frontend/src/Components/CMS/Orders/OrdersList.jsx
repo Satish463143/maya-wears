@@ -8,7 +8,7 @@ import { Pagination } from 'flowbite-react';
 import EditButton from '../../../Middlewares/EditButton/EditButton';
 const OrdersList = () => {
     const [page, setPage] = useState(1);
-    const [limit] = useState(10); // Fixed limit
+    const [limit] = useState(6); // Fixed limit
     const [search, setSearch] = useState('');
 
     const { data, error, isLoading, refetch } = useListOrderForAdminQuery({ page, limit, search });

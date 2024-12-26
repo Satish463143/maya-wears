@@ -42,6 +42,7 @@ class ProductController {
             const allFiles = [
                 ...(req.files.images || []),
                 ...(req.files.mainImage || []),
+                ...(req.file.video || []),
             ];
 
             // Include the video file if present
@@ -157,13 +158,13 @@ class ProductController {
                         uploadImage('./public/uploads/product/' + file.filename)
                     )
                 );
-            } 
+            } else {
+                throw new Error('"images" field is required and must be an array of files');
+            }
 
             if (req.files.mainImage) {
                 data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
             }
-
-            
 
             if (req.file) {
                 data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
@@ -173,6 +174,7 @@ class ProductController {
             const allFiles = [
                 ...(req.files.images || []),
                 ...(req.files.mainImage || []),
+                ...(req.file.video || []),
             ];
 
             // Include the video file if present
@@ -191,7 +193,7 @@ class ProductController {
             })
         }
         catch (exception) {
-            console.log(exception)
+            console.log('update',exception)
             next(exception)
         }
 

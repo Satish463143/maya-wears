@@ -41,7 +41,7 @@ class ProductService {
             return response
 
         }catch(exception){
-            console.log(exception)
+            console.log('update service',exception)
             throw exception
         }
         

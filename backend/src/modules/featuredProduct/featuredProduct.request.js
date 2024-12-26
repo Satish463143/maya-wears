@@ -23,7 +23,7 @@ const featuredProductUpdateDTO = Joi.object({
     }),
     subTitle:Joi.string().allow(null, "").optional(),
     status: Joi.string().valid(...Object.values(Status)).required(),
-    link:Joi.link().required().messages({
+    link:Joi.string().required().messages({
         "string.empty": "Link is required",
     }),
     desktopImage:Joi.string().optional(),

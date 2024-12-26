@@ -15,27 +15,23 @@ router.route('/')
     .post(
         loginCheck,
         hasPermission('admin'),
-        setPath('product'),
+        setPath('FeaturedProduct'),
         uplaodFile(FileFilterType.IMAGE).fields([
             { name: 'desktopImage', maxCount: 1 },
             { name: 'mobileImage', maxCount: 1 }
         ]),
-       
+              
         bodyValidator(featuredProductDTO),
         featuredProductController.create,
     )//create
 
 
-    .get(
-        loginCheck,
-        hasPermission('admin'),
-        featuredProductController.index) // list all product
+    .get(loginCheck,hasPermission('admin'), featuredProductController.index) // list all product
 
 router.route('/:id')
     .get(loginCheck, hasPermission('admin'),featuredProductController.show) // get by id
-    .put(loginCheck,
-        hasPermission('admin'),
-        setPath('product'),
+    
+    .put(loginCheck, hasPermission('admin'),setPath('FeaturedProduct'),
         uplaodFile(FileFilterType.IMAGE).fields([
             { name: 'desktopImage', maxCount: 1 },
             { name: 'mobileImage', maxCount: 1 }

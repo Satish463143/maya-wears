@@ -13,7 +13,7 @@ export const FeaturedProductApi = createApi({
     }),
     endpoints:(builder)=>({
         listAll:builder.query({
-            query:() => "/featured_product"
+            query:({ page = 1, limit = 10, search = '' }) => `/featured_product?page=${page}&limit=${limit}&search=${search}`
         }),
         create:builder.mutation({
             query:(args)=> ({
@@ -29,8 +29,9 @@ export const FeaturedProductApi = createApi({
             query:()=> '/featured_product/list'
         }),
         update:builder.mutation({
-            query:(id)=>({
+            query:({id,payload})=>({
                 url: `/featured_product/${id}`,
+                body:payload,
                 method:'PUT',
                 headers:()=>([
                     {"Content-Type" :"multipart/form-data"}
