@@ -42,7 +42,6 @@ class ProductController {
             const allFiles = [
                 ...(req.files.images || []),
                 ...(req.files.mainImage || []),
-                ...(req.file.video || []),
             ];
 
             // Include the video file if present
@@ -152,39 +151,36 @@ class ProductController {
             await this.#validate(id)
             const data = req.body
 
-            if (req.files.images) {
+            if (req.files?.images?.length > 0) {
                 data.images = await Promise.all(
                     req.files.images.map(file =>
                         uploadImage('./public/uploads/product/' + file.filename)
                     )
                 );
-            } else {
-                throw new Error('"images" field is required and must be an array of files');
+            } else if (!data.images || data.images.length === 0) {
+                // Allow no change to `images` if it's not present in `req.body` or `req.files`
+                delete data.images;
             }
 
-            if (req.files.mainImage) {
+            if (req.files?.mainImage?.[0]) {
                 data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
             }
-
-            if (req.file) {
-                data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
+    
+            // Process video if provided
+            if (req.files?.video?.[0]) {
+                data.video = await uploadVideo('./public/uploads/product/' + req.files.video[0].filename);
             }
+            const response = await productService.updateProduct(data, id);
+            // Clean up uploaded files
+                const allFiles = [
+                    ...(req.files?.images || []),
+                    ...(req.files?.mainImage || []),
+                    ...(req.files?.video || []),
+                ];
 
-            const response = await productService.updateProduct(data, id)
-            const allFiles = [
-                ...(req.files.images || []),
-                ...(req.files.mainImage || []),
-                ...(req.file.video || []),
-            ];
-
-            // Include the video file if present
-            if (req.file) {
-                allFiles.push(req.file);
-            }
-
-            for (const file of allFiles) {
-                await deleteFile('./public/uploads/product/' + file.filename);
-            }
+                for (const file of allFiles) {
+                    await deleteFile('./public/uploads/product/' + file.filename);
+                }
 
             res.json({
                 result:response,

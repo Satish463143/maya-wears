@@ -44,6 +44,7 @@ router.route('/:id')
         ]),
         bodyValidator(productUpdateDTO),
         productController.update,) // update by id
+
     .delete(loginCheck, hasPermission('admin'),productController.delete) // delete by id
 
 module.exports = router

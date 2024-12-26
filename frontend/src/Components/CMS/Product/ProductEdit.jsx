@@ -58,9 +58,15 @@ const ProductEdit = () => {
         }
 
         // Add images and files safely
-        if (data.images && data.images.length > 0) {
-            data.images.forEach((file) => formData.append("images", file));
-        }
+        const combinedImages = [
+          ...data.images.filter((img) => typeof img === "string"), // Existing URLs
+          ...data.images.filter((img) => typeof img !== "string"), // Newly uploaded files
+          ];
+
+          combinedImages.forEach((image) => {
+              formData.append("images", image);
+          });
+          
         if (data.mainImage) formData.append("mainImage", data.mainImage);
         if (data.video) formData.append("video", data.video);
 

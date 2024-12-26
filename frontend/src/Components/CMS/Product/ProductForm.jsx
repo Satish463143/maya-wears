@@ -184,7 +184,6 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
                     <label>
                         Quantity:
                         <input
-                            type="number"
                             {...register(`sizes.${index}.quantity`)}
                             placeholder="Quantity"
                         />
@@ -279,7 +278,7 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
                         </div>
                     ))}
                     </div>
-                </div>
+            </div>
             <div>
                 <label htmlFor="video"> Video</label><br />
                 <input

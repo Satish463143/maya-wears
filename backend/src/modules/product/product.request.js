@@ -47,7 +47,12 @@ const productDTO = Joi.object({
         .optional()
         .default(Wearable.BOTH), // Optional, with a default value
     productCollections: Joi.array().items(Joi.string()).optional().default([]), // Optional array
-    images: Joi.array().items(Joi.string()).optional().min(1), // Optional array of URLs
+    images: Joi.array()
+    .items(Joi.string())
+    .optional()
+    .messages({
+        "array.base": '"images" must be an array',
+    }), // Optional array of URLs
     mainImage: Joi.string().optional(), // Optional
     video: Joi.string().allow(null, "").optional(), // Optional
 });
