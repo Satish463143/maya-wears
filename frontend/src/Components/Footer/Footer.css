@@ -3,7 +3,7 @@
   background: var(--back);
   width: 100%;
   height: auto;
-  padding-top: var(--div-gap);
+  /* padding-top: var(--div-gap); */
 
 }
 .social_media {
@@ -11,7 +11,7 @@
   justify-content: center;
   gap: 20px;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: var(--text-gap);
 }
 .social_media li {
   list-style: none;

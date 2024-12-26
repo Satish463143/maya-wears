@@ -36,9 +36,16 @@ const Cart = ({isCartActive , toogleCart,}) => {
         } catch (exception) {
             console.log(exception);
         }
+       
+    }
+    if(isCartActive){
+        document.body.classList.add('active_select_sizes')
+    }
+    else{
+        document.body.classList.remove('active_select_sizes')
     }
   return (    
-    <div className={`cart ${isCartActive?'cart_active': ''}`}>
+    <div className={`cart ${isCartActive?'cart_active ': ''}`}>
         <div className={`cart_overlay ${isCartActive? 'no-scroll' : ''}`} onClick={toogleCart}></div>
         <div className='cart_container' >
             <div className='cart_container_div'></div>

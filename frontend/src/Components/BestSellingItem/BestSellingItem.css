@@ -1,9 +1,9 @@
 .bestSelling{
     margin: var(--div-gap) 0;
 }
-.bestSelling h1,.hotSelling h2{
+.best__of__ h1,.best__of__ h2{
     text-align: center;
-    padding: var(--div-gap) 0;
+    padding-bottom: 10px;
     font-weight: 700;
     font-size: var(--font_for_header);
 }

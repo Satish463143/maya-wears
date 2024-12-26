@@ -1,14 +1,22 @@
 .img_containor{
-    display: grid;
-    grid-area: auto;
-    grid-template-columns: auto auto;
-    grid-gap: var(--div-gap);
-    padding: var(--text-gap);
-    margin-top: 5vh;
+    margin: var(--div-gap);
+    /* display: grid; */
+    /* grid-template-columns:  auto auto; */
+    /* grid-gap: var(--div-gap); */
+     /* padding: var(--div-gap);  */
+    /* grid-auto-rows: auto; */
+    /* grid-auto-flow: dense; */
+    column-width :140px;
+    /* gap: var(--div-gap); */
+    
 }
 .img_containor img{
+    
     border-radius: 10px;
     height: auto;
-    display: block;
+    width: 100%;
+    /* padding: var(--div-gap);  */
+    margin-bottom: var(--div-gap);
+    /* display: block; */
 
 }

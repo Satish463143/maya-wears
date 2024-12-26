@@ -1,6 +1,7 @@
 .company {
   display: flex;
   padding: 0 15%;
+  margin-top: var(--div-gap);
 }
 .company__promises {
   display: flex;
@@ -10,7 +11,7 @@
   text-align: center;
   gap: 5;
   width: 33%;
-  padding: 5%;
+  padding-bottom: 5%;
 }
 .company__promises .pro__tags {
   font-weight: 900;
@@ -19,8 +20,8 @@
   text-decoration: underline;
   color: var(--sec_dark);
 }
-svg {
-  fill: black;
+.company svg {
+  fill: var(--sec_dark);
 }
 
 @media (max-width: 600px) {
@@ -31,7 +32,7 @@ svg {
   }
   .company__promises {
     width: 90%;
-    padding: var(--div-gap);
+    padding-bottom: var(--div-gap);
   }
   .company__promises .pro__tags {
     font-weight: 900;
@@ -39,8 +40,5 @@ svg {
   .pro__disc span a {
     text-decoration: underline;
     color: var(--sec_dark);
-  }
-  svg {
-    fill: black;
   }
 }

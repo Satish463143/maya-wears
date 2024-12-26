@@ -9,6 +9,7 @@
 }
 .cart_active{
     margin-left: 0%;
+    /* overflow-y: hidden; */
 }
 .cart_overlay{
     position: absolute;
