@@ -27,14 +27,8 @@ const featuredProductSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    desktopImage:{
-        type:String,
-        required:true,
-    },
-    mobileImage:{
-        type:String,
-        required:true,
-    },
+    desktopImage:String,   
+    mobileImage:String,
     createdBy: {
         type: mongoose.Types.ObjectId,
         ref: "User",

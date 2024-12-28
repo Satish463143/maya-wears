@@ -6,15 +6,11 @@ import collectionSvc from '../Collection/Collection.service';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom'
 const Banner_1_Edit = () => {
-    const [loading,setLoading] = useState(false)
-   
+    const [loading,setLoading] = useState(false)   
     const [banner, setBanner] = useState()
-    // const [imageFile, setImageFile] = useState(null);
     const params = useParams();
     const navigate = useNavigate()
 
-
-    // get the details of the  individuals banner
     const getDetail = async()=>{
         try{
             const detail = await collectionSvc.getRequest("/banner_1/"+params.id,{auth:true})           
@@ -37,8 +33,7 @@ const Banner_1_Edit = () => {
         try{
             const submitData  = {
                 ...data,
-                category: data.category.value,
-                
+                category: data.category.value,                
             }
 
             if(typeof data.mobileImage === 'string'){

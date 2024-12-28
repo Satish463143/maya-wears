@@ -8,12 +8,6 @@ import { CategoryOptionsCompoent,  TextAreaInput, TextInputComponent } from '../
 
 const BannerForm = ({submitEvent,loading,detail=null}) => {
 
-    // const [selectedCategory, setSelectedCategory] = useState(detail?.category?.value || "");
-
-    // const handleCategoryChange = (e) => {
-    //     const category = e.target.value;
-    //     setSelectedCategory(category);  // Update the selectedCategory in the parent component
-    //   };
     const bannerDTO = Yup.object({
         title: Yup.string().min(3).max(50).required(),
         content: Yup.string().min(3).max(50).nullable().optional().default(null),
@@ -78,8 +72,6 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                     type='text'
                     defaultValue=''
                     errMsg={errors?.link?.message}
-                    required:true
-
                 />
             </div>
             
@@ -89,12 +81,10 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                     name="category"
                     control={control}
                     errMsg={errors?.category?.message}
-                    required:true
-                    // value={selectedCategory}
-                    // onChange={handleCategoryChange}
+                    required:true                    
                 />
             </div>
-            {/* {selectedCategory === 'image' && */}
+            
              <div>
                 <label htmlFor="mobileImage"> Mobile Image</label><br />
                 <input

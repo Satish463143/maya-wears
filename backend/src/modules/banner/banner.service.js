@@ -1,11 +1,10 @@
 const BannerModel = require("./banner.model")
 
 class BannerService {
-    createBAnner =async (data)=>{
+    createBanner =async (data)=>{
         try{
             const banner = new BannerModel(data)
             return await banner.save()
-
         }
         catch(exception){
             throw exception

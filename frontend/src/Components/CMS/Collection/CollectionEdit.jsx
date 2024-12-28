@@ -6,30 +6,26 @@ import collectionSvc from './Collection.service'
 import { useNavigate, useParams } from 'react-router-dom'
 import CollectionForm from './CollectionForm'
 import LoadingComponent from '../../../Middlewares/Loading/Loading.component';
+import { useShowByIdQuery, useUpdateCollectionMutation, useListAllQuery } from '../../../api/collection.api';
 
 const CollectionEdit = () => {
-  const [loading, setLoading] = useState(true)
+  const params = useParams();
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [imageFile, setImageFile] = useState(null);
   const [collection, setCollection] = useState()
-  const params = useParams();
+  
 
-  const getDetail = async () => {
-    try {
-      const detail = await collectionSvc.getRequest("/collection/" + params.id, { auth: true })
-      setCollection(detail.result)
-      setLoading(false)
-    } catch (exception) {
-      console.log(exception)
-      toast.error("Error while fetching collection", {
-        onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
-      });
+  const {data:collections,error,isLoading} = useShowByIdQuery(params.id)
+  const [updateCollection] = useUpdateCollectionMutation()
+  const {refetch} = useListAllQuery()
+
+  useEffect(()=>{
+    if(collections){
+      setCollection(collections?.result)
     }
-  }
-
-  useEffect(() => {
-    getDetail()
-  }, [])
+  },[collections])
+ 
 
   const submitEvent = async (data) => {
     setLoading(true);
@@ -46,15 +42,13 @@ const CollectionEdit = () => {
       if (typeof data.image === 'string') {
         delete formData.image
       }
-
-
-      await collectionSvc.putRequest("/collection/" + params.id, formData, { auth: true, file: true });
+      await updateCollection({id:params.id, payload:formData}).unwrap();
 
       toast.success("Collection Updated Successfully");
-      setTimeout(() => navigate("/admin/collection"), 1000);
+      navigate('/admin/collection')
+      refetch()
 
     } catch (exception) {
-      // Default error message
       let errorMessage = "Error while updating collection";
       toast.error(errorMessage);
       console.error(exception, "Error here");
@@ -73,21 +67,23 @@ const CollectionEdit = () => {
         </div>
       </div>
 
-      <div className="banner_form">
-        {loading ? <><LoadingComponent /></> :
-          <>
-            <CollectionForm detail={
-              {
-                name: collection.name,
-                description: collection.description,
-                status: {
-                  label: collection.status === 'active' ? 'Active' : 'Inactive',
-                  value: collection.status
-                },
-                image: collection.image
-              }
-            } submitEvent={submitEvent} loading={loading} setImageFile={setImageFile} />
-          </>}
+      <div className="banner_form">        
+            <CollectionForm
+              detail={
+              collection
+                ? {
+                  name: collection.name,
+                  description: collection.description,
+                  status: {
+                    label: collection.status === 'active' ? 'Active' : 'Inactive',
+                    value: collection.status
+                  },
+                  image: collection.image
+                  }
+                : null
+              }          
+              submitEvent={submitEvent} value='Update collection' loading={loading} setImageFile={setImageFile} 
+          />
       </div>
 
     </div>

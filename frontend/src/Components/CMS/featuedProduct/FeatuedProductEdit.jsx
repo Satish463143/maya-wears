@@ -21,7 +21,6 @@ const FeatuedProductEdit = () => {
     }
   },[products])
 
-  console.log(product)
   
   const submitEvent = async(data)=>{
     setLoading(true)
@@ -47,8 +46,6 @@ const FeatuedProductEdit = () => {
     }
     
   }
-
-
 
   return (
     <div className='admin_margin_box'>

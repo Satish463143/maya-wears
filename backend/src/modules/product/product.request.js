@@ -49,7 +49,7 @@ const productDTO = Joi.object({
     productCollections: Joi.array().items(Joi.string()).optional().default([]), // Optional array
     images: Joi.array()
     .items(Joi.string())
-    .optional()
+    .optional().min(1)
     .messages({
         "array.base": '"images" must be an array',
     }), // Optional array of URLs

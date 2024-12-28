@@ -5,11 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import collectionSvc from './Collection.service'
 import { useNavigate } from 'react-router-dom'
 import CollectionForm from './CollectionForm'
+import { useCreateCollectionMutation, useListAllQuery } from '../../../api/collection.api';
 
 const CollectionAdd = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const [imageFile, setImageFile] = useState(null);
+    const[createCollection] =  useCreateCollectionMutation()
+    const {refetch} = useListAllQuery()
 
     
 
@@ -23,13 +26,11 @@ const CollectionAdd = () => {
             formData.append("status", data.status.value);  // Adjust based on object structure
             formData.append("image", imageFile);  // Ensure file upload
 
-            await collectionSvc.postRequest("/collection", formData, { auth: true, file: true });
+            await createCollection(formData).unwrap();
             
-            // toast.success("Collection Created Successfully");
-            // navigate("/admin/collection");
-            toast.success("Collection Created Successfully", {
-                onClose: () => navigate("/admin/collection"), // Navigates after the toast shows
-              }); 
+            toast.success("Collection Created Successfully");
+            navigate("/admin/collection"); 
+            refetch()
             
         } catch (exception) {
              // Default error message

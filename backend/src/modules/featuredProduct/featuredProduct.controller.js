@@ -7,23 +7,15 @@ const { Status } = require("../../config/constants.config");
 
 class featuredProductController  {
     featuredProductDetails;
-    create = async(req,res,next)=>{
-        console.log("req.files:", req.files);
-        console.log("req.body:", req.body);     
+    create = async(req,res,next)=>{     
         try{
             const data = req.body
 
-            if (req.files.desktopImage && req.files.desktopImage.length > 0) {
-                const desktopImageFile = req.files.desktopImage[0];
-                data.desktopImage = await uploadImage('./public/uploads/FeaturedProduct/' + desktopImageFile.filename);
-                deleteFile('./public/uploads/FeaturedProduct/' + desktopImageFile.filename);
+            if (req.files.desktopImage) {
+                data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
             }
-    
-            // Process mobileImage
-            if (req.files.mobileImage && req.files.mobileImage.length > 0) {
-                const mobileImageFile = req.files.mobileImage[0];
-                data.mobileImage = await uploadImage('./public/uploads/FeaturedProduct/' + mobileImageFile.filename);
-                deleteFile('./public/uploads/FeaturedProduct/' + mobileImageFile.filename);
+            if (req.files.mobileImage) {
+                data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
             }
 
             //slug
@@ -32,6 +24,15 @@ class featuredProductController  {
             data.createdBy = req.authUser._id
 
             const product = await featuredProductService.createProduct(data)
+
+            const allFiles = [
+                ...(req.files?.desktopImage || []),
+                ...(req.files?.mobileImage || []),
+            ];
+
+            for (const file of allFiles) {
+                await deleteFile('./public/uploads/FeaturedProduct/' + file.filename);
+            }
 
             res.json({
                 result:product,
@@ -165,7 +166,7 @@ class featuredProductController  {
     listForHome = async(req,res,next)=>{
         try{
             const list = await featuredProductService.listdata({
-            limit: 5,
+            limit: 7,
             filter: {
                 status: Status.ACTIVE
             }

@@ -150,6 +150,8 @@ class ProductController {
             const id = req.params.id
             await this.#validate(id)
             const data = req.body
+            
+            console.log('images', req.files.images)
 
             if (req.files?.images?.length > 0) {
                 data.images = await Promise.all(

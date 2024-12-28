@@ -15,11 +15,11 @@ const FeatuedProductForm = ({submitEvent,loading,detail=null,value}) => {
             label:Yup.string().matches(/^(Active|Inactive)$/),
             value: Yup.string().matches(/^(active|inactive)$/).required('Please select a status')
         }).required(),
-        desktopImage:Yup.mixed().required('Desktop image is required'),
-        mobileImage:Yup.mixed().required('Mobile image is required'),
+        desktopImage: Yup.mixed().nullable().notRequired(),
+        mobileImage: Yup.mixed().nullable().notRequired(),
     })
 
-    const { control, handleSubmit, setValue,  formState: { errors } } = useForm({
+    const { control, handleSubmit, setValue, getValues, formState: { errors } } = useForm({
             resolver: yupResolver(productDTO)
         }) 
 
@@ -32,7 +32,13 @@ const FeatuedProductForm = ({submitEvent,loading,detail=null,value}) => {
             setValue("mobileImage", detail.mobileImage)
             setValue("status", detail.status)    
         }
-    },[detail])
+    },[detail, setValue])
+
+    const handleImageUpload = (e, fieldName) => {
+        const files = Array.from(e.target.files);
+        const existingImages = getValues(fieldName) || [];
+        setValue(fieldName, [...existingImages, ...files]);
+    };
     
   return (
     <form action="" onSubmit={handleSubmit(submitEvent)}>
@@ -80,22 +86,22 @@ const FeatuedProductForm = ({submitEvent,loading,detail=null,value}) => {
                 />
             </div>
             <div>
-                <label htmlFor="desktopImage"> Desktop image</label><br />
+                <label>Desktop Image</label>
                 <input
                     type='file'
                     onChange={(e) => {
-                        const desktopImage = e.target.files['0']
-                        setValue('desktopImage', desktopImage)
+                        const image = e.target.files['0']
+                        setValue('desktopImage', image)
                     }}
                 /><br />
             </div>
             <div>
-                <label htmlFor="mobileImage"> Mobile image</label><br />
+                <label>Mobile Image</label>
                 <input
                     type='file'
                     onChange={(e) => {
-                        const mobileImage = e.target.files['0']
-                        setValue('mobileImage', mobileImage)
+                        const image = e.target.files['0']
+                        setValue('mobileImage', image)
                     }}
                 /><br />
             </div>

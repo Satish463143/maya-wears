@@ -8,7 +8,7 @@ import { Pagination } from 'flowbite-react';
 import EditButton from '../../../Middlewares/EditButton/EditButton';
 const OrdersList = () => {
     const [page, setPage] = useState(1);
-    const [limit] = useState(6); // Fixed limit
+    const [limit] = useState(10); // Fixed limit
     const [search, setSearch] = useState('');
 
     const { data, error, isLoading, refetch } = useListOrderForAdminQuery({ page, limit, search });
@@ -17,15 +17,27 @@ const OrdersList = () => {
         setPage(newPage);
       };
 
+      const handleSearchChange = (event) => {
+        setSearch(event.target.value); // Update the search state
+        setPage(1); // Reset to the first page
+      };
   return (
-
     <div className='admin_margin_box'>
         <div className='admin_titles'>
-            <AdminTitle label1='Orders List' />
-            <div className='Dashboard_title'>
-            <h1>Orders List</h1>          
-            </div>
+          <AdminTitle label1='Orders List' />
+          <div className='Dashboard_title'>
+            <h1>Orders List</h1> 
+              <div>
+                  <input
+                      type="search"
+                      className="search_btn"
+                      placeholder="Filter by status..."
+                      value={search}
+                      onChange={handleSearchChange}
+                  />
+              </div>        
         </div>
+      </div>
         <div className='blog_table'>        
         <table border='2'>
           <thead>

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { useEditProductMutation, useListByIdQuery } from '../../../api/product.api'
+import { useEditProductMutation, useListByIdQuery,useListAllQuery } from '../../../api/product.api'
 import { toast,ToastContainer } from 'react-toastify'
 import AdminTitle from '../../../Middlewares/AdminTitle/AdminTitle'
 import { useParams } from 'react-router-dom'
@@ -16,13 +16,13 @@ const ProductEdit = () => {
 
   const {data:products,error, isLoading} = useListByIdQuery(params.id)
   const [editProduct] = useEditProductMutation()
+  const { refetch } = useListAllQuery();
 
     useEffect(()=>{
       if(products){
         setProduct(products.result)
       }
     },[products])
-    console.log(product)
 
   const submitEvent = async(data)=>{
     setLoading(true)
@@ -31,8 +31,6 @@ const ProductEdit = () => {
         // Required fields
         formData.append("title", data.title);
         formData.append("price", data.price);
-
-        // Optional fields with safe defaults
         formData.append("summary", data.summary || null);
         formData.append("description", data.description || null);
         formData.append("color", data.color || null);
@@ -63,18 +61,25 @@ const ProductEdit = () => {
           ...data.images.filter((img) => typeof img !== "string"), // Newly uploaded files
           ];
 
+
           combinedImages.forEach((image) => {
               formData.append("images", image);
           });
-          
+
+          console.log(combinedImages)
+          console.log('form images',formData.images)  
+
+
         if (data.mainImage) formData.append("mainImage", data.mainImage);
         if (data.video) formData.append("video", data.video);
 
+        for (let [key, value] of formData.entries()) {
+          console.log(key, value);
+      }
         const response = await editProduct({id:params.id,  payload:formData}).unwrap();          
         toast.success("Product added successfully");
         navigate('/admin/product')
-
-
+        refetch();        
     }catch(exception){
       console.log("error ", exception)
       toast.error('Error While Updating Product')

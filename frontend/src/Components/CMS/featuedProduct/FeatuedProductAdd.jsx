@@ -13,17 +13,22 @@ const FeatuedProductAdd = () => {
 
   const submitEvent = async(data)=>{
     setLoading(true)
-    const fromData = new FormData();
-      fromData.append("status", data.status.value); // Add status as a string
-      fromData.append("title", data.title); // Add other fields
-      fromData.append("subTitle", data.subTitle);
-      fromData.append("link", data.link);
-      fromData.append("desktopImage", data.desktopImage); // Add file
-      fromData.append("mobileImage", data.mobileImage);
-    
+      
     try{ 
+      const formData = new FormData();
+      formData.append("status", data.status.value); 
+      formData.append("title", data.title); 
+      formData.append("subTitle", data.subTitle);
+      formData.append("link", data.link);
+      if (data.mobileImage instanceof File) {
+        formData.append("mobileImage", data.mobileImage);
+      }
+      if (data.desktopImage instanceof File) {
+          formData.append("desktopImage", data.desktopImage);
+      }
+      
+      await addFeaturedProduct(formData).unwrap()
 
-      await addFeaturedProduct(fromData).unwrap()
       toast.success("Featurued product added sucessfully")      
       navigate('/admin/featured_product')  
       refetch()    

@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { OptionsCompoentt,  TextAreaInput, TextInputComponent } from '../../../Middlewares/Form/Input.component'
 
 
-const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
+const CollectionForm = ({submitEvent,loading,setImageFile,value,detail=null}) => {
     
 
     const collectionDTO = Yup.object({
@@ -78,7 +78,7 @@ const CollectionForm = ({submitEvent,loading,setImageFile,detail=null}) => {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center'}}>            
-            <input className='submit_btn' type="submit" value="Add Collection" disabled={loading} style={{cursor:'pointer'}}/>
+            <input className='submit_btn' type="submit" value={value} disabled={loading} style={{cursor:'pointer'}}/>
         </div>
     </form>
   )

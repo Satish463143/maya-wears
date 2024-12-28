@@ -20,14 +20,10 @@ class CollectionService {
                 .sort({ _id: "desc" })
                 .limit(limit)
                 .skip(skip)
-
-
             return { count, data }
         } catch (exception) {
             throw exception
         }
-
-
     }
     getIdbyFilter = async (filter) => {
         try {

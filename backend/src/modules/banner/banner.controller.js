@@ -1,7 +1,6 @@
-const {uploadImage} = require("../../config/cloudinary.config")
-const { deleteFile } = require("../../utilies/helper")
-const BannerModel = require("./banner.model")
+const {uploadImage, uploadVideo} = require("../../config/cloudinary.config")
 const bannerSvc = require("./banner.service")
+const { Status } = require("../../config/constants.config");
 
 class BannerController {
    
@@ -10,21 +9,32 @@ class BannerController {
         try{
             const data = req.body
             
-           data.image = await uploadImage('./public/uploads/banner/'+req.file.filename)
-            
-            deleteFile('./public/uploads/banner/'+req.file.filename)
+           if (req.files) {
+                if (req.files.desktopVideo) {
+                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                }
+                if (req.files.mobileVideo) {
+                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                }
+                if (req.files.desktopImage) {
+                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                }
+                if (req.files.mobileImage) {
+                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                }
+            }
 
             data.createdBy = req.authUser._id
 
-            const banner = await bannerSvc.createBAnner(data);
+            const banner = await bannerSvc.createBanner(data);
             res.json({
                 result:banner,
                 message:"Banner created sucessfully",
                 meta:null
             })
         }catch(exception){
+            console.log(exception)
             next(exception)
-
         }
     }
     index = async(req,res,next)=>{
@@ -88,7 +98,7 @@ class BannerController {
             const id = req.params.id
             await this.#validateId(id)
             res.json({
-                result:bannerDetails,
+                result:this.bannerDetails,
                 message:"Banner Fetched sucessfully",
                 meta:null
             })
@@ -106,11 +116,20 @@ class BannerController {
 
             const data = req.body
 
-            // if file is also being updatted
-            if(req.file){
-                data.image = await uploadImage('./public/uploads/banner/'+req.file.filename)
+            if (req.files) {
+                if (req.files.desktopVideo) {
+                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                }
+                if (req.files.mobileVideo) {
+                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                }
+                if (req.files.desktopImage) {
+                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                }
+                if (req.files.mobileImage) {
+                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                }
             }
-                deleteFile('./public/uploads/banner/'+req.file.filename)
             
                 // updated daata saved
 
@@ -123,9 +142,8 @@ class BannerController {
 
 
         }catch(exception){
-            
+            console.log(exception)            
             next(exception)
-
         }
     }
 
@@ -147,6 +165,25 @@ class BannerController {
             next(exception)
 
         }
+    }
+    listForHome= async(req,res,next)=>{
+        try {
+
+            const list = await bannerSvc.listData({
+                limit: 6,
+                filter: {
+                    status: Status.ACTIVE
+                }
+            })
+            res.json({
+                result: list,
+                message: "List of active Banners",
+                meta: null
+            })
+        } catch (exception) {
+            next(exception)
+        }
+
     }
 
 }

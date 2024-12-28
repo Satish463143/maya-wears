@@ -42,7 +42,7 @@ router.route('/:id')
             { name: 'mainImage', maxCount: 1 },
             { name: 'video', maxCount: 1 }, // Add video here
         ]),
-        bodyValidator(productUpdateDTO),
+        // bodyValidator(productUpdateDTO),
         productController.update,) // update by id
 
     .delete(loginCheck, hasPermission('admin'),productController.delete) // delete by id

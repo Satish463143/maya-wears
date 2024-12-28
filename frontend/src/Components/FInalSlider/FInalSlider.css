@@ -1,0 +1,28 @@
+.carousel-cell {
+    width: 66%;
+    margin: 20px 0 20px 20px;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+  }
+  .slider_details{
+    position: relative;
+  }
+  .slider_details .mobileImage{
+    display: none;
+  }
+  .slider_details_content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+  }
+  
+  @media(max-width:700px){
+    .mobileImage{
+        display: block;
+    }
+    .desktopImage{
+        display: none;
+    }
+  }
+  

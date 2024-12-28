@@ -12,22 +12,23 @@ export const FeaturedProductApi = createApi({
         }
     }),
     endpoints:(builder)=>({
-        listAll:builder.query({
-            query:({ page = 1, limit = 10, search = '' }) => `/featured_product?page=${page}&limit=${limit}&search=${search}`
-        }),
+        listAll: builder.query({            
+            query: ({ page = 1, limit = 10, search = '' }) => 
+              `/featured_product?page=${page}&limit=${limit}&search=${search}`,
+          }),
         create:builder.mutation({
-            query:(args)=> ({
+            query:(formData)=> ({
                 url: "/featured_product",
-                body:args,
+                body:formData,
                 method:"POST",
                 headers:()=>([
                     {"Content-Type":"multipart/form-data"}
                 ])
             })
         }),
-        listForHome:builder.query({
-            query:()=> '/featured_product/list'
-        }),
+        listForHome: builder.query({
+            query: () => '/featured_product/list', // No query parameters needed
+          }),
         update:builder.mutation({
             query:({id,payload})=>({
                 url: `/featured_product/${id}`,

@@ -4,11 +4,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductForm from './ProductForm';
 import { useNavigate } from 'react-router-dom'
-import { useCreateProductMutation } from '../../../api/product.api';
+import { useCreateProductMutation,useListAllQuery } from '../../../api/product.api';
 
 const ProductAdd = () => {
     const [loading, setLoading] = useState(false)
     const [craeteProduct] = useCreateProductMutation()
+     const { refetch } = useListAllQuery();
     const navigate = useNavigate()
 
     const submitEvent = async (data) => {
@@ -55,6 +56,7 @@ const ProductAdd = () => {
             const response = await craeteProduct(formData).unwrap();          
             toast.success("Product added successfully");
             navigate('/admin/product')
+            refetch();
             
         } catch (exception) {
             console.error("Error while adding product:", exception);

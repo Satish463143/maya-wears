@@ -12,11 +12,9 @@ const FeaturedProductList = () => {
     const [search, setSearch] = useState(''); // Ensure default value is a string
     const [page, setPage] = useState(1);
     const [limit] = useState(10); 
-    // Fixed limit
 
     const { data, error, isLoading, refetch } = useListAllQuery({ page, limit, search });
     const [deleteProduct] = useDeleteMutation();
-    console.log('all data',data)
 
     const featuredData = data?.result;
 

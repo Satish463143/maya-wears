@@ -10,12 +10,8 @@ const featuredProductDTO = Joi.object({
     link:Joi.string().required().messages({
         "string.empty": "Link is required",
     }),
-    desktopImage:Joi.string().required().messages({
-        "string.empty": "Desktop image is required",
-    }),
-    mobileImage:Joi.string().required().messages({
-        "string.empty": "Desktop image is required",
-    }),
+    desktopImage:Joi.string(),
+    mobileImage:Joi.string(),
 })
 const featuredProductUpdateDTO = Joi.object({
     title:Joi.string().min(2).max(50).required().messages({

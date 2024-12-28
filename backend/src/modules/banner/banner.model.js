@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Status } = require("../../config/constants.config");
+const { BannerCategory } = require("../../config/constants.config")
 
 const BannerSchema = new mongoose.Schema({
     title:{
@@ -8,9 +9,19 @@ const BannerSchema = new mongoose.Schema({
         min:3,
         max:100,
     },
-    image:{
+    content:{
         type:String,
-        required:true,        
+        max:100,
+        default:null,
+    },
+    desktopImage:String,   
+    mobileImage:String,    
+    desktopVideo:String,   
+    mobileVideo:String,
+    category:{
+        type:String,
+        enum:[BannerCategory.IMAGE, BannerCategory.VIDEO],
+        required:true
     },
     link:{
         type:String,

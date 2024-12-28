@@ -9,18 +9,20 @@ import GoogleReview from "../../Components/GoogleReview/GoogleReview";
 import Faq from "../../Components/Faq/Faq";
 import Collection from "../../Components/Collection/Collection";
 import CustomerGallery from "../../Components/CustomerGallery/CustomerGallery";
-import ProductSliders3 from "../../Components/ProductSliders3/ProductSliders3";
+import FInalSlider from "../../Components/FInalSlider/FInalSlider";
+import ActiveBanner from "../../Components/ActiveBanner/ActiveBanner";
 
 const Home = () => {
   return (
     <div>
-      <Banner />      
-      <ProductSliders3/>
+      <Banner />  
+      
       <DownBannerItem />
+      <FInalSlider/>
+      <ActiveBanner/>
       <Down_2_Banner />
       <Down_3_Banner />
       <BestSellingItem />
-
       <CustomerGallery />
       {/* <GoogleReview/>           */}
       <Faq />
