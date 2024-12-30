@@ -11,6 +11,8 @@ const orderRouter = require("../modules/Order/Order.router")
 const promoRouter = require("../modules/promo/promo.router")
 const customerDetails = require("../modules/customerDetails/customer.router")
 const featuredProduct = require("../modules/featuredProduct/featuredProduct.router")
+const gallery = require("../modules/Gallery/Gallery.router")
+
 
 
 router.use("/auth",authRouter)
@@ -25,6 +27,7 @@ router.use('/order',orderRouter)
 router.use('/promo', promoRouter)
 router.use('/customer', customerDetails)
 router.use('/featured_product', featuredProduct)
+router.use('/gallery', gallery)
 
 
 module.exports = router
