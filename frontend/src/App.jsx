@@ -44,6 +44,8 @@ import FeatuedProductEdit from "./Components/CMS/featuedProduct/FeatuedProductEd
 import BannersList from "./Components/CMS/Banners/BannersList";
 import BannersAdd from "./Components/CMS/Banners/BannersAdd";
 import BannersEdit from "./Components/CMS/Banners/BannersEdit";
+import GalleryList from "./Components/CMS/Gallery/GalleryList";
+import GalleryAdd from "./Components/CMS/Gallery/GalleryAdd";
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 
   const dispatch = useDispatch();
@@ -104,6 +106,8 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path= 'featured_product' element = {<FeatuedProductList/>}/>
           <Route path= 'featured_product_add' element = {<FeatuedProductAdd/>}/>
           <Route path= 'featured_product_edit/:id' element = {<FeatuedProductEdit/>}/>
+          <Route path= 'gallery' element = {<GalleryList/>}/>
+          <Route path= 'gallery_add' element = {<GalleryAdd/>}/>
         </Route>
       </Routes>
     </div>

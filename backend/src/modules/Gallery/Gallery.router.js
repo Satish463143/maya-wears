@@ -10,8 +10,8 @@ router.route('/')
     .post(loginCheck,hasPermission('admin'),setPath('gallery'),uplaodFile(FileFilterType.IMAGE).array('images'),GalleryController.create)
     .get(GalleryController.index)
 
-router.route('/:id')
-    .get(loginCheck,hasPermission('admin'),GalleryController.show)
-    .delete(loginCheck,hasPermission('admin'),GalleryController.delete)
+router.route('/delete-by-url/:imageUrl')
+    .delete(loginCheck, hasPermission('admin'), GalleryController.deleteImage);
+
 
 module.exports = router
