@@ -20,12 +20,12 @@ const FInalSlider = () => {
         contain: true,
       });
 
-    //   return () => {
-    //     // Clean up Flickity instance
-    //     if (flkty) {
-    //       flkty.destroy();
-    //     }
-    //   };
+      // return () => {
+      //   // Clean up Flickity instance
+      //   if (flkty) {
+      //     flkty.destroy();
+      //   }
+      // };
     }
   });
   if (isLoading) {
@@ -45,7 +45,9 @@ const FInalSlider = () => {
                                 <div className="slider_details_content">
                                     <h3>{item.title}</h3>
                                     <p>{item.subTitle}</p>
-                                    <button>Shop now</button>
+                                    <Link to={item.link}>
+                                    < button>Shop now</button>
+                                    </Link>
                                 </div>
                             </div>
                         </Link> 
