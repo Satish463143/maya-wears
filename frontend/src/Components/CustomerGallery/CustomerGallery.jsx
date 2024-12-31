@@ -10,13 +10,11 @@ function CustomerGallery() {
   const [limit] = useState(10); 
   const {data,error,isLoading} = useListAllGalleryQuery({page, limit,})
 
-  console.log("API response:", data);
-    if(isLoading){
-        return <LoadingComponent/>
-    }
-    const galleries = data?.result?.allImages || [];
-
-
+  if(isLoading){
+      return <LoadingComponent/>
+  }
+  const galleries = data?.result?.allImages || [];
+  const sortedGallery = galleries.slice(0,10)
   return (
     <div className="div_container galleryyy">
       <div className="slider__name">
@@ -24,7 +22,7 @@ function CustomerGallery() {
         <p className="share__text">Share your style with Maya</p>
       </div>
       <div className="cus__gallery">
-        {galleries.map((item, index) => (
+        {sortedGallery.map((item, index) => (
           <img key={index} src={item} alt="" />
         ))}
       </div>

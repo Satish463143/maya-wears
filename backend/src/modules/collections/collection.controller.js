@@ -129,8 +129,6 @@ class CollectionController {
         try {
             const id = req.params.id
             await this.#validate(id)
-
-
             const response = await collectionService.deleteCollection(id)
             res.json({
                 result: response,
@@ -163,6 +161,24 @@ class CollectionController {
             next(exception)
         }
 
+    }
+    fetchById =async(req,res, next)=>{
+        try{
+            const {collectionId} = req.params
+
+            const response = await collectionService.listProduct(collectionId)
+
+            res.json({
+                result:response,
+                message:"Product fetched by collection id",
+                meta:null
+            })
+
+
+        }catch(exception){
+            console.log(exception)
+            next(exception)
+        }
     }
 }
 module.exports = new CollectionController

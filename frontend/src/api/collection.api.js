@@ -47,8 +47,9 @@ export const CollectionApi = createApi({
         listForHome:builder.query({
             query:() => "/collection/list"
         }),
-
+        listProductFromCollection:builder.query({
+            query:(collectionId)=>`/collection/fetchById/${collectionId}`
+        })
     })
-
 }) 
-export const {useListAllQuery, useListForHomeQuery,useCreateCollectionMutation, useDeleteCollectionMutation, useUpdateCollectionMutation, useShowByIdQuery} = CollectionApi
+export const {useListAllQuery, useListForHomeQuery,useCreateCollectionMutation, useDeleteCollectionMutation, useUpdateCollectionMutation, useShowByIdQuery,useListProductFromCollectionQuery} = CollectionApi

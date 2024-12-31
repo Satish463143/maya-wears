@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import * as Yup from 'yup'
 import { DescriptionInput, FeaturedOptionsCompoent, TextInputComponent, WearableOptionsCompoent } from '../../../Middlewares/Form/Input.component'
 import { useForm,useFieldArray, Controller } from 'react-hook-form'
@@ -9,7 +9,11 @@ import Select from "react-select";
 import '../../../pages/AdminPage/CMSLayout.css'
 
 const ProductForm = ({submitEvent,loading,detail=null,value}) => {
-    const {data,error, isLoading} = useListAllQuery(null)
+
+    //fetch collection to set collection in product
+    const [page, setPage] = useState(1);
+    const [limit] = useState(10); 
+    const {data,error, isLoading} = useListAllQuery({ page, limit })
     if(isLoading) <LoadingComponent/>
     const collectionList = data?.result
 
@@ -64,13 +68,11 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
             setValue("video", detail.video)
             if (detail.sizes && detail.sizes.length > 0) {
                 detail.sizes.forEach((size) => append(size));
-            }
-        
+            }        
             // Initialize collections
             if (detail.productCollections) {
             setValue("productCollections", detail.productCollections);
             }
-               
         }
     },[detail, append, setValue])
 
@@ -78,8 +80,7 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
         const files = Array.from(e.target.files);
         const existingImages = getValues("images") || [];
         setValue("images", [...existingImages, ...files]);
-      };
-    
+      };    
   return (
     <form onSubmit={handleSubmit(submitEvent)}>
         <h3>Content</h3>

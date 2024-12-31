@@ -4,20 +4,21 @@ import { useListForHomeQuery } from '../../api/collection.api'
 import LoadingComponent from '../../Middlewares/Loading/Loading.component' 
 
 const Collection = () => {
+
   const {data,error, isLoading} = useListForHomeQuery(null)
-  // console.log('collectiondata',data)
   if(isLoading) <LoadingComponent/>
   const collections = data?.result?.data || []
+
   return (
-    <div className='div_container'>
-        <Link to='/collection/collection-one'>
-          {collections.map((key,index)=>(
-            <button>{key.name}</button> 
+    <div className='div_container'>        
+          {collections.map((item,index)=>(
+            <div key={index}> 
+              <Link to={`/collection/${item.slug}/${item._id}`}>
+                <button>{item.name}</button>
+              </Link> 
+            </div>
             
-          ))}
-            
-            {/* <button>Collection one</button> */}
-        </Link>        
+          ))}                
     </div>
   )
 }

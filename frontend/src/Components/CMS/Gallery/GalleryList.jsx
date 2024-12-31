@@ -13,13 +13,12 @@ const GalleryList = () => {
 
     const {data,error,isLoading,refetch} = useListAllGalleryQuery({page, limit,})
     const [deletePhoto] = useDeleteGalleryMutation()
-
-    if(isLoading){
-        return <LoadingComponent/>
-    }
-
+    
+    const [visibleCount, setVisibleCount] = useState(20);
+    const loadMore = () => {
+        setVisibleCount(prevCount => prevCount + 10); // Load 9 more each time
+    };
     const galleries = data?.result?.allImages || [];
-
     const deleteData = async(rowId)=>{
         try{
             await deletePhoto({imageUrl: rowId }).unwrap()
@@ -29,9 +28,10 @@ const GalleryList = () => {
             console.log(exception)
             toast.error("error while deleting image")
         }
-        console.log('image url',rowId)
     }
-
+    if(isLoading){
+        return <LoadingComponent/>
+    }
   return (
     <div className="admin_margin_box">
         <div className="admin_titles">
@@ -46,11 +46,16 @@ const GalleryList = () => {
             </div>
         </div>
         <div className="gallery_grid">
-            {galleries.map((item, index)=>(
-                    <GalleryImage key={index} link={item} image={item} deleteAction={deleteData} rowId={item}/>
-                ))
-            }
+             {galleries.slice(0, visibleCount).map((item, index) => (
+               <GalleryImage key={index} link={item} image={item} deleteAction={deleteData} rowId={item}/>
+            ))}
         </div>
+        {visibleCount < galleries.length && (
+            <div className='load_more_btn' onClick={loadMore}>
+                Load more
+            </div>
+        )}
+        
     </div>
   )
 }
