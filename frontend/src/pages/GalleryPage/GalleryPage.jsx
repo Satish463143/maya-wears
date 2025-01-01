@@ -7,23 +7,35 @@ import LoadingComponent from "../../Middlewares/Loading/Loading.component.jsx";
 const  GalleryPage=()=> {
   const [page, setPage] = useState(1);
   const [limit] = useState(10); 
+  const [visibleCount, setVisibleCount] = useState(15);
   const {data,error,isLoading} = useListAllGalleryQuery({page, limit,})
 
-  console.log("API response:", data);
     if(isLoading){
         return <LoadingComponent/>
     }
-    const galleries = data?.result?.allImages || [];
+  const galleries = data?.result?.allImages || [];
+  
+  const loadMore = () => {
+      setVisibleCount(prevCount => prevCount + 10); // Load 9 more each time
+  };
+
   return (
     <>
       <GalleryBanner  />
       <div className="img_containor">
-        {galleries.map((item, index)=>(
-          <a href={item} target="_blank">
-            <img src={item} key={index} alt="" />
-          </a>
+        {galleries.slice(0, visibleCount).map((item, index) => (
+            <a href={item} target="_blank">
+              <img src={item} key={index} alt="" />
+            </a>
         ))}
+        
       </div>
+      {visibleCount < galleries.length && (
+        <div className='load_more_btn' onClick={loadMore}>
+            Load more
+        </div>
+      )}
+
     </>
   );
 }

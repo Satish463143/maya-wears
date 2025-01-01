@@ -55,8 +55,7 @@ const productSchema = new mongoose.Schema({
     productCollections: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'Collection',
-            
+            ref: 'Collection',            
         }
     ],
     images: {

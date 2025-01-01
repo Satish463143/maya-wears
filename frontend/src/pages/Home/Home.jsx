@@ -18,10 +18,11 @@ const Home = () => {
       <DownBannerItem />      
       <ActiveBanner/>
       <BestSellingItem />
+      <Collection />
       <CustomerGallery />
       {/* <GoogleReview/>           */}
       <Faq />
-      <Collection />
+      
     </div>
   );
 };

@@ -69,7 +69,7 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route index element={<Home />} />
           <Route path="activate/:token" element={<UserActivation setCurrentView={setCurrentView} />}/>
           <Route path="product/:slug/:id" element={<ProductPage isCartActive={isCartActive} toogleCart={toogleCart}/>}/>
-          <Route path="collection/:slug" element={<CollectionPage />} />
+          <Route path="collection/:slug/:id" element={<CollectionPage />} />
           <Route path="all_product" element={<AllProductPage />} />
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="login" element={<LoginPage/>}/>

@@ -1,4 +1,5 @@
 
+const ProductModel = require("../product/product.model")
 const CollectionModel = require("./collections.model")
 
 class CollectionService {
@@ -55,6 +56,16 @@ class CollectionService {
         } catch (exception) {
             throw exception
         }
+    }
+    listProduct=async(collectionId)=>{
+        try{
+            const data = await ProductModel.find({ productCollections: collectionId })
+                .sort({ _id: "desc" })
+            return data
+        }catch(exception){
+            throw exception
+        }
+
     }
 }
 
