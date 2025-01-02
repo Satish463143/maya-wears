@@ -1,28 +1,92 @@
+.slider-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
 .carousel-cell {
-    width: 66%;
-    margin: 20px 0 20px 20px;
-    border-radius: 5px;
-    counter-increment: carousel-cell;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); */
+}
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+.slick-next:before {
+  content: '→';
+}
+.slick-prev:before, .slick-next:before {
+  font-family: 'slick';
+  font-size: 40px;
+  line-height: 1;
+  opacity: 0.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-prev:before, .slick-next:before {
+  color: var(--pri_text) !important;
+}
+
+.slider-details {
+  position: relative;
+  text-align: center;
+}
+
+.desktopImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mobileImage {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.slider-details-content {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.slider-details-content button {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .desktopImage {
+    display: none !important;
   }
-  .slider_details{
-    position: relative;
+
+  .mobileImage {
+    display: block !important;
   }
-  .slider_details .mobileImage{
-    display: none;
-  }
-  .slider_details_content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50% -50%);
-  }
-  
-  @media(max-width:700px){
-    .mobileImage{
-        display: block;
-    }
-    .desktopImage{
-        display: none;
-    }
-  }
-  
+}

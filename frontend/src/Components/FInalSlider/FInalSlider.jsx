@@ -1,65 +1,79 @@
-import React,{useRef, useLayoutEffect} from 'react'
-import { useListForHomeQuery } from '../../api/featuredProduct.api'
-import Flickity from "flickity";
-import "flickity/css/flickity.css";
-import LoadingComponent from '../../Middlewares/Loading/Loading.component';
-import './FInalSlider.css'
-import { Link } from 'react-router-dom';
+import React from "react";
+import Slider from "react-slick";
+import { useListForHomeQuery } from "../../api/featuredProduct.api";
+import LoadingComponent from "../../Middlewares/Loading/Loading.component";
+import { Link } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./FInalSlider.css";
+
+// Custom arrow components
+const NextArrow = ({ onClick }) => (
+  <div className="slick-arrow slick-next" onClick={onClick}>
+  </div>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <div className="slick-arrow slick-prev" onClick={onClick}>
+  </div>
+);
 
 const FInalSlider = () => {
-    const carouselRef = useRef(null);
-    const { data, error, isLoading } = useListForHomeQuery();   
-    
-    const product = data?.result?.data || [];
+  const { data, isLoading } = useListForHomeQuery();
+  const product = data?.result?.data || [];
 
+  const settings = {
+    //dots: true, // Enable navigation dots
+    infinite: true, // Enable infinite looping
+    speed: 500, // Transition speed in ms
+    slidesToShow: 1, // Number of slides to show
+    slidesToScroll: 1, // Number of slides to scroll
+    centerMode: true, // Center the active slide
+    centerPadding: "10%", // Adjust padding to create the 10% - 80% - 10% layout
+    //autoplay: true, // Enable autoplay
+    //autoplaySpeed: 3000, // Autoplay speed in ms
+    adaptiveHeight: true, // Adjust height dynamically based on content
+    nextArrow: <NextArrow />, // Custom right arrow
+    prevArrow: <PrevArrow />, // Custom left arrow
+  };
 
- useLayoutEffect(() => {
-    if (carouselRef.current) {
-      const flkty = new Flickity(carouselRef.current, {
-        wrapAround: true,
-        contain: true,
-      });
-
-      // return () => {
-      //   // Clean up Flickity instance
-      //   if (flkty) {
-      //     flkty.destroy();
-      //   }
-      // };
-    }
-  });
   if (isLoading) {
     return <LoadingComponent />;
   }
 
   return (
-    <div>
-        <div class="carousel" ref={carouselRef} data-flickity='{ "wrapAround": true }'>
-            {product.length > 0 ? (
-                product.map((item, index) => (
-                    <div class="carousel-cell" key={index}>  
-                        <Link to={item.link}>                      
-                            <div className="slider_details">                            
-                                <img className='desktopImage' src={item.desktopImage} alt="" />
-                                <img className='mobileImage' src={item.mobileImage} alt="" />
-                                <div className="slider_details_content">
-                                    <h3>{item.title}</h3>
-                                    <p>{item.subTitle}</p>
-                                    <Link to={item.link}>
-                                    < button>Shop now</button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </Link> 
-                    </div>
-                ))
-                ) : (
-                <p></p>
-            )}            
-        </div>
+    <div className="slider-container">
+      {product.length > 0 ? (
+        <Slider {...settings}>
+          {product.map((item, index) => (
+            <div className="carousel-cell" key={index}>
+              <Link to={item.link}>
+                <div className="slider-details">
+                  <img
+                    className="desktopImage"
+                    src={item.desktopImage}
+                    alt={item.title}
+                  />
+                  <img
+                    className="mobileImage"
+                    src={item.mobileImage}
+                    alt={item.title}
+                  />
+                  <div className="slider-details-content">
+                    <h3>{item.title}</h3>
+                    <p>{item.subTitle}</p>
+                    <button>Shop now</button>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <p>No products available</p>
+      )}
     </div>
-    
-  )
-}
+  );
+};
 
-export default FInalSlider
+export default FInalSlider;
