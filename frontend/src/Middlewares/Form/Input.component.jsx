@@ -68,6 +68,9 @@ export const TextAreaInput = ({control,name, defaultValue="",required=false, err
         defaultValue:defaultValue,
         // rules:{
         //     required:required
+
+
+        
         // }
     })
     return (

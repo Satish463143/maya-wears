@@ -17,7 +17,6 @@ class UserService {
         if(req.file){
             data.image = req.file.filename;
         }
-
         data.password = bcrypt.hashSync(data.password, 10)
          // bcrypt.compareSync(data.confirmPassword, data.password)
         // delete data.confirmPassword          

@@ -28,6 +28,3 @@ router.use('/promo', promoRouter)
 router.use('/customer', customerDetails)
 router.use('/featured_product', featuredProduct)
 router.use('/gallery', gallery)
-
-
-module.exports = router
