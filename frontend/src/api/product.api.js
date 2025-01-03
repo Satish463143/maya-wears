@@ -27,7 +27,7 @@ export const ProductApi = createApi({
             })
         }),
         listForHome:builder.query({
-            query:() => "/product/list"
+            query:({search = '' }) =>`/product/list?search=${search}`
         }),
         listById:builder.query({
             query:(id)=> `/product/${id}`

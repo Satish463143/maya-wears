@@ -10,8 +10,6 @@ const Collection = () => {
   if(isLoading) <LoadingComponent/>
   const collections = data?.result?.data || []
 
-  console.log('collections',collections)
-
   return (
     <div className='container'>  
     <div className="collections">

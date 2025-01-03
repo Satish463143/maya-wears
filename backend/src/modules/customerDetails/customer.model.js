@@ -18,6 +18,7 @@ const customerSchema = new mongoose.Schema({
     },
     phone:{
         type:[String],
+        required:true,
     },
     optionalNumber:{
         type:String,
@@ -28,14 +29,7 @@ const customerSchema = new mongoose.Schema({
         default:"Nepal",
         required:true,
     },
-    province:{
-        type:String,
-        required:true,
-    },
-    city:{
-        type:String,
-        required:true,
-    },
+    
     address:{
         type:String,
         required:true,
@@ -43,11 +37,7 @@ const customerSchema = new mongoose.Schema({
     landMark:{
         type:String,
         default:''
-    },
-    postalCode:{
-        type:String,
-        default:''
-    },
+    }
 }, {
     timestamps: true,
     autoIndex: true,
