@@ -1,7 +1,7 @@
 .company {
   display: flex;
   padding: 0 15%;
-  margin-top: var(--div-gap);
+  /* margin-bottom: var(--gap); */
 }
 .company__promises {
   display: flex;
@@ -24,7 +24,7 @@
   fill: var(--sec_dark);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .company {
     align-items: center;
     flex-direction: column;
@@ -32,7 +32,7 @@
   }
   .company__promises {
     width: 90%;
-    padding-bottom: var(--div-gap);
+    padding-bottom: var(--gap);
   }
   .company__promises .pro__tags {
     font-weight: 900;

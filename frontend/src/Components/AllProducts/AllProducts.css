@@ -1,5 +1,5 @@
 .prouct_title{
-    margin: 2vh;
+    margin: var(--gap);
 }
 .prouct_title div{
     font-size: var(--pri_font_size);
@@ -23,5 +23,6 @@
         display: grid;
         grid-template-columns:50% 50%;
         justify-content: space-between;
+        /* gap: var(--normal); */
     }
 }

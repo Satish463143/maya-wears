@@ -33,10 +33,10 @@
   --pri_font_size:20px;
   --sec_font_size:17px;
   --font_for_header:30px;
-  --back:white;
+  --back:rgb(255, 255, 255);
   --back-c:rgba(255, 255, 255, 0.847);
-  --div-gap:20px;
-  --text-gap:5px;
+  --gap:15px;
+  --normal:7.5px;
 }
 Link, a, button{
   cursor: pointer;

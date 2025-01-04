@@ -55,6 +55,6 @@
   .contact_info_item {
     width: 100%;
     border-bottom:solid 0.8px;
-    padding: var(--div-gap) 0;
+    padding: var(--gap) 0;
   }
 }

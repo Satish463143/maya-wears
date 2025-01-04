@@ -1,5 +1,6 @@
 .bestSelling{
-    margin: var(--div-gap) 0;
+    /* margin: var(--div-gap) 0; */
+    margin-bottom: var(--gap);
 }
 .best__of__ h1,.best__of__ h2{
     text-align: center;
@@ -13,7 +14,7 @@
     overflow-x: scroll;
     scrollbar-width: none;   
     gap: 30px; 
-    padding-left:var(--div-gap);
+    padding-left:var(--gap);
 }
 .view_all_box{
     display: flex;
@@ -39,7 +40,7 @@
 }
 @media (max-width:600px){
     .best_flex{
-    gap: 10px;
+    gap: var(--gap);
 }
 .best_container{
     width: 100%;

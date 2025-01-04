@@ -1,5 +1,6 @@
 .down_banner{
-  margin: var(--text-gap) 0;
+  /* margin: var(--text-gap) 0; */
+  margin-bottom: var(--gap);
     position: relative;
 }
 /* .sticky-div {

@@ -1,5 +1,5 @@
 .img_containor{
-    margin: var(--div-gap);
+    margin: var(--gap);
     /* display: grid; */
     /* grid-template-columns:  auto auto; */
     /* grid-gap: var(--div-gap); */
@@ -16,7 +16,7 @@
     height: auto;
     width: 100%;
     /* padding: var(--div-gap);  */
-    margin-bottom: var(--div-gap);
+    margin-bottom: var(--gap);
     /* display: block; */
 
 }

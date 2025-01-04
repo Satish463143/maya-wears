@@ -13,16 +13,15 @@ import ActiveBanner from "../../Components/ActiveBanner/ActiveBanner";
 const Home = () => {
   return (
     <div>
-      <Banner />   
-      <FInalSlider/>    
-      <DownBannerItem />      
-      <ActiveBanner/>
+      <Banner />
+      <FInalSlider />
+      <DownBannerItem />
+      <ActiveBanner />
       <BestSellingItem />
       <Collection />
       <CustomerGallery />
       {/* <GoogleReview/>           */}
       <Faq />
-      
     </div>
   );
 };

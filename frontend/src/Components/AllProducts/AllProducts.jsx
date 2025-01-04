@@ -11,7 +11,7 @@ const AllProducts = () => {
     const products = data?.result?.data || null
 
   return (
-    <div className='container'>
+    <div className='container' style={{marginBottom:'15px'}}>
         <div>
             <div className="prouct_title">
                 <div><span>Catogories</span><span>/</span>All Products</div>

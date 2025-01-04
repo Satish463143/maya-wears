@@ -3,6 +3,7 @@
   background: var(--back);
   width: 100%;
   height: auto;
+  margin-bottom: var(--gap);
   /* padding-top: var(--div-gap); */
 
 }
@@ -11,7 +12,7 @@
   justify-content: center;
   gap: 20px;
   align-items: center;
-  margin-bottom: var(--text-gap);
+  margin-bottom: var(--gap);
 }
 .social_media li {
   list-style: none;
@@ -114,7 +115,7 @@
   }
   .new__logo img {
     width: 70%;
-    margin-top: var(--div-gap);
+    margin-top: var(--gap);
 
   }
   .new__logo {

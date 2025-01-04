@@ -1,10 +1,11 @@
 .Product__catalog{
     border: solid 0.8px var(--sec_dark);
-    margin: 3px;
+    margin: 5px;
     border-radius: 5px;
     overflow: hidden;
     text-align: center;
     height: 450px;
+    
 }
 
 .Product__catalog .product__image{

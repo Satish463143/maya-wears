@@ -62,7 +62,7 @@ const Banner = () => {
             <img src={bannerData?.desktopImage} alt="" />
           </div>
           <div className="mobile_img">
-            <img src={bannerData?.mobileImage}  alt="" />
+            <img src={bannerData?.mobileImage} alt="" />
           </div>
         </>
       )}

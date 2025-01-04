@@ -23,7 +23,7 @@ const FInalSlider = () => {
   const product = data?.result?.data || [];
 
   const settings = {
-    //dots: true, // Enable navigation dots
+    dots: false, // Enable navigation dots
     infinite: true, // Enable infinite looping
     speed: 500, // Transition speed in ms
     slidesToShow: 1, // Number of slides to show
