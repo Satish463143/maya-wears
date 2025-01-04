@@ -23,7 +23,7 @@ function CustomerGallery() {
       </div>
       <div className="cus__gallery">
         {sortedGallery.map((item, index) => (
-          <img key={index} src={item} alt="" />
+          <a href={item} key={index} target="_blank"><img  src={item} alt="" /></a>          
         ))}
       </div>
     </div>

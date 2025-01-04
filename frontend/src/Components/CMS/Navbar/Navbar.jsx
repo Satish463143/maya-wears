@@ -13,18 +13,6 @@ const Navbar = () => {
       setMenu('banner_1');
     } else if (path.includes('/admin/banner_1_edit')) {
       setMenu('banner_1');
-    }else if (path.includes('/admin/banner_2')) {
-      setMenu('banner_2');
-    } else if (path.includes('/admin/banner_2_edit')) {
-      setMenu('banner_2');
-    }else if (path.includes('/admin/banner_3')) {
-      setMenu('banner_3');
-    } else if (path.includes('/admin/banner_3_edit')) {
-      setMenu('banner_3');
-    }else if (path.includes('/admin/banner_4')) {
-      setMenu('banner_4');
-    } else if (path.includes('/admin/banner_4_edit')) {
-      setMenu('banner_4');
     } else if (path.includes('/admin/userList')) {
       setMenu('userList');
     }
@@ -183,17 +171,6 @@ const Navbar = () => {
                     </svg>
                   </span>
                   <p>Banner 1</p>
-                </li>
-              </Link>
-              <Link to='banner_2'>
-                <li onClick={() => setMenu("banner_2")} className={menu === "banner_2" ? "liActive" : ""}>
-                  <span>
-                    <svg height="25" viewBox="0 0 48 48" width="25" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M38 14h-16v12h16v-12zm4-8h-36c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zm0 32.03h-36v-28.06h36v28.06z"/>
-                      <path d="M0 0h48v48h-48z" fill="none"/>
-                    </svg>
-                  </span>
-                  <p>Banner 2</p>
                 </li>
               </Link>
               <Link to='collection'>

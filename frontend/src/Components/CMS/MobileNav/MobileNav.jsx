@@ -13,19 +13,8 @@ const MobileNav = ({ isMenuActive, toggleMenu }) => {
         setMenu('banner_1');
       } else if (path.includes('/admin/banner_1_edit')) {
         setMenu('banner_1');
-      }else if (path.includes('/admin/banner_2')) {
-        setMenu('banner_2');
-      } else if (path.includes('/admin/banner_2_edit')) {
-        setMenu('banner_2');
-      }else if (path.includes('/admin/banner_3')) {
-        setMenu('banner_3');
-      } else if (path.includes('/admin/banner_3_edit')) {
-        setMenu('banner_3');
-      }else if (path.includes('/admin/banner_4')) {
-        setMenu('banner_4');
-      } else if (path.includes('/admin/banner_4_edit')) {
-        setMenu('banner_4');
-      } else if (path.includes('/admin/userList')) {
+      }
+        else if (path.includes('/admin/userList')) {
         setMenu('userList');
       }
        else if (path.includes('/admin/collection')) {

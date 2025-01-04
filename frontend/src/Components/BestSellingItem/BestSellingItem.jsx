@@ -7,7 +7,7 @@ import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import line_svg from "../../assets/images/headline-curve.svg";
 
 const BestSellingItem = () => {
-  const { data, error, isLoading } = useListForHomeQuery(null);
+  const { data, error, isLoading } = useListForHomeQuery({});
   if (isLoading) <LoadingComponent />;
 
   const product = data?.result?.data || [];

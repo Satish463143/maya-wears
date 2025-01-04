@@ -102,7 +102,16 @@ class ProductController {
     }
     listForHome = async (req, res, next) => {
         try {
-            const list = await productService.listData();
+            let filter = {}
+
+            if (req.query.search) {
+                filter = {
+                    title: new RegExp(req.query.search, 'i')
+                }
+            }
+            const list = await productService.listData({
+                filter:filter
+            });
             res.json({
                 result: list,
                 message: "List of product",

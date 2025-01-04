@@ -16,12 +16,6 @@ import Banner_1_Edit from "./Components/CMS/Banner_1/Banner_1_Edit";
 import CollectionList from "./Components/CMS/Collection/CollectionList";
 import CollectionAdd from "./Components/CMS/Collection/CollectionAdd";
 import CollectionEdit from "./Components/CMS/Collection/CollectionEdit";
-import Banner_2List from "./Components/CMS/Banner_2/Banner_2List";
-import Banner_2_Edit from "./Components/CMS/Banner_2/Banner_2_Edit";
-import Banner_3List from "./Components/CMS/Banner_3/Banner_3List";
-import Banner_3_Edit from "./Components/CMS/Banner_3/Banner_3_Edit";
-import Banner_4List from "./Components/CMS/Banner_4/Banner_4List";
-import Banner_4_Edit from "./Components/CMS/Banner_4/Banner_4_Edit";
 import { useDispatch } from "react-redux";
 import { getLoggedInUserRedux } from "./reducer/user.reducer";
 import ProductList from "./Components/CMS/Product/ProductList";
@@ -86,12 +80,6 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route index element={<Dashboard />} />
           <Route path="banner_1" element={<Banner_1List />} />
           <Route path="banner_1_edit/:id" element={<Banner_1_Edit />} />
-          <Route path="banner_2" element={<Banner_2List />} />
-          <Route path="banner_2_edit/:id" element={<Banner_2_Edit />} />
-          <Route path="banner_3" element={<Banner_3List />} />
-          <Route path="banner_3_edit/:id" element={<Banner_3_Edit />} />
-          <Route path="banner_4" element={<Banner_4List />} />
-          <Route path="banner_4_edit/:id" element={<Banner_4_Edit />} />
           <Route path="collection" element={<CollectionList />} />
           <Route path="add_collection" element={<CollectionAdd />} />
           <Route path="edit_collection/:id" element={<CollectionEdit />} />

@@ -9,7 +9,7 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
   
   const customerDTO = Yup.object({
     fullname: Yup.string().min(2).max(50).required(),
-    email: Yup.string().required(),
+    email: Yup.string().required().nullable().notRequired(),
     phone
       : Yup.string()
           .matches(
@@ -26,11 +26,8 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
         (value) => !value || /^\+?[1-9]\d{1,14}$/.test(value)
       ),
     country: Yup.string().required(),
-    province: Yup.string().required(),
-    city: Yup.string().required(),
     address: Yup.string().required(),
     landMark: Yup.string().required().nullable().notRequired(),
-    postalCode: Yup.string().required().nullable().notRequired(),
   });
 
   const {
@@ -74,7 +71,7 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
               />{" "}
               <br />
               <label htmlFor="email">
-                Email<span>*</span>
+                Email
               </label>
               <br />
               <TextInputComponent
@@ -83,7 +80,6 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
                 type="email"
                 defaultValue=""
                 errMsg={errors?.email?.message}
-                required:true
               />{" "}
               <br />
               <label htmlFor="phone">
@@ -124,32 +120,6 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
             <br />
           </div>
           <div>
-            <label htmlFor="province">
-              Province<span>*</span>
-            </label>
-            <br />
-            <TextInputComponent
-              name="province"
-              control={control}
-              errMsg={errors?.province?.message}
-              required:true
-            />{" "}
-            <br />
-          </div>
-          <div>
-            <label htmlFor="city">
-              City<span>*</span>
-            </label>
-            <br />
-            <TextInputComponent
-              name="city"
-              control={control}
-              errMsg={errors?.city?.message}
-              required:true
-            />{" "}
-            <br />
-          </div>
-          <div>
             <label htmlFor="address">
               Address<span>*</span>
             </label>
@@ -171,15 +141,6 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
               errMsg={errors?.landMark?.message}
             />{" "}
             <br />
-          </div>
-          <div>
-            <label htmlFor="postalCode">Postal Code</label>
-            <br />
-            <TextInputComponent
-              name="postalCode"
-              control={control}
-              errMsg={errors?.postalCode?.message}
-            />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>

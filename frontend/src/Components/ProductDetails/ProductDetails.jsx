@@ -14,7 +14,7 @@ const ProductDetails = ({ toogleCart }) => {
 
   const [selectedSize, setSelectedSize] = useState(""); // State for size
 
-  const { data, isLoading } = useListForHomeQuery(null);
+  const { data, isLoading } = useListForHomeQuery({});
   const [createCart, { isLoading: isCreatingCart }] = useCreateCartMutation();
   const { data: cartData, refetch } = useListAllCartQuery(cartId);
 

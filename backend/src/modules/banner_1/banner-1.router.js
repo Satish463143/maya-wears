@@ -5,7 +5,7 @@ const hasPermission = require("../../middlewares/rbac.middlewares")
 const { setPath,uploadImageAndVideo } = require("../../middlewares/uploader.middlewares")
 const { bodyValidator } = require("../../middlewares/validator.middlewares")
 const banner_1Controller = require("./banner_1.controller");
-const banner_2UpdateDTO = require("../banner_2/banner_2.request");
+const Banner_1UpdateDTO = require("./banner_1.request");
 
 
 router.route('/list')
@@ -22,7 +22,7 @@ router.route('/:id')
         hasPermission('admin'),
         setPath("banner_1"),    // Set the upload path to 'banner_2'
         uploadImageAndVideo(),  // Use the new upload function
-        bodyValidator(banner_2UpdateDTO),  // Validate the body data
+        bodyValidator(Banner_1UpdateDTO),  // Validate the body data
         banner_1Controller.update  // Handle the update operation
     ); 
 module.exports = router

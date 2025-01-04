@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logos from "../../assets/images/logo-1.png";
 import search_logo from "../../assets/images/search_icon.svg";
 
@@ -12,14 +12,28 @@ const Navbar = ({toogleCart}) => {
   const [menu, setMenu] = useState("Home");
   const [navbarBackground, setNavbarBackground] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate()
+  const [search, setSearch] = useState('');
 
   const toggleNav = () => {
-    setIsMenuActive(!isMenuActive);
-    setIsSearchActive(!isSearchActive);
+    setIsMenuActive(!isMenuActive);    
     if (!isMenuActive) {
       document.body.classList.add("no-scroll");
     } else {
       document.body.classList.remove("no-scroll");
+    }
+  };
+  const toggleSearch = ()=>
+  {
+    setIsSearchActive(!isSearchActive)
+  }
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    if (event.key === 'Enter') {
+      navigate('/all_product', { state: { searchQuery: search.trim() } });
     }
   };
 
@@ -105,14 +119,20 @@ const Navbar = ({toogleCart}) => {
                 </Link>
               </div>
               <div className="end_menu">
-                <ul>
-                  <Link>
+                <ul>                  
                     <li className="to_hide_nav">
-                      <img src={search_logo} alt="" style={{height:'29px'}}/>
+                      <img src={search_logo} alt="" style={{height:'25px', cursor:'pointer'}} onClick={toggleSearch}/>
+                        <div className={`search_box ${isSearchActive && 'active_search_box'}`}>
+                          <input
+                            type="text"
+                            placeholder="Search product..."
+                            value={search}
+                            onChange={handleSearchChange}
+                            onKeyDown={handleSearchSubmit} // Handle Enter key press
+                          />
+                        </div>                      
                     </li>
-                  </Link>
-                  <Link to="login">
-
+                  <Link to="/login">
                   <li style={{ cursor: "pointer" }}>
                     <svg
                       viewBox="0 0 32 32"

@@ -5,7 +5,6 @@ import LoadingComponent from '../../Middlewares/Loading/Loading.component'
 const ActiveBanner = () => {
     const {data,error, isLoading} = useListForHomeQuery()
     const banners = data?.result?.data || []
-    console.log(banners)
     if(isLoading) {
         return <LoadingComponent/>
     }

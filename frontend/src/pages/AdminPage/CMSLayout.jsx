@@ -13,8 +13,7 @@ const CMSLayout = () => {
   };
   return (
     <div className='body_grid'>
-        <div><Navbar/></div>
-         
+        <div><Navbar/></div>         
         <div className='body_box'> 
           <TopNav isMenuActive={isMenuActive} toggleMenu={toggleMenu}/>
           <MobileNav isMenuActive={isMenuActive} toggleMenu={toggleMenu}/>              

@@ -51,20 +51,17 @@ const LayoutPage = () => {
                 <Navbar toogleCart={toogleCart}/>
                 <FooterNav />
                 </>
-
             )}
             
-            <Cart isCartActive={isCartActive} toogleCart={toogleCart} />           
-            
+            <Cart isCartActive={isCartActive} toogleCart={toogleCart} /> 
             <ScrollToTop/>
-
-                <Outlet context={{ isCartActive, toogleCart}}/>
-                {!isLoginPage && (
-                    <>
-                    <CompanyPromisses />
-                    <Footer />
-                    </>
-                )}
+            <Outlet context={{ isCartActive, toogleCart}}/>
+            {!isLoginPage && (
+                <>
+                <CompanyPromisses />
+                <Footer />
+                </>
+            )}
         </div>
     )
 }
