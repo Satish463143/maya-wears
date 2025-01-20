@@ -16,7 +16,7 @@ const ProductList = () => {
   const [limit] = useState(10); // Fixed limit
   const [search, setSearch] = useState('');
 
-  const { data, error, isLoading, refetch } = useListAllQuery({ page, limit, search });
+  const { data, error, isLoading } = useListAllQuery({ page, limit, search });
   const [deleteProduct, {isLoading: isDeleting}] = useDeleteProductMutation();
 
   const handleSearchChange = (event) => {
@@ -33,7 +33,6 @@ const ProductList = () => {
       const result = await deleteProduct(id).unwrap()
       toast.success("Product deleted sucessfully")
       setPage(1);
-      refetch();
     }catch(exception){
       toast.error("Failed to delete product")
       console.error(exception)

@@ -12,7 +12,6 @@ const AdminOrdersView = () => {
     const [loading, setLoading] = useState(false)
     const [editOrder] = useUpdateOrderForAdminMutation()
     const { data: orders, isLoading, error } = useListOrderDetailByIdForAdminQuery(params.id)
-    const {  refetch } = useListOrderForAdminQuery();
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -31,7 +30,6 @@ const AdminOrdersView = () => {
             await editOrder({orderId:params.id, payload: submitData}).unwrap()
             toast.success("Order updated sucessfully")
             navigate('/admin/order_list')
-            refetch()
 
         }catch(exception){
             console.log(exception)

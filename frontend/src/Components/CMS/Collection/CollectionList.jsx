@@ -16,7 +16,7 @@ const CollectionList = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(10); 
 
-  const {data, error, isLoading, refetch} = useListAllQuery({ page, limit, search })
+  const {data, error, isLoading} = useListAllQuery({ page, limit, search })
   const [deleteCollection] = useDeleteCollectionMutation()
 
   const collection = data?.result
@@ -35,7 +35,6 @@ const CollectionList = () => {
     try{
       await deleteCollection(id).unwrap()
       toast.success("COllection deleted ucessfully")
-      refetch()
       
     }catch(exception){
       console.log(exception)

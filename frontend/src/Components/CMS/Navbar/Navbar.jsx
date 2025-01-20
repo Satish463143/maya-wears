@@ -107,6 +107,17 @@ const Navbar = () => {
                   <p>Dashboard</p>
                   </li>
               </Link>
+              <Link to='banner_1'>
+                <li onClick={() => setMenu("banner_1")} className={menu === "banner_1" ? "liActive" : ""}>
+                  <span>
+                    <svg height="25" viewBox="0 0 48 48" width="25" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M38 14h-16v12h16v-12zm4-8h-36c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zm0 32.03h-36v-28.06h36v28.06z"/>
+                      <path d="M0 0h48v48h-48z" fill="none"/>
+                    </svg>
+                  </span>
+                  <p>Main Banner</p>
+                </li>
+              </Link>
               <Link to='banners'>
                 <li onClick={() => setMenu("banners")} className={menu === "banners" ? "liActive" : ""}>
                   <span>
@@ -162,17 +173,7 @@ const Navbar = () => {
                   <p> Featured Product</p>
                 </li>
               </Link>
-              <Link to='banner_1'>
-                <li onClick={() => setMenu("banner_1")} className={menu === "banner_1" ? "liActive" : ""}>
-                  <span>
-                    <svg height="25" viewBox="0 0 48 48" width="25" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M38 14h-16v12h16v-12zm4-8h-36c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zm0 32.03h-36v-28.06h36v28.06z"/>
-                      <path d="M0 0h48v48h-48z" fill="none"/>
-                    </svg>
-                  </span>
-                  <p>Banner 1</p>
-                </li>
-              </Link>
+              
               <Link to='collection'>
                 <li onClick={() => setMenu("collection")} className={menu === "collection" ? "liActive" : ""}>
                   <span>

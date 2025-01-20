@@ -11,9 +11,11 @@ export const BannersApi = createApi({
             }
         }
     }),
+    tagTypes:['Banners'],
     endpoints:(builder)=>({
         listAll:builder.query({
-            query:({ page = 1, limit = 10, search = '' }) => `/banner?page=${page}&limit=${limit}&search=${search}`
+            query:({ page = 1, limit = 10, search = '' }) => `/banner?page=${page}&limit=${limit}&search=${search}`,
+            providesTags:['Banners'],
         }),
         create:builder.mutation({
             query:(formData)=> ({
@@ -23,7 +25,8 @@ export const BannersApi = createApi({
                 headers:()=>([
                     {"Content-Type":"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['Banners'],
         }),
         listForHome: builder.query({
             query: () => '/banner/list', // No query parameters needed
@@ -36,7 +39,8 @@ export const BannersApi = createApi({
                 headers:()=>([
                     {"Content-Type" :"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['Banners'],
         }),
         showById:builder.query({
             query:(id)=>`/banner/${id}`
@@ -45,7 +49,8 @@ export const BannersApi = createApi({
             query:(id)=>({
                 url:`/banner/${id}`,
                 method:"DELETE"
-            })
+            }),
+             invalidatesTags:['Banners'],
         }),
     })
 })

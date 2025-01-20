@@ -13,7 +13,7 @@ const BannersList = () => {
   const [limit] = useState(10); // Fixed limit
   const [search, setSearch] = useState('');
 
-  const {data, error, isLoading,refetch} = useListAllQuery({ page, limit, search })
+  const {data, error, isLoading} = useListAllQuery({ page, limit, search })
   const [deleteBanner] = useDeleteMutation()
 
   if(isLoading) <LoadingComponent/>
@@ -31,10 +31,9 @@ const BannersList = () => {
   };
   const deleteData = async(id)=>{
       try{
-        const result = await deleteBanner(id).unwrap()
+        await deleteBanner(id).unwrap()
         toast.success("Banner deleted sucessfully")
         setPage(1);
-        refetch();
       }catch(exception){
         toast.error("Failed to delete product")
         console.error(exception)

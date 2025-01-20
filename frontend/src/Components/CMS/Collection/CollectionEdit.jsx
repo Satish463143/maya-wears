@@ -18,7 +18,6 @@ const CollectionEdit = () => {
 
   const {data:collections,error,isLoading} = useShowByIdQuery(params.id)
   const [updateCollection] = useUpdateCollectionMutation()
-  const {refetch} = useListAllQuery()
 
   useEffect(()=>{
     if(collections){
@@ -46,8 +45,6 @@ const CollectionEdit = () => {
 
       toast.success("Collection Updated Successfully");
       navigate('/admin/collection')
-      refetch()
-
     } catch (exception) {
       let errorMessage = "Error while updating collection";
       toast.error(errorMessage);

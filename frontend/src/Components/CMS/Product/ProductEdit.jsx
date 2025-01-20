@@ -16,7 +16,6 @@ const ProductEdit = () => {
 
   const {data:products,error, isLoading} = useListByIdQuery(params.id)
   const [editProduct] = useEditProductMutation()
-  const { refetch } = useListAllQuery();
 
     useEffect(()=>{
       if(products){
@@ -60,26 +59,16 @@ const ProductEdit = () => {
           ...data.images.filter((img) => typeof img === "string"), // Existing URLs
           ...data.images.filter((img) => typeof img !== "string"), // Newly uploaded files
           ];
-
-
           combinedImages.forEach((image) => {
               formData.append("images", image);
           });
 
-          console.log(combinedImages)
-          console.log('form images',formData.images)  
-
-
         if (data.mainImage) formData.append("mainImage", data.mainImage);
         if (data.video) formData.append("video", data.video);
-
-        for (let [key, value] of formData.entries()) {
-          console.log(key, value);
-      }
+       
         const response = await editProduct({id:params.id,  payload:formData}).unwrap();          
         toast.success("Product added successfully");
         navigate('/admin/product')
-        refetch();        
     }catch(exception){
       console.log("error ", exception)
       toast.error('Error While Updating Product')

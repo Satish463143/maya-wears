@@ -9,7 +9,6 @@ const FeatuedProductAdd = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
   const [addFeaturedProduct] = useCreateMutation()
-   const { refetch} = useListAllQuery()
 
   const submitEvent = async(data)=>{
     setLoading(true)
@@ -31,7 +30,6 @@ const FeatuedProductAdd = () => {
 
       toast.success("Featurued product added sucessfully")      
       navigate('/admin/featured_product')  
-      refetch()    
     }catch(exception){
       console.log(exception)
       toast.error("Error while adding product")

@@ -232,7 +232,7 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
             </div>
         </div>
         <h3 style={{marginTop:'30px'}}>Media</h3>
-        <div className="from_grid">
+        <div className="from_grid">     
             <div>
                 <label htmlFor="mainImage">Main Images</label><br />
                 <input
@@ -275,7 +275,6 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
                             style={{ width: "100px", height: "100px", objectFit: "cover" }}
                             />
                         )}
-                       
                         </div>
                     ))}
                     </div>

@@ -12,14 +12,18 @@ export const orderApi = createApi({
           return headers;
         },
       }),
+      tagTypes:['Order'],
       endpoints:(builder)=>({
         listOrderForAdmin:builder.query({
             query:({ page = 1, limit = 10, search = '' })=> `/order?page=${page}&limit=${limit}&search=${search}`,
-            method:"GET"
+            method:"GET",
+            providesTags:['Order'],
         }),
         listOrderForUser:builder.query({
             query:({ page = 1, limit = 10, search = '' })=> `/order/listForUser?page=${page}&limit=${limit}&search=${search}`,
-            method:'GET'
+            method:'GET',
+            providesTags:['Order'],
+            
         }),
         listOrderDetailByIdForAdmin:builder.query({
             query:(id)=> `/order/${id}`,
@@ -33,7 +37,8 @@ export const orderApi = createApi({
                 headers:()=>([
                     {"Content-Type":"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['Order']
         }),
         updateOrderForUser:builder.mutation({
             query:(orderId)=>({
@@ -42,7 +47,8 @@ export const orderApi = createApi({
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
-            })
+            }),
+            invalidatesTags:['Order']
         }),
         updateOrderForAdmin:builder.mutation({
             query:({orderId,payload})=>({
@@ -52,7 +58,8 @@ export const orderApi = createApi({
                 headers: {
                     "Content-Type": "application/json", // Use JSON for simplicity
                 },
-            })
+            }),
+            invalidatesTags:['Order']
         })
       })
 

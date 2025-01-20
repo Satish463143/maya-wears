@@ -12,7 +12,7 @@ const CollectionAdd = () => {
     const navigate = useNavigate()
     const [imageFile, setImageFile] = useState(null);
     const[createCollection] =  useCreateCollectionMutation()
-    const {refetch} = useListAllQuery()
+    
 
     
 
@@ -29,9 +29,7 @@ const CollectionAdd = () => {
             await createCollection(formData).unwrap();
             
             toast.success("Collection Created Successfully");
-            navigate("/admin/collection"); 
-            refetch()
-            
+            navigate("/admin/collection");             
         } catch (exception) {
              // Default error message
             let errorMessage = "Error while creating collection";

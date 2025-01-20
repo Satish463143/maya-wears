@@ -9,7 +9,6 @@ import { useCreateMutation, useListAllQuery } from '../../../api/banners.api';
 const BannersAdd = () => {
   const [laoding, setLoading] = useState()
   const [craeteBanner] = useCreateMutation()
-  const {refetch} = useListAllQuery()
   const navigate = useNavigate()
   
   const submitEvent = async(data)=>{
@@ -39,8 +38,6 @@ const BannersAdd = () => {
             await craeteBanner(formData).unwrap();
             toast.success("Banner created Successfully");
             navigate('/admin/banners')
-            refetch()
-
         }catch(exception){
             let errorMessage = "Error while creating banner";
             toast.error(errorMessage);

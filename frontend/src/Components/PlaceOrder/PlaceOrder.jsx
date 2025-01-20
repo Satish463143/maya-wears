@@ -13,7 +13,7 @@ const PlaceOrder = () => {
     const customerId = useSelector((state) => state.customer.customerId);
     const [createOrder] = useCreateOrderMutation();
     const cartId = Cookies.get("cartId");
-    const { data, refetch } = useListAllCartQuery(cartId ? { cartId } : null);
+    const { data } = useListAllCartQuery(cartId ? { cartId } : null);
     const cartIdForOrder = data?.result?._id
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
@@ -35,8 +35,10 @@ const PlaceOrder = () => {
           if (!customerId) {
             toast.error("Customer details are missing.");
             return;
-          }
+          } 
           const paymentTypeValue = data.paymentType.value;  
+
+          
           const orderData = {
             ...data,
             paymentType: paymentTypeValue,
@@ -51,11 +53,8 @@ const PlaceOrder = () => {
           toast.success("Order has been placed successfully!");
 
           //clear the cart when order is placed
-          await deleteCart(cartIdForOrder).unwrap();
+          await deleteCart(cartIdForOrder).unwrap(); 
            
-          //refetch the cleared cart 
-          refetch(); 
-
           navigate('/my_account')
           
         } catch (exception) {

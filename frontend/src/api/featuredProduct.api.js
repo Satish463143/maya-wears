@@ -11,10 +11,12 @@ export const FeaturedProductApi = createApi({
             }
         }
     }),
+    tagTypes:['FeaturedProduct'],
     endpoints:(builder)=>({
         listAll: builder.query({            
             query: ({ page = 1, limit = 10, search = '' }) => 
               `/featured_product?page=${page}&limit=${limit}&search=${search}`,
+            providesTags:['FeaturedProduct'],
           }),
         create:builder.mutation({
             query:(formData)=> ({
@@ -24,7 +26,8 @@ export const FeaturedProductApi = createApi({
                 headers:()=>([
                     {"Content-Type":"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['FeaturedProduct'],
         }),
         listForHome: builder.query({
             query: () => '/featured_product/list', // No query parameters needed
@@ -37,7 +40,8 @@ export const FeaturedProductApi = createApi({
                 headers:()=>([
                     {"Content-Type" :"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['FeaturedProduct'],
         }),
         showById:builder.query({
             query:(id)=>`/featured_product/${id}`
@@ -46,7 +50,8 @@ export const FeaturedProductApi = createApi({
             query:(id)=>({
                 url:`/featured_product/${id}`,
                 method:"DELETE"
-            })
+            }),
+            invalidatesTags:['FeaturedProduct'],
         }),
     })
 })

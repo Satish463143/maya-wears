@@ -9,7 +9,6 @@ import GalleryForm from './GalleryForm';
 const GalleryAdd = () => {
     const [loading, setLoading] = useState(false)
     const [addGallery] = useCreateMutation()
-    const {refetch} = useListAllGalleryQuery()
     const navigate = useNavigate()
 
     const submitEvent = async(data)=>{
@@ -22,7 +21,6 @@ const GalleryAdd = () => {
             await addGallery(formData).unwrap()
             toast.success("Photos added sucessfully")
             navigate('/admin/gallery')
-            refetch()
 
         }catch(exception){
             console.log(exception)

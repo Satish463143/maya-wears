@@ -13,10 +13,12 @@ export const cartApi = createApi({
           return headers;
         },
       }),
+      tagTypes: ['Cart'],
     endpoints:(builder)=>({
         listAllCart : builder.query({
             query:(cartId)=> `/cart/${cartId}`,
-            method:"GET"
+            method:"GET",
+            providesTags: ['Cart'],
         }),
         createCart :builder.mutation({
             query:(args)=>({
@@ -26,27 +28,30 @@ export const cartApi = createApi({
                 headers:()=>([
                     {"Content-Type":"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags: ['Cart'],
         }),
         deleteCart:builder.mutation({
             query:(id)=>({
                 url:`/cart/${id}`,
                 method:"DELETE"
-            })
+            }),
+            invalidatesTags: ['Cart'],
         }),
         updateCart:builder.mutation({
             query:({productId, quantity })=>({
                 url:`/cart/${productId}`,
                 method:"PUT",
                 body:{quantity}
-            })
+            }),
+            invalidatesTags: ['Cart'],
         }),
         deledeEntireCart:builder.mutation({
             query:(id)=>({
                 url:`/cart/cartId/${id}`,
                 method:"DELETE"
-            })
-
+            }),
+            invalidatesTags: ['Cart'],
         })
     })
 })

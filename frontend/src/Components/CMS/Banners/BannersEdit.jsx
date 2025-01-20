@@ -9,11 +9,10 @@ const BannersEdit = () => {
   const [loading,setLoading] = useState(false) 
   const [banners, setBanners] = useState()
   const params = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate() 
 
   const {data:banner, error, isLoading} = useShowByIdQuery(params.id)
   const [editBanner] = useUpdateMutation()
-  const {refetch} = useListAllQuery()
 
   useEffect(()=>{
     if(banner){
@@ -48,8 +47,6 @@ const BannersEdit = () => {
         await editBanner({id:params.id, payload:formData}).unwrap();
         toast.success("Banner updated Successfully");
         navigate('/admin/banners')
-        refetch()
-
       }catch(exception){
           let errorMessage = "Error while creating banner";
           toast.error(errorMessage);

@@ -2,7 +2,6 @@ import { useController } from 'react-hook-form'
 import Select from 'react-select'
 import { Editor } from '@tinymce/tinymce-react';
 import '../../pages/AdminPage/CMSLayout.css'
-import { useState } from 'react';
 
 export const TextInputComponent = ({type="text",control,name, defaultValue="",required=false, errMsg= null})=>{
     const {field} = useController({
@@ -68,9 +67,6 @@ export const TextAreaInput = ({control,name, defaultValue="",required=false, err
         defaultValue:defaultValue,
         // rules:{
         //     required:required
-
-
-        
         // }
     })
     return (

@@ -141,13 +141,13 @@
     position: fixed;
     top: 0;
     left: -100%;
-    /* display: none; */
     width: 100%;
     height: 100vh;
     border-right: 1px solid var(--sec_dark);
     padding: 10px;
     background: var(--white);
-    transition: 0.5s;
+    transition: 0.5s ease-in-out;
+    z-index: 99999999;
 }
 .menuLeft{
     left: -100% !important;

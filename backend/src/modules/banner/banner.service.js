@@ -14,7 +14,7 @@ class BannerService {
         try{
             const count = await BannerModel.countDocuments(filter)
             const data = await BannerModel.find(filter)
-            .populate("createdBy", ["_id","email", "email", "role"])
+            .populate("createdBy", ["_id","email", "name", "role"])
                 .sort({_id: "desc"})
                 .limit(limit)
                 .skip(skip)

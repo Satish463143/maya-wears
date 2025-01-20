@@ -13,7 +13,7 @@ const FeaturedProductList = () => {
     const [page, setPage] = useState(1);
     const [limit] = useState(10); 
 
-    const { data, error, isLoading, refetch } = useListAllQuery({ page, limit, search });
+    const { data, error, isLoading } = useListAllQuery({ page, limit, search });
     const [deleteProduct] = useDeleteMutation();
 
     const featuredData = data?.result;
@@ -31,7 +31,6 @@ const FeaturedProductList = () => {
         try {
             await deleteProduct(rowId).unwrap();
             toast.success('Featured product deleted successfully');
-            refetch();
         } catch (exception) {
             toast.error('Error while deleting the product');
         }

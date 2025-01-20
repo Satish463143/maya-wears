@@ -12,7 +12,6 @@ const FeatuedProductEdit = () => {
 
   const [editFeaturedProduct] = useUpdateMutation()
   const {data: products, error, isLoading} = useShowByIdQuery(params.id)
-  const { refetch} = useListAllQuery()
   const navigate = useNavigate()
 
   useEffect(()=>{
@@ -35,7 +34,6 @@ const FeatuedProductEdit = () => {
       await editFeaturedProduct({id:params.id, payload: fromData})
       toast.success("product updated sucessfully")      
       navigate('/admin/featured_product')
-      refetch()
       
     }catch(exception){
       console.log(exception)

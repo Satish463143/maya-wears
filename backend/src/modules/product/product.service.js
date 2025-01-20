@@ -11,7 +11,7 @@ class ProductService {
             throw exception
         }
     }
-    listData = async ({ skip = 0, limit = 0, filter = {} } = {}) => {
+    listData = async ({ skip = 0, limit = 0, filter = {} }) => {
         try {
             const count = await ProductModel.countDocuments(filter);
             const data = await ProductModel.find(filter)

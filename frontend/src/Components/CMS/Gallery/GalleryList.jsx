@@ -11,7 +11,7 @@ const GalleryList = () => {
     const [page, setPage] = useState(1);
     const [limit] = useState(10); 
 
-    const {data,error,isLoading,refetch} = useListAllGalleryQuery({page, limit,})
+    const {data,error,isLoading} = useListAllGalleryQuery({page, limit,})
     const [deletePhoto] = useDeleteGalleryMutation()
     
     const [visibleCount, setVisibleCount] = useState(20);
@@ -23,7 +23,6 @@ const GalleryList = () => {
         try{
             await deletePhoto({imageUrl: rowId }).unwrap()
             toast.success("Image deleted")
-            refetch()
         }catch(exception){
             console.log(exception)
             toast.error("error while deleting image")

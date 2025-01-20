@@ -11,10 +11,12 @@ export const ProductApi = createApi({
             }
         }
     }),
+    tagTypes:['Product'],
     endpoints:(builder)=>({
         listAll: builder.query({
             query: ({ page = 1, limit = 10, search = '' }) => 
               `/product?page=${page}&limit=${limit}&search=${search}`,
+            providesTags:['Product'],
           }),
         createProduct:builder.mutation({
             query:(args)=> ({
@@ -24,7 +26,8 @@ export const ProductApi = createApi({
                 headers:()=>([
                     {"Content-Type":"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['Product']
         }),
         listForHome:builder.query({
             query:({search = '' }) =>`/product/list?search=${search}`
@@ -36,7 +39,8 @@ export const ProductApi = createApi({
             query:(id)=>({
                 url:`/product/${id}`,
                 method:"DELETE"
-            })
+            }),
+            invalidatesTags:['Product']
         }),
         editProduct:builder.mutation({
             query:({id,payload})=>({
@@ -46,10 +50,9 @@ export const ProductApi = createApi({
                 headers:()=>([
                     {"Content-Type" :"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['Product']
         }),
-       
-
     })
 
 }) 

@@ -11,7 +11,7 @@ const OrdersList = () => {
     const [limit] = useState(10); // Fixed limit
     const [search, setSearch] = useState('');
 
-    const { data, error, isLoading, refetch } = useListOrderForAdminQuery({ page, limit, search });
+    const { data, error, isLoading } = useListOrderForAdminQuery({ page, limit, search });
 
       const handlePageChange = (newPage) => {
         setPage(newPage);

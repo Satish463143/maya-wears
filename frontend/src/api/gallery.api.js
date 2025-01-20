@@ -11,6 +11,7 @@ export const GalleryApi = createApi({
             }
         }
     }),
+    tagTypes:['Gallery'],
     endpoints:(builder)=>({
         create:builder.mutation({
             query:(args)=>({
@@ -20,17 +21,20 @@ export const GalleryApi = createApi({
                 headers:()=>([
                     {"Content-Type":"multipart/form-data"}
                 ])
-            })
+            }),
+            invalidatesTags:['Gallery'],
         }),
         listAllGallery:builder.query({
             query:({ page = 1, limit = 20,})=>`/gallery?page=${page}&limit=${limit}`,
-            method:'GET'
+            method:'GET',
+            providesTags:['Gallery'],
         }),
         deleteGallery:builder.mutation({
             query:({ imageUrl})=>({
                 url:`/gallery/delete-by-url/${encodeURIComponent(imageUrl)}`,
                 method:"DELETE",
-            })
+            }),
+            invalidatesTags:['Gallery'],
         })       
 
     })
