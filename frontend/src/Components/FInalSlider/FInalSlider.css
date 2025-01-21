@@ -8,8 +8,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 0 10px; */
-  /* margin: 0 10px; */
   padding-right: var(--normal);
   padding-left: var(--normal);
 }
@@ -24,7 +22,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); */
 }
 .slick-prev {
   left: 10px;
@@ -60,7 +57,7 @@
 }
 
 .mobileImage {
-  display: none;
+  display: none !important;
   width: 100%;
   height: auto;
 }
@@ -82,7 +79,6 @@
   font-weight: 600;
 }
 .slider-details-content p{
-  /* font-size: var(--font_for_header); */
   color: white;
   font-weight: 500;
 }
