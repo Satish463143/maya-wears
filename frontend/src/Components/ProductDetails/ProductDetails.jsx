@@ -86,17 +86,12 @@ const ProductDetails = ({ toogleCart }) => {
                   <img src={item} alt="" />
                 ))}
               </div>
-              <div>
-                <p className="model__wearing__size">
-                  <span>
-                    Model is <span>5'8</span>,wearing a size <span>Xl</span>
-                  </span>
-                </p>
+              <div>                
                 <div className="product_details">
                   <p className="price price__off">NRP.{product.price}.00</p>
                   <p className="product__title">{product.title}</p>
                   <div className="size__color">
-                    <p className="sizeeee">Select the Size:</p>
+                    <p className="sizeeee">Prefer your size:</p>
                     <div className="size__flex">
                       <div className="size__">
                         {product.sizes.map((item, index) => (
@@ -111,10 +106,16 @@ const ProductDetails = ({ toogleCart }) => {
                           </button>
                         ))}
                       </div>
-                      <p className="size__guideee" onClick={toggleSelectSize}>
-                        Size Guide
-                      </p>
+                      
                     </div>
+                    <p className="model__wearing__size">
+                      <span>
+                        Model is <span>5'8</span>,wearing a size <span>Xl</span>
+                      </span>
+                    </p>
+                    <p className="size__guideee" onClick={toggleSelectSize}>
+                        View Size Guide
+                      </p>
                   </div>
                   <div className="buyNow__cartBtn">
                     <button
@@ -142,9 +143,7 @@ const ProductDetails = ({ toogleCart }) => {
                         }`}
                       >
                         <p className="disc_pad_top">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Ipsum minima fuga omnis culpa nesciunt modi
-                          voluptate, aut laboriosam tempore temporibus!
+                          {product.description}
                         </p>
                       </div>
                     )}

@@ -30,8 +30,6 @@ const FInalSlider = () => {
     slidesToScroll: 1, // Number of slides to scroll
     centerMode: true, // Center the active slide
     centerPadding: "10%", // Adjust padding to create the 10% - 80% - 10% layout
-    //autoplay: true, // Enable autoplay
-    //autoplaySpeed: 3000, // Autoplay speed in ms
     adaptiveHeight: true, // Adjust height dynamically based on content
     nextArrow: <NextArrow />, // Custom right arrow
     prevArrow: <PrevArrow />, // Custom left arrow

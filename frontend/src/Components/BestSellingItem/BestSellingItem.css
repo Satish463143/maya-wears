@@ -29,7 +29,8 @@
 
 }
 .best__of__{
-    position: relative;  
+    position: relative; 
+    margin: 20px 0; 
 }
 .best__of__ img{
     position: absolute;

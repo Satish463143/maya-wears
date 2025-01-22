@@ -84,13 +84,15 @@
 }
 
 .slider-details-content button {
-  background-color:var(--sec_color);
+  /* background-color:var(--sec_color); */
   color:var(--sec_dark) ;
   
   border: none;
   padding: 10px 30px;
   cursor: pointer;
   border-radius: 30px;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {

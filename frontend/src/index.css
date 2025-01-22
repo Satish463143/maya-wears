@@ -27,7 +27,7 @@
 :root{
   --pri_text:#000;
   --white:#fff;
- --pri_color:#edc9af; /* #F7E6D3 */
+  --pri_color:#edc9af; /* #F7E6D3 */
   --sec_color: #edc9;
   --sec_dark: #8D6B4D;
   --pri_font_size:20px;
