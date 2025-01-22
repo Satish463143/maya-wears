@@ -1,60 +1,55 @@
-.collection_grid{
-    display: grid;
-    justify-content: space-between;
-    grid-template-columns: 49% 49%;
-    width: 100%;
+.collection_grid {
+  width: 100%;
+  margin-bottom: var(--gap);
+
 }
-.collection_box{
-    width: 100%;
+.collection_box {
+  width: 100%;
+  margin-bottom: var(--gap);
+
 }
-.collection_box_img{
-    width: 100%;
-    position: relative;
+.collection_box_img {
+  width: 100%;
+  position: relative;
 }
-.collection_box_img img{
-    width: 100%;
-    height: auto;
+.collection_box_img img {
+  width: 100%;
+  /* height: 1000px; */
+  /* object-fit: cover; */
 }
-.collection_box_img_overlay{
-    position: absolute;
-    top: 0;    
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, var(--pri_text), transparent );
+.collection_box_img_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(to top, rgba(0, 0, 0, 0.318), transparent ); */
 }
-.collection_box_content{
-    position: absolute;
-    bottom: 70px;
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%);   
-    text-align: center; 
+.collection_box_content {
+  position: absolute;
+  width: 100%;
+  bottom: 5%;
+  text-align: center;
 }
-.collection_box_content h2{
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 30px;
-    margin-bottom: -15px;
+.collection_box_content h2 {
+  /* text-transform: uppercase; */
+  font-weight: 600;
+  font-size: var(--font_for_header);
+  /* margin-bottom: -15px; */
 }
-.collection_box_content h2, .collection_box_content p{
-    color: var(--white);
+.collection_box_content h2,
+.collection_box_content p {
+  color: var(--white);
 }
-.collection_box_content_button {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    background: rgba(234, 157, 14, 0.9);
+.collection_box_content button {
+  color: var(--sec_dark);
+  text-decoration: underline;
+  font-weight: 600;
 }
-.collection_box_content_button button {
-    color: var(--white);
-    padding: 15px 0;
-    text-decoration: underline;
-}
-.collections h1{
-font-size: 30px;
-font-weight: 600;
-text-align: center;
-margin: 50px 0;
-text-decoration: underline;
+.collections h1 {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: var(--gap);
 }

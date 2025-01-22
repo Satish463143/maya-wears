@@ -7,14 +7,25 @@
     color: var(--pri_text) !important;
 
   }
-  .galleryyy img{
-    width:50% !important;
-    margin-left:var(--gap);
-    height: 200px;
-    object-fit: cover;
+  .cus__gallery {
+    display: flex;
+    flex-wrap: nowrap; /* Ensures images stay in a single row */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    gap: var(--gap); /* Optional, adds space between images */
+    padding: var(--gap); /* Optional, adds space below the images */
+    scrollbar-width: 0 !important;
+  }
+  
+  .cus__gallery img {
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensures the images cover the container without distortion */
     border-radius: 5px;
-
-    
+    flex-shrink: 0; /* Prevent images from shrinking */
+  }
+  
+  .cus__gallery a {
+    display: inline-block; /* Makes each link behave like a block element */
+    flex-shrink: 0; /* Prevent shrinking */
   }
   
   .slider__name h1 {
@@ -28,11 +39,5 @@
     color: var(--sec_dark);
     text-decoration: underline;
 }
-  .cus__gallery{
-    display: flex;
-    overflow: scroll;
-    /* margin-top: var(--div-gap); */
-    white-space: wrap;
-    scrollbar-width: none;
-  }
+  
   

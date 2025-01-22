@@ -11,7 +11,7 @@ const Collection = () => {
   const collections = data?.result?.data || []
 
   return (
-    <div className='container'>  
+    <div className='container collectonssss'>  
     <div className="collections">
       <h1>Explore our collection</h1>
 
@@ -25,11 +25,9 @@ const Collection = () => {
                   <div className="collection_box_content">                  
                     <h2>{item.name}</h2>
                     <p>{item.description}</p>                    
-                                        
+                    <button>Explore {item.name}</button>        
                   </div>
-                  <div className="collection_box_content_button">
-                    <button>Shop By Collection</button>
-                  </div>
+                  
                 </div> 
               </Link>
             </div>            

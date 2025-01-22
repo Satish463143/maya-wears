@@ -84,11 +84,12 @@
 }
 
 .slider-details-content button {
-  background-color:var(--sec_color);
+  /* background-color:var(--sec_color); */
   color:var(--sec_dark) ;
-  
+  text-decoration: underline;
   border: none;
-  padding: 10px 30px;
+  font-weight: 600;
+  /* padding: 10px 30px; */
   cursor: pointer;
   border-radius: 30px;
 }
