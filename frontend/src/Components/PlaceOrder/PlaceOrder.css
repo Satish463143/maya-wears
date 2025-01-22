@@ -1,0 +1,12 @@
+.order_box{
+    margin-top: 15%;
+background-color:var(--white);
+}
+.order_title{
+    font-size: var(--font_for_header);
+    font-weight: 600;
+}
+.order_promo_title input{
+    border: 1px solid var(--sec_dark) !important;
+    font-size: var(--pri_font_size);
+}

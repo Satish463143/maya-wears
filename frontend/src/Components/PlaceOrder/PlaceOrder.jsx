@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import PlaceOrderForm from './PlaceOrder.form';
 import { useNavigate } from 'react-router-dom';
+import "./PlaceOrder.css"
 
 const PlaceOrder = () => {
     const [loading, setLoading] = useState(false)

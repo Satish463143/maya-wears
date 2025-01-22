@@ -3,6 +3,7 @@ import { PaymentOptionsCompoent } from '../../Middlewares/Form/Input.component'
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import "./PlaceOrder.form.css"
 
 const PlaceOrderForm = ({submitEvent,loading}) => {
     const orderDto = Yup.object({
@@ -18,7 +19,7 @@ const PlaceOrderForm = ({submitEvent,loading}) => {
         resolver: yupResolver(orderDto),
       });
   return (
-    <form onSubmit={handleSubmit(submitEvent)}>
+    <form onSubmit={handleSubmit(submitEvent)} className='place_order_button--'>
         <PaymentOptionsCompoent
           name='paymentType'
           control={control}

@@ -44,7 +44,7 @@
 .order_promo form input{
     width: 60%;
     background: none;
-    height: 40px;
+    height: 50px;
     border-radius: 5px;
 }
 .order_promo form input[type="submit"] {
@@ -66,7 +66,7 @@
 }
 .personal_details input, .address_deatils input{
     width: 100%;
-    height: 35px;
+    height: 50px;
     border-radius: 5px;
     background:none;
 

@@ -3,7 +3,8 @@
     display: grid;
     justify-content: space-between;
     grid-template-columns: 20% 60% 20%;
-    margin-bottom: 20px;
+    margin-bottom: var(--gap);
+    /* margin-top: 10%; */
 }
 .ordr_cart_details{
     margin-left: 20px;

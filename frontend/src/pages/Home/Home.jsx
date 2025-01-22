@@ -15,8 +15,8 @@ const Home = () => {
       <Banner />   
       <FInalSlider/>        
       <ActiveBanner/>
-      <BestSellingItem />
       <Collection />
+      <BestSellingItem />
       <CustomerGallery />
       {/* <GoogleReview/>           */}
       <Faq />
