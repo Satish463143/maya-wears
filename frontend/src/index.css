@@ -35,8 +35,8 @@
   --font_for_header:30px;
   --back:rgb(255, 255, 255);
   --back-c:rgba(255, 255, 255, 0.847);
-  --gap:13px;
-  --normal:6.5px;
+  --gap:8px;
+  --normal:4px;
 }
 Link, a, button{
   cursor: pointer;

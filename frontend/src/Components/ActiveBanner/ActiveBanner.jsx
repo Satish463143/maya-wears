@@ -13,7 +13,7 @@ const ActiveBanner = () => {
         <>
           {banners.length > 0 && 
             banners.map((item, index) => (
-              <div className="banner" key={index} style={{marginBottom:'13px'}}>
+              <div className="banner" key={index} style={{marginBottom:'8px'}}>
                 {item?.category === "video" && (
                   <>
                     <div className="desktop_img">

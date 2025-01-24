@@ -17,12 +17,13 @@ const Navbar = ({ toogleCart }) => {
 
   const toggleNav = () => {
     setIsMenuActive(!isMenuActive);
-    if (isMenuActive) {
+    if (!isMenuActive) {
       document.body.classList.add("no-scroll");
     } else {
       document.body.classList.remove("no-scroll");
     }
   };
+  
   if (isSearchActive) {
     document.body.classList.add("no-scroll");
   } else {
@@ -66,7 +67,19 @@ const Navbar = ({ toogleCart }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
-
+  const handleBodyScroll = (shouldPreventScroll) => {
+    if (shouldPreventScroll) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  };
+  
+  // Call this in the respective places
+  useEffect(() => {
+    handleBodyScroll(isMenuActive || isSearchActive);
+  }, [isMenuActive, isSearchActive]);
+  
   useEffect(() => {
     const path = location.pathname;
     if (path === "/") {
