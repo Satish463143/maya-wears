@@ -1,24 +1,36 @@
 .details_grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 65% 30%;
+  justify-content: space-between;
+  width: 100%;
+
+}
+.product_page{
+  margin-top: 65px;
 }
 .product_img_grid {
   width: 100%;
   overflow-x: scroll;
-  /* scrollbar-width: none; */
   background-color: var(--sec_dark);
   white-space: nowrap;
-  scrollbar-color: var(--pri_color);
+  scrollbar-width: thin;
+  scrollbar-color: var(--pri_color) var(--sec_dark); 
+  scroll-behavior: smooth;
 }
+
+
 .product_img_grid img,
 .product_img_grid video {
   width: 100vw;
-  height: 550px;
+  height: 650px;
   object-fit: cover;
   display: inline-block;
 }
 .product_details button {
   width: 100%;
-  margin: 10px 0px 10px 0;
+  max-width: 100px;
+
+  margin: 10px 10px 10px 0;
   border-radius: 5px;
   border: 0.8px solid var(--sec_dark);
   transition: 0.4s ease;
@@ -34,12 +46,8 @@
 
 .size__ {
   width: 100%;
-  margin-bottom: 15px;
 }
 .size__color .size__guideee {
-  width: 30%;
-  height: 45px;
-  display: flex;
   text-decoration: underline;
   align-items: center;
   color: var(--sec_dark);
@@ -49,8 +57,6 @@
 }
 .model__wearing__size {
   opacity: 0.5;
-  margin-left: 5%;
-  margin-top: 2%;
 }
 
 .product__discription ul li div p {
@@ -90,7 +96,7 @@
   background: var(--sec_color) !important;
   color: var(--sec_dark);
   text-decoration: underline;
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
 }
 .size_popup, .overlay_popup{
   position: fixed;
@@ -116,7 +122,29 @@
 .active_select_sizes{
   overflow-y: hidden;
 }
+.cart__buy {
+  width: 100% ;
+  max-width: 100% !important;
+  height: 40px;
+}
+
+@media (max-width: 1000px) {
+  .details_grid {
+    display: grid;
+    grid-template-columns: 68% 30%;
+  }
+
+}
+@media (max-width: 750px) {
+  .details_grid {
+    display: grid;
+    grid-template-columns:63% 35%;
+  }
+}
 @media (max-width: 600px) {
+  .product_page{
+    margin-top: 0px;
+  }
   .details_grid {
     display: flex;
     flex-direction: column;
@@ -159,7 +187,8 @@
     width: 100%;
   }
   .cart__buy {
-    width: 100%;
+    width: 100% ;
+    max-width: 100% !important;
     height: 50px;
     margin-bottom: 10px;
     border-radius: 5px;

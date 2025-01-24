@@ -27,6 +27,9 @@
     display: inline-block; /* Makes each link behave like a block element */
     flex-shrink: 0; /* Prevent shrinking */
   }
+  .slider__name{
+    margin: 20px 0;
+  }
   
   .slider__name h1 {
     font-size: var(--font_for_header);
