@@ -1,41 +1,43 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import { useListForHomeQuery } from '../../api/collection.api'
-import LoadingComponent from '../../Middlewares/Loading/Loading.component' 
-import './Collection.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useListForHomeQuery } from "../../api/collection.api";
+import LoadingComponent from "../../Middlewares/Loading/Loading.component";
+import "./Collection.css";
+import line_svg from "../../assets/images/headline-curve.svg";
 
 const Collection = () => {
-
-  const {data,error, isLoading} = useListForHomeQuery(null)
-  if(isLoading) <LoadingComponent/>
-  const collections = data?.result?.data || []
+  const { data, error, isLoading } = useListForHomeQuery(null);
+  if (isLoading) <LoadingComponent />;
+  const collections = data?.result?.data || [];
 
   return (
-    <div className='container collectonssss'>  
-    <div className="collections">
-      <h1>Explore our collection</h1>
+    <div className="container collectonssss">
+      <div className="collections">
+        <div className="best__of__">
+          <h1>Explore our Collection</h1>
+          <img src={line_svg} alt="" srcSet="" />
+        </div>
 
-      <div className="collection_grid">
-        {collections.map((item,index)=>(
-            <div key={index} className='collection_box'>
-              <Link to={`/collection/${item.slug}/${item._id}`}> 
+        <div className="collection_grid">
+          {collections.map((item, index) => (
+            <div key={index} className="collection_box">
+              <Link to={`/collection/${item.slug}/${item._id}`}>
                 <div className="collection_box_img">
-                  <img src={item.image} alt=""/>
+                  <img src={item.image} alt="" />
                   <div className="collection_box_img_overlay"></div>
-                  <div className="collection_box_content">                  
+                  <div className="collection_box_content">
                     <h2>{item.name}</h2>
-                    <p>{item.description}</p>                    
-                    <button>Explore {item.name}</button>        
+                    <p>{item.description}</p>
+                    <button>Explore {item.name}</button>
                   </div>
-                  
-                </div> 
+                </div>
               </Link>
-            </div>            
+            </div>
           ))}
-      </div>      
-    </div>               
-  </div>
-  )
-}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Collection
+export default Collection;

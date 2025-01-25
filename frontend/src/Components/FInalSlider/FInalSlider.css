@@ -1,15 +1,15 @@
 .slider-container {
   width: 100%;
-  margin: 0 auto;
-  margin-bottom: var(--normal);
+  /* margin: 0 auto; */
+  margin-bottom: 0;
 }
 
 .carousel-cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: var(--normal);
-  padding-left: var(--normal);
+  padding-right:3px;
+  padding-left: 3px;
 }
 .slick-arrow {
   position: absolute;

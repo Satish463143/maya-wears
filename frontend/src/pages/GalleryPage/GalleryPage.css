@@ -1,12 +1,12 @@
 .img_containor{
-    margin: var(--gap);
+    margin: 15PX;
     /* display: grid; */
     /* grid-template-columns:  auto auto; */
     /* grid-gap: var(--div-gap); */
      /* padding: var(--div-gap);  */
     /* grid-auto-rows: auto; */
-    /* grid-auto-flow: dense; */
-    column-width :140px;
+    /* grid-auto-fw: den60se; */
+    column-width :180PX;
     /* gap: var(--div-gap); */
     
 }
@@ -16,7 +16,7 @@
     height: auto;
     width: 100%;
     /* padding: var(--div-gap);  */
-    margin-bottom: var(--gap);
+    margin-bottom: 15PX;
     /* display: block; */
 
 }
