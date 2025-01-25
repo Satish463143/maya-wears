@@ -5,12 +5,14 @@ import { useUpdateCartMutation } from '../../api/cart.api'
 
 const CartItem = ({ _id, title, slug, image, amount, quantity, price, size, deleteCartItem }) => {
     const [updateCart] = useUpdateCartMutation()
+    const [itemLoading, setItemLoading] = useState(false);
 
     // Get cartId from localStorage if user is not logged in
     const cartId = localStorage.getItem('cartId');
     const token = localStorage.getItem('_at'); // Check if user is logged in
 
     const updateQuantity = async (newQuantity) => {
+        setItemLoading(true);
         try {
             // Call the updateCart mutation based on the user's login status
             if (token) {
@@ -24,6 +26,9 @@ const CartItem = ({ _id, title, slug, image, amount, quantity, price, size, dele
             // Refetch the cart or update local state if needed
         } catch (exception) {
             console.log(exception)
+        }
+        finally{
+            setItemLoading(false)
         }
     }
 
@@ -40,7 +45,7 @@ const CartItem = ({ _id, title, slug, image, amount, quantity, price, size, dele
     }
 
     return (
-        <div className='cart_grid'>
+        <div className={`cart_grid `}>
             <div className="cart_img">
                 <Link to={`/product/${slug}/${_id}`}>
                     <img src={image} alt={title} />
@@ -50,10 +55,10 @@ const CartItem = ({ _id, title, slug, image, amount, quantity, price, size, dele
                 <h3>{title}</h3>
                 <p style={{ padding: '5px 0' }}>Rs.{price}/-</p>
                 <p style={{ paddingBottom: '5px' }}>Size: {size || "N/A"}</p>
-                <div className='quantity'>
-                    <button onClick={sub}>-</button>
+                <div className='quantity' style={{ cursor: itemLoading ? 'not-allowed' : 'pointer', opacity:itemLoading? '0.5' : '1' }}>
+                    <button onClick={sub} style={{ cursor: itemLoading ? 'not-allowed' : 'pointer', opacity:itemLoading? '0.5' : '1' }}>-</button>
                     <h4>{quantity}</h4>
-                    <button onClick={add}>+</button>
+                    <button onClick={add} style={{ cursor: itemLoading ? 'not-allowed' : 'pointer', opacity:itemLoading? '0.5' : '1' }}>+</button>
                 </div>
             </div>
             <div className='cart_price'>

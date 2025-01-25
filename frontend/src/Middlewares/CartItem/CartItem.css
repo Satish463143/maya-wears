@@ -6,6 +6,17 @@
     margin-top: 20px;
     padding: 20px;
 }
+.cart_grid.disabled {
+    opacity: 0.7; /* Reduce opacity to create a "loading" effect */
+    pointer-events: none; /* Disable interactions */
+    user-select: none; /* Prevent text selection */
+    transition: opacity 0.3s ease; /* Smooth transition effect */
+  }
+  
+  .cart_grid.disabled .quantity button {
+    cursor: not-allowed; /* Show "not-allowed" cursor for disabled buttons */
+    opacity: 0.5; /* Dim the buttons to indicate they are disabled */
+  }
 .cart_img{
     width: 100%;
     height: auto;
