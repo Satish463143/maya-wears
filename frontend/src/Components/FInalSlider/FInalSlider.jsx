@@ -36,7 +36,15 @@ const FInalSlider = () => {
   };
 
   if (isLoading) {
-    return <LoadingComponent />;
+    return <LoadingComponent
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundColor: '#f9f9f9',
+      }} 
+     />;
   }
 
   return (

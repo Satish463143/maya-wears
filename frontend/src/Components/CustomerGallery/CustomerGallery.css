@@ -13,7 +13,9 @@
     overflow-x: auto; /* Enables horizontal scrolling */
     gap: var(--gap); /* Optional, adds space between images */
     padding: var(--gap); /* Optional, adds space below the images */
-    scrollbar-width: 0 !important;
+    scrollbar-width: thin;
+    scrollbar-color: var(--pri_color) transparent; 
+    scroll-behavior: smooth;
   }
   
   .cus__gallery img {

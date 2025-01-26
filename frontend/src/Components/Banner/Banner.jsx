@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import "./Banner.css";
 import collectionSvc from "../CMS/Collection/Collection.service";
 
@@ -17,29 +17,7 @@ const Banner = () => {
   useEffect(() => {
     getAllBanner();
   }, []);
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const mobileImg = document.querySelector(".mobile_img img");
-  //     const desktopImg = document.querySelector(".desktop_img img");
-  //     const banner = document.querySelector(".banner");
 
-  //     if (!mobileImg || !desktopImg || !banner) return;
-
-  //     const scrollY = window.scrollY;
-  //     const containerHeight = banner.offsetHeight;
-  //     const opacity = Math.max(1 - scrollY / containerHeight, 0);
-
-  //     // Apply calculated opacity
-  //     if (desktopImg) desktopImg.style.opacity = opacity;
-  //     if (mobileImg) mobileImg.style.opacity = opacity;
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
   return (
     <div className="banner">
       {bannerData?.category === "video" && (

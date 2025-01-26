@@ -11,12 +11,12 @@ const ProductDetails = ({ toogleCart }) => {
   const cartId = Cookies.get("cartId");
   const { slug, _id } = useParams();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   const [selectedSize, setSelectedSize] = useState(""); // State for size
 
   const { data, isLoading } = useListForHomeQuery({});
-  const [createCart, { isLoading: isCreatingCart }] = useCreateCartMutation();
-  const { data: cartData } = useListAllCartQuery(cartId);
+  const [createCart] = useCreateCartMutation();
 
   const [isDiscriptionOpen, setDiscriptionOpen] = useState(false);
   const [isFitOpen, setFitOpen] = useState(false);
@@ -47,7 +47,15 @@ const ProductDetails = ({ toogleCart }) => {
     }
   }, [data, _id, slug]);
 
-  if (isLoading) return <LoadingComponent />;
+  if (isLoading) return <LoadingComponent 
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      backgroundColor: '#f9f9f9',
+    }} 
+  />;
 
   if (!product) return <div>Product not found</div>;
 
@@ -56,6 +64,7 @@ const ProductDetails = ({ toogleCart }) => {
       toast.error("Please select a size to add the product to the cart");
       return;
     }
+    setLoading(true)
 
     try {
       // Optimistically add product to the cart by modifying the cache
@@ -68,9 +77,11 @@ const ProductDetails = ({ toogleCart }) => {
       toast.success("Product added to cart!");
       toogleCart(); // Update cart badge
 
-      // Refetch cart data to get the updated cart
     } catch (error) {
       toast.error(error.data?.message || "Failed to add product to cart.");
+    }
+    finally{
+      setLoading(false)
     }
   };
 
@@ -121,6 +132,7 @@ const ProductDetails = ({ toogleCart }) => {
                     <button
                       className="cart_btn cart__buy hoverBotton"
                       onClick={handleAddToCart}
+                      style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity:loading? '0.5' : '1' }}
                     >
                       Add to Cart
                     </button>

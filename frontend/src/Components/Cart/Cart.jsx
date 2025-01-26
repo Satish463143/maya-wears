@@ -1,14 +1,16 @@
-import React, {  useContext } from 'react'
+import React, {  useState } from 'react'
 import './Cart.css'
 import CartItem from '../../Middlewares/CartItem/CartItem'
 import { useListAllCartQuery, useDeleteCartMutation } from "../../api/cart.api";
 import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
+import LoadingComponent from '../../Middlewares/Loading/Loading.component';
 
 const Cart = ({isCartActive , toogleCart,}) => {
     const cartId = Cookies.get('cartId');
     const {data, refetch} = useListAllCartQuery(cartId ? { cartId } : null)
     const [deleteCart] = useDeleteCartMutation()
+    const [loading, setLoading] = useState(false)
 
     const cartList  = data?.result?.items || []
 
@@ -18,6 +20,7 @@ const Cart = ({isCartActive , toogleCart,}) => {
     const totalAmount = calculateTotal(cartList);
 
     const handleDelete = async (cartItemId) => {
+        setLoading(true)
         try {
             const cartId = Cookies.get('cartId'); // Get the cartId for anonymous users
             const token = localStorage.getItem('_at'); // Check if the user is logged in
@@ -36,6 +39,9 @@ const Cart = ({isCartActive , toogleCart,}) => {
         } catch (exception) {
             console.log(exception);
         }
+        finally{
+            setLoading(false)
+        }
        
     }
     if(isCartActive){
@@ -47,7 +53,8 @@ const Cart = ({isCartActive , toogleCart,}) => {
   return (    
     <div className={`cart ${isCartActive?'cart_active ': ''}`}>
         <div className={`cart_overlay ${isCartActive? 'no-scroll' : ''}`} onClick={toogleCart}></div>
-        <div className='cart_container' >
+        <div className='cart_container'  >
+            
             <div className='cart_container_div'></div>
             <div className='cart_details'>
                 <div className='cross_btn2'>
@@ -77,8 +84,8 @@ const Cart = ({isCartActive , toogleCart,}) => {
                 <div className='cart_details_box'>
                     {cartList?.length>0 ? (
                         cartList.map(item =>(  
-                            <div>     
-                                <CartItem key={item._id}title={item.productId.title} quantity={item.quantity} amount={item.amount} _id={item._id} slug={item.productId.slug} image={item.productImage} price= {item.price} size={item.size}  deleteCartItem={() => handleDelete(item._id)} />                                   
+                            <div style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity:loading? '0.5' : '1' }}> 
+                                <CartItem key={item._id}title={item.productId.title} quantity={item.quantity} amount={item.amount} _id={item._id} slug={item.productId.slug} image={item.productImage} price= {item.price} size={item.size}  deleteCartItem={() => handleDelete(item._id)}  />                                   
                                 <hr />                                    
                             </div> 
                         ))
@@ -86,9 +93,17 @@ const Cart = ({isCartActive , toogleCart,}) => {
                         <p style={{margin:'50px 0', textAlign:'center'}}>No items in the Cart</p>
                     )}
                 </div> 
-                <div className='checkout_btn' onClick={toogleCart} >
-                    <Link to='/check_out' className='check_out_text'>
-                        <button>
+                <div className='checkout_btn' onClick={toogleCart} style={{cursor: totalAmount === 0 ? 'not-allowed': 'pointer'}}>
+                    <Link
+                        to={totalAmount === 0 ? "#" : "/check_out"} // Prevent default redirection if totalAmount is 0
+                        className="check_out_text"
+                        onClick={(e) => {
+                            if (totalAmount === 0) {
+                                e.preventDefault(); // Stop navigation
+                            }
+                        }}
+                    >
+                        <button >
                             Checkout: Rs.{totalAmount}/-
                         </button>
                     </Link>

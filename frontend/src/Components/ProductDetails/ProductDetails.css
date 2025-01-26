@@ -11,10 +11,10 @@
 .product_img_grid {
   width: 100%;
   overflow-x: scroll;
-  background-color: var(--sec_dark);
+  /* background-color: var(--sec_dark); */
   white-space: nowrap;
   scrollbar-width: thin;
-  scrollbar-color: var(--pri_color) var(--sec_dark); 
+  scrollbar-color: var(--pri_color) transparent; 
   scroll-behavior: smooth;
 }
 
