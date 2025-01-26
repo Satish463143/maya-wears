@@ -72,7 +72,7 @@ class AuthController {
 
     }
 
-    login = async (req,res,next)=>{
+    login = async (req,res,next)=>{ 
         try{
             const {email,password} = req.body;
             const user = await userSvc.getSingleUserByFilter({
@@ -114,7 +114,7 @@ class AuthController {
                     meta:null
                 })
                 }else{
-                    throw{status:422, message:"Your account has not been activated yet"}
+                    throw{status:422, message:"Your account has not been activated yet. Please activate your account to login"}
                 }
             }
             else{

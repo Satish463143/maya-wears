@@ -50,8 +50,6 @@ const Login = ({ setCurrentView, setLoggedIn }) => {
       localStorage.setItem("_at", response.result.token.token);
       localStorage.setItem("_rt", response.result.token.refreshToken);
       dispatch(setLoggedInUserForRedux(response.result.userDetail));
-      // After successful login, get the logged-in user
-      // loggedInUser(); // Ensure the profile is shown after login
       setLoggedIn(true);
     } catch (exception) {
       setLoading(false);
