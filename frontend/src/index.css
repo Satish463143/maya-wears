@@ -82,8 +82,11 @@ body{
   font-family: "mr-eaves-modern", sans-serif;
   font-variation-settings: "wght" 400;
   font-size: var(--pri_font_size);
+  
 }
- 
+ input{
+  font-size: var(--pri_font_size) !important;
+ }
 
 /* For WebKit browsers */
 ::-webkit-scrollbar {

@@ -26,9 +26,9 @@ const PlaceOrderForm = ({submitEvent,loading}) => {
           errMsg={errors?.paymentType?.message}
           required
         />
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div>
           <input            
-            className="submit_btn hoverBotton cart__buy"
+            className="submit_btn hoverBotton cart__buy place_order_button"
             type="submit"
             value="Place order"
             disabled={loading}

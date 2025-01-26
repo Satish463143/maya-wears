@@ -1,0 +1,12 @@
+.place_order_button{
+    width: 40vw !important;
+    height: 60px !important ;
+    background-color: white !important;
+
+}
+.place_order_button--{
+  display: flex;
+  /* flex-direction:  !important; */
+  justify-content: center;
+  align-items: center;
+}
