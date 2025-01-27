@@ -71,7 +71,6 @@ class OrderController {
                 quantity: item.quantity,
                 productImage: item.productImage,
             }));
-
             // Create a new order
             const newOrder = await OrderModel.create({
                 customerId: customer._id,

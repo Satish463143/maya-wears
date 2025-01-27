@@ -49,7 +49,7 @@ const ActiveBanner = () => {
                 <div className="banner_content">
                   <h2>{item?.title}</h2>
                   <p>{item?.content}</p>
-                  <button>Buy Now</button>
+                  <a href={item?.link}><button>Buy Now</button></a>                  
                 </div>
               </div>
             ))

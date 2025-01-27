@@ -96,9 +96,14 @@ const Navbar = ({ toogleCart }) => {
       setMenu("Gallery");
     } else if (path === "/product/:slug/:id") {
       setMenu("Products");
-    } else if (path === "/my_account") {
+    }
+     else if (path === "/my_account") {
       setMenu("My Accounts");
-    } else {
+    } 
+     else if (path === "/all_collection") {
+      setMenu("All COllection");
+    } 
+    else {
       setMenu("");
     }
   }, [location]);
@@ -202,6 +207,18 @@ const Navbar = ({ toogleCart }) => {
                     style={{ background: "none" }}
                   >
                     All Products
+                  </li>
+                </Link>
+                <Link to="/all_collection">
+                  <li
+                    onClick={() => {
+                      toggleNav();
+                      setMenu("All COllection");
+                    }}
+                    className={menu === "All COllection" ? "liActive" : ""}
+                    style={{ background: "none" }}
+                  >
+                    Shop By Collection
                   </li>
                 </Link>
                 <Link to="/gallery">

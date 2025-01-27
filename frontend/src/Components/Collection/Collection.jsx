@@ -19,6 +19,8 @@ const Collection = () => {
      />
   } ;
   const collections = data?.result?.data || [];
+  //only 3 collectioon will appear in home page
+  const sortedCollection = collections.slice(0,3)
 
   return (
     <div className="container collectonssss">
@@ -29,7 +31,7 @@ const Collection = () => {
         </div>
 
         <div className="collection_grid">
-          {collections.map((item, index) => (
+          {sortedCollection.map((item, index) => (
             <div key={index} className="collection_box">
               <Link to={`/collection/${item.slug}/${item._id}`}>
                 <div className="collection_box_img">

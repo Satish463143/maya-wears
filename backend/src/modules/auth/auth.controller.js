@@ -70,7 +70,7 @@ class AuthController {
         }
         
 
-    }
+    }  
 
     login = async (req,res,next)=>{ 
         try{
