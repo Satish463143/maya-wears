@@ -1,0 +1,36 @@
+.allcollection_grid{
+    margin-top: 50px;    
+    display: grid;
+    grid-template-columns: 45% 45%;
+    justify-content: space-between;
+    width: 100%;
+}
+.allcollection_item{
+    position: relative;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.collection_item img{
+    width: 100%;
+    height: auto;
+}
+.collection_content{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+}
+.collection_content button{
+    color: var(--sec_dark);
+    font-weight: 600;
+    text-decoration: underline;
+    line-height: 1;
+}
+.collection_content h1 {
+    font-weight: 600;
+    color: var(--white);
+}
+.collection_content h3 {
+    color: var(--white);
+}

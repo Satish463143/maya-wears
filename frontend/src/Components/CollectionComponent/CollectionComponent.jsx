@@ -8,9 +8,11 @@ const CollectionComponent = () => {
     const { id } = useParams();
     const {data, error, isLoading} = useListProductFromCollectionQuery(id)
     const products = data?.result; // Get the products array
+
            
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching products!</div>;  
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error fetching products!</div>;  
+
   return (
     <div className="container">
       <div className='collection products_grid'>

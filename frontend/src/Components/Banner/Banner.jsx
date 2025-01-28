@@ -48,7 +48,7 @@ const Banner = () => {
       <div className="banner_content">
         <h2>{bannerData?.title} </h2>
         <p>{bannerData?.content}</p>
-        <button>Buy Now</button>
+        <a href={bannerData?.link}><button>Buy Now</button></a>  
       </div>
     </div>
   );

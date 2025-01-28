@@ -40,6 +40,7 @@ import BannersAdd from "./Components/CMS/Banners/BannersAdd";
 import BannersEdit from "./Components/CMS/Banners/BannersEdit";
 import GalleryList from "./Components/CMS/Gallery/GalleryList";
 import GalleryAdd from "./Components/CMS/Gallery/GalleryAdd";
+import AllCollectionPage from "./pages/AllCollectionPage/AllCollectionPage";
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path="check_out" element={<CheckOutPage isCartActive={isCartActive} toogleCart={toogleCart}/>}/>   
           <Route path="order" element={<OrderPage/>}/>            
           <Route path='/my_account' element={<MyAccountPage/>}/>      
+          <Route path='/all_collection' element={<AllCollectionPage/>}/>      
           <Route path="*" element={<>Page not Found</>} />
         </Route>
 
