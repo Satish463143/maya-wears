@@ -22,7 +22,15 @@ const AllProducts = () => {
         refetch();
       }, [search, refetch]);
     
-      if (isLoading) return <LoadingComponent />;
+      if (isLoading) return <LoadingComponent
+        style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh',
+            backgroundColor: '#f9f9f9',
+        }}
+      />;
       const products = data?.result?.data || [];
 
   return (

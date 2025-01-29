@@ -11,11 +11,23 @@ class CollectionController {
         try {
             const data = req.body
 
-            data.image = await uploadImage('./public/uploads/collection/' + req.file.filename)
+            if (req.files) {
+                if (req.files.desktopVideo) {
+                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                }
+                if (req.files.mobileVideo) {
+                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                }
+                if (req.files.desktopImage) {
+                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                }
+                if (req.files.mobileImage) {
+                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                }
+            }
             //slug
             data.slug = slugify(data.name, { lower: true })
 
-            deleteFile('./public/uploads/collection/' + req.file.filename)
             data.createdBy = req.authUser._id
 
             const collection = await collectionService.createCollection(data)
@@ -107,9 +119,19 @@ class CollectionController {
             await this.#validate(id)
             const data = req.body
 
-            if (req.file) {
-                data.image = await uploadImage('./public/uploads/collection/' + req.file.filename)
-                deleteFile('./public/uploads/collection/' + req.file.filename)
+             if (req.files) {
+                if (req.files.desktopVideo) {
+                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                }
+                if (req.files.mobileVideo) {
+                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                }
+                if (req.files.desktopImage) {
+                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                }
+                if (req.files.mobileImage) {
+                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                }
             }
 
             const response = await collectionService.updateCollection(data, id)
@@ -147,7 +169,7 @@ class CollectionController {
         try {
 
             const list = await collectionService.listdata({
-                limit: 5,
+                // limit: 5,
                 filter: {
                     status: Status.ACTIVE
                 }

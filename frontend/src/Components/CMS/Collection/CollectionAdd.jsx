@@ -10,24 +10,31 @@ import { useCreateCollectionMutation, useListAllQuery } from '../../../api/colle
 const CollectionAdd = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
-    const [imageFile, setImageFile] = useState(null);
     const[createCollection] =  useCreateCollectionMutation()
-    
-
-    
-
     const submitEvent = async (data) => {
         setLoading(true);
         try {
             // Set up FormData to handle file upload
             const formData = new FormData();
             formData.append("name", data.name);
-            formData.append("description", data.description || "");  // Make sure this aligns with server field name
-            formData.append("status", data.status.value);  // Adjust based on object structure
-            formData.append("image", imageFile);  // Ensure file upload
+            formData.append("description", data.description || "");  
+            formData.append("status", data.status.value); 
+            formData.append("category", data.category.value);
+            // Append files conditionally
+            if (data.mobileImage instanceof File) {
+            formData.append("mobileImage", data.mobileImage);
+            }
+            if (data.desktopImage instanceof File) {
+                formData.append("desktopImage", data.desktopImage);
+            }
+            if (data.mobileVideo instanceof File) {
+                formData.append("mobileVideo", data.mobileVideo);
+            }
+            if (data.desktopVideo instanceof File) {
+                formData.append("desktopVideo", data.desktopVideo);
+            } 
 
-            await createCollection(formData).unwrap();
-            
+            await createCollection(formData).unwrap();            
             toast.success("Collection Created Successfully");
             navigate("/admin/collection");             
         } catch (exception) {
@@ -64,7 +71,7 @@ const CollectionAdd = () => {
             </div>
 
             <div className="banner_form">
-               <CollectionForm submitEvent={submitEvent} loading={loading} setImageFile={setImageFile} />
+               <CollectionForm submitEvent={submitEvent} loading={loading} />
             </div>
 
         </div>

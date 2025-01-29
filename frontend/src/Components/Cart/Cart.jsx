@@ -4,7 +4,6 @@ import CartItem from '../../Middlewares/CartItem/CartItem'
 import { useListAllCartQuery, useDeleteCartMutation } from "../../api/cart.api";
 import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
-import LoadingComponent from '../../Middlewares/Loading/Loading.component';
 
 const Cart = ({isCartActive , toogleCart,}) => {
     const cartId = Cookies.get('cartId');

@@ -8,7 +8,17 @@ import line_svg from "../../assets/images/headline-curve.svg";
 
 const BestSellingItem = () => {
   const { data, error, isLoading } = useListForHomeQuery({});
-  if (isLoading) <LoadingComponent />;
+  if (isLoading){
+    return <LoadingComponent
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '50vh',
+      backgroundColor: '#f9f9f9',
+    }}
+    />;
+  } 
 
   const product = data?.result?.data || [];
 

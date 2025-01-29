@@ -2,17 +2,14 @@ import React, { useEffect, useState } from 'react'
 import AdminTitle from '../../../Middlewares/AdminTitle/AdminTitle'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import collectionSvc from './Collection.service'
 import { useNavigate, useParams } from 'react-router-dom'
 import CollectionForm from './CollectionForm'
-import LoadingComponent from '../../../Middlewares/Loading/Loading.component';
-import { useShowByIdQuery, useUpdateCollectionMutation, useListAllQuery } from '../../../api/collection.api';
+import { useShowByIdQuery, useUpdateCollectionMutation } from '../../../api/collection.api';
 
 const CollectionEdit = () => {
   const params = useParams();
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const [imageFile, setImageFile] = useState(null);
   const [collection, setCollection] = useState()
   
 
@@ -33,10 +30,20 @@ const CollectionEdit = () => {
       formData.append("name", data.name);
       formData.append("description", data.description || "");  
       formData.append("status", data.status.value);  
+      formData.append("category", data.category.value);
 
-      if (imageFile) {
-        formData.append("image", imageFile);  
+      if (data.mobileImage instanceof File) {
+        formData.append("mobileImage", data.mobileImage);
       }
+      if (data.desktopImage instanceof File) {
+          formData.append("desktopImage", data.desktopImage);
+      }
+      if (data.mobileVideo instanceof File) {
+          formData.append("mobileVideo", data.mobileVideo);
+      }
+      if (data.desktopVideo instanceof File) {
+          formData.append("desktopVideo", data.desktopVideo);
+      } 
 
       if (typeof data.image === 'string') {
         delete formData.image
@@ -75,11 +82,18 @@ const CollectionEdit = () => {
                     label: collection.status === 'active' ? 'Active' : 'Inactive',
                     value: collection.status
                   },
-                  image: collection.image
+                  category: {
+                    label: banners.category === "image" ? "Image" : "Video",
+                    value: banners.category,
+                  },
+                  desktopImage: banners.desktopImage,
+                  mobileImage: banners.mobileImage,
+                  desktopVideo: banners.desktopVideo,
+                  mobileVideo: banners.mobileVideo,
                   }
                 : null
               }          
-              submitEvent={submitEvent} value='Update collection' loading={loading} setImageFile={setImageFile} 
+              submitEvent={submitEvent} value='Update collection' loading={loading}  
           />
       </div>
 

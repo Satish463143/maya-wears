@@ -11,7 +11,9 @@ const  GalleryPage=()=> {
   const {data,error,isLoading} = useListAllGalleryQuery({page, limit,})
 
     if(isLoading){
-        return <LoadingComponent/>
+        return <LoadingComponent
+          
+        />
     }
   const galleries = data?.result?.allImages || [];
   
@@ -30,9 +32,10 @@ const  GalleryPage=()=> {
         ))}
         
       </div>
+      
       {visibleCount < galleries.length && (
         <div className='load_more_btn' onClick={loadMore}>
-            Load more
+          <button>See more images</button>            
         </div>
       )}
 
