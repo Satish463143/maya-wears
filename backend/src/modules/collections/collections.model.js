@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const { Status } = require("../../config/constants.config")
+const { BannerCategory } = require("../../config/constants.config")
 
 const collectionSchema = new mongoose.Schema({
     name: {
@@ -11,7 +12,15 @@ const collectionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    image: String,
+    desktopImage:String,   
+    mobileImage:String,    
+    desktopVideo:String,   
+    mobileVideo:String,
+    category:{
+        type:String,
+        enum:[BannerCategory.IMAGE, BannerCategory.VIDEO],
+        required:true
+    },
     status: {
         type: String,
         enum: [...Object.values(Status)],
