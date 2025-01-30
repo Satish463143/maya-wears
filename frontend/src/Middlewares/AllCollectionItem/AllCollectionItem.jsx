@@ -7,7 +7,7 @@ const AllCollectionItem = ({ image, name, description}) => {
         <div className='collection_content'>
             <h1>{name}</h1>
             <h3>{description}</h3>
-            <button >View Product</button>
+            <button >View {name}</button>
         </div>
     </div>
   )
