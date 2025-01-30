@@ -23,12 +23,7 @@ const Navbar = ({ toogleCart }) => {
       document.body.classList.remove("no-scroll");
     }
   };
-  
-  if (isSearchActive) {
-    document.body.classList.add("no-scroll");
-  } else {
-    document.body.classList.remove("no-scroll");
-  }
+
   const toggleSearch = () => {
     setIsSearchActive(!isSearchActive);
   };

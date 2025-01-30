@@ -1,22 +1,21 @@
 .img_containor{
     margin: 15PX;
-    /* display: grid; */
-    /* grid-template-columns:  auto auto; */
-    /* grid-gap: var(--div-gap); */
-     /* padding: var(--div-gap);  */
-    /* grid-auto-rows: auto; */
-    /* grid-auto-fw: den60se; */
     column-width :180PX;
-    /* gap: var(--div-gap); */
-    
 }
 .img_containor img{
-    
     border-radius: 10px;
     height: auto;
     width: 100%;
-    /* padding: var(--div-gap);  */
     margin-bottom: 15PX;
-    /* display: block; */
-
+}
+.load_more_btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+.load_more_btn button{
+    background: var(--pri_color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: underline;
 }

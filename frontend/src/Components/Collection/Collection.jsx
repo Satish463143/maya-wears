@@ -19,7 +19,7 @@ const Collection = () => {
      />
   } ;
   const collections = data?.result?.data || [];
-  //only 3 collectioon will appear in home page
+  //only 3 collection will appear in home page
   const sortedCollection = collections.slice(0,3)
 
   return (

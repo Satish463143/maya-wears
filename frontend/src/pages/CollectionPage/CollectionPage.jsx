@@ -5,6 +5,7 @@ import CollectionComponent from '../../Components/CollectionComponent/Collection
 const CollectionPage = () => {
   return (
     <div>
+        
         <CollectionComponent/>
     </div>
   )
