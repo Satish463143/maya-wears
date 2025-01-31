@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './CollectionComponent.css'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import { useListProductFromCollectionQuery,useShowByIdQuery } from '../../api/collection.api';
 import ProductItem from '../../Middlewares/ProductItem/ProductItem';
 
@@ -33,7 +33,7 @@ const CollectionComponent = () => {
             <div className='img_overlay'></div>           
           </div>
           <div className='product_banner_content'>
-              <h2>Explore {collectionById.name} </h2>
+              <h2>Explore {collectionById?.name} </h2>
               <p> All in One Place!</p>
           </div>
       </div>
@@ -41,7 +41,7 @@ const CollectionComponent = () => {
     
       <div className="container" style={{marginTop:'50px'}}>
       <div className="prouct_title">
-        <div><span>{collectionById.name} </span><span>/ </span>All Products</div>
+        <div><span>{collectionById?.name} </span><span>/ </span>All Products</div>
       </div>
         <div className='collection products_grid'>
           {products.map((item,index)=>(
@@ -51,6 +51,6 @@ const CollectionComponent = () => {
       </div>
     </>
   )
-}
+} 
 
 export default CollectionComponent

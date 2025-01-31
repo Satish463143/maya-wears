@@ -75,7 +75,7 @@ const CollectionList = () => {
           <thead>
             <tr>
               <th>S.N</th>
-              <th>Image</th>
+              <th>Image / Video</th>
               <th>Name</th>
               <th>Description</th>
               <th>Status</th>
@@ -96,7 +96,8 @@ const CollectionList = () => {
                 <tr key={index}>
                   <td className="table_sn">{index + 1}</td>
                   <td className="table_img">
-                    <img src={row.image} alt="" />
+                    {row.category ===  "image" && <img src={row.desktopImage} alt=""/>}
+                    {row.category ===  "video" && <video src={row.desktopVideo}></video>}
                   </td>
                   <td>{row.name}</td>
                   <td>{truncateContent(row.description, 10)}</td>

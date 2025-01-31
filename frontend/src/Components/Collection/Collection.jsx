@@ -23,7 +23,7 @@ const Collection = () => {
   const sortedCollection = collections.slice(0,3)
 
   return (
-    <div className="container collectonssss">
+    <div className=" collectonssss">
       <div className="collections">
         <div className="best__of__">
           <h1>Explore our Collection</h1>
@@ -35,13 +35,40 @@ const Collection = () => {
             <div key={index} className="collection_box">
               <Link to={`/collection/${item.slug}/${item._id}`}>
                 <div className="collection_box_img">
-                  <img src={item.image} alt="" />
+
+                  {item?.category === "video" && (
+                    <>
+                      <div className="desktop_img">
+                        <video autoPlay muted loop>
+                          <source src={item?.desktopVideo} />
+                        </video>
+                      </div>
+                      <div className="mobile_img">
+                        <video autoPlay muted loop>
+                          <source src={item?.mobileVideo} />
+                        </video>
+                      </div>
+                    </>
+                  )}
+                  {item?.category === "image" && (
+                    <>
+                      <div className="desktop_img">
+                        <img src={item?.desktopImage} alt="" />
+                      </div>
+                      <div className="mobile_img">
+                        <img src={item?.mobileImage} alt="" />
+                      </div>
+                    </>
+                  )}
+
                   <div className="collection_box_img_overlay"></div>
+
                   <div className="collection_box_content">
                     <h2>{item.name}</h2>
                     <p>{item.description}</p>
                     <button>Explore {item.name}</button>
                   </div>
+
                 </div>
               </Link>
             </div>
