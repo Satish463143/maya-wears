@@ -23,8 +23,10 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
     });
     const productDTO = Yup.object({
         title:Yup.string().min(3).max(50).required(),
-        summary:Yup.string().required().nullable().notRequired(),
         description:Yup.string().required().nullable().notRequired(),
+        fit:Yup.string().nullable().notRequired(),
+        modelSize:Yup.string().nullable().notRequired(),
+        materailCare:Yup.string().nullable().notRequired(),
         color:Yup.string().required().nullable().notRequired(),
         fabric:Yup.string().required().nullable().notRequired(),
         pattern:Yup.string().required().nullable().notRequired(),
@@ -56,8 +58,10 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
     useEffect(()=>{
         if(detail){
             setValue("title", detail.title)
-            setValue("summary", detail.summary)
             setValue("description", detail.description)
+            setValue("fit", detail.fit)
+            setValue("materailCare", detail.materailCare)
+            setValue("modelSize", detail.modelSize)
             setValue("color", detail.color)
             setValue("fabric", detail.fabric)
             setValue("pattern", detail.pattern)
@@ -106,16 +110,7 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
                     errMsg={errors?.description?.message}
                 />
             </div>
-            <div>
-                <label htmlFor="summary">Summary</label><br />
-                <DescriptionInput
-                    name='summary'
-                    control={control}
-                    type='text'
-                    defaultValue=''
-                    errMsg={errors?.summary?.message}
-                />
-            </div>
+            
         </div>
         <h3>Details</h3>
         <div className="from_grid">
@@ -229,6 +224,36 @@ const ProductForm = ({submitEvent,loading,detail=null,value}) => {
                     {errors.productCollections.message}
                     </span>
                 )}
+            </div>
+            <div>
+                <label htmlFor="fit">Fit</label><br />
+                <TextInputComponent
+                    name='fit'
+                    control={control}
+                    type='text'
+                    defaultValue=''
+                    errMsg={errors?.fit?.message}
+                />
+            </div>
+            <div>
+                <label htmlFor="modelSize">Model Size</label><br />
+                <TextInputComponent
+                    name='modelSize'
+                    control={control}
+                    type='text'
+                    defaultValue=''
+                    errMsg={errors?.modelSize?.message}
+                />
+            </div>
+            <div>
+                <label htmlFor="materailCare">Material and care</label><br />
+                <DescriptionInput
+                    name='materailCare'
+                    control={control}
+                    type='text'
+                    defaultValue=''
+                    errMsg={errors?.materailCare?.message}
+                />
             </div>
         </div>
         <h3 style={{marginTop:'30px'}}>Media</h3>

@@ -3,7 +3,11 @@ import { useListForHomeQuery } from '../../api/banners.api'
 import LoadingComponent from '../../Middlewares/Loading/Loading.component'
 
 const ActiveBanner = () => {
-    const {data,error, isLoading} = useListForHomeQuery()
+    const {data,error, isLoading} = useListForHomeQuery(undefined,{
+      refetchOnMountOrArgChange:false,
+      staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
+      cacheTime: 1000 * 60 * 10,
+    })
     const banners = data?.result?.data || []
     if(isLoading) {
         return <LoadingComponent
@@ -49,7 +53,7 @@ const ActiveBanner = () => {
                 <div className="banner_content">
                   <h2>{item?.title}</h2>
                   <p>{item?.content}</p>
-                  <a href={item?.link}><button>Buy Now</button></a>                  
+                  <a href={item?.link}><button>{item?.button}</button></a>                  
                 </div>
               </div>
             ))

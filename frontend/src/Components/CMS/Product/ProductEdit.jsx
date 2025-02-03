@@ -30,8 +30,10 @@ const ProductEdit = () => {
         // Required fields
         formData.append("title", data.title);
         formData.append("price", data.price);
-        formData.append("summary", data.summary || null);
         formData.append("description", data.description || null);
+        formData.append("fit", data.fit || null);
+        formData.append("modelSize", data.modelSize || null);
+        formData.append("materailCare", data.materailCare || null);
         formData.append("color", data.color || null);
         formData.append("fabric", data.fabric || null);
         formData.append("pattern", data.pattern || null);
@@ -89,31 +91,33 @@ const ProductEdit = () => {
 
       <div className="banner_form">
         <ProductForm detail={
-                {
-                    title:product?.title,
-                    summary:product?.summary,
-                    description:product?.description,
-                    price:product?.price,
-                    color:product?.color,
-                    fabric:product?.fabric,
-                    pattern:product?.pattern,
-                    video:product?.video,
-                    images:product?.images || [],
-                    mainImage:product?.mainImage,                    
-                    wearable: {
-                      label: product?.wearable === 'Summer' && 'Summer' ||  product?.wearable === 'Winter' && 'Winter' ||  product?.wearable === 'Both' && 'Summer and Winter',
-                      value: product?.wearable
-                    },
-                    sizes: product?.sizes || [], // Pass sizes directly
-                    productCollections: product?.collections?.map((col) => ({
-                      label: col.name,
-                      value: col._id,
-                    })) || [],
-                }
-            } 
-            submitEvent={submitEvent}
-            loading={loading}
-            value='Update product'
+            {
+                title:product?.title,
+                materailCare:product?.materailCare,
+                fit:product?.fit,
+                modelSize:product?.modelSize,
+                description:product?.description,
+                price:product?.price,
+                color:product?.color,
+                fabric:product?.fabric,
+                pattern:product?.pattern,
+                video:product?.video,
+                images:product?.images || [],
+                mainImage:product?.mainImage,                    
+                wearable: {
+                  label: product?.wearable === 'Summer' && 'Summer' ||  product?.wearable === 'Winter' && 'Winter' ||  product?.wearable === 'Both' && 'Summer and Winter',
+                  value: product?.wearable
+                },
+                sizes: product?.sizes || [], // Pass sizes directly
+                productCollections: product?.collections?.map((col) => ({
+                  label: col.name,
+                  value: col._id,
+                })) || [],
+            }
+        } 
+        submitEvent={submitEvent}
+        loading={loading}
+        value='Update product'
         />
       </div>
     </div>

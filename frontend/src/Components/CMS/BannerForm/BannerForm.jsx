@@ -16,6 +16,7 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
             value: Yup.string().matches(/^(image|video)$/).required()
         }).required(),
         link: Yup.string().url().nullable().optional().default(null),
+        button: Yup.string().nullable().optional().default(null),
         desktopImage: Yup.mixed().required("Desktop Image is required"),
         mobileImage: Yup.mixed().required("Mobile Image is required"),
         desktopVideo: Yup.mixed().required("Desktop Video is required"),
@@ -31,6 +32,7 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
             setValue("title", detail.title)
             setValue("content", detail.content)
             setValue("link", detail.link)
+            setValue("button", detail.button)
             setValue("category", detail.category)
             setValue("desktopImage", detail.desktopImage)
             setValue("mobileImage", detail.mobileImage)
@@ -72,6 +74,16 @@ const BannerForm = ({submitEvent,loading,detail=null}) => {
                     type='text'
                     defaultValue=''
                     errMsg={errors?.link?.message}
+                />
+            </div>
+            <div>
+                <label htmlFor="button">Button 1</label><br />
+                <TextInputComponent
+                    name="button"
+                    control={control}
+                    type='text'
+                    defaultValue=''
+                    errMsg={errors?.button?.message}
                 />
             </div>
             

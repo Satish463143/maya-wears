@@ -27,6 +27,10 @@ const BannerSchema = new mongoose.Schema({
         type:String,
         default:null
     },
+    button:{
+        type:String,
+        default:null
+    },
     status:{
         type:String,
         enum:[Status.ACTIVE, Status.INACTIVE],

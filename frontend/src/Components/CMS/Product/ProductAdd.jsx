@@ -4,12 +4,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductForm from './ProductForm';
 import { useNavigate } from 'react-router-dom'
-import { useCreateProductMutation,useListAllQuery } from '../../../api/product.api';
+import { useCreateProductMutation } from '../../../api/product.api';
 
 const ProductAdd = () => {
     const [loading, setLoading] = useState(false)
     const [craeteProduct] = useCreateProductMutation()
-     const { refetch } = useListAllQuery();
     const navigate = useNavigate()
 
     const submitEvent = async (data) => {
@@ -22,8 +21,10 @@ const ProductAdd = () => {
             formData.append("price", data.price);
     
             // Optional fields with safe defaults
-            formData.append("summary", data.summary || null);
             formData.append("description", data.description || null);
+            formData.append("fit", data.fit || null);
+            formData.append("modelSize", data.modelSize || null);
+            formData.append("materailCare", data.materailCare || null);
             formData.append("color", data.color || null);
             formData.append("fabric", data.fabric || null);
             formData.append("pattern", data.pattern || null);

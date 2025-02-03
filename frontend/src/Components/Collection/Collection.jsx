@@ -6,7 +6,11 @@ import "./Collection.css";
 import line_svg from "../../assets/images/headline-curve.svg";
 
 const Collection = () => {
-  const { data, error, isLoading } = useListForHomeQuery(null);
+  const { data, error, isLoading } = useListForHomeQuery(undefined,{
+    refetchOnMountOrArgChange:false,
+    staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
+  });
   if (isLoading){
     return <LoadingComponent
       style={{
