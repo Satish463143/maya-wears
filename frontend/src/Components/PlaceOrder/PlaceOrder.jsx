@@ -65,8 +65,10 @@ const PlaceOrder = () => {
           setLoading(false);
         }
       };
+      const serviceCharge = (totalAmount=== 10000 ?  0 : 150 ) 
+
   return (
-    <div>
+    <div className='container'>
          <div className="order_details">
           <div className="order_box">
             <div className="order_title">
@@ -102,10 +104,8 @@ const PlaceOrder = () => {
               </div>
             </div>
             <hr />
-            <div className="order_promo">
-              <div className="order_promo_title">                
+            <div >                              
                 <PlaceOrderForm submitEvent={submitEvent}  loading={loading}/>              
-              </div>
             </div>
             <hr />
             <div className="order_total_box">
@@ -127,7 +127,7 @@ const PlaceOrder = () => {
               </div>
               <div className="order_total">
                 <p>Gross Total:</p>
-                <p>Rs.5000.00/-</p>
+                <p>Rs.{serviceCharge + totalAmount}.00/-</p>
               </div>
             </div>
           </div>
