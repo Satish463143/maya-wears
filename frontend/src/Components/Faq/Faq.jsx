@@ -14,18 +14,16 @@ const Faq = () => {
     };
   
     return (
-        <div className='div_container faqqqqq'  >
-            
+        <div className='div_container faqqqqq'>            
                 <div className="container">
                 <div >
-                    <div className='home_loan'>
+                    <div >
                         <div className='best__of__'>
                             <h1 className='help__section'>Help Section </h1>
                             <img src={line_svg} alt=""  />
                         </div>
                         
-                        <div className='faq_width'>
-                        
+                        <div className='faq_width'>                        
                             {FAQList.map((item, index) => (
                             <FaqItem
                                 key={index}
