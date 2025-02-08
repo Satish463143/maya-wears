@@ -280,21 +280,21 @@ const Navbar = ({ toogleCart }) => {
               </ul>
             </nav>
           </div>
-          <div
-            className={`search_overlay ${
-              isSearchActive && "active_search_overlay"
-            }`}
-          >
-            <div
-              className={`search_box ${isSearchActive && "active_search_box"}`}
-            >
-              <input
-                type="text"
-                placeholder="Search product..."
-                value={search}
-                onChange={handleSearchChange}
-                onKeyDown={handleSearchSubmit} // Handle Enter key press
-              />
+          <div className={`search_overlay ${ isSearchActive && "active_search_overlay" }`}  >
+            <div className={`search_box ${isSearchActive && "active_search_box"}`}  >
+              <div style={{position:'relative'}}> 
+                <input
+                  type="text"
+                  placeholder="Search product..."
+                  value={search}
+                  onChange={handleSearchChange}
+                  onKeyDown={handleSearchSubmit} // Handle Enter key press
+                />
+                <span className="enter_search_btn">
+                  <img src={search_logo} alt="" style={{ height: "25px", cursor: "pointer" }} />
+                </span>
+              </div>
+              
               <p onClick={toggleSearch} className="close_btnnn" >Close</p>
             </div>
           </div>

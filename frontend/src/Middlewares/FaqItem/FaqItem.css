@@ -31,7 +31,7 @@
     content: '-';
     font-size: 1em;
     /* transform: rotate(45deg); Rotate 180 degrees */
-  }
+  }                                                                                                  
   
   .faq-question::after {
     content: '+';
