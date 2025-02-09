@@ -19,7 +19,11 @@ const PrevArrow = ({ onClick }) => (
 );
 
 const FInalSlider = () => {
-  const { data, isLoading } = useListForHomeQuery();
+  const { data, isLoading } = useListForHomeQuery(undefined,{
+    refetchOnMountOrArgChange:false,
+    staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
+  });
   const product = data?.result?.data || [];
 
   const settings = {

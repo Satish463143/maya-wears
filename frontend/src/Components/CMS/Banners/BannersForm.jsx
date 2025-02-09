@@ -17,6 +17,7 @@ const BannersForm = ({submitEvent,loading,detail=null,value}) => {
                 value: Yup.string().matches(/^(active|inactive)$/).required()
             }).required(),
             link: Yup.string().url().nullable().optional().default(null),
+            button: Yup.string().nullable().optional().default(null),
             desktopImage: Yup.mixed().nullable().notRequired(),
             mobileImage: Yup.mixed().nullable().notRequired(),
             desktopVideo: Yup.mixed().nullable().notRequired(),
@@ -26,12 +27,12 @@ const BannersForm = ({submitEvent,loading,detail=null,value}) => {
         const { control, handleSubmit, setValue,  formState: { errors } } = useForm({
             resolver: yupResolver(bannersDTO)
         })
-
         useEffect(()=>{
             if(detail){
                 setValue("title", detail.title)
                 setValue("content", detail.content)
                 setValue("link", detail.link)
+                setValue("button", detail.button)
                 setValue("status", detail.status)
                 setValue("category", detail.category)
                 setValue("desktopImage", detail.desktopImage)
@@ -76,6 +77,16 @@ const BannersForm = ({submitEvent,loading,detail=null,value}) => {
                 />
             </div>            
             <div>
+                <label htmlFor="button">Button</label><br />
+                <TextInputComponent
+                    name="button"
+                    control={control}
+                    type='text'
+                    defaultValue=''
+                    errMsg={errors?.button?.message}
+                />
+            </div>            
+            <div>
                 <label htmlFor="category">Category</label><br />
                 <CategoryOptionsCompoent 
                     name="category"
@@ -93,7 +104,7 @@ const BannersForm = ({submitEvent,loading,detail=null,value}) => {
                     required:true 
                 />
             </div>
-            <div></div>            
+            
             <div>                
                 <label htmlFor="mobileImage"> Mobile Image</label><br />
                 <input

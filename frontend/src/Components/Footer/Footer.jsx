@@ -5,18 +5,11 @@ import main_logo from "../../assets/images/Maya-VerticalLockup.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
-  const [isHelpOpen, setHelpOpen] = useState(false);
-  const [isServicesOpen, setServicesOpen] = useState(false);
-  const [isAboutSubOpen, setAboutSubOpen] = useState(false);
-
-  const toggleHelp = () => setHelpOpen(!isHelpOpen);
-  const toggleservices = () => setServicesOpen(!isServicesOpen);
-  const toggleAboutSub = () => setAboutSubOpen(!isAboutSubOpen);
+      const [activeIndex, setActiveIndex] = useState(null);
+       
+      const toggleHelp = (index) => {
+        setActiveIndex(activeIndex === index ? null : index);
+      };
 
   return (
     <div className="div_container">
@@ -43,54 +36,34 @@ const Footer = () => {
           <div className="new__logo">
             <img src={mayuuu} alt="" />
           </div>
-
-          <div className="footer_menu">
-            <ul>
-              <li>
-                <div>
-                  <p onClick={toggleHelp}>
-                    <span>Need Help</span>
-                    <span>{isHelpOpen ? "-" : "+"}</span>
-                  </p>
-                  {isHelpOpen && (
-                    <div className={`sub_fotter_menu ${isHelpOpen?'open':''}`}>
-                      <a>contact</a>
-                      <a>get in touch</a>
-
-                      <a>welcome</a>
-                    </div>
-                  )}
-                </div>
-              </li>
-
-              <li>
-                <div>
-                  <p onClick={toggleservices}>
-                    <span>Services</span>
-                    <span>{isServicesOpen ? "-" : "+"}</span>
-                  </p>
-                  {isServicesOpen && (
-                    <div className={`sub_fotter_menu ${isServicesOpen?'open':''}`}>
-                      <a>Same day delivery</a>
-                      <a>Rufund & exchange</a>
-                    </div>
-                  )}
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p onClick={toggleAboutSub}>
-                    <span>About Maya</span>
-                    <span>{isAboutSubOpen ? "-" : "+"}</span>
-                  </p>
-                  {isAboutSubOpen && (
-                    <div className={`sub_fotter_menu ${isAboutSubOpen?'open':''}`}>
-                      <a>Foundation of Maya</a>
-                    </div>
-                  )}
-                </div>
-              </li>
-            </ul>
+          <div className="footer_menu container">
+            <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
+              <div className="faq-question"><strong>Contact Us</strong> </div>
+            {activeIndex === 0 && (
+              <div className="faq-answer help_answer">
+                <p><a href="mailto:contact@mayawears.com"> Contact Us</a></p>
+                <p><a href="https://www.instagram.com/mayawears" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+                <p><a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+              </div>
+            )}
+            </div>
+          <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`}  onClick={() => toggleHelp(1)} >
+            <div className="faq-question"><strong>Services</strong> </div>
+            {activeIndex === 1 && (
+              <div className="faq-answer">
+                <p>World Wide Delivery</p>
+                <p>Easy Exchange</p>
+              </div>
+            )}
+          </div>
+          <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)}>
+            <div className="faq-question"> <strong>About Maya</strong> </div>
+            {activeIndex === 2 && (
+              <div className="faq-answer help_answer">
+                <Link to="/about_us"><p>About Maya </p></Link>
+              </div>
+            )}
+            </div>
           </div>
           <div className="lo__go">
             <Link to="/">

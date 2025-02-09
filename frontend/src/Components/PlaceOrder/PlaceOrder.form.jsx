@@ -19,13 +19,16 @@ const PlaceOrderForm = ({submitEvent,loading}) => {
         resolver: yupResolver(orderDto),
       });
   return (
-    <form onSubmit={handleSubmit(submitEvent)} className='place_order_button--'>
+    <form onSubmit={handleSubmit(submitEvent)} className='order_from'>
+      <div>
         <PaymentOptionsCompoent
           name='paymentType'
           control={control}
           errMsg={errors?.paymentType?.message}
           required
         />
+      </div>
+        
         <div>
           <input            
             className="submit_btn hoverBotton cart__buy place_order_button"

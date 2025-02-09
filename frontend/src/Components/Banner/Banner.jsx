@@ -1,54 +1,64 @@
 import React, {  useEffect, useState } from "react";
 import "./Banner.css";
 import collectionSvc from "../CMS/Collection/Collection.service";
+import { useListAllQuery } from "../../api/mainBanner.api";
+import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 
-const Banner = () => {
-  const [bannerData, setBannerData] = useState();
+const Banner = () => { 
 
-  const getAllBanner = async () => {
-    try {
-      const response = await collectionSvc.getRequest("/banner_1/list");
-      setBannerData(response.result.data[0]);
-    } catch (exception) {
-      console.log(exception);
-    }
-  };
+  const {data, error, isLoading} = useListAllQuery(undefined,{
+    refetchOnMountOrArgChange:false,
+    staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
+    cacheTime: 1000 * 60 * 10,
+  })
 
-  useEffect(() => {
-    getAllBanner();
-  }, []);
+  if(isLoading) {
+    return <LoadingComponent 
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundColor: '#f9f9f9',
+      }} 
+    />
+  }
+
+  const banner =  data?.result[0]
+
+  console.log('rtk banner', banner)
+ 
 
   return (
     <div className="banner">
-      {bannerData?.category === "video" && (
+      {banner.category === "video" && (
         <>
           <div className="desktop_img">
             <video autoPlay muted loop>
-              <source src={bannerData?.desktopVideo} />
+              <source src={banner.desktopVideo} />
             </video>
           </div>
           <div className="mobile_img">
             <video autoPlay muted loop>
-              <source src={bannerData?.mobileVideo} />
+              <source src={banner.mobileVideo} />
             </video>
           </div>
         </>
       )}
-      {bannerData?.category === "image" && (
+      {banner.category === "image" && (
         <>
           <div className="desktop_img">
-            <img src={bannerData?.desktopImage} alt="" />
+            <img src={banner.desktopImage} alt="" />
           </div>
           <div className="mobile_img">
-            <img src={bannerData?.mobileImage} alt="" />
+            <img src={banner.mobileImage} alt="" />
           </div>
         </>
       )}
-
       <div className="banner_content">
-        <h2>{bannerData?.title} </h2>
-        <p>{bannerData?.content}</p>
-        <a href={bannerData?.link}><button>Buy Now</button></a>  
+        <h2>{banner.title} </h2>
+        <p>{banner.content}</p>
+        <a href={banner.link}><button>{banner.button}</button></a>  
       </div>
     </div>
   );

@@ -121,7 +121,7 @@ const ProductDetails = ({ toogleCart }) => {
                     </div>
                     <p className="model__wearing__size">
                       <span>
-                        Model is <span>5'8</span>,wearing a size <span>Xl</span>
+                        {product.modelSize}
                       </span>
                     </p>
                     <p className="size__guideee" onClick={toggleSelectSize}>
@@ -172,10 +172,7 @@ const ProductDetails = ({ toogleCart }) => {
                         className={`sub_fotter_menu ${isFitOpen ? "open" : ""}`}
                       >
                         <p className="disc_pad_top">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Nobis saepe minima fugiat accusantium
-                          dignissimos dicta alias ex omnis! Excepturi optio
-                          voluptate incidunt assumenda, necessitatibus autem!
+                          {product.fit}
                         </p>
                       </div>
                     )}
@@ -194,11 +191,7 @@ const ProductDetails = ({ toogleCart }) => {
                         }`}
                       >
                         <p className="disc_pad_top">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Aperiam officia autem dicta iure consequuntur?
-                          Nostrum officiis corporis nesciunt blanditiis quam?
-                          Totam pariatur omnis labore qui quo optio enim hic
-                          sunt?
+                          {product.materailCare}
                         </p>
                       </div>
                     )}

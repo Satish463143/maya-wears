@@ -9,10 +9,19 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    summary: {
+    materailCare: {
         type: String,
         default:null
     },
+    fit: {
+        type: String,
+        default:null
+    },
+    modelSize: {
+        type: String,
+        default:null
+    },
+    
     description: {
         type: String,
         default:null

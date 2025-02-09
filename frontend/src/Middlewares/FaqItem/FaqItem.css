@@ -6,9 +6,7 @@
   }
   
   .faq-question {
-    /* font-size: 1.3em; */
-    /* font-weight: 900; */
-    display: flex;
+     display: flex;
     justify-content: space-between;
     align-items: center;
   }
@@ -23,8 +21,6 @@
     transition: max-height 0.3s ease;
     font-size:var(--sec_font_size);
     color: #555;
-    /* padding: 10px 0; */
-    
   }
   
   .faq-item.active .faq-answer {
@@ -35,7 +31,7 @@
     content: '-';
     font-size: 1em;
     /* transform: rotate(45deg); Rotate 180 degrees */
-  }
+  }                                                                                                  
   
   .faq-question::after {
     content: '+';

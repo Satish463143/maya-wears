@@ -7,8 +7,10 @@ const sizeDTO = Joi.object({
 });
 const productDTO = Joi.object({
     title: Joi.string().min(3).max(50).required(), // Mandatory field
-    summary: Joi.string().allow(null, "").optional(), // Optional, can be null or empty
+    materailCare: Joi.string().allow(null, "").optional(), // Optional, can be null or empty
     description: Joi.string().allow(null, "").optional(),
+    fit: Joi.string().allow(null, "").optional(),
+    modelSize: Joi.string().allow(null, "").optional(),
     color: Joi.string().allow(null, "").optional(),
     fabric: Joi.string().allow(null, "").optional(),
     pattern: Joi.string().allow(null, "").optional(),
@@ -30,9 +32,11 @@ const productDTO = Joi.object({
 });
 
  const productUpdateDTO = Joi.object({
-    title: Joi.string().min(3).max(50), // Mandatory field
-    summary: Joi.string().allow(null, "").optional(), // Optional, can be null or empty
+    title: Joi.string().min(3).max(50),
     description: Joi.string().allow(null, "").optional(),
+    fit: Joi.string().allow(null, "").optional(),
+    modelSize: Joi.string().allow(null, "").optional(),
+    materailCare: Joi.string().allow(null, "").optional(),
     color: Joi.string().allow(null, "").optional(),
     fabric: Joi.string().allow(null, "").optional(),
     pattern: Joi.string().allow(null, "").optional(),
@@ -41,18 +45,18 @@ const productDTO = Joi.object({
         'number.min': 'Price must be greater than or equal to 0.',
         'any.required': 'Price is required.',
     }), // Mandatory field
-    sizes: Joi.array().items(sizeDTO).min(1), // Optional array
+    sizes: Joi.array().items(sizeDTO).min(1), 
     wearable: Joi.string()
         .valid(...Object.values(Wearable))
         .optional()
-        .default(Wearable.BOTH), // Optional, with a default value
-    productCollections: Joi.array().items(Joi.string()).optional().default([]), // Optional array
+        .default(Wearable.BOTH), 
+    productCollections: Joi.array().items(Joi.string()).optional().default([]), 
     images: Joi.array()
     .items(Joi.string())
     .optional().min(1)
     .messages({
         "array.base": '"images" must be an array',
-    }), // Optional array of URLs
+    }),
     mainImage: Joi.string().optional(), // Optional
     video: Joi.string().allow(null, "").optional(), // Optional
 });

@@ -60,8 +60,8 @@ class OrderController {
 
             // Calculate service charge, VAT, and total after applying discount
             const discountedSubtotal = calculatedSubtotal - discount;
-            const serviceCharge = 0.1 * discountedSubtotal; // 10% service charge
-            const vat = 0.13 * discountedSubtotal; // 13% VAT
+            const serviceCharge = (calculatedSubtotal === 1000 ? 0 : 150); // 10% service charge
+            const vat = 0; // 13% VAT
             const total = discountedSubtotal + serviceCharge + vat;
 
             const items = cart.items.map((item) => ({

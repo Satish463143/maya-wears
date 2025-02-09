@@ -7,6 +7,9 @@
   /* padding-top: var(--div-gap); */
 
 }
+.help_answer p {
+  text-decoration: underline;
+}
 .social_media {
   display: flex;
   justify-content: center;

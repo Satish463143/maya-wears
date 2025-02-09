@@ -1,6 +1,6 @@
 .order_box{
     margin-top: 15%;
-background-color:var(--white);
+    background-color:var(--white);
 }
 .order_title{
     font-size: var(--font_for_header);
@@ -9,4 +9,29 @@ background-color:var(--white);
 .order_promo_title input{
     border: 1px solid var(--sec_dark) !important;
     font-size: var(--pri_font_size);
+    width: 100%;    
+}
+.order_from{
+   display: grid;
+   grid-template-columns: 45% 45%;
+   justify-content: space-between;
+   width: 100%;
+   align-items: center;
+}
+.order_from input{
+    height: 40px;
+}
+@media(max-width:800px){
+    .order_from{
+        grid-template-columns: 49% 49%;
+    }
+}
+@media(max-width:550px){
+    .order_from{
+        grid-template-columns: 100%;
+    }
+    .place_order_button{
+        margin-top: 10px;
+
+    }
 }

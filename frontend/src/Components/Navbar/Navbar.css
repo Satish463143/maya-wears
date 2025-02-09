@@ -216,7 +216,7 @@
   font-size: var(--sec_font_size);
 }
 .active_search_box{
-display: block;
+  display: block;
   position: absolute;
   top: 10vh;
   left: 50%;
@@ -235,6 +235,10 @@ display: block;
   transition: 1s;
   background-color: rgba(0, 0, 0, 0.148);
   z-index: 999;
+}
+.enter_search_btn{
+  position: absolute;
+  
 }
 .close_btnnn{
   position:absolute;

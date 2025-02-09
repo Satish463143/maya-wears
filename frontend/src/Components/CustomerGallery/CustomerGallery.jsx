@@ -6,9 +6,12 @@ import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import { useListAllGalleryQuery } from "../../api/customergallery.api";
 
 function CustomerGallery() {
-  const [page, setPage] = useState(1);
-  const [limit] = useState(10); 
-  const {data,error,isLoading} = useListAllGalleryQuery({page, limit,})
+  
+  const {data,error,isLoading} = useListAllGalleryQuery({}, { 
+    refetchOnMountOrArgChange: false, 
+    staleTime: 1000 * 60 * 5, 
+    cacheTime: 1000 * 60 * 10 
+  })
 
 
   if(isLoading){

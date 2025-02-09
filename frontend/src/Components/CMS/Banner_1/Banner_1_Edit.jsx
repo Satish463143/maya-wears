@@ -18,7 +18,6 @@ const Banner_1_Edit = () => {
             // console.log(banner)
             setLoading(false)            
         }catch(exception){
-            console.log(exception,"here is the error")
             toast.error("Error while fetching collection")
             navigate("/admin/banner_1") // Navigates after the toast shows 
         }
@@ -27,6 +26,8 @@ const Banner_1_Edit = () => {
       useEffect(()=>{
         getDetail()
       },[])
+
+      console.log('first banner', banner)
 
       const submitEvent = async (data)=>{
         setLoading(true);
@@ -48,8 +49,6 @@ const Banner_1_Edit = () => {
             if(typeof data.desktopVideo === 'string'){
                 delete submitData.desktopVideo
             }
-
-
             // api call for edit operation
             await collectionSvc.putRequest("/banner_1/" + params.id, submitData, { auth: true, file: true });
 
@@ -90,6 +89,7 @@ const Banner_1_Edit = () => {
                         value: banner.category
                         },
                         link: banner.link,
+                        button: banner.button,
                         desktopImage: banner.desktopImage,
                         mobileImage: banner.mobileImage,
                         desktopVideo: banner.desktopVideo,

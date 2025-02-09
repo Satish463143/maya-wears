@@ -28,6 +28,7 @@ const BannersEdit = () => {
         formData.append("title", data.title);
         formData.append("content", data.content || "");
         formData.append("link", data.link || "");
+        formData.append("button", data.button || "");
         formData.append("category", data.category.value);
         formData.append("status", data.status.value);
 
@@ -80,6 +81,7 @@ const BannersEdit = () => {
                           value: banners.status,
                       },
                       link: banners.link,
+                      button: banners.button,
                       desktopImage: banners.desktopImage,
                       mobileImage: banners.mobileImage,
                       desktopVideo: banners.desktopVideo,

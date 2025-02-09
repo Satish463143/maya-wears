@@ -22,6 +22,10 @@ const banner_1Schema = new mongoose.Schema({
         type:String,
         default:null
     },
+     button:{
+        type:String,
+        default:null
+    },
     desktopImage:String,   
     mobileImage:String,    
     desktopVideo:String,   

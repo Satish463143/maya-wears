@@ -8,14 +8,11 @@ import { toast } from "react-toastify";
 import { setCustomerId } from "../../reducer/customer.reducer";
 
 
-const CheckOutPage = ({ toggleCart }) => {
+const CheckOutPage = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
-  const loggedInUser = useSelector((root) => {
-    return root.user.loggedInUser;
-  });
+ 
   // Initialize hooks for mutations
   const [createCustomer] = useCreateCustomerMutation(); 
 
@@ -36,28 +33,18 @@ const CheckOutPage = ({ toggleCart }) => {
   };
   return (
     <div className="container">
+      
       <div className="checkout_page">
-
+      <h1 className="checkout__name">Checkout</h1>
         <div className="checkout_box">
-          {/* {!loggedInUser && (
-            <div className="checkout_title">
-              <p>
-                Have an account?{" "}
-                <span>
-                  <Link to="/login">Log in</Link>
-                </span>
-              </p>
-            </div>
-          )} */}
           <div className="checkout_form">
             <CheckOut
               submitEvent={submitEvent}
               loading={loading}
-              // isloggedIn={!!loggedInUser}
             />
           </div>
         </div>       
-        <h1 className="checkout__name">Checkout</h1>
+        
       </div>
     </div>
   );

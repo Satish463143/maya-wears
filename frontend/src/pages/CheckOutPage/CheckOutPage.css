@@ -1,9 +1,6 @@
 .checkout_page{
     margin-top: 80px;
-    display: grid;
-    grid-template-columns: 50% 40%;
-    justify-content: space-between;
-}
+ }
 .checkout_title{
     background: var(--sec_color);
 }
@@ -41,24 +38,12 @@
     justify-content: space-between;
     align-items: center;
 }
-.order_promo form input{
-    width: 60%;
+.order_promo form input{   
     background: none;
     height: 50px;
     border-radius: 5px;
 }
-.order_promo form input[type="submit"] {
-    width: 35%;
-    background: var(--sec_dark);
-    height: 40px;
-    border-radius: 5px;
-    transition: 0.5s;
-    cursor: pointer;
-}
-.order_promo form input[type="submit"]:hover {
-    background: none;
-    border: 2px solid var(--sec_dark);
-}
+
 .address_deatils{
     display: grid;
     grid-template-columns: 48% 48%;
@@ -69,11 +54,11 @@
     height: 50px;
     border-radius: 5px;
     background:none;
-
 }
+
 .checkout_page .checkout__name{
 font-size: var(--font_for_header);
-text-align: center;
+/* text-align: center; */
 font-weight: 600;
 margin-bottom: 5vh;
 }

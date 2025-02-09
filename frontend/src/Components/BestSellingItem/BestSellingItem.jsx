@@ -7,7 +7,11 @@ import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import line_svg from "../../assets/images/headline-curve.svg";
 
 const BestSellingItem = () => {
-  const { data, error, isLoading } = useListForHomeQuery({});
+  const { data, error, isLoading } = useListForHomeQuery({}, { 
+    refetchOnMountOrArgChange: false, 
+    staleTime: 1000 * 60 * 5, 
+    cacheTime: 1000 * 60 * 10 
+  });
   if (isLoading){
     return <LoadingComponent
     style={{
