@@ -7,20 +7,22 @@ import line_svg from "../../assets/images/headline-curve.svg";
 
 const Collection = () => {
   const { data, error, isLoading } = useListForHomeQuery(null);
-  if (isLoading){
-    return <LoadingComponent
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '50vh',
-        backgroundColor: '#f9f9f9',
-      }}
-     />
-  } ;
+  if (isLoading) {
+    return (
+      <LoadingComponent
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "50vh",
+          backgroundColor: "#f9f9f9",
+        }}
+      />
+    );
+  }
   const collections = data?.result?.data || [];
   //only 3 collection will appear in home page
-  const sortedCollection = collections.slice(0,3)
+  const sortedCollection = collections.slice(0, 3);
 
   return (
     <div className="container collectonssss">
