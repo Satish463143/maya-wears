@@ -42,8 +42,8 @@ const Footer = () => {
             {activeIndex === 0 && (
               <div className="faq-answer help_answer">
                 <p><a href="mailto:contact@mayawears.com"> Contact Us</a></p>
-                <p><a href="https://www.instagram.com/mayawears" target="_blank" rel="noopener noreferrer">Instagram</a></p>
-                <p><a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+                <p><a href="https://www.instagram.com/mayawears.np/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+                <p><a href="https://wa.me/9849531357" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
               </div>
             )}
             </div>

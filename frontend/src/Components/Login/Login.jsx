@@ -42,8 +42,9 @@ const Login = ({ setCurrentView, setLoggedIn }) => {
   }, [loggedInUser]);
 
   const login = async (data) => {
+    setLoading(true);
     try {
-      setLoading(true);
+      
       const response = await authSvc.postRequest("/auth/login/", data);
       setLoading(false);
       toast.success("Welcome to Maya Wears");
@@ -51,15 +52,16 @@ const Login = ({ setCurrentView, setLoggedIn }) => {
       localStorage.setItem("_rt", response.result.token.refreshToken);
       dispatch(setLoggedInUserForRedux(response.result.userDetail));
       setLoggedIn(true);
-    } catch (exception) {
-      setLoading(false);
+    } catch (exception) {      
       toast.error(exception.data?.message || "Login failed");
+    }
+    finally{
+      setLoading(false)
     }
   };
 
   return (
     <div className="login_box">
-
       <form action="" method="post" onSubmit={handleSubmit(login)}>
       <p>Please enter your details to Sign In</p>
 

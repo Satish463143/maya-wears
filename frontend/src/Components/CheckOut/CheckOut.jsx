@@ -145,7 +145,7 @@ const CheckOut = ({ submitEvent, loading, detail = null, isloggedIn }) => {
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <input
-            className="submit_btn hoverBotton cart__buy"
+            className="submit_btn hoverBotton "
             type="submit"
             value="Continue"
             disabled={loading}
