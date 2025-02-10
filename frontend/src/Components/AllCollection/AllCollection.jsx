@@ -17,7 +17,7 @@ const AllCollection = () => {
           backgroundColor: "#f9f9f9",
         }}
        />
-    };
+     );
     const collections = data?.result?.data;
   return (
     <div className="container">
