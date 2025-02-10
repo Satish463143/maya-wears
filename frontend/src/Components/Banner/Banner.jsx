@@ -1,12 +1,12 @@
 import React, {  useEffect, useState } from "react";
 import "./Banner.css";
 import collectionSvc from "../CMS/Collection/Collection.service";
-import { useListAllQuery } from "../../api/mainBanner.api";
+import { useListAllQuery, useListForHomeQuery } from "../../api/mainBanner.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 
 const Banner = () => { 
 
-  const {data, error, isLoading} = useListAllQuery(undefined,{
+  const {data, error, isLoading} = useListForHomeQuery(undefined,{
     refetchOnMountOrArgChange:false,
     staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
     cacheTime: 1000 * 60 * 10,
@@ -23,12 +23,9 @@ const Banner = () => {
       }} 
     />
   }
-
-  const banner =  data?.result[0]
-
-  console.log('rtk banner', banner)
  
-
+  const banner =  data?.result?.data[0]
+  
   return (
     <div className="banner">
       {banner.category === "video" && (
@@ -63,5 +60,6 @@ const Banner = () => {
     </div>
   );
 };
+
 
 export default Banner;

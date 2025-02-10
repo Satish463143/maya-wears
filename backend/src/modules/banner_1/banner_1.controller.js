@@ -61,7 +61,7 @@ class Banner_1Controller {
             const list = await banner_1Service.listData()
             res.json({
                 result: list,
-                message: "List of active Collection",
+                message: "List of active banner",
                 meta: null
             })
         } catch (exception) {
