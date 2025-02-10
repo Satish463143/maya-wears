@@ -92,21 +92,23 @@ const Cart = ({isCartActive , toogleCart,}) => {
                         <p style={{margin:'50px 0', textAlign:'center'}}>No items in the Cart</p>
                     )}
                 </div> 
-                <div className='checkout_btn' onClick={toogleCart} style={{cursor: totalAmount === 0 ? 'not-allowed': 'pointer'}}>
-                    <Link
-                        to={totalAmount === 0 ? "#" : "/check_out"} // Prevent default redirection if totalAmount is 0
-                        className="check_out_text"
-                        onClick={(e) => {
-                            if (totalAmount === 0) {
-                                e.preventDefault(); // Stop navigation
-                            }
-                        }}
-                    >
+                <Link
+                    to={totalAmount === 0 ? "#" : "/check_out"} // Prevent default redirection if totalAmount is 0
+                    className="check_out_text"
+                    onClick={(e) => {
+                        if (totalAmount === 0) {
+                            e.preventDefault(); // Stop navigation
+                        }
+                    }}
+                >
+                    <div className='checkout_btn' onClick={toogleCart} style={{cursor: totalAmount === 0 ? 'not-allowed': 'pointer'}}>
+                        
                         <button >
                             Checkout: Rs.{totalAmount}/-
                         </button>
-                    </Link>
-                </div>
+                        
+                    </div>
+                </Link>
             </div>            
         </div>
     </div>
