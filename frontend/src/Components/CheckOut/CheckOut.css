@@ -3,3 +3,8 @@
     color: var(--sec_dark);
     text-decoration: underline;
 }
+@media (max-width:600px){
+    .submit_btn{
+        width: 100%;
+    }
+}

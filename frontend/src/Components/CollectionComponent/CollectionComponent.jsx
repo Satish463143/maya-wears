@@ -2,8 +2,7 @@ import React from 'react'
 import './CollectionComponent.css'
 import { useParams} from 'react-router-dom'
 import { useListProductFromCollectionQuery,useShowByIdQuery } from '../../api/collection.api';
-import ProductItem from '../../Middlewares/ProductItem/ProductItem';
-
+import AllProductItem from '../../Middlewares/AllProductItem/AllProductItem';
 import product_banner from '../../assets/images/desktopImage_4_banner.jpg'
 import product_banner_mobile from '../../assets/images/mobileImage_4.jpg'
 import LoadingComponent from '../../Middlewares/Loading/Loading.component';
@@ -36,9 +35,16 @@ const CollectionComponent = () => {
         <div className="prouct_title">
           <div><span>{collectionById?.name} </span><span>/ </span>All Products</div>
         </div>
-        <div className="products_grid">
+        <div className="products_grid ">
             {products.map((item,index)=>(
-              <ProductItem key={item._id} _id={item._id} slug={item.slug} images={item.mainImage} title={item.title} price={item.price}/>
+               <AllProductItem
+                  key={index}
+                  _id={item._id}
+                  slug={item.slug}
+                  images={item.mainImage}
+                  title={item.title}
+                  price={item.price}
+              />
             ))}
           </div>
       </div>

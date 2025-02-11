@@ -17,8 +17,7 @@ class BannerService {
             .populate("createdBy", ["_id","email", "name", "role"])
                 .sort({_id: "desc"})
                 .limit(limit)
-                .skip(skip)
-                
+                .skip(skip)              
 
                 return {count, data}
                 

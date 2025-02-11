@@ -4,8 +4,7 @@ import CollectionComponent from '../../Components/CollectionComponent/Collection
 
 const CollectionPage = () => {
   return (
-    <div>
-        
+    <div>        
         <CollectionComponent/>
     </div>
   )

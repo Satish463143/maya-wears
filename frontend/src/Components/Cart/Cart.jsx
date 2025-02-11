@@ -96,7 +96,7 @@ const Cart = ({isCartActive , toogleCart,}) => {
                     to={totalAmount === 0 ? "#" : "/check_out"} // Prevent default redirection if totalAmount is 0
                     className="check_out_text"
                     onClick={(e) => {
-                        if (totalAmount === 0) {
+                        if (totalAmount === 0) { 
                             e.preventDefault(); // Stop navigation
                         }
                     }}

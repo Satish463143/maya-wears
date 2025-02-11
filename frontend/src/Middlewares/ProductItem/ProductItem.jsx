@@ -8,15 +8,11 @@ const ProductItem = ({ _id, slug, images, title, price }) => {
       <Link to={`/product/${slug}/${_id}`}>
         <div className="item_div">
           <div className="img">
-            <img src={images} alt="" />
-            
+            <img src={images} alt="" />            
           </div>
-
           <div className="produc_content">
-            <h2>{title}</h2>
-           
-            <h3>NRP.{price}.00</h3>
-           
+            <h2>{title}</h2>           
+            <h3>NRP.{price}.00</h3>           
           </div>
         </div>
       </Link>

@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
-import { useCreateCartMutation, useListAllCartQuery } from "../../api/cart.api";
+import { useCreateCartMutation } from "../../api/cart.api";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 
 const ProductDetails = ({ toogleCart }) => {
-  const cartId = Cookies.get("cartId");
   const { slug, _id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false)
 
+
+
   const [selectedSize, setSelectedSize] = useState(""); // State for size
 
+  const [activeIndex, setActiveIndex] = useState(null);         
+  const toggleHelp = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  //call the  product api
   const { data, isLoading } = useListForHomeQuery({});
+  //call the create cart api
   const [createCart] = useCreateCartMutation();
 
-  const [isDiscriptionOpen, setDiscriptionOpen] = useState(false);
-  const [isFitOpen, setFitOpen] = useState(false);
-  const [isMaterialCareOpen, setMaterialCareOpen] = useState(false);
-
-  const togglediscription = () => setDiscriptionOpen(!isDiscriptionOpen);
-  const toggleFit = () => setFitOpen(!isFitOpen);
-  const toggleMaterialCare = () => setMaterialCareOpen(!isMaterialCareOpen);
   const [selectSize, setSelectSize] = useState(false);
 
   const toggleSelectSize = () => {
@@ -37,6 +37,7 @@ const ProductDetails = ({ toogleCart }) => {
     document.body.classList.remove('active_select_sizes')
 
   }
+
   useEffect(() => {
     if (data) {
       const productsById = data?.result?.data || [];
@@ -87,17 +88,16 @@ const ProductDetails = ({ toogleCart }) => {
 
   return (
     <>
-      <div className="product_page">
-        <div>
-          <div className="container">
+      <div className="product_page">        
+          <div className="product_container">
             <div className="details_grid">
-              <div className="product_img_grid">
+              <div className="product_img_grid" >
                 <img src={product.mainImage} alt="" />
                 {product.images.map((item) => (
                   <img src={item} alt="" />
                 ))}
               </div>
-              <div>                
+              <div >                
                 <div className="product_details">
                   <p className="price price__off">NRP.{product.price}.00</p>
                   <p className="product__title">{product.title}</p>
@@ -138,69 +138,51 @@ const ProductDetails = ({ toogleCart }) => {
                     </button>
                   </div>
                 </div>
+                <div className="desktop_decription">
+                  <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
+                    <div className="faq-question">Description </div>
+                    {activeIndex === 0 && (
+                      <p>{product?.description}</p>
+                    )}
+                  </div>
+                  <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
+                    <div className="faq-question">Fit </div>
+                    {activeIndex === 1 && (
+                      <p>{product?.fit}</p>
+                    )}
+                  </div>
+                  <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
+                    <div className="faq-question">Material and Care </div>
+                    {activeIndex === 2 && (
+                      <p>{product?.materialCare}</p>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="product__discription">
-              <ul>
-                <li>
-                  <div>
-                    <p onClick={togglediscription}>
-                      <span>Discription</span>
-                      <span>{isDiscriptionOpen ? "-" : "+"}</span>
-                    </p>
-                    {isDiscriptionOpen && (
-                      <div
-                        className={`product_desc ${
-                          isDiscriptionOpen ? "open" : ""
-                        }`}
-                      >
-                        <p className="disc_pad_top">
-                          {product.description}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <p onClick={toggleFit}>
-                      <span>Fit</span>
-                      <span>{isFitOpen ? "-" : "+"}</span>
-                    </p>
-                    {isFitOpen && (
-                      <div
-                        className={`sub_fotter_menu ${isFitOpen ? "open" : ""}`}
-                      >
-                        <p className="disc_pad_top">
-                          {product.fit}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <p onClick={toggleMaterialCare}>
-                      <span>Material and Care</span>
-                      <span>{isMaterialCareOpen ? "-" : "+"}</span>
-                    </p>
-                    {isMaterialCareOpen && (
-                      <div
-                        className={`sub_fotter_menu ${
-                          isMaterialCareOpen ? "open" : ""
-                        }`}
-                      >
-                        <p className="disc_pad_top">
-                          {product.materailCare}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </li>
-              </ul>
+            
+          </div>
+          <div className="mobile_decription container">
+            <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
+              <div className="faq-question">Description </div>
+              {activeIndex === 0 && (
+                <p>{product?.description}</p>
+              )}
+            </div>
+            <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
+              <div className="faq-question">Fit </div>
+              {activeIndex === 1 && (
+                <p>{product?.fit}</p>
+              )}
+            </div>
+            <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
+              <div className="faq-question">Material and Care </div>
+              {activeIndex === 2 && (
+                <p>{product?.materialCare}</p>
+              )}
             </div>
           </div>
-        </div>
+        
       </div>
     {selectSize && <div className="size_popup">
         <div className="overlay_popup" onClick={toggleSelectSize}>
