@@ -49,7 +49,7 @@ const LayoutPage = () => {
              {!isLoginPage &&  (
                 <>
                 <Navbar toogleCart={toogleCart}/>
-                <FooterNav />
+                <FooterNav toogleCart={toogleCart}/>
                 </>
             )}
             

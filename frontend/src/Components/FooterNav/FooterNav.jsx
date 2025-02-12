@@ -82,9 +82,7 @@ const FooterNav = ({toogleCart}) => {
                         </li>
                     </Link>
                     <Link>
-                    <li onClick={()=> { toogleCart(); toggleNav(); setNavFoot("Cart");}} 
-                    className={isnavfoot === "Cart" ? "nav_foot_active" : ""} >
-
+                        <li onClick={()=> { toogleCart(); toggleNav(); setNavFoot("Cart");}} className={isnavfoot === "Cart" ? "nav_foot_active" : ""} >
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 32 32">
                                     <defs>
@@ -95,7 +93,6 @@ const FooterNav = ({toogleCart}) => {
                                         <path d="M20,17a1,1,0,0,1-1-1V8a3,3,0,0,0-6,0v8a1,1,0,0,1-2,0V8A5,5,0,0,1,21,8v8A1,1,0,0,1,20,17Z"/>
                                     </g>
                                     <g id="frame">
-                                        
                                     </g>
                                 </svg>
                             </span>

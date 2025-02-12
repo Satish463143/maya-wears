@@ -4,7 +4,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,398;1,398&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;1,300&family=Cormorant:ital,wght@0,398;1,398&display=swap');
- */
+ */ 
 
  @import url("https://use.typekit.net/rdu3esw.css");
  @import url("https://use.typekit.net/rdu3esw.css");
@@ -57,9 +57,10 @@ h1,h2,h3,h4,h5,p{
 .headers {
   font-family: "mr-eaves-modern", sans-serif;
   font-variation-settings: "wght" 559;
+  -webkit-font-smoothing: antialiased; /* Helps with rendering */
+  -moz-osx-font-smoothing: grayscale;
 }
 .container{
-  /* max-width: 90%; */
   margin: auto;  
 }
 .container {
@@ -78,11 +79,11 @@ h1,h2,h3,h4,h5,p{
   }
 }
 body{
-  /* background: var(--pri_color); */
   font-family: "mr-eaves-modern", sans-serif;
   font-variation-settings: "wght" 400;
-  font-size: var(--pri_font_size);
-  
+  font-size: var(--pri_font_size); 
+  -webkit-font-smoothing: antialiased; /* Helps with rendering */
+  -moz-osx-font-smoothing: grayscale; 
 }
  input{
   font-size: var(--pri_font_size) !important;
@@ -113,6 +114,7 @@ body{
 body {
   scrollbar-width: none !important;
   scrollbar-color:var(--sec_dark) var(--pri_color);
+
 }
 svg path{
   stroke: 29px;

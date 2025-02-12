@@ -10,9 +10,6 @@ const ProductDetails = ({ toogleCart }) => {
   const { slug, _id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false)
-
-
-
   const [selectedSize, setSelectedSize] = useState(""); // State for size
 
   const [activeIndex, setActiveIndex] = useState(null);         
@@ -89,7 +86,7 @@ const ProductDetails = ({ toogleCart }) => {
   return (
     <>
       <div className="product_page">        
-          <div className="product_container">
+          <div className="">
             <div className="details_grid">
               <div className="product_img_grid" >
                 <img src={product.mainImage} alt="" />
@@ -97,7 +94,7 @@ const ProductDetails = ({ toogleCart }) => {
                   <img src={item} alt="" />
                 ))}
               </div>
-              <div >                
+              <div className="product_detail_box" >                
                 <div className="product_details">
                   <p className="price price__off">NRP.{product.price}.00</p>
                   <p className="product__title">{product.title}</p>

@@ -122,6 +122,14 @@ const Navbar = ({ toogleCart }) => {
                     <div className="menu-bar4"></div>
                   </div>
                 </div>
+                <div className="to_hide_search" onClick={toggleSearch}>
+                  <img
+                    src={search_logo}
+                    alt=""
+                    style={{ height: "25px", cursor: "pointer" }}                    
+                  />
+                  <p>Search Product</p>                  
+                </div>
               </div>
               <div className="menu_logo">
                 <Link to="">
@@ -137,7 +145,15 @@ const Navbar = ({ toogleCart }) => {
                       style={{ height: "25px", cursor: "pointer" }}
                       onClick={toggleSearch}
                     />
-                  </li>
+                  </li>                  
+                  <li onClick={toogleCart} style={{ cursor: "pointer" }} className="cart_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 32 32" stroke="black" strokeWidth="1" >
+                      <g data-name="Layer 2" id="Layer_2">
+                        <path d="M23.52,29h-15a5.48,5.48,0,0,1-5.31-6.83L6.25,9.76a1,1,0,0,1,1-.76H24a1,1,0,0,1,1,.7l3.78,12.16a5.49,5.49,0,0,1-.83,4.91A5.41,5.41,0,0,1,23.52,29ZM8,11,5.11,22.65A3.5,3.5,0,0,0,8.48,27h15a3.44,3.44,0,0,0,2.79-1.42,3.5,3.5,0,0,0,.53-3.13L23.28,11Z"/>
+                        <path d="M20,17a1,1,0,0,1-1-1V8a3,3,0,0,0-6,0v8a1,1,0,0,1-2,0V8A5,5,0,0,1,21,8v8A1,1,0,0,1,20,17Z"/>
+                      </g>
+                    </svg>
+                  </li>                  
                   <Link to="/login">
                     <li style={{ cursor: "pointer" }}>
                       <svg
@@ -169,14 +185,7 @@ const Navbar = ({ toogleCart }) => {
               </div>
             </div>
           </div>
-          <div
-            className={`overlay ${
-              isMenuActive
-                ? "overlay-active overlay-slide-right"
-                : "overlay-slide-left"
-            }`}
-            id="overlay"
-          >
+          <div className={`overlay ${  isMenuActive  ? "overlay-active overlay-slide-right" : "overlay-slide-left" }`} id="overlay" >
             <div className="overlay_bg" onClick={toggleNav}></div>
             <nav>
               <ul className="">
@@ -282,16 +291,13 @@ const Navbar = ({ toogleCart }) => {
           </div>
           <div className={`search_overlay ${ isSearchActive && "active_search_overlay" }`}  >
             <div className={`search_box ${isSearchActive && "active_search_box"}`}  >
-              
-                  <input
-                    type="text"
-                    placeholder="Search product..."
-                    value={search}
-                    onChange={handleSearchChange}
-                    onKeyDown={handleSearchSubmit} // Handle Enter key press
-                  />
-                 
-              
+                <input
+                  type="text"
+                  placeholder="Search product..."
+                  value={search}
+                  onChange={handleSearchChange}
+                  onKeyDown={handleSearchSubmit} // Handle Enter key press
+                />
               <p onClick={toggleSearch} className="close_btnnn" >Close</p>
             </div>
           </div>
