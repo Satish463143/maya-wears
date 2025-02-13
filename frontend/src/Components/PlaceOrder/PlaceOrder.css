@@ -18,6 +18,21 @@
    width: 100%;
    align-items: center;
 }
+.order_promo{
+    display: grid;
+    grid-template-columns: 70% 25%;
+    justify-content: space-between;
+}
+.order_promo form input{   
+    background: none;
+    height: 50px;
+    border-radius: 5px;
+}
+.submit_btn{
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+}
 .order_from input{
     height: 40px;
 }

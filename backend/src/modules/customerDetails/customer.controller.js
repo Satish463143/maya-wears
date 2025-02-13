@@ -89,12 +89,7 @@ class CustomerController {
                 message: "Customer fetched By Id",
                 meta: null
             })
-
-            res.json({
-                deatils: this.productDetails,
-                message:" customer details by id",
-                meta:null
-            })
+            
         }catch(exception){
             console.log(exception)
             next(exception)

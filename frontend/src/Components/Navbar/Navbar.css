@@ -4,6 +4,7 @@
   z-index: 999999;
   top: 0%;
   transition: top 0.5s ease, 0.5s ease;
+  
 }
 
 .navbar.hidden {
@@ -30,6 +31,7 @@
   backdrop-filter: blur(20px);
   position: relative;
   z-index:99;
+  padding: 0 5%;
 
 }
 
@@ -110,7 +112,8 @@
   }
 
   .end_menu{
-    padding: 15px 0;
+    padding: 20px 0;
+
     display: flex;
     justify-content: end;
   }
@@ -133,9 +136,12 @@
   .to_hide_search{
     display: flex;
     align-items: center;
-    margin-left: 10px;
-    gap: 5px;
+    margin-left: 20px;
+    gap: 15px;
     cursor: pointer;
+  }
+  .to_hide_search p{
+    font-weight: 600;
   }
   .overlay_bg{
     position: absolute;
@@ -297,9 +303,7 @@
    padding: 10vh 0;
 
   }
-  .overlay nav ul li{
-    display: flex;
-    justify-self: center;
-    align-items: center;
+  .overlay nav ul a{
+    text-align: center;
   }
   }

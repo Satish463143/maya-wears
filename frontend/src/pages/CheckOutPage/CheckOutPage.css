@@ -33,21 +33,7 @@
     display: flex;
     justify-content: space-between;
 }
-.order_promo form{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.order_promo form input{   
-    background: none;
-    height: 50px;
-    border-radius: 5px;
-}
-.submit_btn{
-    width: 250px;
-    height: 40px;
-    border-radius: 5px;
-}
+
 
 
 .personal_details input, .address_deatils input{

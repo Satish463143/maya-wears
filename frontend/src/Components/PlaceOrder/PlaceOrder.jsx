@@ -20,6 +20,7 @@ const PlaceOrder = () => {
     const totalCartNumber = cartList.length;
     const [promoCode, setPromoCode] = useState('');
     const navigate = useNavigate()  
+     
 
     const handlePromoCodeChange = (e) => {
       setPromoCode(e.target.value); 
@@ -65,7 +66,10 @@ const PlaceOrder = () => {
           setLoading(false);
         }
       };
-      const serviceCharge = (totalAmount=== 10000 ?  0 : 150 ) 
+      const serviceCharge = (totalAmount=== 10000 ?  0 : 150 )
+      const verifyPromo = ()=>{
+
+      } 
 
   return (
     <div className='container'>
@@ -101,6 +105,10 @@ const PlaceOrder = () => {
                 <form action="">
                   <input type="text" placeholder="Promo code" value={promoCode} onChange={handlePromoCodeChange} />
                 </form>
+
+              </div>
+              <div className="promo_button">
+                <button className="submit_btn hoverBotton cart__buy place_order_button" onClick={verifyPromo}> Apply Promo</button>
               </div>
             </div>
             <hr />

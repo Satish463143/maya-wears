@@ -43,6 +43,9 @@ import GalleryAdd from "./Components/CMS/Gallery/GalleryAdd";
 import AllCollectionPage from "./pages/AllCollectionPage/AllCollectionPage";
 import CustomerGalleryList from "./Components/CMS/CustomerGallery/CustomerGalleryList";
 import CustomerGalleryAdd from "./Components/CMS/CustomerGallery/CustomerGalleryAdd";
+import Promo from "./Components/CMS/Promo/Promo";
+import PromoAdd from "./Components/CMS/Promo/PromoAdd";
+import PromoEdit from "./Components/CMS/Promo/PromoEdit";
 const App = ({ isCartActive, toogleCart, setCurrentView }) => {
 
   const dispatch = useDispatch();
@@ -102,8 +105,10 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
           <Route path= 'gallery_add' element = {<GalleryAdd/>}/>
           <Route path= 'customerGallery' element = {<CustomerGalleryList/>}/>
           <Route path= 'customerGallery_add' element = {<CustomerGalleryAdd/>}/>
+          <Route path='promo_code' element={<Promo/>}/>
+          <Route path='promo_code_add' element={<PromoAdd/>}/>
+          <Route path='promo_code_edit/:id' element={<PromoEdit/>}/>
         </Route>
-
       </Routes>
     </div>
   );

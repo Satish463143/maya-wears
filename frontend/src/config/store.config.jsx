@@ -12,6 +12,7 @@ import {BannersApi} from '../api/banners.api'
 import { GalleryApi } from '../api/gallery.api'
 import { CustomerGalleryApi } from '../api/customergallery.api'
 import {MainBannerApi} from '../api/mainBanner.api'
+import { PromoApi } from '../api/promo.api'
 
 const storeConfig = configureStore({
     reducer:{
@@ -26,7 +27,8 @@ const storeConfig = configureStore({
         [BannersApi.reducerPath]:BannersApi.reducer,
         [GalleryApi.reducerPath]:GalleryApi.reducer,
         [CustomerGalleryApi.reducerPath]:CustomerGalleryApi.reducer,
-        [MainBannerApi.reducerPath]:MainBannerApi.reducer
+        [MainBannerApi.reducerPath]:MainBannerApi.reducer,
+        [PromoApi.reducerPath]:PromoApi.reducer
 
     },
     middleware:(getDefaultMiddleware)=>
@@ -41,6 +43,7 @@ const storeConfig = configureStore({
         .concat(GalleryApi.middleware)
         .concat(CustomerGalleryApi.middleware)
         .concat(MainBannerApi.middleware)
+        .concat(PromoApi.middleware)
 })
 
 export default storeConfig

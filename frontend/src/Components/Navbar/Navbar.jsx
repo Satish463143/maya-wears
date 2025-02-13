@@ -108,7 +108,7 @@ const Navbar = ({ toogleCart }) => {
       <header>
         <div className={`navbar ${showNavbar ? "visible" : "hidden"}`}>
           <div className={`${navbarBackground ? "background_nav" : ""}`}>
-            <div className="nav_grid container">
+            <div className="nav_grid ">
               <div className="nav_btn">
                 <div
                   className={`hamburger-menu ${isMenuActive ? "active" : ""}`}
@@ -128,7 +128,7 @@ const Navbar = ({ toogleCart }) => {
                     alt=""
                     style={{ height: "25px", cursor: "pointer" }}                    
                   />
-                  <p>Search Product</p>                  
+                  <p>Search</p>                  
                 </div>
               </div>
               <div className="menu_logo">
