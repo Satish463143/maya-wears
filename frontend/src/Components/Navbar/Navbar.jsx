@@ -107,7 +107,7 @@ const Navbar = ({ toogleCart }) => {
     <div>
       <header>
         <div className={`navbar ${showNavbar ? "visible" : "hidden"}`}>
-          <div className={`${navbarBackground ? "background_nav" : ""}`}>
+          <div className={`${navbarBackground ? "background_nav" : ""} nav_padding`}>
             <div className="nav_grid ">
               <div className="nav_btn">
                 <div
