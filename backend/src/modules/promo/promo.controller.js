@@ -146,7 +146,7 @@ const promoService = require("./promo.service")
             const promo = await PromoModel.findOne({promoCode})
             if(!promo){
                 return res.status(404).json({
-                    message:"Promo doesn't exist",
+                    message:"Promo doesn't exist here",
                     discount:0
                 })
             }

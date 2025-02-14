@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import PlaceOrderForm from './PlaceOrder.form';
 import { useNavigate } from 'react-router-dom';
 import "./PlaceOrder.css"
+import { useApplyPromoMutation } from '../../api/promo.api';
 
 const PlaceOrder = () => {
     const [loading, setLoading] = useState(false)
@@ -20,7 +21,8 @@ const PlaceOrder = () => {
     const totalCartNumber = cartList.length;
     const [promoCode, setPromoCode] = useState('');
     const navigate = useNavigate()  
-     
+    const [promoApply] = useApplyPromoMutation()
+    const [discount, setDiscount] = useState(0)     
 
     const handlePromoCodeChange = (e) => {
       setPromoCode(e.target.value); 
@@ -66,10 +68,23 @@ const PlaceOrder = () => {
           setLoading(false);
         }
       };
-      const serviceCharge = (totalAmount=== 10000 ?  0 : 150 )
-      const verifyPromo = ()=>{
+      const serviceCharge = (totalAmount >= 10000 ?  0 : 150 )
 
-      } 
+      const verifyPromo = async () => {
+        try {
+            const promo =promoCode;
+            console.log('value', promo)
+            const response = await promoApply(promo).unwrap();  // ✅ Add 'await' here
+            setDiscount(response?.discount);  // ✅ Fix response structure
+            console.log('Promo Applied:', response);
+        } catch (error) {
+            console.log('Promo Error:', error);
+            toast.error(error?.data?.message || "Invalid promo code");
+        }
+    }
+      const discountAmount = ((discount) / 100 ) * totalAmount  
+      
+      const grandTotal = (totalAmount - discountAmount + serviceCharge) 
 
   return (
     <div className='container'>
@@ -131,11 +146,11 @@ const PlaceOrder = () => {
               </div>
               <div className="order_total">
                 <p>Discount:</p>
-                <p>Rs.00.00/-</p>
+                <p>Rs.{discountAmount.toFixed(2)}/-</p>
               </div>
               <div className="order_total">
                 <p>Gross Total:</p>
-                <p>Rs.{serviceCharge + totalAmount}.00/-</p>
+                <p>Rs.{grandTotal.toFixed(2)}/-</p>
               </div>
             </div>
           </div>

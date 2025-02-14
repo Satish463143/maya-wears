@@ -42,8 +42,14 @@ export const PromoApi = createApi({
         showById:builder.query({
             query:(id)=>`/promo/${id}`
         }),
-        applyPromo:builder.query({
-            query:(id)=>`/promo/applyPromo`
+        applyPromo:builder.mutation({
+            query: ({payload})=>({
+                url:`/promo/applyPromo`,
+                body:payload,
+                method:'POST',
+                headers: { "Content-Type": "application/json" } 
+            })
+            
         }),
         delete:builder.mutation({
             query:(id)=>({
@@ -54,4 +60,4 @@ export const PromoApi = createApi({
         }),
     })
 })
-export const {useShowByIdQuery, useDeleteMutation, useUpdateMutation, useListForHomeQuery, useCreateMutation, useListAllQuery} = PromoApi
+export const {useShowByIdQuery, useDeleteMutation, useUpdateMutation,  useCreateMutation, useListAllQuery, useApplyPromoMutation} = PromoApi
