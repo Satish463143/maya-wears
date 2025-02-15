@@ -83,6 +83,7 @@ const PlaceOrder = () => {
         }
     }
       const discountAmount = ((discount) / 100 ) * totalAmount  
+    
       
       const grandTotal = (totalAmount - discountAmount + serviceCharge) 
 
