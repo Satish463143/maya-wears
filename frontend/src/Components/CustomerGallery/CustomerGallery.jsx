@@ -28,7 +28,7 @@ function CustomerGallery() {
   const galleries = data?.result?.allImages || [];
   // const sortedGallery = galleries.slice(0,10)
   return (
-    <div className="div_container galleryyy">
+    <div className="container galleryyy">
       <div className="slider__name">
         <h1>#MayaNaiMaya</h1>
         <p className="share__text">Share your style with Maya</p>

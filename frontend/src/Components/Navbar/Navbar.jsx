@@ -114,6 +114,7 @@ const Navbar = ({ toogleCart }) => {
                   className={`hamburger-menu ${isMenuActive ? "active" : ""}`}
                   id="hamburger-menu"
                   onClick={toggleNav}
+
                 >
                   <div className="menu_btn">
                     <div className="menu-bar1"></div>
@@ -121,13 +122,12 @@ const Navbar = ({ toogleCart }) => {
                     <div className="menu-bar3"></div>
                     <div className="menu-bar4"></div>
                   </div>
+                  <p>Menu</p>
                 </div>
                 <div className="to_hide_search" onClick={toggleSearch}>
-                  <img
-                    src={search_logo}
-                    alt=""
-                    style={{ height: "25px", cursor: "pointer" }}                    
-                  />
+                  <span>
+                    <svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+                  </span>
                   <p>Search</p>                  
                 </div>
               </div>
@@ -138,21 +138,19 @@ const Navbar = ({ toogleCart }) => {
               </div>
               <div className="end_menu">
                 <ul>
-                  <li className="to_hide_nav">
-                    <img
-                      src={search_logo}
-                      alt=""
-                      style={{ height: "25px", cursor: "pointer" }}
-                      onClick={toggleSearch}
-                    />
+                  <li className="to_hide_nav" onClick={toggleSearch}>
+                    <span>
+                      <svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+                    </span>
                   </li>                  
                   <li onClick={toogleCart} style={{ cursor: "pointer" }} className="cart_icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 32 32" stroke="black" strokeWidth="1" >
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 32 32" stroke="black" strokeWidth="1" >
                       <g data-name="Layer 2" id="Layer_2">
                         <path d="M23.52,29h-15a5.48,5.48,0,0,1-5.31-6.83L6.25,9.76a1,1,0,0,1,1-.76H24a1,1,0,0,1,1,.7l3.78,12.16a5.49,5.49,0,0,1-.83,4.91A5.41,5.41,0,0,1,23.52,29ZM8,11,5.11,22.65A3.5,3.5,0,0,0,8.48,27h15a3.44,3.44,0,0,0,2.79-1.42,3.5,3.5,0,0,0,.53-3.13L23.28,11Z"/>
                         <path d="M20,17a1,1,0,0,1-1-1V8a3,3,0,0,0-6,0v8a1,1,0,0,1-2,0V8A5,5,0,0,1,21,8v8A1,1,0,0,1,20,17Z"/>
                       </g>
-                    </svg>
+                    </svg> */}
+                    <p>My Cart</p>
                   </li>                  
                   <Link to="/login">
                     <li style={{ cursor: "pointer" }}>
@@ -161,6 +159,7 @@ const Navbar = ({ toogleCart }) => {
                         height="25px"
                         width="25px"
                         xmlns="http://www.w3.org/2000/svg"
+                        strokeWidth="0.1"
                       >
                         <title />
                         <g
@@ -170,12 +169,13 @@ const Navbar = ({ toogleCart }) => {
                           <path
                             d="M23.74,16.18a1,1,0,1,0-1.41,1.42A9,9,0,0,1,25,24c0,1.22-3.51,3-9,3s-9-1.78-9-3a9,9,0,0,1,2.63-6.37,1,1,0,0,0,0-1.41,1,1,0,0,0-1.41,0A10.92,10.92,0,0,0,5,24c0,3.25,5.67,5,11,5s11-1.75,11-5A10.94,10.94,0,0,0,23.74,16.18Z"
                             stroke="currentColor"
-                            strokeWidth="0."
+                            strokeWidth="0.1"
                           />
                           <path
                             d="M16,17a7,7,0,1,0-7-7A7,7,0,0,0,16,17ZM16,5a5,5,0,1,1-5,5A5,5,0,0,1,16,5Z"
                             stroke="currentColor"
-                            strokeWidth="0."
+                            strokeWidth="0.1"
+
                           />
                         </g>
                       </svg>
