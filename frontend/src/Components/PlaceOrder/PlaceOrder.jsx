@@ -9,9 +9,11 @@ import PlaceOrderForm from './PlaceOrder.form';
 import { useNavigate } from 'react-router-dom';
 import "./PlaceOrder.css"
 import { useApplyPromoMutation } from '../../api/promo.api';
+import OrderDetails from '../../Middlewares/OrderDetails/OrderDetails';
 
 const PlaceOrder = () => {
     const [loading, setLoading] = useState(false)
+    
     const customerId = useSelector((state) => state.customer.customerId);
     const [createOrder] = useCreateOrderMutation();
     const cartId = Cookies.get("cartId");
@@ -20,9 +22,14 @@ const PlaceOrder = () => {
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
     const [promoCode, setPromoCode] = useState('');
-    const navigate = useNavigate()  
     const [promoApply] = useApplyPromoMutation()
-    const [discount, setDiscount] = useState(0)     
+    const [discount, setDiscount] = useState(0)    
+    const [orderDetails, setOrderDetails] = useState() 
+    const [isActive, setIsActive] = useState(false)
+
+    const toggleOrderDetails = () => {
+      setIsActive(!isActive);
+    };
 
     const handlePromoCodeChange = (e) => {
       setPromoCode(e.target.value); 
@@ -55,11 +62,10 @@ const PlaceOrder = () => {
            
           const response = await createOrder(orderData).unwrap();
           toast.success("Order has been placed successfully!");
-
+          setOrderDetails(response?.details)
+          setIsActive(true)
           //clear the cart when order is placed
           await deleteCart(cartIdForOrder).unwrap(); 
-           
-          navigate('/my_account')
           
         } catch (exception) {
           console.error(exception);
@@ -89,7 +95,7 @@ const PlaceOrder = () => {
 
   return (
     <div className='container'>
-         <div className="order_details">
+        <div className="order_details">
           <div className="order_box">
             <div className="order_title">
               <p>Order summary {`(${totalCartNumber})`}</p>
@@ -156,6 +162,13 @@ const PlaceOrder = () => {
             </div>
           </div>
         </div>
+
+        <OrderDetails
+          isActive={isActive}
+          toggleOrderDetails={toggleOrderDetails}
+          orderDetails={orderDetails}
+        />
+
     </div>
   )
 }
