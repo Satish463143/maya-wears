@@ -2,21 +2,16 @@ import React from "react";
 import "./ContactItem.css";
 function ContactItem() {
   return (
-    <div className="div_container">
+    <div className="container">
       <div className="contact_dett">
         <div className="contact_info_item">
           <h2>Call Us</h2>
           <h3>Our customer service will delight to assist you </h3>
           <h4>
-            You may contact us at{" "}
-            <span>
-              <a href="tel:+977 9849531357">+977 9849531357</a>
-            </span>
-          </h4>
-          <h4>
             Maya Customer Service Center is available Sunday to Friday from 9AM
             to 10PM and Saturday from 10AM to 4PM.
           </h4>
+          <a href="tel:+977 9849531357">Contact us at +977 9849531357</a>
         </div>
         <div className="contact_info_item">
           <h2>Instant messaging</h2>

@@ -1,14 +1,14 @@
 .contact_dett {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
-  /* padding: 10% 5%; */
   flex-wrap: wrap;
-  /* border: solid; */
+  margin: 50px 0;
 }
 .contact_info_item {
   width: 33%;
   font-size: var(--pri_font_size);
+  text-align: center;
 }
 .contact_info_item h2 {
   font-size:var(--font_for_header);
@@ -21,15 +21,14 @@
 .contact_info_item h4 {
   margin-bottom: 10px;
 }
-/* .contact_info_item button{
-    margin-bottom: 10px;
 
-} */
 .contact_info_item a {
   color: var(--sec_dark);
   text-decoration: underline;
   line-height: 1.5;
+  
 }
+
 @media (max-width: 1100px) {
   .contact_dett {
     display: flex;
@@ -40,8 +39,6 @@
   }
   .contact_info_item {
     width: 50%;
-    /* margin-bottom: 10%; */
-    /* border: solid; */
   }
 }
 @media (max-width: 700px) {

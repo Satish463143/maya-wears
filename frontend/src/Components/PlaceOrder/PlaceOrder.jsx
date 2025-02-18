@@ -162,7 +162,6 @@ const PlaceOrder = () => {
             </div>
           </div>
         </div>
-
         <OrderDetails
           isActive={isActive}
           toggleOrderDetails={toggleOrderDetails}

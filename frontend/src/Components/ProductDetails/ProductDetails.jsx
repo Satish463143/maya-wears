@@ -86,99 +86,96 @@ const ProductDetails = ({ toogleCart }) => {
   return (
     <>
       <div className="product_page">        
-          <div className="">
-            <div className="details_grid">
-              <div className="product_img_grid" >
-                <img src={product.mainImage} alt="" />
-                {product.images.map((item) => (
-                  <img src={item} alt="" />
-                ))}
+        <div className="details_grid">
+          <div className="product_img_grid" >
+            <img src={product.mainImage} alt="" />
+            {product.images.map((item) => (
+              <img src={item} alt="" />
+            ))}
+          </div>
+          <div className="product_detail_box" >                
+            <div className="product_details">
+              <p className="price price__off">NRP.{product.price}.00</p>
+              <p className="product__title">{product.title}</p>
+              <div className="size__color">
+                <p className="sizeeee">Prefer your size:</p>
+                <div className="size__flex">
+                  <div className="size__">
+                    {product.sizes.map((item, index) => (
+                      <button
+                        key={index}
+                        className={`size__option  ${
+                          selectedSize === item.size ? "activeSize" : ""
+                        }`}
+                        onClick={() => setSelectedSize(item.size)}
+                      >
+                        {item.size}
+                      </button>
+                    ))}
+                  </div>
+                  
+                </div>
+                <p className="model__wearing__size">
+                  <span>
+                    {product.modelSize}
+                  </span>
+                </p>
+                <p className="size__guideee" onClick={toggleSelectSize}>
+                    View Size Guide
+                  </p>
               </div>
-              <div className="product_detail_box" >                
-                <div className="product_details">
-                  <p className="price price__off">NRP.{product.price}.00</p>
-                  <p className="product__title">{product.title}</p>
-                  <div className="size__color">
-                    <p className="sizeeee">Prefer your size:</p>
-                    <div className="size__flex">
-                      <div className="size__">
-                        {product.sizes.map((item, index) => (
-                          <button
-                            key={index}
-                            className={`size__option  ${
-                              selectedSize === item.size ? "activeSize" : ""
-                            }`}
-                            onClick={() => setSelectedSize(item.size)}
-                          >
-                            {item.size}
-                          </button>
-                        ))}
-                      </div>
-                      
-                    </div>
-                    <p className="model__wearing__size">
-                      <span>
-                        {product.modelSize}
-                      </span>
-                    </p>
-                    <p className="size__guideee" onClick={toggleSelectSize}>
-                        View Size Guide
-                      </p>
-                  </div>
-                  <div className="buyNow__cartBtn">
-                    <button
-                      className="cart_btn cart__buy hoverBotton"
-                      onClick={handleAddToCart}
-                      style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity:loading? '0.5' : '1' }}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-                <div className="desktop_decription">
-                  <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
-                    <div className="faq-question">Description </div>
-                    {activeIndex === 0 && (
-                      <p>{product?.description}</p>
-                    )}
-                  </div>
-                  <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
-                    <div className="faq-question">Fit </div>
-                    {activeIndex === 1 && (
-                      <p>{product?.fit}</p>
-                    )}
-                  </div>
-                  <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
-                    <div className="faq-question">Material and Care </div>
-                    {activeIndex === 2 && (
-                      <p>{product?.materialCare}</p>
-                    )}
-                  </div>
-                </div>
+              <div className="buyNow__cartBtn">
+                <button
+                  className="cart_btn cart__buy hoverBotton"
+                  onClick={handleAddToCart}
+                  style={{ cursor: loading ? 'not-allowed' : 'pointer', opacity:loading? '0.5' : '1' }}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
-            
+            <div className="desktop_decription">
+              <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
+                <div className="faq-question">Description </div>
+                {activeIndex === 0 && (
+                  <p>{product?.description}</p>
+                )}
+              </div>
+              <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
+                <div className="faq-question">Fit </div>
+                {activeIndex === 1 && (
+                  <p>{product?.fit}</p>
+                )}
+              </div>
+              <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
+                <div className="faq-question">Material and Care </div>
+                {activeIndex === 2 && (
+                  <p>{product?.materialCare}</p>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="mobile_decription container">
-            <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
-              <div className="faq-question">Description </div>
-              {activeIndex === 0 && (
-                <p>{product?.description}</p>
-              )}
-            </div>
-            <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
-              <div className="faq-question">Fit </div>
-              {activeIndex === 1 && (
-                <p>{product?.fit}</p>
-              )}
-            </div>
-            <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
-              <div className="faq-question">Material and Care </div>
-              {activeIndex === 2 && (
-                <p>{product?.materialCare}</p>
-              )}
-            </div>
+        </div>
+        <div className="mobile_decription container">
+          <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
+            <div className="faq-question">Description </div>
+            {activeIndex === 0 && (
+              <p>{product?.description}</p>
+            )}
           </div>
+          <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
+            <div className="faq-question">Fit </div>
+            {activeIndex === 1 && (
+              <p>{product?.fit}</p>
+            )}
+          </div>
+          <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
+            <div className="faq-question">Material and Care </div>
+            {activeIndex === 2 && (
+              <p>{product?.materialCare}</p>
+            )}
+          </div>
+        </div>
         
       </div>
     {selectSize && <div className="size_popup">

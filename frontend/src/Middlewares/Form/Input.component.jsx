@@ -193,7 +193,7 @@ export const WearableOptionsCompoent = ({control,name,errMsg,required,onChange,v
         </>
     )
 }
-export const PaymentOptionsCompoent = ({control,name,errMsg,required,onChange,value})=>{
+export const PaymentOptionsCompoent = ({control,name,errMsg,required,onChange,value,style})=>{
     return(
         <>
             <SelectComponent 
@@ -206,6 +206,7 @@ export const PaymentOptionsCompoent = ({control,name,errMsg,required,onChange,va
                 errMsg={errMsg}
                 required={required}
                 value={value || ""}
+                style={style}
             />
         </>
     )

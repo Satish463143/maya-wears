@@ -4,15 +4,15 @@
   justify-content: space-between;
   width: 100%;
   align-items: start; 
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
 }
 
 .product_img_grid {
   width: 100%;
   white-space: nowrap;
-  max-height: 100vh; 
+  height: 100vh;
   overflow-y: auto;
-  scrollbar-width: none;  
-  scrollbar-color: var(--pri_color) transparent; 
   scroll-behavior: smooth;
 }
 .product_container{
@@ -21,11 +21,13 @@
   margin: auto;
 }
 
+  
 .product_img_grid img,
 .product_img_grid video {
   width: 100vw;
   height: auto;
   object-fit: cover;
+  display: block;
 }
 .product_details button {
   width: 100%;
@@ -114,6 +116,10 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  position: sticky;
+  top: 0;
+  /* overflow-y: auto; */
+  box-sizing: border-box;
   justify-content: center;
   max-width: 500px; 
   margin: auto;

@@ -2,9 +2,5 @@
     border: solid 0.7px var(--sec_dark);
     color: var(--sec_dark);
     text-decoration: underline;
-}
-@media (max-width:600px){
-    .submit_btn{
-        width: 100%;
-    }
+    width: 100% ;
 }

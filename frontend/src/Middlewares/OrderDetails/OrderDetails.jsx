@@ -26,7 +26,7 @@ const OrderDetails = ({isActive, toggleOrderDetails, orderDetails}) => {
                             </div>
                         ))}
                     </div>
-                    <p><strong>Order ID:</strong> {orderDetails?.id}</p>
+                    <p><strong>Order ID:</strong> {orderDetails?.orderId}</p>
                     <p><strong>Total Amount:</strong> Rs.{orderDetails?.total}</p>
                     <p><strong>Payment Type:</strong> {orderDetails?.paymentType}</p>
                     <h1>( Delivery will take place in next 2-3 working days. )</h1>

@@ -19,25 +19,26 @@ const PlaceOrderForm = ({submitEvent,loading}) => {
         resolver: yupResolver(orderDto),
       });
   return (
-    <form onSubmit={handleSubmit(submitEvent)} className='order_from'>
+    <form onSubmit={handleSubmit(submitEvent)} className='order_promo'>
       <div>
         <PaymentOptionsCompoent
           name='paymentType'
           control={control}
           errMsg={errors?.paymentType?.message}
           required
+          style={{height:'55px !important'}}
         />
       </div>
         
-        <div>
-          <input            
-            className="submit_btn hoverBotton cart__buy place_order_button"
-            type="submit"
-            value="Place order"
-            disabled={loading}
-            style={{ cursor: "pointer" }}
-          />
-        </div>
+      <div>
+        <input            
+          className="submit_btn hoverBotton cart__buy place_order_button"
+          type="submit"
+          value="Place order"
+          disabled={loading}
+          style={{ cursor: "pointer" }}
+        />
+      </div>
   </form>
   )
 }

@@ -27,15 +27,12 @@
 }
 .order_box hr{
     margin: 20px 0;
-    border: 1px solid var(--sec_dark);
+    border: 0.1px solid var(--sec_dark);
 }
 .order_total{
     display: flex;
     justify-content: space-between;
 }
-
-
-
 .personal_details input, .address_deatils input{
     width: 100%;
     height: 50px;

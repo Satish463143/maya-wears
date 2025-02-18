@@ -29,38 +29,39 @@ const AllCollection = () => {
         </div>
         <div className='allcollection_grid'>
             {collections.map((item, index)=> (
-                
-              <div className='allcollection_item'>
-                {item?.category === "video" && (
-                  <>
-                    <div className="desktop_img">
-                      <video autoPlay muted loop>
-                        <source src={item?.desktopVideo} />
-                      </video>
-                    </div>
-                    <div className="mobile_img">
-                      <video autoPlay muted loop>
-                        <source src={item?.mobileVideo} />
-                      </video>
-                    </div>
-                  </>
-                )}
-                {item?.category === "image" && (
-                  <>
-                    <div className="desktop_img">
-                      <img src={item?.desktopImage} alt="" />
-                    </div>
-                    <div className="mobile_img">
-                      <img src={item?.mobileImage} alt="" />
-                    </div>
-                  </>
-                )} 
-              <div className='collection_content'>
-                  <h1>{item.name}</h1>
-                  <h3>{item.description}</h3>  
-                  <Link to={`/collection/${item.slug}/${item._id}`}><div className='collection_content_button' >View Products</div></Link>
-              </div>                     
-            </div>  
+              <Link to={`/collection/${item.slug}/${item._id}`}>
+                <div className='allcollection_item'>
+                    {item?.category === "video" && (
+                      <>
+                        <div className="desktop_img">
+                          <video autoPlay muted loop>
+                            <source src={item?.desktopVideo} />
+                          </video>
+                        </div>
+                        <div className="mobile_img">
+                          <video autoPlay muted loop>
+                            <source src={item?.mobileVideo} />
+                          </video>
+                        </div>
+                      </>
+                    )}
+                    {item?.category === "image" && (
+                      <>
+                        <div className="desktop_img">
+                          <img src={item?.desktopImage} alt="" />
+                        </div>
+                        <div className="mobile_img">
+                          <img src={item?.mobileImage} alt="" />
+                        </div>
+                      </>
+                    )} 
+                  <div className='collection_content'>
+                      <h1>{item.name}</h1>
+                      <h3>{item.description}</h3>  
+                      <div className='collection_content_button' >View Products</div>
+                  </div>                     
+                </div> 
+              </Link> 
             ))}  
         </div>
     </div>

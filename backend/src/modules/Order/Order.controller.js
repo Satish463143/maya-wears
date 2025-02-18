@@ -24,7 +24,6 @@ class OrderController {
             }
 
             const cartTotalNumber = parseFloat(cartTotal);
-
                 // Validate the cart total
                 const calculatedSubtotal = cart.items.reduce((sum, item) => {
                     const expectedAmount = item.price * item.quantity; // Calculate expected amount
@@ -58,6 +57,8 @@ class OrderController {
                 }
             }
 
+            
+
             // Calculate service charge, VAT, and total after applying discount
             const discountedSubtotal = calculatedSubtotal - discount;
             const serviceCharge = (calculatedSubtotal === 1000 ? 0 : 150); // 10% service charge
@@ -71,8 +72,20 @@ class OrderController {
                 quantity: item.quantity,
                 productImage: item.productImage,
             }));
+            //create order id 
+            const lastOrder = await OrderModel.findOne().sort({ orderId: -1 });
+            let newOrderId;
+            if (lastOrder && lastOrder.orderId) {
+                // Increment the last orderId
+                newOrderId = parseInt(lastOrder.orderId) + 1;
+            } else {
+                // Start from 202501 if no previous orders exist
+                newOrderId = 202501;
+            }
+
             // Create a new order
-            const newOrder = await OrderModel.create({
+            const newOrder = await OrderModel.create({   
+                orderId: newOrderId,
                 customerId: customer._id,
                 cartId: cart._id,
                 userId: cart.userId,
