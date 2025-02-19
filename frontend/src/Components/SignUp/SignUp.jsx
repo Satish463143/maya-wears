@@ -12,23 +12,17 @@ const SignUp = ({ setCurrentView }) => {
     name: Yup.string().min(2).max(50).required(),
     email: Yup.string().email().required(),
     password: Yup.string()
-      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,16}$/)
+      .matches((/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,16}$/), "Password must contain one capital letter, one small letter, a number and a special symbol")
       .required(),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Password and comfirm password must match")
       .required(),
-    phone: Yup.string()
-      .matches(
-        /^(98|97|96)\d{8}$/,
-        "Phone number must start with 98, 97, or 96 and have exactly 10 digits"
-      )
-      .required(),
+    
   });
   const [loading, setLoading] = useState(false);
   const {
     control,
     handleSubmit,
-    setValue,
     setError,
     formState: { errors },
   } = useForm({
@@ -77,15 +71,7 @@ const SignUp = ({ setCurrentView }) => {
               control={control}
             />
             <br />
-            <label htmlFor="address">Address </label>
-            <br />
-            <TextInputComponent
-              name="address"
-              errMsg={errors?.address?.message || null}
-              required:true
-              control={control}
-            />
-            <br />
+            
             <label htmlFor="email">
               Email<span>*</span>
             </label>
@@ -95,19 +81,7 @@ const SignUp = ({ setCurrentView }) => {
               errMsg={errors?.email?.message || null}
               required:true
               control={control}
-            />
-            <br />
-            <label htmlFor="phone">
-              Phone Number<span>*</span>
-            </label>
-            <br />
-            <TextInputComponent
-              name="phone"
-              errMsg={errors?.phone?.message || null}
-              required:true
-              control={control}
-            />
-
+            />           
             <br />
             <label htmlFor="password">
               Password<span>*</span>

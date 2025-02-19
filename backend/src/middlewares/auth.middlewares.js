@@ -32,9 +32,7 @@ const loginCheck = async (req, res, next) => {
             name: user.name,
             role: user.role,
             status: user.status,
-            address: user.address,
-            phone: user.phone,
-            image: user.image
+            email:user.email
         };
         next();
     } catch (exception) {

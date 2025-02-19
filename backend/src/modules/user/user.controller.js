@@ -1,8 +1,5 @@
 require("dotenv").config()
-const UserModel = require("./user.model")
 const userSvc = require("./user.service")
-
-
 
 class UserController {
      userCreate = async (req,res,next)=>{
@@ -15,8 +12,6 @@ class UserController {
 
         //mail service
         await userSvc.sendActivationEmail({ name: data.name, email: data.email, token: data.activationToken });
-
-
 
         res.status(200).json({
             result:data,

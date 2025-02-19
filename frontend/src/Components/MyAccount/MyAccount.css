@@ -1,7 +1,5 @@
 .my_account{
-    margin-top: 50px;
     border-radius: 20px;
-    border: 3px solid var(--pri_color);
     padding: 20px;
 }
 .peronal_info h1{
@@ -25,4 +23,41 @@
 .order_list td{
     padding: 10px;
     text-align: center;
+}
+.personal_info_grid{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+}
+.first_letter{
+    width: 100px;
+    height: 100px;
+    background: var(--sec_dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.first_letter h1{
+    font-size: 70px;
+    font-weight: 600;
+    color: var(--white);
+}
+.infos h1{
+    line-height: 1;
+}
+.infos h1 strong{
+    font-size: 30px;
+    color: var(--sec_dark);
+}
+.personal_info_contact h1{
+    font-weight: 600;
+    font-size: 30px;
+
+}
+.personal_info_contact input{
+    width: 100%;
+    border-radius: 5px;
+    
 }

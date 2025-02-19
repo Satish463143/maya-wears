@@ -152,7 +152,7 @@ const promoService = require("./promo.service")
             }
             if (promo.status !== Status.ACTIVE) {
                 return res.status(400).json({
-                    message: 'Promo code is inactive or expired',
+                    message: 'Promo code is expired',
                     discount: 0
                 });
             }

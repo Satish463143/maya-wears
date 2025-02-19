@@ -1,6 +1,5 @@
 .contact_dett {
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 50px 0;
@@ -36,6 +35,8 @@
     justify-content: space-between;
     /* padding: 10% 5%; */
     flex-wrap: wrap;
+    margin-bottom: 0px;
+    
   }
   .contact_info_item {
     width: 50%;

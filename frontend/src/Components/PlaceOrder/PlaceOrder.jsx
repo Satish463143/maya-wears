@@ -6,14 +6,12 @@ import { useCreateOrderMutation } from '../../api/order.api';
 import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import PlaceOrderForm from './PlaceOrder.form';
-import { useNavigate } from 'react-router-dom';
 import "./PlaceOrder.css"
 import { useApplyPromoMutation } from '../../api/promo.api';
 import OrderDetails from '../../Middlewares/OrderDetails/OrderDetails';
 
 const PlaceOrder = () => {
-    const [loading, setLoading] = useState(false)
-    
+    const [loading, setLoading] = useState(false)    
     const customerId = useSelector((state) => state.customer.customerId);
     const [createOrder] = useCreateOrderMutation();
     const cartId = Cookies.get("cartId");
@@ -48,7 +46,6 @@ const PlaceOrder = () => {
             return;
           } 
           const paymentTypeValue = data.paymentType.value;  
-
           
           const orderData = {
             ...data,
@@ -78,20 +75,20 @@ const PlaceOrder = () => {
 
       const verifyPromo = async () => {
         try {
-            const promo =promoCode;
-            console.log('value', promo)
-            const response = await promoApply(promo).unwrap();  // ✅ Add 'await' here
-            setDiscount(response?.discount);  // ✅ Fix response structure
+            const payload =promoCode;
+            console.log('value'+payload)
+            const response = await promoApply(payload).unwrap(); 
+            setDiscount(response?.discount);  
             console.log('Promo Applied:', response);
         } catch (error) {
             console.log('Promo Error:', error);
-            toast.error(error?.data?.message || "Invalid promo code");
+            toast.error(error?.data?.message || "Invalid or expired promo code");
         }
     }
-      const discountAmount = ((discount) / 100 ) * totalAmount  
-    
-      
-      const grandTotal = (totalAmount - discountAmount + serviceCharge) 
+
+    const discountAmount = ((discount) / 100 ) * totalAmount  
+  
+    const grandTotal = (totalAmount - discountAmount + serviceCharge)
 
   return (
     <div className='container'>
@@ -127,7 +124,6 @@ const PlaceOrder = () => {
                 <form action="">
                   <input type="text" placeholder="Promo code" value={promoCode} onChange={handlePromoCodeChange} />
                 </form>
-
               </div>
               <div className="promo_button">
                 <button className="submit_btn hoverBotton cart__buy place_order_button" onClick={verifyPromo}> Apply Promo</button>

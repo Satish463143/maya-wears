@@ -9,7 +9,6 @@ const PromoAdd = () => {
   const [laoding, setLoading] = useState(false)
   const [createPromo] = useCreateMutation()
   const navigate = useNavigate()
-
   const submitEvent = async(data)=>{
     setLoading(true)
     const submitData = {
@@ -20,7 +19,13 @@ const PromoAdd = () => {
       toast.success("promo added sucessfully")
       navigate('/admin/promo_code')
     }catch(exception){
-      toast.error(  "Error while adding promo. Promo name must be unique")
+      if (exception.status === 400) {
+        //Object.keys({email:""})=>["email"].map((filed))
+        Object.keys(exception.data.result).map((field) => {
+          setError(field, { message: exception.data.result[field] });
+        });
+      }
+      toast.error(exception.data.message);
     }
     finally{
       setLoading(false)

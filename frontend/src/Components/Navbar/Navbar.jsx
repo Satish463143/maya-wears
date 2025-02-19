@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logos from "../../assets/images/logo-1.png";
-import search_logo from "../../assets/images/search_icon.svg";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ toogleCart }) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
@@ -41,18 +41,14 @@ const Navbar = ({ toogleCart }) => {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY > lastScrollY && currentScrollY > 10) {
-      // Scrolling down and past 10px from the top
       setShowNavbar(true);
       setNavbarBackground(true);
     } else if (currentScrollY < lastScrollY && currentScrollY > 10) {
-      // Scrolling up
       setShowNavbar(false);
     } else if (currentScrollY <= 10) {
-      // At the top
       setShowNavbar(true);
       setNavbarBackground(false);
     }
-
     setLastScrollY(currentScrollY);
   };
 
@@ -102,6 +98,7 @@ const Navbar = ({ toogleCart }) => {
       setMenu("");
     }
   }, [location]);
+  const loggedInUser = useSelector((root) => root.user.loggedInUser); 
 
   return (
     <div>
@@ -127,7 +124,7 @@ const Navbar = ({ toogleCart }) => {
                   <span>
                     <svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
                   </span>
-                  <p>Search</p>                  
+                  <p >Search</p>                  
                 </div>
               </div>
               <div className="menu_logo">
@@ -142,11 +139,10 @@ const Navbar = ({ toogleCart }) => {
                       <svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
                     </span>
                   </li>                  
-                  <li onClick={toogleCart} style={{ cursor: "pointer" }} className="cart_icon">
-                   
+                  <li onClick={toogleCart} style={{ cursor: "pointer" }} className="cart_icon">                   
                     <p>My Cart</p>
                   </li>                  
-                  <Link to="/login">
+                  <Link to={`${loggedInUser ? 'my_account': 'login'}`}>
                     <li style={{ cursor: "pointer" }}>
                       <svg
                         viewBox="0 0 32 32"
@@ -169,7 +165,6 @@ const Navbar = ({ toogleCart }) => {
                             d="M16,17a7,7,0,1,0-7-7A7,7,0,0,0,16,17ZM16,5a5,5,0,1,1-5,5A5,5,0,0,1,16,5Z"
                             stroke="currentColor"
                             strokeWidth="0.1"
-
                           />
                         </g>
                       </svg>
@@ -268,7 +263,7 @@ const Navbar = ({ toogleCart }) => {
                     About Maya
                   </li>
                 </Link>
-                <Link to="/my_account">
+                <Link to={`${loggedInUser ? 'my_account': 'login'}`}>
                   <li
                     onClick={() => {
                       toggleNav();
@@ -292,7 +287,7 @@ const Navbar = ({ toogleCart }) => {
                   onChange={handleSearchChange}
                   onKeyDown={handleSearchSubmit} // Handle Enter key press
                 />
-              <p onClick={toggleSearch} className="close_btnnn" >Close</p>
+              <p onClick={toggleSearch} className="close_btnnn"style={{cursor:'pointer'}} >Close</p>
             </div>
           </div>
         </div>

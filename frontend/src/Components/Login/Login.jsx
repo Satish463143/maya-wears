@@ -46,12 +46,12 @@ const Login = ({ setCurrentView, setLoggedIn }) => {
     try {
       
       const response = await authSvc.postRequest("/auth/login/", data);
-      setLoading(false);
       toast.success("Welcome to Maya Wears");
       localStorage.setItem("_at", response.result.token.token);
       localStorage.setItem("_rt", response.result.token.refreshToken);
       dispatch(setLoggedInUserForRedux(response.result.userDetail));
       setLoggedIn(true);
+      
     } catch (exception) {      
       toast.error(exception.data?.message || "Login failed");
     }

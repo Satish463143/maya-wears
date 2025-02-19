@@ -12,11 +12,9 @@
 .navbar.hidden {
   top: -100%;
 }
-
 .navbar.visible {
   top: 0;
 }
-
 .navbar .nav_grid {
   width: 100%;
   display: grid;
@@ -59,8 +57,8 @@
   .menu-bar2,
   .menu-bar3, 
   .menu-bar4 {
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     background-color: #000;
     margin: 3px ;
     transition: 0.2s;
@@ -69,19 +67,19 @@
   .active .menu-bar1 {
     transform: rotate(-45deg) translate(-0.25rem, 0.25rem);
     width: 20px;
-    height: 2.5px;
+    height: 2px;
     border-radius: 5px !important;
 
   }
   
-  .active .menu-bar2,.active .menu-bar4 {
+  .active .menu-bar2, .active .menu-bar4 {
     display: none;
   }
   
   .active .menu-bar3 {
     transform: rotate(45deg) translate(-0.1rem, -0.1em);
     width: 20px;
-    height: 2.5px;
+    height: 2px;
     border-radius: 5px !important;
   }
   .menu_logo{
@@ -174,15 +172,14 @@
     overflow-y: scroll;
     background-color:var(--back-c) ;
     backdrop-filter: blur(10px);
-    /* display: flex;   */
-    /* align-items:  */
+    scrollbar-width: none;
+  
   }
  
   .overlay nav ul{   
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center;  */
     width: 100%;
   }
   .overlay nav ul li {
@@ -262,9 +259,6 @@
 .cart_icon{
   margin-right:15px ;
 }
-
-
-
 .close_btnnn{
   position:absolute;
   top: 0;
@@ -273,15 +267,7 @@
   text-decoration: underline;
   padding: 10px 25px;
 }
-@media (min-width: 1300px) {
-  .overlay nav {
-      width: calc((100% - 1300px)/2 + 350px);
-      padding-left: calc((100% - 1300px)/2);
-      padding-top: 70px;
-      padding: 50px 0 0 10vh;
-  }
-  
-}
+
   @media (max-width: 800px){   
     .to_hide_search, .cart_icon{
       display: none;
@@ -311,7 +297,10 @@
    padding: 10vh 0;
 
   }
+  .nav_padding{
+    padding: 0 3%;
+  }
   .overlay nav ul a{
     text-align: center;
   }
-  }
+}

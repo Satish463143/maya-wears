@@ -27,10 +27,10 @@ const FInalSlider = () => {
   const product = data?.result?.data || [];
 
   const settings = {
-    dots: false, // Enable navigation dots
-    infinite: true, // Enable infinite looping
-    speed: 500, // Transition speed in ms
-    slidesToShow: 1, // Number of slides to show
+    dots: false, 
+    infinite: true, 
+    speed: 500, 
+    slidesToShow: 1, 
     slidesToScroll: 1, // Number of slides to scroll
     centerMode: true, // Center the active slide
     centerPadding: "10%", // Adjust padding to create the 10% - 80% - 10% layout

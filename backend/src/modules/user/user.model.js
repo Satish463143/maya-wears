@@ -1,17 +1,7 @@
-const { required } = require("joi");
 const mongoose = require("mongoose");
 const { UserRoles, Status } = require("../../config/constants.config");
 
-const AddressSchema = mongoose.Schema({
-    province:{
-        type:String,
-        enum:["Koshi", "Madhesh", "Bagmati","Gandaki","Lumbini","Karmali","SudurPaschim"]
-    },
-    district:String,
-    muncipality:String,
-    wardNo:Number,
-    landMark:String
-})
+
 
 const UserSchema = new mongoose.Schema({
     name:{
@@ -30,15 +20,7 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    phone:{
-        type:[String],
-        min:10,
-        max:13,
-        required:true,
-    },
-    address:{
-        ShippingAddress:AddressSchema
-    },
+    
     role: { type: String, default: 'user' },
     status:{
         type:String,
@@ -61,15 +43,11 @@ const UserSchema = new mongoose.Schema({
     activeFor:{ type: Date },
     forgetToken:String,
     forgetFor:String,
-    // image:String,
     createdBy:{
         type:mongoose.Types.ObjectId,
         ref:"User",
         default:null,
     },
-
-
-
 },{
     timestamps:true,
     autoIndex:true,

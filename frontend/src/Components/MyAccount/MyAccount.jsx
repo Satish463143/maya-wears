@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MyAccountComponent from '../../Middlewares/MyAccountComponent/MyAccountComponent';
 import { toast } from 'react-toastify';
+import line_svg from "../../assets/images/headline-curve.svg";
+import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 
 const MyAccount = () => {
     const loggedInUser = useSelector((root) => root.user.loggedInUser);   
@@ -20,59 +22,51 @@ const MyAccount = () => {
             console.log(exception)
             toast.error("An error occur while canceling the order.")
         }
-
     }
-
-    if(!loggedInUser) {
-        return <>
-            <p className='container logged_in_message'>Please login to view my account</p>
-        </>
-    }
-
-    
 
     if (isLoading) {
-        return <p>Loading...</p>;
-    }
-    
-
+        return <LoadingComponent
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh',
+            backgroundColor: '#f9f9f9',
+          }} 
+         />;
+      }
     const orders = data?.result;
     const hasOrders = orders && orders.length > 0;
 
     // Extract additional personal details from the first order if orders exist
     const orderDetails = hasOrders ? orders[0] : null;
 
-    
-    
     return (
         <div className="container">
             <div className="my_account">
-                <div className="personal_info">                    
+                <div className="best__of__">
+                    <h1>Personal Information</h1>
+                    <img src={line_svg} alt="" srcSet="" />
+                </div>
+                <div className="personal_info">  
                     <div className="personal_info_grid">
-                        {!loggedInUser ? (
-                            // If no logged-in user, show login prompt                            
-                            <div>
-                                <h2>Please login first</h2>
-                                <p>
-                                    You need to log in to view your account details.{' '}
-                                    <Link to="/login">Login</Link>
-                                </p>
-                            </div>
-                        ) : hasOrders ? (
+                        <div className="first_letter">
+                            <h1>{loggedInUser?.name.slice(0,1)}</h1>
+                        </div>
+                        <div className="infos">
+                            <h1><strong>{loggedInUser?.name}</strong></h1>
+                            <h1>{loggedInUser?.email}</h1>
+                        </div>
+                    </div>
+                    <div className="personal_info_contact">                        
+                        
+                        {hasOrders ? (
                             // If user is logged in and has orders, show personal details from the first order
-                            <>
-                                <h1>Personal Information</h1>
-                                <div>
-                                    <label htmlFor="">Full name</label><br />
-                                    <input type="text" value={orderDetails?.customerId?.fullname} readOnly />
-                                </div>
-                                <div>
-                                    <label htmlFor="">Email</label><br />
-                                    <input type="text" value={orderDetails?.customerId?.email} readOnly />
-                                </div>
+                            <> 
+                                <h1>Contact details</h1>
                                 <div>
                                     <label htmlFor="">Address</label><br />
-                                    <input type="text" value={orderDetails?.customerId?.address} readOnly />
+                                    <input type="text" value={orderDetails?.customerId?.address} readOnly /><br /> <br />
                                 </div>
                                 <div>
                                     <label htmlFor="">Phone Number</label><br />
@@ -92,8 +86,12 @@ const MyAccount = () => {
                 </div>
                 {hasOrders && (
                     // Show the order list if orders exist
-                    <div className="order_list">
+                    <>
+                    <div className="best__of__">
                         <h1>Order List</h1>
+                        <img src={line_svg} alt="" srcSet="" />
+                    </div>
+                    <div className="order_list">                        
                         <ul>
                             {orders.map((item,index) => (
                                 <MyAccountComponent 
@@ -111,6 +109,7 @@ const MyAccount = () => {
                             ))}
                         </ul>
                     </div>
+                    </>
                 )}
             </div>
         </div>
