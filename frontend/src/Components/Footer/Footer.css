@@ -7,8 +7,9 @@
   /* padding-top: var(--div-gap); */
 
 }
-.help_answer p {
+.help_answer p a, .help_answer p {
   text-decoration: underline;
+  color: var(--sec_dark);
 }
 .social_media {
   display: flex;

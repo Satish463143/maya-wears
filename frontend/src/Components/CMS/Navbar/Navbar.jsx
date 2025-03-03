@@ -104,7 +104,7 @@ const Navbar = () => {
             <p>Admin Panel</p>
           </div>
         </div>
-        <div className='menu'>
+        <div className='menu' style={{height:'100vh', scrollbarWidth:'none', overflowY:'scroll'}}>
           <nav>
             <ul>
               <Link to="/admin">

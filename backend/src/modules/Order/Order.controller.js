@@ -118,9 +118,14 @@ class OrderController {
 
             let filter = {}
 
-            if(req.query.search){
-                filter =  {orderStatus : new RegExp(req.query.search, 'i')}
-
+            if (req.query.search) {
+                if (!isNaN(req.query.search)) {
+                    // Ensure orderId is treated as a number
+                    filter.orderId = Number(req.query.search);
+                } else {
+                    // Search by orderStatus using regex
+                    filter.orderStatus = new RegExp(req.query.search, 'i');
+                }
             }
             const {count, data } = await OrderService.listData({
                 skip:skip,

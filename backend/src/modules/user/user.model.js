@@ -22,16 +22,15 @@ const UserSchema = new mongoose.Schema({
     },
     
     role: { type: String, default: 'user' },
-    status:{
-        type:String,
-        enum:[...Object.values(Status)],
-        default:Status.INACTIVE
-    },
-    activationToken:{
-        type:String,
-        default:null,
-
-    },
+    // status:{
+    //     type:String,
+    //     enum:[...Object.values(Status)],
+    //     default:Status.INACTIVE
+    // },
+    // activationToken:{
+    //     type:String,
+    //     default:null,
+    // },
     token:{
         type:String,
         default:null

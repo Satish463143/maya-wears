@@ -29,7 +29,7 @@ const OrdersForm = ({submitEvent,loading,detail=null}) => {
             errMsg={errors?.status?.message}
             required:true
         />
-        <div style={{ display: 'flex', justifyContent: 'center'}}>            
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop:'20px'}}>            
             <input className='submit_btn' type="submit" value="Update order" disabled={loading} style={{cursor:'pointer'}}/>
         </div>
 

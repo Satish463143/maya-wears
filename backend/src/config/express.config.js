@@ -31,6 +31,10 @@ app.use(cookieParser());
 
 // Router mounting point
 app.use(router);
+app.use((req, res, next) => {
+    console.log("🛠 Middleware - Received Raw Request Body:", req.body);
+    next();
+});
 
 app.use((req, res, next) => {
     next({ status: 404, message: "Resource not found." });

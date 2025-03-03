@@ -1,19 +1,29 @@
 .order_product_grid {
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns:250px 1fr;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 20px;
 }
-.order_product_grid input {
+.order_product_grid_details {
+    display: grid;
+    grid-template-columns:45% 45%;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.order_product_grid input, .order_product_grid_details input {
     width: 100%;
     background: none;
     font-weight: bold;
 }
 .order_product_grid img{
-    width: 50%;
+    width: 200px;
+    height: auto;
+    object-fit: cover;
 
 }
-.order_product_details h1{
+.order_product_details h1, .order_product_grid_details h1{
     font-size: 25px;
     font-weight: 600;
     margin-top: 20px;

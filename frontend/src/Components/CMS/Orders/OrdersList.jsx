@@ -16,6 +16,7 @@ const OrdersList = () => {
       const handlePageChange = (newPage) => {
         setPage(newPage);
       };
+      console.log("Error object:", error);
 
       const handleSearchChange = (event) => {
         setSearch(event.target.value); // Update the search state
@@ -44,7 +45,7 @@ const OrdersList = () => {
             <tr>
               <th>S.N</th>
               <th>Image</th>
-              <th>Title</th>
+              <th>Order Id</th>
               <th>Quantity</th>
               <th>Amount</th>
               <th>Status</th>
@@ -58,7 +59,7 @@ const OrdersList = () => {
               </tr>
             ) : error ? (
               <tr>
-                <td colSpan="6" className="error-message">{error}</td>
+                {error?.data?.message || error?.message || "An error occurred"}
               </tr>
             ) :  data?.result?.length > 0 ? (
               data.result.map((row, index) => (
@@ -71,7 +72,7 @@ const OrdersList = () => {
                             'N/A'
                         )}
                   </td>
-                  <td>{row.items.length > 0 ? row.items[0].title : 'N/A'}</td>
+                  <td>{row.orderId || 'N/A'}</td>
                   <td> {row.items.length > 0 ? row.items[0].quantity : 'N/A'}</td>
                   <td>Rs.{row.total}/-</td>
                   <td>{row.orderStatus}</td>

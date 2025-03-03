@@ -5,24 +5,27 @@ const mailSvc = require("../../services/mail.service")
 const UserModel = require("../user/user.model")
 
 class UserService {
-
     generateUserActivationToken = (data)=>{
-        data.activationToken = randomStringGenerator(100)
+        // data.activationToken = randomStringGenerator(100)
         data.activeFor = new Date(Date.now() + (parseInt(process.env.ACTIVE_FOR, 10) * 60 * 60 * 1000));
         return data
     }
     //Create user
     transformUserCreate = (req)=>{
-        let data = req.body;
-        if(req.file){
-            data.image = req.file.filename;
+        try{
+            let data = req.body;
+            data.password = bcrypt.hashSync(data.password, 10)
+            // bcrypt.compareSync(data.confirmPassword, data.password)
+            // delete data.confirmPassword            
+            data =  this.generateUserActivationToken(data)
+            return data
+
+        }catch(exception){
+            console.log("here is the exception",exception)
+            throw exception
         }
-        data.password = bcrypt.hashSync(data.password, 10)
-         // bcrypt.compareSync(data.confirmPassword, data.password)
-        // delete data.confirmPassword          
-        data =  this.generateUserActivationToken(data)
-        data.status ="inactive"
-        return data
+       
+        
     }
     // send activation mail    
     sendActivationEmail = async ({ email, name, token,sub="Activate your Account" }) => {
@@ -60,12 +63,7 @@ class UserService {
         return await user.save();
         }
         catch(exception){
-            if(data.image){
-                deleteFile("./public/uploads/user/"+data.image)
-            }
             throw exception
-            
-            // throw {status:400, details:msg, message:"Valiation Error"}
         }
     }
 
@@ -76,7 +74,7 @@ class UserService {
                 if(userDetails){
                     return userDetails
                 }else{
-                    throw {status:404, message:"User does not exits"}
+                    throw {status:404, message:"Credentials do not match"}
                 }
         }
         catch(exception){

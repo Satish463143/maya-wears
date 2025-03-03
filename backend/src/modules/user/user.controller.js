@@ -4,6 +4,7 @@ const userSvc = require("./user.service")
 class UserController {
      userCreate = async (req,res,next)=>{
         try{
+        console.log("Received Request Body:", req.body);
         //user create 
         const data = userSvc.transformUserCreate(req)  
        
@@ -11,7 +12,7 @@ class UserController {
         await userSvc.registerUser(data)
 
         //mail service
-        await userSvc.sendActivationEmail({ name: data.name, email: data.email, token: data.activationToken });
+        // await userSvc.sendActivationEmail({ name: data.name, email: data.email, token: data.activationToken });
 
         res.status(200).json({
             result:data,

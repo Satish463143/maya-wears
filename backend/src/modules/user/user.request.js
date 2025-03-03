@@ -5,7 +5,7 @@ const UserCreateDTO = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(8)
     .max(16)
-    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,16}$/) // Corrected regex
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,16}$/) //password pattern
     .required()
     .messages({
         "string.pattern.base": "Password must contain at least one lowercase letter, one uppercase letter, one special symbol, and one number."
@@ -17,5 +17,5 @@ const UserCreateDTO = Joi.object({
 });
 
 module.exports = {
-    UserCreateDTO // Fixed typo from 'UserCraeteDTO' to 'UserCreateDTO'
+    UserCreateDTO 
 };

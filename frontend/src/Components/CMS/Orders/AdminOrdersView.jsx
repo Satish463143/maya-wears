@@ -49,27 +49,28 @@ const AdminOrdersView = () => {
             <h1>Product Details</h1>
             {order && (
                 <>
-                    <div className="order_product_grid">
-                        <div>
-                            <img src={order.items[0].productImage} alt="" />
+                    {order.items.map((item,index)=>(
+                        <div className="order_product_grid">
+                            <div>
+                                <img src={item.productImage} alt="" />
+                            </div>
+                            <div>
+                                <div>
+                                    <label htmlFor="">Product title</label><br />
+                                    <input type="text" value={ item.title} readOnly/>
+                                </div>
+                                <div>
+                                    <label htmlFor="">Ordered size</label><br />
+                                    <input type="text" value={ item.size} readOnly/>
+                                </div>
+                                <div>
+                                    <label htmlFor="">Quantity</label><br />
+                                    <input type="text" value={ item.quantity} readOnly/>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <div>
-                                <label htmlFor="">Product title</label><br />
-                                <input type="text" value={order.items.length > 0 ? order.items[0].title :'NA'} readOnly/>
-                            </div>
-                            <div>
-                                <label htmlFor="">Ordered size</label><br />
-                                <input type="text" value={order.items.length > 0 ? order.items[0].size :'NA'} readOnly/>
-                            </div>
-                            <div>
-                                <label htmlFor="">Quantity</label><br />
-                                <input type="text" value={order.items.length > 0 ? order.items[0].quantity :'NA'} readOnly/>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
+                    ))}
+                    
                 </>
             )}
             
@@ -79,7 +80,7 @@ const AdminOrdersView = () => {
             {
                 order && (
                     <>
-                        <div className="order_product_grid">
+                        <div className="order_product_grid_details">
                             <div>
                                 <label htmlFor="">Full name</label><br />
                                 <input type="text" value={order?.customerId?.fullname} readOnly/>
@@ -98,24 +99,18 @@ const AdminOrdersView = () => {
                             </div>
                             <div>
                                 <label htmlFor="">Address</label><br />
-                                <input type="text" value={`${order?.customerId?.address}, ${order?.customerId?.city}`} readOnly/>
+                                <input type="text" value={`${order?.customerId?.address}`} readOnly/>
                             </div>
                             <div>
                                 <label htmlFor="">Country</label><br />
                                 <input type="text" value={order?.customerId?.country} readOnly/>
                             </div>
-                            <div>
-                                <label htmlFor="">Province</label><br />
-                                <input type="text" value={order?.customerId?.province} readOnly/> 
-                            </div>
+                            
                             <div>
                                 <label htmlFor="">Landmark</label><br />
                                 <input type="text" value={order?.customerId?.landMark} readOnly/>
                             </div>
-                            <div>
-                                <label htmlFor="">Postal code</label><br />
-                                <input type="text" value={order?.customerId?.postalCode} readOnly/>
-                            </div>
+                            
                         </div>                 
                     </>
                 )
@@ -123,7 +118,7 @@ const AdminOrdersView = () => {
             <h1>Order Details</h1>
             {order && (
                 <>
-                    <div className="order_product_grid">
+                    <div className="order_product_grid_details">
                         <div>
                             <label htmlFor="">Sub total</label><br />
                             <input type="text" value={`NPR. ${order?.subTotal}`} readOnly/> 

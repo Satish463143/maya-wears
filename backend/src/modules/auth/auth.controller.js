@@ -11,9 +11,7 @@ class AuthController {
             const {token} = req.params
             if(token.length !== 100){
                 throw {status:422, message:"Invalid Token" }
-
             } 
-
             const user = await userSvc.getSingleUserByFilter({
                 activationToken: token
             })
@@ -23,9 +21,9 @@ class AuthController {
             if(activateFor < today){
                 throw {status:422, message:"Token Expired"}
             }
-            user.activationToken= null;
-            user.activeFor= null
-            user.status  =  Status.ACTIVE
+            // user.activationToken= null;
+            user.activeFor= null 
+            user.status  =  Status.ACTIVE  
 
             await user.save();
 
@@ -80,7 +78,6 @@ class AuthController {
             })
 
             if(bcrypt.compareSync(password, user.password)){
-                if(user.status === Status.ACTIVE){
                     const token = jwt.sign({
                         sub:user._id,
 
@@ -113,15 +110,10 @@ class AuthController {
                     message:"Login sucessful",
                     meta:null
                 })
-                }else{
-                    throw{status:422, message:"Your account has not been activated yet. Please activate your account to login"}
-                }
             }
             else{
                 throw{status:422, message:"Credentials does no match"}
             }
-
-           
         }
         catch(exception){
             next(exception)
