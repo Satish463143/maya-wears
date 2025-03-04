@@ -19,3 +19,8 @@
     border-radius: 30px;
     text-decoration: underline;
 }
+@media(max-width:600px){
+    .img_containor{
+        column-width :120PX;
+    }
+}

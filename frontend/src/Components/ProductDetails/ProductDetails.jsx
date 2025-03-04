@@ -138,7 +138,7 @@ const ProductDetails = ({ toogleCart }) => {
               <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
                 <div className="faq-question">Description </div>
                 {activeIndex === 0 && (
-                  <p>{product?.description}</p>
+                 <p dangerouslySetInnerHTML={{ __html: product?.description }}></p>
                 )}
               </div>
               <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >

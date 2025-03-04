@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './OrderDetails.css'
+import { useSelector } from 'react-redux'
 
 const OrderDetails = ({isActive, toggleOrderDetails, orderDetails}) => {
+    const [isLoggedIn, setLoggedIn] = useState(false)
+    const loggedInUser = useSelector((state)=> state.user.loggedInUser)
+
+    useEffect(()=>{
+        if(loggedInUser){
+            setLoggedIn(true)
+        }
+    },[loggedInUser])
     
   return (
     <div className={`order_details_box ${isActive ? 'active_order_details' : ''}`}>
-        <Link to = '/my_account'><div className="order_overlay"  onClick={toggleOrderDetails}></div></Link>
+        <Link to ={`${isLoggedIn ?  '/my_account'  : '/'}`}><div className="order_overlay"  onClick={toggleOrderDetails}></div></Link>
         <div className="order_details_content">                    
             <div className="details_content">
                 <div className='details_content_box'>
@@ -31,7 +40,7 @@ const OrderDetails = ({isActive, toggleOrderDetails, orderDetails}) => {
                     <p><strong>Payment Type:</strong> {orderDetails?.paymentType}</p>
                     <h1>( Delivery will take place in next 2-3 working days. )</h1>
                 </div>
-                <Link to = '/my_account'>
+                <Link to = {`${isLoggedIn ?  '/my_account'  : '/'}`}>
                     <div className="order_details_button"  onClick={toggleOrderDetails}>
                         Continue
                     </div>
