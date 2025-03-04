@@ -3,7 +3,6 @@ import './MyAccount.css';
 import { useListOrderForUserQuery, useUpdateOrderForUserMutation } from '../../api/order.api';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import MyAccountComponent from '../../Middlewares/MyAccountComponent/MyAccountComponent';
 import { toast } from 'react-toastify';
 import line_svg from "../../assets/images/headline-curve.svg";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
@@ -91,23 +90,36 @@ const MyAccount = () => {
                         <h1>Order List</h1>
                         <img src={line_svg} alt="" srcSet="" />
                     </div>
-                    <div className="order_list">                        
-                        <ul>
-                            {orders.map((item,index) => (
-                                <MyAccountComponent 
-                                    key={index} 
-                                    name={item.items[0].title} 
-                                    image={item.items[0].productImage}                                     
-                                    quantity={item.items[0].quantity} 
-                                    size={item.items[0].size} 
-                                    status={item.orderStatus}
-                                    total={item.total}
-                                    ordersStatus={item.orderStatus}
-                                    deleteAction={() => deleteData(item._id)}
-                                    rowId={item._id}
-                                />
-                            ))}
-                        </ul>
+                    <div className="order_list">
+                        {orders.map((item,index) => (
+                            <div className='user_order_list'>
+                                <div className="order_id">
+                                    <div className='order_total'>
+                                        <h1><span>Order Id :</span>  {item?.orderId}</h1>
+                                        <h1><span>Grand Total :</span>  {item?.total}</h1>
+                                    </div>                                    
+                                    <div className='border_div'></div>                                    
+                                </div>
+                                {item?.items.map((item,index)=>(
+                                    <div className="user_order_list_item">
+                                        <div className="user_order_list_item_image">
+                                            <img src={item.productImage} alt="" />
+                                        </div>
+                                        <div className="user_order_list_item_content">
+                                            <h1>{item.title}</h1>
+                                            <h2><span>Quantity :</span>  {item.quantity}</h2>
+                                            <h2><span> Size : </span> {item.size}</h2>                                            
+                                        </div>
+                                    </div>
+                                ))}  
+
+                                <div className='border_div' style={{marginBottom:'0px'}}></div> 
+                                <div className="order_status">
+                                    <h5>{item.orderStatus}</h5>
+                                    {item.orderStatus === 'pending' && <p>Cancle order</p>}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                     </>
                 )}

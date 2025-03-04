@@ -150,7 +150,7 @@ const ProductDetails = ({ toogleCart }) => {
               <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
                 <div className="faq-question">Material and Care </div>
                 {activeIndex === 2 && (
-                  <p>{product?.materialCare}</p>
+                  <p dangerouslySetInnerHTML={{__html:product?.materailCare}}></p>
                 )}
               </div>
             </div>
@@ -160,7 +160,7 @@ const ProductDetails = ({ toogleCart }) => {
           <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
             <div className="faq-question">Description </div>
             {activeIndex === 0 && (
-              <p>{product?.description}</p>
+              <p dangerouslySetInnerHTML={{ __html: product?.description }}></p>
             )}
           </div>
           <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
@@ -172,35 +172,35 @@ const ProductDetails = ({ toogleCart }) => {
           <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
             <div className="faq-question">Material and Care </div>
             {activeIndex === 2 && (
-              <p>{product?.materialCare}</p>
+              <p dangerouslySetInnerHTML={{__html:product?.materailCare}}></p>
             )}
           </div>
         </div>
         
       </div>
-    {selectSize && <div className="size_popup">
-        <div className="overlay_popup" onClick={toggleSelectSize}>
-          <div className="sizee_des">
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Inventore cupiditate tempora fugit recusandae! Iusto quia
-              assumenda error quo omnis neque consectetur quas magni reiciendis
-              autem officiis labore nulla, eos beatae culpa provident alias nisi
-              saepe nobis enim sit voluptatem dicta eum rem. Ex inventore
-              laudantium consectetur obcaecati eaque, iusto quidem esse! Hic,
-              neque obcaecati corporis totam deserunt velit sint dignissimos
-              consequatur tempora quaerat quia libero. Officia magni dignissimos
-              aut numquam inventore tempora quos fugit excepturi blanditiis rem
-              sit, veritatis ullam, eum ad dicta doloribus ipsam mollitia!
-              Laborum perferendis, vero aliquam maiores, dolorum vel possimus
-              itaque sit magnam distinctio veniam consequuntur.
-            </p>
-            <button className="close_btnn" onClick={toggleSelectSize}>
-              close
-            </button>
+        {selectSize && <div className="size_popup">
+          <div className="overlay_popup" onClick={toggleSelectSize}>
+            <div className="sizee_des">
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore cupiditate tempora fugit recusandae! Iusto quia
+                assumenda error quo omnis neque consectetur quas magni reiciendis
+                autem officiis labore nulla, eos beatae culpa provident alias nisi
+                saepe nobis enim sit voluptatem dicta eum rem. Ex inventore
+                laudantium consectetur obcaecati eaque, iusto quidem esse! Hic,
+                neque obcaecati corporis totam deserunt velit sint dignissimos
+                consequatur tempora quaerat quia libero. Officia magni dignissimos
+                aut numquam inventore tempora quos fugit excepturi blanditiis rem
+                sit, veritatis ullam, eum ad dicta doloribus ipsam mollitia!
+                Laborum perferendis, vero aliquam maiores, dolorum vel possimus
+                itaque sit magnam distinctio veniam consequuntur.
+              </p>
+              <button className="close_btnn" onClick={toggleSelectSize}>
+                close
+              </button>
+            </div>
           </div>
-        </div>
-      </div> }
+        </div> }
       
     </>
   );
