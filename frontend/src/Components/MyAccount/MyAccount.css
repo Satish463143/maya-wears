@@ -2,6 +2,7 @@
     border-radius: 20px;
     padding: 20px;
 }
+
 .peronal_info h1{
     font-weight: 600;
     font-size: 25px;
@@ -107,4 +108,24 @@
     cursor: pointer;
     border-left: 1px solid var(--sec_dark);
     text-align: center;
+}
+@media(max-width:500px){
+    .order_total h1:first-of-type{
+        text-align: start;
+        padding-left: 20px;
+    }
+}
+@media(max-width:450px){
+    .user_order_list_item{
+        grid-template-columns: 120px 1fr;
+        gap: 10px;
+        padding: 0px 10px 10px 10px;
+    }
+    .user_order_list_item_content h1{
+        font-size: 18px;
+    }
+    .user_order_list_item_content h1,  .user_order_list_item_content h2{
+        line-height: 1.2;
+    }
+
 }

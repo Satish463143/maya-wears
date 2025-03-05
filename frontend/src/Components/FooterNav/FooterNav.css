@@ -17,10 +17,6 @@
     bottom: 0;
   }
 .foornav_box{    
-    /* padding:10px 20px; */
-    
-    /* background: ; */
-    /* border-radius: 10px;    */
     background-color: var(--back-c);
     backdrop-filter: blur(20px);
 }
@@ -33,6 +29,7 @@
 }
 .nav_foot_active svg,.nav_foot_active svg path {
     fill:var(--sec_dark);
+    stroke: var(--sec_dark);
 
 }
 

@@ -1,6 +1,5 @@
 .slider-container {
   width: 100%;
-  /* margin: 0 auto; */
   margin-bottom: 0;
 }
 
@@ -32,7 +31,10 @@
   
 }
 .slick-next:before {
-  content: '→';
+  content: '⮞'; /* Right arrow */
+}
+.slick-prev:before {
+  content: '⮜'; /* Left arrow */
 }
 .slick-prev:before, .slick-next:before {
   font-family: 'slick';

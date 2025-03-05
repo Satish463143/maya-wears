@@ -40,10 +40,6 @@ const FooterNav = ({toogleCart}) => {
         else if (footPath === "/gallery") {
             setNavFoot("Gallery");
           }
-        //   else if (footPath === "/cart") {
-        //     setNavFoot("Cart");
-        //   }
-        
         else {
             setNavFoot(''); // Handle other paths if necessary
         }
@@ -64,36 +60,72 @@ const FooterNav = ({toogleCart}) => {
                     <Link to="/all_product">
                         <li onClick={()=> setNavFoot("Products")}  className={isnavfoot==="Products" ? 'nav_foot_active' : ''} >
                             <span>
-                                <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <path clipRule="evenodd" d="M7 6C7 4.34315 8.34315 3 10 3H18C19.6569 3 21 4.34315 21 6V17.4286C21 19.4438 19.3031 21 17.3077 21H6C4.12382 21 3 19.1526 3 17.4286V9C3 7.34315 4.34314 6 6 6H7ZM9 17.4286C9 17.9599 8.89326 18.5029 8.69065 19H17.3077C18.2861 19 19 18.2537 19 17.4286V6C19 5.44771 18.5523 5 18 5H10C9.44772 5 9 5.44772 9 6V17.4286ZM6 19C6.33296 19 7 18.5449 7 17.4286V8H6C5.44772 8 5 8.44772 5 9V17.4286C5 18.5449 5.66704 19 6 19ZM11 8C11 7.44772 11.4477 7 12 7H16C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9H12C11.4477 9 11 8.55228 11 8ZM11 11C11 10.4477 11.4477 10 12 10H14C14.5523 10 15 10.4477 15 11C15 11.5523 14.5523 12 14 12H12C11.4477 12 11 11.5523 11 11Z" fill="black" fillRule="evenodd"/>
-                                </svg>                                                
+                                <svg
+                                    data-name="Layer 1"
+                                    height="26"
+                                    id="Layer_1"
+                                    viewBox="0 0 88 88"
+                                    width="26"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    strokeWidth="2"
+                                    stroke="black" // Added stroke color
+                                    >
+                                    <path
+                                        fill="black" // Ensure fill is none if you only want stroke effect
+                                        stroke="black" // Apply stroke
+                                        strokeWidth="2" // Define stroke width
+                                        d="M77.74,41.34A33.59,33.59,0,0,0,59.52,14.82l-.6-.31H29.08l-.6.31A33.59,33.59,0,0,0,10.26,41.34l-.14,2.87H20.47V73.49H43.13V68H25.93V38.74H16.17A28.27,28.27,0,0,1,30.43,20H57.57A28.27,28.27,0,0,1,71.83,38.74H62.07V68H43.13v5.46h24.4V44.21H77.88Z"
+                                    />
+                                    <path
+                                        fill="black"
+                                        stroke="black"
+                                        strokeWidth="2"
+                                        d="M44.28,31.55c-7.48,0-13.56-5.18-13.56-11.55h5.46c0,3.35,3.63,6.09,8.1,6.09s8.09-2.74,8.09-6.09h5.47C57.84,26.37,51.75,31.55,44.28,31.55Z"
+                                    />
+                                </svg>
                             </span>
+                           
                         </li>
                     </Link>
                     <Link to="/gallery">
                         <li onClick={()=> setNavFoot("Gallery")}  className={isnavfoot==="Gallery" ? 'nav_foot_active' : ''}>
                             <span>
-                                <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="Line">
-                                        <path d="M18.5,6.26A3.6,3.6,0,0,0,19,4.78a3.44,3.44,0,0,0-3-3.72,3.55,3.55,0,0,0-3,.73,4.44,4.44,0,0,0-1,1.28,4.44,4.44,0,0,0-1-1.28,3.55,3.55,0,0,0-3-.73A3.44,3.44,0,0,0,5,4.78,3.6,3.6,0,0,0,5.5,6.26,5,5,0,0,0,2,11v7a5,5,0,0,0,5,5H17a5,5,0,0,0,5-5V11A5,5,0,0,0,18.5,6.26ZM14.31,3.33A1.56,1.56,0,0,1,15.65,3,1.43,1.43,0,0,1,17,4.61,1.53,1.53,0,0,1,15.3,6H13.11A4.67,4.67,0,0,1,14.31,3.33Zm-6-.3a2.56,2.56,0,0,1,.39,0,1.45,1.45,0,0,1,.95.33A4.67,4.67,0,0,1,10.89,6H8.7A1.53,1.53,0,0,1,7,4.61,1.44,1.44,0,0,1,8.35,3ZM20,18a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V11A3,3,0,0,1,7,8h4V9a1,1,0,0,0,2,0V8h4a3,3,0,0,1,3,3Z"/><path d="M17,17H13a1,1,0,0,0,0,2h4a1,1,0,0,0,0-2Z"/>
+                                <svg
+                                    style={{ enableBackground: 'new 0 0 24 24' }}
+                                    version="1.1"
+                                    height="25"
+                                    width='25'
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                                    >
+                                    <style>
+                                        {`.st0 { opacity: 0.2; fill: none; stroke: #000000; stroke-width: 0.05; stroke-miterlimit: 10; }`}
+                                    </style>
+                                    <g id="grid_system" />
+                                    <g id="_icons">
+                                        <path d="M3,16c0,2.8,2.2,5,5,5h8c2.7,0,4.9-2.2,5-4.9c0,0,0,0,0-0.1c0,0,0-0.1,0-0.1V8c0-2.8-2.2-5-5-5H8C5.2,3,3,5.2,3,8V16z    M16,19H8c-1.7,0-3-1.3-3-3v-0.4L9.5,13c0.9-0.5,2.1-0.5,3,0l6.4,3.6C18.7,17.9,17.5,19,16,19z M8,5h8c1.7,0,3,1.3,3,3v6.3   l-5.5-3.1c-1.5-0.9-3.4-0.8-5,0l-3.5,2V8C5,6.3,6.3,5,8,5z" />
+                                        <circle cx="15.5" cy="8.5" r="1.5" />
                                     </g>
-                                </svg>                                         
+                                </svg>                                        
                             </span>
                         </li>
                     </Link>
                     <Link>
                         <li onClick={()=> { toogleCart(); toggleNav(); setNavFoot("Cart");}} className={isnavfoot === "Cart" ? "nav_foot_active" : ""} >
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 32 32">
-                                    <defs>
-                                        <style>{`.cls-1{fill:none;}`}</style>
-                                    </defs>
-                                    <g data-name="Layer 2" id="Layer_2">
-                                        <path d="M23.52,29h-15a5.48,5.48,0,0,1-5.31-6.83L6.25,9.76a1,1,0,0,1,1-.76H24a1,1,0,0,1,1,.7l3.78,12.16a5.49,5.49,0,0,1-.83,4.91A5.41,5.41,0,0,1,23.52,29ZM8,11,5.11,22.65A3.5,3.5,0,0,0,8.48,27h15a3.44,3.44,0,0,0,2.79-1.42,3.5,3.5,0,0,0,.53-3.13L23.28,11Z"/>
-                                        <path d="M20,17a1,1,0,0,1-1-1V8a3,3,0,0,0-6,0v8a1,1,0,0,1-2,0V8A5,5,0,0,1,21,8v8A1,1,0,0,1,20,17Z"/>
-                                    </g>
-                                    <g id="frame">
-                                    </g>
+                                <svg
+                                    data-name="Layer 1"
+                                    id="Layer_1"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="26"
+                                    width='26'
+                                    >
+                                    <path 
+                                        d="M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z"
+                                        fill="#000"
+                                    />
                                 </svg>
                             </span>
                         </li>

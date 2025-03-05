@@ -136,7 +136,7 @@ const Navbar = ({ toogleCart }) => {
                 <ul>
                   <li className="to_hide_nav" onClick={toggleSearch}>
                     <span>
-                      <svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+                      <svg class="feather feather-search" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
                     </span>
                   </li>                  
                   <li onClick={toogleCart} style={{ cursor: "pointer" }} className="cart_icon">                   
@@ -278,15 +278,16 @@ const Navbar = ({ toogleCart }) => {
               </ul>
             </nav>
           </div>
-          <div className={`search_overlay ${ isSearchActive && "active_search_overlay" }`}  >
+          <div className={`search_overlay`}>
+            <div className={`${isSearchActive && 'active_search_overlay'}`} onClick={toggleSearch}></div>
             <div className={`search_box ${isSearchActive && "active_search_box"}`}  >
-                <input
-                  type="text"
-                  placeholder="Search product..."
-                  value={search}
-                  onChange={handleSearchChange}
-                  onKeyDown={handleSearchSubmit} // Handle Enter key press
-                />
+              <input
+                type="text"
+                placeholder="Search product..."
+                value={search}
+                onChange={handleSearchChange}
+                onKeyDown={handleSearchSubmit} // Handle Enter key press
+              />
               <p onClick={toggleSearch} className="close_btnnn"style={{cursor:'pointer'}} >Close</p>
             </div>
           </div>

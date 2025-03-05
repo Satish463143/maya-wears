@@ -6,21 +6,36 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import line_svg from "../../assets/images/headline-curve.svg";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
+import Swal from 'sweetalert2'
 
 const MyAccount = () => {
     const loggedInUser = useSelector((root) => root.user.loggedInUser);   
     const { data, error, isLoading, refetch } = useListOrderForUserQuery({ page: 1, limit: 10, search: '' });
     const [cancleOrder] = useUpdateOrderForUserMutation()
 
-    const deleteData = async(rowId)=>{
-        try{
-            await cancleOrder(rowId).unwrap()
-            toast.success("Order canceled sucessfully")
-            refetch();
-        }catch(exception){
-            console.log(exception)
-            toast.error("An error occur while canceling the order.")
-        }
+    const deleteData = async(rowId)=>{        
+            try{
+                const result = await Swal.fire({
+                    title: "Are you sure want to cancle your order?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, cancel it!",
+                    cancelButtonText: "No, let it be",
+                  })
+                  if(result.isConfirmed){
+                    await cancleOrder(rowId).unwrap()
+                    toast.success("Order canceled sucessfully")
+                    refetch();
+                }
+    
+            }catch(exception){
+                console.log(exception)
+                toast.error("Error canceling order")
+            }
+        
     }
 
     if (isLoading) {
@@ -96,7 +111,7 @@ const MyAccount = () => {
                                 <div className="order_id">
                                     <div className='order_total'>
                                         <h1><span>Order Id :</span>  {item?.orderId}</h1>
-                                        <h1><span>Grand Total :</span>  {item?.total}</h1>
+                                        <h1><span>Grand Total :</span>  Rs.{item?.total.toFixed(2)}/-</h1>
                                     </div>                                    
                                     <div className='border_div'></div>                                    
                                 </div>
@@ -116,7 +131,7 @@ const MyAccount = () => {
                                 <div className='border_div' style={{marginBottom:'0px'}}></div> 
                                 <div className="order_status">
                                     <h5>{item.orderStatus}</h5>
-                                    {item.orderStatus === 'pending' && <p>Cancle order</p>}
+                                    {item.orderStatus === 'pending' && <p onClick={() => deleteData(item._id)}>Cancle order</p>}
                                 </div>
                             </div>
                         ))}

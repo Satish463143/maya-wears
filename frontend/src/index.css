@@ -60,6 +60,11 @@ h1,h2,h3,h4,h5,p{
   -webkit-font-smoothing: antialiased; /* Helps with rendering */
   -moz-osx-font-smoothing: grayscale;
 }
+.best__of__ img {
+  top: 84% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
 .container{
   margin: auto;  
 }
