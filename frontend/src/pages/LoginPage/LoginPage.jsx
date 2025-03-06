@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./LoginPage.css";
 import Login from "../../Components/Login/Login";
 import SignUp from "../../Components/SignUp/SignUp";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import ForgotPassword from "../../Components/ForgotPassword/ForgotPassword";
 import Token from "../../Components/Token/Token";
 import GeneratePassword from "../../Components/GeneratePassword/GeneratePassword";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import cover__pic from "../../assets/images/desktopImage_2.jpg";
 import maya_logo from "../../assets/images/maya-logo.png";
@@ -14,8 +13,6 @@ import maya_logo from "../../assets/images/maya-logo.png";
 const LoginPage = () => {
   const location = useLocation();
   const [currentView, setCurrentView] = useState("login");
-  let [loggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state && location.state.currentView) {
@@ -27,7 +24,7 @@ const LoginPage = () => {
     switch (currentView) {
       case "login":
         return (
-          <Login setCurrentView={setCurrentView} setLoggedIn={setLoggedIn} />
+          <Login setCurrentView={setCurrentView} />
         );
       case "signup":
         return <SignUp setCurrentView={setCurrentView} />;
@@ -39,26 +36,14 @@ const LoginPage = () => {
         return <GeneratePassword setCurrentView={setCurrentView} />;
       default:
         return (
-          <Login setCurrentView={setCurrentView} setLoggedIn={setLoggedIn} />
+          <Login setCurrentView={setCurrentView}  />
         );
     }
   };
 
-  // from redux
-  const loggedInUser = useSelector((root) => {
-    return root.user.loggedInUser || null;
-  });
+ 
 
-  useEffect(() => {
-    if (loggedInUser) {
-      if (loggedInUser.role === "admin") {
-        navigate("/admin");
-        setLoggedIn(false);
-      } else {
-        setLoggedIn(true);
-      }
-    }
-  }, [loggedInUser]);
+ 
 
   return(
     <>

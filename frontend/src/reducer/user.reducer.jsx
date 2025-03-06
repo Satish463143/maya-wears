@@ -23,6 +23,9 @@ const UserSlicer = createSlice({
     reducers:{
         setLoggedInUserForRedux:(state,action)=>{
             state.loggedInUser = action.payload
+        },
+        logoutUser: (state) => {
+            state.loggedInUser = null; // Clear user state on logout
         }
     },
     extraReducers:(builder)=>{
@@ -35,6 +38,6 @@ const UserSlicer = createSlice({
     }
 })
 
-export const {setLoggedInUserForRedux} = UserSlicer.actions;
+export const {setLoggedInUserForRedux, logoutUser} = UserSlicer.actions;
 
 export default UserSlicer.reducer;

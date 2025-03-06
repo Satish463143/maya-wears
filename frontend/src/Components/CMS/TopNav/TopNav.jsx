@@ -1,11 +1,13 @@
 import React,{useContext, useState} from 'react'
 import {  useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import authSvc from '../../../pages/LoginPage/auth.service'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { logoutUser } from '../../../reducer/user.reducer'
 
 const TopNav = ({ isMenuActive, toggleMenu }) => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const loggedInUser = useSelector((root)=>{
         return root.user.loggedInUser
@@ -13,20 +15,20 @@ const TopNav = ({ isMenuActive, toggleMenu }) => {
     const logout = async () => {
         try {
             toast.loading("Logging out...");
+
             // Call the logout endpoint to clear tokens in the database
             await authSvc.postRequest('/auth/logout');
+
             // Remove tokens from localStorage
             localStorage.removeItem('_at');
             localStorage.removeItem('_rt');
+            dispatch(logoutUser())
     
             toast.dismiss(); // Remove the loading toast
             toast.success("You have been logged out successfully")
             setTimeout(() => {
                 navigate('/')
             }, 1000);
-            // toast.success("You have been logged out successfully", {
-            //     onClose: () => navigate('/'), // Navigate to '/' after the toast closes
-            // }); 
             
         } catch (error) {
             toast.dismiss();

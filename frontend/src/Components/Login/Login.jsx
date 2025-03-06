@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "./Login.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +8,10 @@ import * as Yup from "yup";
 import authSvc from "../../pages/LoginPage/auth.service";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLoggedInUserForRedux } from "../../reducer/user.reducer";
 
-const Login = ({ setCurrentView, setLoggedIn }) => {
+const Login = ({ setCurrentView }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,37 +21,23 @@ const Login = ({ setCurrentView, setLoggedIn }) => {
     password: Yup.string().required(),
   });
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm({
+  const {  handleSubmit, control,formState: { errors }, } = useForm({
     resolver: yupResolver(loginDTO),
   });
 
-  const loggedInUser = useSelector((root) => {
-    return root.user.loggedInUser;
-  });
-  useEffect(() => {
-    if (loggedInUser) {
-      if (loggedInUser.role === "admin") {
-        setLoggedIn(false);
-        navigate("/admin");
-      }
-    }
-  }, [loggedInUser]);
-
+ 
   const login = async (data) => {
     setLoading(true);
-    try {
-      
+    try {      
       const response = await authSvc.postRequest("/auth/login/", data);
       toast.success("Welcome to Maya Wears");
       localStorage.setItem("_at", response.result.token.token);
       localStorage.setItem("_rt", response.result.token.refreshToken);
       dispatch(setLoggedInUserForRedux(response.result.userDetail));
-      setLoggedIn(true);
-      
+      // setLoggedIn(true);
+      setTimeout(() => {
+        navigate('/my_account');
+      }, 500);      
     } catch (exception) {      
       toast.error(exception.data?.message || "Login failed");
     }
@@ -64,7 +50,6 @@ const Login = ({ setCurrentView, setLoggedIn }) => {
     <div className="login_box">
       <form action="" method="post" onSubmit={handleSubmit(login)}>
       <p>Please enter your details to Sign In</p>
-
         <div className="form_body">
 
           <label htmlFor="email">
