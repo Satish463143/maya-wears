@@ -9,10 +9,17 @@
 .about_second_item h1{
     font-size: var(--font_for_header);
     font-weight: 600;
-    margin-top: var(--gap);
+    /* margin-top: var(--gap); */
+    margin-top: 20px;
+
 }
 .about_second_item p{
     font-size: var(--pri_font_size);
     margin-top: var(--gap);
     font-weight: 500;
+}
+@media(max-width:600px){
+    .about_second_item h1{
+        font-size: 22px;
+    }
 }

@@ -10,3 +10,8 @@
 .aboutusbanner p{
     font-size: var(--pri_font_size);
 }
+@media(max-width:600px){
+    .aboutusbanner h1{
+        font-size: 22px;
+    }
+}
