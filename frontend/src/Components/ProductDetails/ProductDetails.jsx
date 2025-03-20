@@ -5,6 +5,7 @@ import { useListForHomeQuery } from "../../api/product.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 import { useCreateCartMutation } from "../../api/cart.api";
 import { toast } from "react-toastify";
+import sizeGuide from '../../assets/images/size-guide.jpg'
 
 const ProductDetails = ({ toogleCart }) => {
   const { slug, _id } = useParams();
@@ -22,18 +23,12 @@ const ProductDetails = ({ toogleCart }) => {
   //call the create cart api
   const [createCart] = useCreateCartMutation();
 
-  const [selectSize, setSelectSize] = useState(false);
+  const [selectSize, setSelectSize] = useState();
 
   const toggleSelectSize = () => {
     setSelectSize(!selectSize);
   };
-  if(selectSize){
-    document.body.classList.add('active_select_sizes')
-  }
-  else{
-    document.body.classList.remove('active_select_sizes')
-
-  }
+  
 
   useEffect(() => {
     if (data) {
@@ -66,7 +61,7 @@ const ProductDetails = ({ toogleCart }) => {
 
     try {
       // Optimistically add product to the cart by modifying the cache
-      const response = await createCart({
+       await createCart({
         productId: product._id,
         size: selectedSize,
         quantity: 1,
@@ -178,29 +173,15 @@ const ProductDetails = ({ toogleCart }) => {
         </div>
         
       </div>
-        {selectSize && <div className="size_popup">
-          <div className="overlay_popup" onClick={toggleSelectSize}>
-            <div className="sizee_des">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore cupiditate tempora fugit recusandae! Iusto quia
-                assumenda error quo omnis neque consectetur quas magni reiciendis
-                autem officiis labore nulla, eos beatae culpa provident alias nisi
-                saepe nobis enim sit voluptatem dicta eum rem. Ex inventore
-                laudantium consectetur obcaecati eaque, iusto quidem esse! Hic,
-                neque obcaecati corporis totam deserunt velit sint dignissimos
-                consequatur tempora quaerat quia libero. Officia magni dignissimos
-                aut numquam inventore tempora quos fugit excepturi blanditiis rem
-                sit, veritatis ullam, eum ad dicta doloribus ipsam mollitia!
-                Laborum perferendis, vero aliquam maiores, dolorum vel possimus
-                itaque sit magnam distinctio veniam consequuntur.
-              </p>
-              <button className="close_btnn" onClick={toggleSelectSize}>
-                close
-              </button>
-            </div>
+      <div className={`size_popup ${selectSize ? 'dispplay_size_guide': ''}`}>
+        <div className="overlay_popup" onClick={toggleSelectSize}></div>
+          <div className="sizee_des">
+            <img src={sizeGuide} alt="" />             
           </div>
-        </div> }
+          <button className="close_btnn" onClick={toggleSelectSize}>
+            close
+          </button>
+      </div> 
       
     </>
   );
