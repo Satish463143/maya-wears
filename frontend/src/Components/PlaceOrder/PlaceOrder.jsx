@@ -76,7 +76,7 @@ const PlaceOrder = () => {
       const verifyPromo = async () => {
         try {
             const payload =promoCode;
-            console.log('value'+payload)
+            console.log('value'+ payload)
             const response = await promoApply(payload).unwrap(); 
             setDiscount(response?.discount);  
             console.log('Promo Applied:', response);
