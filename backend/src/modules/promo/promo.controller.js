@@ -141,13 +141,9 @@ const promoService = require("./promo.service")
         }
     }
     applyPoromo =async (req,res,next)=>{
-        console.log('promo here',req.body)
-        try{
-           
-            const {promoCode} = req.body
-            
+        try{           
+            const {promoCode} = req.body            
             const promo = await PromoModel.findOne({promoCode})
-            console.log('promo', promo)
             if(!promo){
                 return res.status(404).json({
                     message:"Promo doesn't exist here",

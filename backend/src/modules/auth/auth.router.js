@@ -1,7 +1,5 @@
 
 const loginCheck = require("../../middlewares/auth.middlewares")
-const hasPermission = require("../../middlewares/rbac.middlewares")
-const { setPath, uplaodFile } = require("../../middlewares/uploader.middlewares")
 const { bodyValidator } = require("../../middlewares/validator.middlewares")
 const userCtrl = require("../user/user.controller")
 const { UserCreateDTO } = require("../user/user.request")

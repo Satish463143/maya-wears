@@ -42,16 +42,17 @@ export const PromoApi = createApi({
         showById:builder.query({
             query:(id)=>`/promo/${id}`
         }),
-        applyPromo:builder.mutation({
-            query: (payload)=>({
-                url:`/promo/applyPromo`,
-                body:payload,
-                method:'POST',
-                headers:()=>([
-                    {"Content-Type" :"multipart/form-data"}
-                ])
-            })
-            
+        applyPromo: builder.mutation({
+            query: (payload) => {
+                return {
+                    url: `/promo/applyPromo`,
+                    body: JSON.stringify(payload),
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json" // Correct content type for JSON
+                    }
+                };
+            }
         }),
         delete:builder.mutation({
             query:(id)=>({

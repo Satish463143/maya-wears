@@ -75,11 +75,9 @@ const PlaceOrder = () => {
 
       const verifyPromo = async () => {
         try {
-            const payload =promoCode;
-            console.log('value'+ payload)
+            const payload ={promoCode};
             const response = await promoApply(payload).unwrap(); 
             setDiscount(response?.discount);  
-            console.log('Promo Applied:', response);
         } catch (error) {
             console.log('Promo Error:', error);
             toast.error(error?.data?.message || "Invalid or expired promo code");
