@@ -32,7 +32,7 @@ app.use(cookieParser());
 // Router mounting point
 app.use(router);
 app.use((req, res, next) => {
-    console.log("🛠 Middleware - Received Raw Request Body:", req.body);
+    
     next();
 });
 

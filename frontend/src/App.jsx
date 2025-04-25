@@ -29,7 +29,6 @@ import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import MyAccountPage from "./pages/MyAccountPage/MyAccountPage";
 import OrdersList from "./Components/CMS/Orders/OrdersList";
-import OrderView from "./Components/OrderView/OrderView";
 import AdminOrdersView from "./Components/CMS/Orders/AdminOrdersView";
 import GalleryPage from "./pages/GalleryPage/GalleryPage";
 import FeatuedProductList from "./Components/CMS/featuedProduct/FeatuedProductList";
@@ -58,9 +57,6 @@ const App = ({ isCartActive, toogleCart, setCurrentView }) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   AOS.init({ duration: 1200 });
-  // }, []);
 
   return (
     <div>
