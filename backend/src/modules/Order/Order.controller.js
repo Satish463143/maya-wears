@@ -119,18 +119,63 @@ class OrderController {
             let filter = {}
 
             if (req.query.search) {
-                if (!isNaN(req.query.search)) {
-                    // Ensure orderId is treated as a number
-                    filter.orderId = Number(req.query.search);
+                const searchTerm = decodeURIComponent(req.query.search).trim();
+                
+                if (req.query.type === 'number') {
+                    const numericValue = parseInt(searchTerm);
+                    
+                    // First check if exact match exists
+                    const exactMatch = await OrderModel.findOne({ orderId: numericValue });
+                    
+                    if (exactMatch) {
+                        // If exact match found, use exact filter
+                        filter = { orderId: numericValue };
+                    } else {
+                        // If no exact match, try string-based search
+                        const matchingOrders = await OrderModel.aggregate([
+                            {
+                                $addFields: {
+                                    orderIdStr: { $toString: "$orderId" }
+                                }
+                            },
+                            {
+                                $match: {
+                                    orderIdStr: { $regex: searchTerm }
+                                }
+                            },
+                            {
+                                $project: {
+                                    _id: 1
+                                }
+                            }
+                        ]);
+                        
+                        if (matchingOrders.length > 0) {
+                            // Extract IDs for the filter
+                            const matchingIds = matchingOrders.map(order => order._id);
+                            filter = { _id: { $in: matchingIds } };
+                        } else {
+                            // As a last resort, try matching status containing the number
+                            filter = { orderStatus: new RegExp(searchTerm, 'i') };
+                        }
+                    }
                 } else {
-                    // Search by orderStatus using regex
-                    filter.orderStatus = new RegExp(req.query.search, 'i');
+                    // Try parsing to integer
+                    const parsedInt = parseInt(searchTerm);
+                    
+                    if (!isNaN(parsedInt) && searchTerm !== '') {
+                        filter = { orderId: parsedInt };
+                    } else {
+                        // Non-numeric search - use status 
+                        filter = { orderStatus: new RegExp(searchTerm, 'i') };
+                    }
                 }
             }
+            
             const {count, data } = await OrderService.listData({
-                skip:skip,
-                limit:limit,
-                filter:filter
+                skip: skip,
+                limit: limit,
+                filter: filter
             })
 
             res.json({
@@ -144,8 +189,7 @@ class OrderController {
             })
 
         }catch(exception){
-            console.log(exception)
-            next(exception)
+            next(exception);
         }
     }
     indexForUser= async(req,res,next)=>{
@@ -158,11 +202,18 @@ class OrderController {
             let filter = { userId };
 
             if (req.query.search) {
-                filter = {
-                    ...filter,
-                    name: new RegExp(req.query.search, 'i'),
-                };
+                // Decode and clean the search term
+                const searchTerm = decodeURIComponent(req.query.search).trim();
+                
+                if (!isNaN(searchTerm) && searchTerm !== '') {
+                    // For numeric search, try to match orderId exactly
+                    filter.orderId = Number(searchTerm);
+                } else {
+                    // For text search, use regex on order status
+                    filter.orderStatus = new RegExp(searchTerm, 'i');
+                }
             }
+            
             const { count, data } = await OrderService.listData({
                 skip: skip,
                 limit: limit,

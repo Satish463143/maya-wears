@@ -15,7 +15,22 @@ export const orderApi = createApi({
       tagTypes:['Order'],
       endpoints:(builder)=>({
         listOrderForAdmin:builder.query({
-            query:({ page = 1, limit = 10, search = '' })=> `/order?page=${page}&limit=${limit}&search=${search}`,
+            query:({ page = 1, limit = 10, search = '' }) => {
+                // Clean up the search value
+                const cleanSearch = search.trim();
+                
+                // Check if search is numeric
+                const isNumeric = !isNaN(cleanSearch) && cleanSearch !== '';
+                
+                // Adjust the URL based on whether we're searching for a number or text
+                if (isNumeric) {
+                    // For numeric searches, add a param that signals it's a number
+                    return `/order?page=${page}&limit=${limit}&search=${cleanSearch}&type=number`;
+                } else {
+                    // For text searches, use regular search
+                    return `/order?page=${page}&limit=${limit}&search=${encodeURIComponent(cleanSearch)}`;
+                }
+            },
             method:"GET",
             providesTags:['Order'],
         }),
