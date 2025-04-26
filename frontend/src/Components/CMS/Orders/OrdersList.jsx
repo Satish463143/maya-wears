@@ -18,10 +18,10 @@ const OrdersList = () => {
       };
       console.log("Error object:", error);
 
-      const handleSearchChange = (event) => {
-        setSearch(event.target.value); // Update the search state
+    const handleSearchChange = (event) => {
+        setSearch(event.target.value.trim()); // Trim whitespace and update the search state
         setPage(1); // Reset to the first page
-      };
+    };
   return (
     <div className='admin_margin_box'>
         <div className='admin_titles'>
@@ -32,7 +32,7 @@ const OrdersList = () => {
                   <input
                       type="search"
                       className="search_btn"
-                      placeholder="Filter by status..."
+                      placeholder="Search by Order ID or Status..."
                       value={search}
                       onChange={handleSearchChange}
                   />

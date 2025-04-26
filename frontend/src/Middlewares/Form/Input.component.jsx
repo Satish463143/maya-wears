@@ -120,7 +120,7 @@ export const SelectComponent = ({options,control,name,defaultValue,errMsg})=>{
 
     return (
         <>
-            <Select options={options} {...field} isClearable />
+            <Select options={options} {...field} isClearable menuPlacement='top'/>
             <span style={{color:'red', fontStyle:'italic'}}>
                 {errMsg}
             </span>
@@ -224,6 +224,7 @@ export const OrderStatusOptionsCompoent = ({control,name,errMsg,required,onChang
                 errMsg={errMsg}
                 required={required}
                 value={value || ""}
+
             />
         </>
     )
