@@ -75,21 +75,20 @@ class Banner_1Controller {
             await this.#validateId(id);
     
             const data = req.body;
-            
     
             // Process the uploaded files
             if (req.files) {
                 if (req.files.desktopVideo) {
-                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                    data.desktopVideo = req.files.desktopVideo[0].location;
                 }
                 if (req.files.mobileVideo) {
-                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                    data.mobileVideo = req.files.mobileVideo[0].location;
                 }
                 if (req.files.desktopImage) {
-                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                    data.desktopImage = req.files.desktopImage[0].location;
                 }
                 if (req.files.mobileImage) {
-                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                    data.mobileImage = req.files.mobileImage[0].location;
                 }
             }
 

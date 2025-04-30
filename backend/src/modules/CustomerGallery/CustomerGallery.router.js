@@ -1,7 +1,7 @@
 const { FileFilterType } = require('../../config/constants.config')
 const loginCheck = require('../../middlewares/auth.middlewares')
 const hasPermission = require('../../middlewares/rbac.middlewares')
-const { setPath, uplaodFile } = require('../../middlewares/uploader.middlewares')
+const { setPath, uplaodFile } = require('../../middlewares/aws.uploader.middleware')
 const CustomerGalleryController = require('./CustomerGallery.controller')
 
 const router = require('express').Router()

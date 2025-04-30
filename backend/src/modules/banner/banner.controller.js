@@ -1,4 +1,3 @@
-const {uploadImage, uploadVideo} = require("../../config/cloudinary.config")
 const bannerSvc = require("./banner.service")
 const { Status } = require("../../config/constants.config");
 
@@ -9,18 +8,18 @@ class BannerController {
         try{
             const data = req.body
             
-           if (req.files) {
+            if (req.files) {
                 if (req.files.desktopVideo) {
-                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                    data.desktopVideo = req.files.desktopVideo[0].location;
                 }
                 if (req.files.mobileVideo) {
-                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                    data.mobileVideo = req.files.mobileVideo[0].location;
                 }
                 if (req.files.desktopImage) {
-                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                    data.desktopImage = req.files.desktopImage[0].location;
                 }
                 if (req.files.mobileImage) {
-                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                    data.mobileImage = req.files.mobileImage[0].location;
                 }
             }
 
@@ -118,27 +117,26 @@ class BannerController {
 
             if (req.files) {
                 if (req.files.desktopVideo) {
-                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                    data.desktopVideo = req.files.desktopVideo[0].location;
                 }
                 if (req.files.mobileVideo) {
-                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                    data.mobileVideo = req.files.mobileVideo[0].location;
                 }
                 if (req.files.desktopImage) {
-                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                    data.desktopImage = req.files.desktopImage[0].location;
                 }
                 if (req.files.mobileImage) {
-                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                    data.mobileImage = req.files.mobileImage[0].location;
                 }
             }
             
-                // updated daata saved
-
-                const response = await bannerSvc.updateBanner(data, id);
-                res.json({
-                    result:response,
-                    message:"Banner updated sucessfully",
-                    meta:null
-                })
+            // updated data saved
+            const response = await bannerSvc.updateBanner(data, id);
+            res.json({
+                result:response,
+                message:"Banner updated sucessfully",
+                meta:null
+            })
 
 
         }catch(exception){

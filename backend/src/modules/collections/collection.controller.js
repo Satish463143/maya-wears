@@ -1,6 +1,4 @@
-const { uploadImage } = require("../../config/cloudinary.config");
 const { Status } = require("../../config/constants.config");
-const { deleteFile } = require("../../utilies/helper");
 const collectionService = require("./collection.service")
 const slugify = require("slugify")
 
@@ -11,18 +9,19 @@ class CollectionController {
         try {
             const data = req.body
 
-            if (req.files) {
+             // Process the uploaded files
+             if (req.files) {
                 if (req.files.desktopVideo) {
-                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                    data.desktopVideo = req.files.desktopVideo[0].location;
                 }
                 if (req.files.mobileVideo) {
-                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                    data.mobileVideo = req.files.mobileVideo[0].location;
                 }
                 if (req.files.desktopImage) {
-                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                    data.desktopImage = req.files.desktopImage[0].location;
                 }
                 if (req.files.mobileImage) {
-                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                    data.mobileImage = req.files.mobileImage[0].location;
                 }
             }
             //slug
@@ -119,18 +118,19 @@ class CollectionController {
             await this.#validate(id)
             const data = req.body
 
-             if (req.files) {
+              // Process the uploaded files
+            if (req.files) {
                 if (req.files.desktopVideo) {
-                    data.desktopVideo = await uploadVideo(req.files.desktopVideo[0].path);
+                    data.desktopVideo = req.files.desktopVideo[0].location;
                 }
                 if (req.files.mobileVideo) {
-                    data.mobileVideo = await uploadVideo(req.files.mobileVideo[0].path);
+                    data.mobileVideo = req.files.mobileVideo[0].location;
                 }
                 if (req.files.desktopImage) {
-                    data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
+                    data.desktopImage = req.files.desktopImage[0].location;
                 }
                 if (req.files.mobileImage) {
-                    data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                    data.mobileImage = req.files.mobileImage[0].location;
                 }
             }
 
