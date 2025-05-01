@@ -5,23 +5,37 @@ const path = require("path");
 const { randomStringGenerator } = require("../utilies/helper");
 const { FileFilterType } = require("../config/constants.config");
 
+
 const generateFileName = (file) => {
     const ext = path.extname(file.originalname).toLowerCase();
     return `${randomStringGenerator(40)}${ext}`;
 };
 
-const getS3Storage = () => multerS3({
-    s3,
-    bucket: process.env.S3_BUCKET_NAME,
-    acl: 'public-read',
-    contentType: multerS3.AUTO_CONTENT_TYPE,
-    key: (req, file, cb) => {
-        const folder = req.uploadPath || 'uploads';
-        const filename = generateFileName(file);
-        const fullPath = `${folder}/${filename}`;
-        cb(null, fullPath);
-    },
-});
+// Create a more resilient S3 storage function
+const getS3Storage = () => {
+    try {
+        return multerS3({
+            s3,
+            bucket: process.env.S3_BUCKET_NAME || 'mayawears-uploads',
+            // acl: 'public-read',
+            contentType: multerS3.AUTO_CONTENT_TYPE,
+            key: (req, file, cb) => {
+                try {
+                    const folder = req.uploadPath || 'uploads';
+                    const filename = generateFileName(file);
+                    const fullPath = `${folder}/${filename}`;
+                    cb(null, fullPath);
+                } catch (error) {
+                    console.error("Error generating S3 key:", error);
+                    cb(error);
+                }
+            },
+        });
+    } catch (error) {
+        console.error("Error creating S3 storage:", error);
+        throw error;
+    }
+};
 
 const fileFilterByType = (allowed) => {
     return (req, file, cb) => {

@@ -5,12 +5,11 @@ class GalleryController {
     create=async(req,res,next)=>{
         try{
             const data = req.body
-            if (req.files && req.files.length > 0) {
-                data.images = await Promise.all(
-                    req.files.map(file =>
-                        uploadImage('./public/uploads/gallery/' + file.filename)
-                    )
-                );
+            
+            // Check if files were uploaded successfully
+            if (req.files && Array.isArray(req.files)) {
+                // Use AWS S3 locations directly
+                data.images = req.files.map(file => file.location);
             } else {
                 throw new Error('"images" field is required and must be an array of files');
             }

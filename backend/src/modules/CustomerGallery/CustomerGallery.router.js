@@ -7,7 +7,7 @@ const CustomerGalleryController = require('./CustomerGallery.controller')
 const router = require('express').Router()
 
 router.route('/')
-    .post(loginCheck,hasPermission('admin'),setPath('gallery'),uplaodFile(FileFilterType.IMAGE).array('images'),CustomerGalleryController.create)
+    .post(loginCheck,hasPermission('admin'),setPath('customer-gallery'),uplaodFile(FileFilterType.IMAGE).array('images'),CustomerGalleryController.create)
     .get(CustomerGalleryController.index)
 
 router.route('/delete-by-url/:imageUrl')

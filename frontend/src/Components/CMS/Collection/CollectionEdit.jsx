@@ -83,13 +83,13 @@ const CollectionEdit = () => {
                     value: collection.status
                   },
                   category: {
-                    label: banners.category === "image" ? "Image" : "Video",
-                    value: banners.category,
+                    label: collection.category === "image" ? "Image" : "Video",
+                    value: collection.category,
                   },
-                  desktopImage: banners.desktopImage,
-                  mobileImage: banners.mobileImage,
-                  desktopVideo: banners.desktopVideo,
-                  mobileVideo: banners.mobileVideo,
+                  desktopImage: collection.desktopImage,
+                  mobileImage: collection.mobileImage,
+                  desktopVideo: collection.desktopVideo,
+                  mobileVideo: collection.mobileVideo,
                   }
                 : null
               }          

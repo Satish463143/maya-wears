@@ -8,6 +8,7 @@ const BannerUpdateDTO = require("./banner.request")
 const BannerCreateDTO = require("./banner.request")
 
 
+
 router.route('/list')
     .get(bannerController.listForHome)
 

@@ -9,24 +9,20 @@ class ProductController {
     create = async (req, res, next) => {
         try {
             const data = req.body;
-            if (req.files.images) {
-                data.images = await Promise.all(
-                    req.files.images.map(file =>
-                        uploadImage('./public/uploads/product/' + file.filename)
-                    )
-                );
+            if (req.files?.images) {
+                // Use AWS S3 locations directly
+                data.images = req.files.images.map(file => file.location);
             } else {
                 throw new Error('"images" field is required and must be an array of files');
             }
 
-            if (req.files.mainImage) {
-                data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
+            if (req.files?.mainImage && req.files.mainImage.length > 0) {
+                data.mainImage = req.files.mainImage[0].location;
             }
 
-            if (req.file) {
-                data.video = await uploadVideo('./public/uploads/product/' + req.file.filename);
+            if (req.files?.video && req.files.video.length > 0) {
+                data.video = req.files.video[0].location;
             }
-
 
             // Generate slug
             data.slug = slugify(data.title, { lower: true });
@@ -36,22 +32,6 @@ class ProductController {
 
             // Save the product to the database
             const product = await productService.createProduct(data);
-
-
-            //delete the files from the backend after saved in db
-            const allFiles = [
-                ...(req.files.images || []),
-                ...(req.files.mainImage || []),
-            ];
-
-            // Include the video file if present
-            if (req.file) {
-                allFiles.push(req.file);
-            }
-
-            for (const file of allFiles) {
-                await deleteFile('./public/uploads/product/' + file.filename);
-            }
 
             res.json({
                 result: product,
@@ -156,54 +136,38 @@ class ProductController {
     }
     update = async (req, res, next) => {
         try {
-            const id = req.params.id
-            await this.#validate(id)
-            const data = req.body
+            const id = req.params.id;
+            await this.#validate(id);
+            const data = req.body;
             
-            console.log('images', req.files.images)
-
-            if (req.files?.images?.length > 0) {
-                data.images = await Promise.all(
-                    req.files.images.map(file =>
-                        uploadImage('./public/uploads/product/' + file.filename)
-                    )
-                );
+            if (req.files?.images && req.files.images.length > 0) {
+                // Use AWS S3 locations directly
+                data.images = req.files.images.map(file => file.location);
             } else if (!data.images || data.images.length === 0) {
                 // Allow no change to `images` if it's not present in `req.body` or `req.files`
                 delete data.images;
             }
+            
+            if (req.files?.mainImage && req.files.mainImage.length > 0) {
+                data.mainImage = req.files.mainImage[0].location;
+            }
 
-            if (req.files?.mainImage?.[0]) {
-                data.mainImage = await uploadImage('./public/uploads/product/' + req.files.mainImage[0].filename);
+            if (req.files?.video && req.files.video.length > 0) {
+                data.video = req.files.video[0].location;
             }
-    
-            // Process video if provided
-            if (req.files?.video?.[0]) {
-                data.video = await uploadVideo('./public/uploads/product/' + req.files.video[0].filename);
-            }
+
             const response = await productService.updateProduct(data, id);
-            // Clean up uploaded files
-                const allFiles = [
-                    ...(req.files?.images || []),
-                    ...(req.files?.mainImage || []),
-                    ...(req.files?.video || []),
-                ];
-
-                for (const file of allFiles) {
-                    await deleteFile('./public/uploads/product/' + file.filename);
-                }
 
             res.json({
-                result:response,
-                message:"product updated sucessfully",
-                meta:null
-            })
+                result: response,
+                message: "product updated successfully",
+                meta: null
+            });
         }
         catch (exception) {
-            console.log('update',exception)
-            next(exception)
+            console.log('update', exception);
+            next(exception);
         }
-
     }
     delete = async (req, res, next) => {
         try {

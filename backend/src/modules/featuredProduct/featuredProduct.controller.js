@@ -12,10 +12,10 @@ class featuredProductController  {
             const data = req.body
 
             if (req.files.desktopImage) {
-                data.desktopImage = await uploadImage(req.files.desktopImage[0].path);
-            }
+                data.desktopImage = req.files.desktopImage[0].location 
+                }
             if (req.files.mobileImage) {
-                data.mobileImage = await uploadImage(req.files.mobileImage[0].path);
+                data.mobileImage = req.files.mobileImage[0].location;
             }
 
             //slug
@@ -119,15 +119,15 @@ class featuredProductController  {
             await this.#validate(id)
             const data = req.body
 
-            if (req.files.desktopImage) {
-                data.desktopImage = await uploadImage('./public/uploads/FeaturedProduct/' + req.files.desktopImage[0].filename);
+            if (req.files?.desktopImage && req.files.desktopImage.length > 0) {
+                data.desktopImage = req.files.desktopImage[0].location;
             }
-            if (req.files.mobileImage) {
-                data.mobileImage = await uploadImage('./public/uploads/FeaturedProduct/' + req.files.mobileImage[0].filename);
+            if (req.files?.mobileImage && req.files.mobileImage.length > 0) {
+                data.mobileImage = req.files.mobileImage[0].location;
             }
             const allFiles = [
-                ...(req.files.images || []),
-                ...(req.files.mainImage || []),
+                ...(req.files.desktopImage || []),
+                ...(req.files.mobileImage || []),
             ];
             for (const file of allFiles) {
                 await deleteFile('./public/uploads/product/' + file.filename);
