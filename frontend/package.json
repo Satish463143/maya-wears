@@ -13,8 +13,6 @@
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.3.0",
     "@tinymce/tinymce-react": "^5.1.1",
-    "@tiptap/react": "^2.9.1",
-    "@tiptap/starter-kit": "^2.9.1",
     "autoprefixer": "^10.4.21",
     "axios": "^1.7.7",
     "flowbite": "^2.5.2",

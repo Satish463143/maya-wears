@@ -6,7 +6,7 @@ const OrderView = ({title,image, quantity,size,price}) => {
   return (
     <div className='cart_box'>
         <div className="cart_image">
-            <img src={image} alt="" />
+            <img src={image} alt={image} loading='lazy'/>
         </div>
         <div className="ordr_cart_details">
             <h1>{title}</h1>

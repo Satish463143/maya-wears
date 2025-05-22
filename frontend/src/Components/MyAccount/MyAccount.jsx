@@ -108,7 +108,7 @@ const MyAccount = () => {
             <div className="my_account">
                 <div className="best__of__">
                     <h1>Personal Information</h1>
-                    <img src={line_svg} alt="" />
+                    <img src={line_svg} alt="" loading='lazy'/>
                 </div>
                 <div className="personal_info">  
                     <div className="personal_info_grid">
@@ -168,7 +168,7 @@ const MyAccount = () => {
                     <>
                     <div className="best__of__">
                         <h1>Order List</h1>
-                        <img src={line_svg} alt="" srcSet="" />
+                        <img src={line_svg} alt="" srcSet="" loading='lazy'/>
                     </div>
                     <div className="order_list">
                         {orders.map((item,index) => (
@@ -183,7 +183,7 @@ const MyAccount = () => {
                                 {item?.items.map((item,index)=>(
                                     <div className="user_order_list_item">
                                         <div className="user_order_list_item_image">
-                                            <img src={item.productImage} alt="" />
+                                            <img src={item.productImage} alt={item.productImage} loading='lazy'/>
                                         </div>
                                         <div className="user_order_list_item_content">
                                             <h1>{item.title}</h1>

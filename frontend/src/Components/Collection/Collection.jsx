@@ -31,7 +31,7 @@ const Collection = () => {
       <div className="collections">
         <div className="best__of__">
           <h1>Explore our Collection</h1>
-          <img src={line_svg} alt="" srcSet="" />
+          <img src={line_svg} alt="" srcSet="" loading="lazy"/>
         </div>
 
         <div className="collection_grid">
@@ -43,12 +43,12 @@ const Collection = () => {
                   {item?.category === "video" && (
                     <>
                       <div className="desktop_img">
-                        <video autoPlay muted loop>
+                        <video autoPlay muted loop loading="lazy">
                           <source src={item?.desktopVideo} />
                         </video>
                       </div>
                       <div className="mobile_img">
-                        <video autoPlay muted loop>
+                        <video autoPlay muted loop loading="lazy">
                           <source src={item?.mobileVideo} />
                         </video>
                       </div>
@@ -57,10 +57,10 @@ const Collection = () => {
                   {item?.category === "image" && (
                     <>
                       <div className="desktop_img">
-                        <img src={item?.desktopImage} alt="" />
+                        <img src={item?.desktopImage} alt={item?.desktopImage} loading="lazy"/>
                       </div>
                       <div className="mobile_img">
-                        <img src={item?.mobileImage} alt="" />
+                        <img src={item?.mobileImage} alt={item?.mobileImage} loading="lazy" />
                       </div>
                     </>
                   )}

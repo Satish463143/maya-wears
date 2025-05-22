@@ -63,11 +63,13 @@ const FInalSlider = () => {
                     className="desktopImage"
                     src={item.desktopImage}
                     alt={item.title}
+                    loading="lazy"
                   />
                   <img
                     className="mobileImage"
                     src={item.mobileImage}
                     alt={item.title}
+                    loading="lazy"
                   />
                   <div className="slider-details-content">
                     <h3>{item.title}</h3>

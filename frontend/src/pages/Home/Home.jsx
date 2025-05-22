@@ -2,7 +2,6 @@ import React from "react";
 import "./Home.css";
 import Banner from "../../Components/Banner/Banner";
 import BestSellingItem from "../../Components/BestSellingItem/BestSellingItem";
-import GoogleReview from "../../Components/GoogleReview/GoogleReview";
 import Faq from "../../Components/Faq/Faq";
 import Collection from "../../Components/Collection/Collection";
 import CustomerGallery from "../../Components/CustomerGallery/CustomerGallery";
@@ -18,7 +17,6 @@ const Home = () => {
       <Collection />
       <BestSellingItem />
       <CustomerGallery />
-      {/* <GoogleReview/>           */}
       <Faq />
     </div>
   );

@@ -31,12 +31,12 @@ const Banner = () => {
       {banner.category === "video" && (
         <>
           <div className="desktop_img">
-            <video autoPlay muted loop>
+            <video autoPlay muted loop loading="lazy">
               <source src={banner.desktopVideo} />
             </video>
           </div>
           <div className="mobile_img">
-            <video autoPlay muted loop>
+            <video autoPlay muted loop loading="lazy">
               <source src={banner.mobileVideo} />
             </video>
           </div>
@@ -45,10 +45,10 @@ const Banner = () => {
       {banner.category === "image" && (
         <>
           <div className="desktop_img">
-            <img src={banner.desktopImage} alt="" />
+            <img src={banner.desktopImage} alt={banner.desktopImage} loading="lazy"/>
           </div>
           <div className="mobile_img">
-            <img src={banner.mobileImage} alt="" />
+            <img src={banner.mobileImage} alt={banner.mobileImage} loading="lazy"/>
           </div>
         </>
       )}

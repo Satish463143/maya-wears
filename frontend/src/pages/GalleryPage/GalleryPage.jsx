@@ -35,7 +35,7 @@ const  GalleryPage=()=> {
       <div className="img_containor">
         {galleries.slice(0, visibleCount).map((item, index) => (
             <a href={item} target="_blank">
-              <img src={item} key={index} alt="" />
+              <img src={item} key={index} alt={item?.split('/').pop()?.split('?')[0] || 'maya-wears gallery'} loading="lazy"/>
             </a>
         ))}
         

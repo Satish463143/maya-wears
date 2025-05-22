@@ -27,7 +27,7 @@ const OrderDetails = ({isActive, toggleOrderDetails, orderDetails}) => {
                     <div className="order_details_items">
                         {orderDetails?.items.map((item,index)=>(
                             <div style={{display:'flex', alignItems:'center', gap:'30px', marginBottom:'20px'}}>
-                                <img src={item?.productImage} alt="" />
+                                <img src={item?.productImage} alt={item?.productImage} loading='lazy'/>
                                 <div>
                                     <p>Size: {item.size}</p>
                                     <p>Quantity: {item.quantity}</p>

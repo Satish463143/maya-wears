@@ -8,16 +8,15 @@ const AllProductBanner = () => {
     <div className='product_banner'>
         <div >
             <div className="product_desktop_img">
-                <img src={gallery_banner} alt="" />  
+                <img src={gallery_banner} alt={gallery_banner} loading="lazy"/>  
                  <div className='img_overlay'></div>         
             </div>
             <div className="product_mobile_img">
-              <img src={gallery_banner_mobile} alt="" />  
+              <img src={gallery_banner_mobile} alt={gallery_banner_mobile} loading="lazy"/>  
               <div className='img_overlay'></div>           
             </div>
             <div className='product_banner_content'>
                 <h2>Gallery </h2>
-                {/* <p> All in One Place!</p> */}
             </div>
         </div>
       </div>

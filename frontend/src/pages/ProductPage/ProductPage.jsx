@@ -1,14 +1,13 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import ProductDetails from '../../Components/ProductDetails/ProductDetails';
 import Faq from '../../Components/Faq/Faq';
-import { StoreContext } from '../../context/StoreContext';
+import { StoreContext } from '../../context/StoreContext.jsx';
 import BestSellingItem from '../../Components/BestSellingItem/BestSellingItem';
 
 const ProductPage = () => {
   const { isCartActive, toogleCart } = useOutletContext();
   const { cartList, addToCartList } = useContext(StoreContext);
-  const [selectedSize, setSelectedSize] = useState(null);
 
   // Function to check if the product is already in the cart
   const isProductInCart = (productId) => {

@@ -42,7 +42,7 @@ const BestSellingItem = () => {
       <div>
         <div className="best__of__">
           <h1>Best of MAYA.</h1>
-          <img src={line_svg} alt="" srcSet="" />
+          <img src={line_svg} alt="" srcSet="" loading='lazy'/>
         </div>
         <div className="container best_container">
           <div className="best_flex">

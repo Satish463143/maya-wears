@@ -35,7 +35,7 @@ function CustomerGallery() {
       </div>
       <div className="cus__gallery">
         {galleries.map((item, index) => (
-          <a href={item} key={index} target="_blank"><img  src={item} alt="" /></a>          
+          <a href={item} key={index} target="_blank"><img  src={item} alt={item.split('/').pop()?.split('?')[0] || 'Maya-wears Image'} loading="lazy"/></a>          
         ))}
       </div>
     </div>

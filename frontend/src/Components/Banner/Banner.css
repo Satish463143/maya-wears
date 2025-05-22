@@ -4,6 +4,10 @@
     height: auto;
     margin-bottom: var(--gap);
 }
+.banner img , .banner video{
+    width: 100%;
+    height: auto;
+}
 .banner_content button{
     color:var(--sec_dark);
     text-decoration: underline;

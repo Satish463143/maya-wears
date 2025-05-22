@@ -15,7 +15,7 @@ const ActiveBanner = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '100vh',
+          minHeight: '100vh',
           backgroundColor: '#f9f9f9',
         }}
         />
@@ -29,12 +29,12 @@ const ActiveBanner = () => {
                 {item?.category === "video" && (
                   <>
                     <div className="desktop_img">
-                      <video autoPlay muted loop>
+                      <video autoPlay muted loop loading="lazy">
                         <source src={item?.desktopVideo} type="video/mp4" />
                       </video>
                     </div>
                     <div className="mobile_img">
-                      <video autoPlay muted loop>
+                      <video autoPlay muted loop loading="lazy">
                         <source src={item?.mobileVideo} type="video/mp4" />
                       </video>
                     </div>
@@ -43,10 +43,10 @@ const ActiveBanner = () => {
                 {item?.category === "image" && (
                   <>
                     <div className="desktop_img">
-                      <img src={item?.desktopImage} alt="" />
+                      <img src={item?.desktopImage} alt={item?.desktopImage} loading="lazy" />
                     </div>
                     <div className="mobile_img">
-                      <img src={item?.mobileImage} alt="" />
+                      <img src={item?.mobileImage} alt={item?.mobileImage} loading="lazy" />
                     </div>
                   </>
                 )}

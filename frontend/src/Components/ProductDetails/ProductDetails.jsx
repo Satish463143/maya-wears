@@ -85,7 +85,7 @@ const ProductDetails = ({ toogleCart }) => {
           <div className="product_img_grid" >
             <img src={product.mainImage} alt="" />
             {product.images.map((item) => (
-              <img src={item} alt="" />
+              <img src={item} alt={item} loading='lazy'/>
             ))}
           </div>
           <div className="product_detail_box" >                
@@ -176,7 +176,7 @@ const ProductDetails = ({ toogleCart }) => {
       <div className={`size_popup ${selectSize ? 'dispplay_size_guide': ''}`}>
         <div className="overlay_popup" onClick={toggleSelectSize}></div>
           <div className="sizee_des">
-            <img src={sizeGuide} alt="" />             
+            <img src={sizeGuide} alt="Maya-wears size guide" loading='lazy'/>             
           </div>
           <button className="close_btnn" onClick={toggleSelectSize}>
             close

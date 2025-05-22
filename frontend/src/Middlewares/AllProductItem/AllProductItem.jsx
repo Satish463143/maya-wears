@@ -6,7 +6,7 @@ const AllProductItem = ({ _id, slug, images, title, price })=>{
         <Link to={`/product/${slug}/${_id}`}>
           <div className="Product__catalog">
             <div className=" product__image">
-              <img src={images} alt="" />
+              <img src={images} alt={title} loading="lazy"/>
             </div>
   
             <div className=" name__price">

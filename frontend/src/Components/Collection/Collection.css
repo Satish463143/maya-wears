@@ -14,6 +14,7 @@
 }
 .collection_box_img img {
   width: 100%;
+  height: auto;
 }
 .collection_box_img_overlay {
   position: absolute;

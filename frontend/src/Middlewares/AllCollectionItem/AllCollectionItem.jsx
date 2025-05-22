@@ -6,12 +6,12 @@ const AllCollectionItem = ({ image, name, description}) => {
         {item?.category === "video" && (
           <>
             <div className="desktop_img">
-              <video autoPlay muted loop>
+              <video autoPlay muted loop loading='lazy'>
                 <source src={item?.desktopVideo} />
               </video>
             </div>
             <div className="mobile_img">
-              <video autoPlay muted loop>
+              <video autoPlay muted loop loading='lazy'>
                 <source src={item?.mobileVideo} />
               </video>
             </div>
@@ -20,10 +20,10 @@ const AllCollectionItem = ({ image, name, description}) => {
         {item?.category === "image" && (
           <>
             <div className="desktop_img">
-              <img src={item?.desktopImage} alt="" />
+              <img src={item?.desktopImage} alt={item?.desktopImage}  loading='lazy'/>
             </div>
             <div className="mobile_img">
-              <img src={item?.mobileImage} alt="" />
+              <img src={item?.mobileImage} alt={item?.mobileImage}  loading='lazy'  />
             </div>
           </>
         )}

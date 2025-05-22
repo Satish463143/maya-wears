@@ -42,11 +42,9 @@ h1,h2,h3,h4,h5,p{
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
 }
-.container{
-  margin: auto;  
-}
 .container {
   max-width: 100%;
+  margin: auto;
 }
 @media (max-width: 600px){
   .collection_box_content h2{
@@ -70,6 +68,8 @@ h1,h2,h3,h4,h5,p{
 }
 body{
   font-family: "jost", sans-serif;
+  scrollbar-width: none !important;
+  scrollbar-color:var(--sec_dark) var(--pri_color);
 }
  input{
   font-size: var(--pri_font_size) !important;
@@ -94,13 +94,6 @@ body{
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
-}
-
-/* For Firefox */
-body {
-  scrollbar-width: none !important;
-  scrollbar-color:var(--sec_dark) var(--pri_color);
-
 }
 svg path{
   stroke: 29px;

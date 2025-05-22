@@ -45,12 +45,12 @@ const DownBannerItem = () => {
         {bannerData?.category === "video" && (
           <>
             <div className="down_desktop_img">
-              <video autoPlay muted loop>
+              <video autoPlay muted loop loading="lazy">
                 <source src={bannerData?.desktopVideo} type="video/mp4" />
               </video>
             </div>
             <div className="down_mobile_img">
-              <video autoPlay muted loop>
+              <video autoPlay muted loop loading="lazy">
                 <source src={bannerData?.mobileVideo} type="video/mp4" />
               </video>
             </div>
@@ -59,10 +59,10 @@ const DownBannerItem = () => {
         {bannerData?.category === "image" && (
           <>
             <div className="down_desktop_img">
-              <img src={bannerData?.desktopImage} alt="Desktop view" />
+              <img src={bannerData?.desktopImage} alt={bannerData?.desktopImage} loading="lazy"/>
             </div>
             <div className="down_mobile_img">
-              <img src={bannerData?.mobileImage} alt="Mobile view" />
+              <img src={bannerData?.mobileImage} alt={bannerData?.mobileImage} loading="lazy" />
             </div>
           </>
         )}
