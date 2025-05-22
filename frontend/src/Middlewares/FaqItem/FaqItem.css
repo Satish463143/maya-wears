@@ -10,6 +10,9 @@
     justify-content: space-between;
     align-items: center;
   }
+  .faq-question h3{
+    font-weight: 500;
+  }
   .faq-answer p{
     margin: 15px 0;
     max-width: 900px;
@@ -24,13 +27,12 @@
   }
   
   .faq-item.active .faq-answer {
-    max-height: 200px; /* Adjust based on your content */
+    max-height: 500px; /* Adjust based on your content */
   }
   
   .faq-item.active .faq-question::after {
     content: '-';
     font-size: 1em;
-    /* transform: rotate(45deg); Rotate 180 degrees */
   }                                                                                                  
   
   .faq-question::after {
@@ -46,5 +48,8 @@
     }
     .faq-answer p{
       font-size: var(--sec_font_size);
+    }
+    .faq-question h3{
+      font-size: 16px;
     }
   }

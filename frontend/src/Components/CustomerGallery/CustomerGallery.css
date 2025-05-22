@@ -35,12 +35,11 @@
   
   .slider__name h1 {
     font-size: var(--font_for_header);
-    font-weight: 600;
-    /* margin-bottom: 10px; */
+    font-weight: 500;
   }
   
 .add__photo__text{
-    font-weight: 600;
+    font-weight: 500;
     color: var(--sec_dark);
     text-decoration: underline;
 }

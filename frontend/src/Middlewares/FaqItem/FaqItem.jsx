@@ -8,7 +8,7 @@ const FaqItem = ({ question, answer, isActive, onToggle }) => {
         className={`faq-item ${isActive ? "active" : ""}`}
         onClick={onToggle}
       >
-        <div className="faq-question">{question}</div>
+        <div className="faq-question"><h3>{question}</h3></div>
         <div className="faq-answer">
           <p>{answer}</p>
         </div>

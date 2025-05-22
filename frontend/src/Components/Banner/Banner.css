@@ -7,7 +7,7 @@
 .banner_content button{
     color:var(--sec_dark);
     text-decoration: underline;
-    font-weight: 600;
+    font-weight: 500;
 }
 .banner_content{
     position: absolute;
@@ -20,6 +20,7 @@
 }
 .banner_content h2{
     font-size: var(--font_for_header);
+    font-weight: 500;
 }
 
 .mobile_img{
@@ -40,4 +41,9 @@
       height: auto;
     }
 
+}
+@media (max-width: 600px){
+    .banner_content h2{
+        font-size: 22px;
+    }
 }

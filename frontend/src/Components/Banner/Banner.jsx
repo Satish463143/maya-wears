@@ -53,7 +53,7 @@ const Banner = () => {
         </>
       )}
       <div className="banner_content">
-        <h2>{banner.title} </h2>
+        <h2 className="font-bold">{banner.title} </h2>
         <p>{banner.content}</p>
         <a href={banner.link}><button>{banner.button}</button></a>  
       </div>

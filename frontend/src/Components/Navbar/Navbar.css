@@ -307,4 +307,7 @@
   .overlay nav ul a{
     text-align: center;
   }
+  .overlay nav ul li{
+    font-size: 18px;
+  }
 }

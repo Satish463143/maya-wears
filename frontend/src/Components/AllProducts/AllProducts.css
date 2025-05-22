@@ -3,7 +3,7 @@
 }
 .prouct_title div{
     font-size: var(--pri_font_size);
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: dotted;
 }
 .products_grid{

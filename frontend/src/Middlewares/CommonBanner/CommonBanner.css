@@ -51,9 +51,14 @@
     }
     .product_banner_content h2{
         font-size: 25px;
-        font-weight: 700;
+        font-weight: 600;
     }
     .product_banner_content p{
         font-size: 15px;
+    }
+}
+@media (max-width: 600px){
+    .product_banner_content h2{
+        font-size: 22px;
     }
 }

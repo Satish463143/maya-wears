@@ -1,27 +1,17 @@
 @import 'flowbite'; /* Import Flowbite styles */
-@import url("https://use.typekit.net/jza0yuk.css");
-@import url("https://use.typekit.net/jza0yuk.css");
-/* @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,398;1,398&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;1,300&family=Cormorant:ital,wght@0,398;1,398&display=swap');
- */ 
 
- @import url("https://use.typekit.net/rdu3esw.css");
- @import url("https://use.typekit.net/rdu3esw.css");
+ @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
-   */
-   /* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap'); */
-  
-  
+
    
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box; 
-  font-family: "mr-eaves-modern", sans-serif;
+  font-family: "Jost", sans-serif;
   /* background: white !important; */
 }
 :root{
@@ -46,20 +36,7 @@ Link, a, button{
 h1,h2,h3,h4,h5,p{
   color: var(--pri_text);
 }
-/* @font-face {
-  font-family: "mr-eaves-modern";
-  src: url("path_to_font_file.woff2") format("woff2"),
-       url("path_to_font_file.woff") format("woff");
-  font-weight: 559;
-  font-style: normal;
-} */
 
-.headers {
-  font-family: "mr-eaves-modern", sans-serif;
-  font-variation-settings: "wght" 559;
-  -webkit-font-smoothing: antialiased; /* Helps with rendering */
-  -moz-osx-font-smoothing: grayscale;
-}
 .best__of__ img {
   top: 84% !important;
   left: 50% !important;
@@ -70,6 +47,14 @@ h1,h2,h3,h4,h5,p{
 }
 .container {
   max-width: 100%;
+}
+@media (max-width: 600px){
+  .collection_box_content h2{
+      font-size: 22px;
+  }
+  .collections h1, .best__of__ h1, .slider__name h1, .loginpage_message h2{
+    font-size: 22px !important;
+  }
 }
 
 @media (min-width: 601px) and (max-width: 1300px) {
@@ -84,11 +69,7 @@ h1,h2,h3,h4,h5,p{
   }
 }
 body{
-  font-family: "mr-eaves-modern", sans-serif;
-  font-variation-settings: "wght" 400;
-  font-size: var(--pri_font_size); 
-  -webkit-font-smoothing: antialiased; /* Helps with rendering */
-  -moz-osx-font-smoothing: grayscale; 
+  font-family: "jost", sans-serif;
 }
  input{
   font-size: var(--pri_font_size) !important;
@@ -124,8 +105,3 @@ body {
 svg path{
   stroke: 29px;
 }
-/* .div_container{
-  background-color: var(--back);
-  width: 100%;
-  z-index: 999;
-  /* position: relative; */

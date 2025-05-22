@@ -25,7 +25,14 @@
         width: 80%;
         text-align: center;
     }
-    .contact__{
+    .contact__ , .contact_info_item h2{
         font-weight: 600;
+        font-size: 22px !important;
+    }
+    .contact_info_item h4, .contact_info_item h3 {
+        font-size: 15px !important;
+    }
+    .contact_info_item a{
+        font-size: 17px !important;
     }
 }

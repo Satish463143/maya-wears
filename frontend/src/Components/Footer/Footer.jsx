@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
           <div className="footer_menu container">
             <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
-              <div className="faq-question"><strong>Contact Us</strong> </div>
+              <div className="faq-question"><h3>Contact Us</h3> </div>
             {activeIndex === 0 && (
               <div className="faq-answer help_answer">
                 <p><a href="tel:9849531357">Contact Us</a></p>
@@ -48,7 +48,7 @@ const Footer = () => {
             )}
             </div>
           <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`}  onClick={() => toggleHelp(1)} >
-            <div className="faq-question"><strong>Services</strong> </div>
+            <div className="faq-question"><h3>Services</h3> </div>
             {activeIndex === 1 && (
               <div className="faq-answer">
                 <p>World Wide Delivery</p>
@@ -57,7 +57,7 @@ const Footer = () => {
             )}
           </div>
           <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)}>
-            <div className="faq-question"> <strong>About Maya</strong> </div>
+            <div className="faq-question"> <h3>About Maya</h3> </div>
             {activeIndex === 2 && (
               <div className="faq-answer help_answer">
                 <Link to="/about_us"><p>About Maya </p></Link>
@@ -158,7 +158,7 @@ const Footer = () => {
 
         <div className="copyright">
           <p>
-            © 2024 Maya Wears. All right reserved. 
+            © {new Date().getFullYear()} Maya Wears. All right reserved.
           </p>
           <p>Designed and Developed by <a href=""> Bleeding Tech</a></p>
         </div>

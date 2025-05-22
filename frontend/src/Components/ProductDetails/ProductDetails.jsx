@@ -131,19 +131,19 @@ const ProductDetails = ({ toogleCart }) => {
             </div>
             <div className="desktop_decription">
               <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
-                <div className="faq-question">Description </div>
+                <div className="faq-question"> <h3> Description </h3> </div>
                 {activeIndex === 0 && (
                  <p dangerouslySetInnerHTML={{ __html: product?.description }}></p>
                 )}
               </div>
               <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
-                <div className="faq-question">Fit </div>
+                <div className="faq-question"> <h3>Fit </h3> </div>
                 {activeIndex === 1 && (
                   <p>{product?.fit}</p>
                 )}
               </div>
               <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
-                <div className="faq-question">Material and Care </div>
+                <div className="faq-question"> <h3>Material and Care </h3> </div>
                 {activeIndex === 2 && (
                   <p dangerouslySetInnerHTML={{__html:product?.materailCare}}></p>
                 )}
@@ -153,19 +153,19 @@ const ProductDetails = ({ toogleCart }) => {
         </div>
         <div className="mobile_decription container">
           <div className={`faq-item ${activeIndex === 0 ? "active" : ""}`} onClick={() => toggleHelp(0)} >
-            <div className="faq-question">Description </div>
+            <div className="faq-question"> <h3> Description </h3> </div>
             {activeIndex === 0 && (
               <p dangerouslySetInnerHTML={{ __html: product?.description }}></p>
             )}
           </div>
           <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
-            <div className="faq-question">Fit </div>
+            <div className="faq-question"> <h3>Fit </h3> </div>
             {activeIndex === 1 && (
               <p>{product?.fit}</p>
             )}
           </div>
           <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >
-            <div className="faq-question">Material and Care </div>
+            <div className="faq-question"> <h3>Material and Care </h3> </div>
             {activeIndex === 2 && (
               <p dangerouslySetInnerHTML={{__html:product?.materailCare}}></p>
             )}

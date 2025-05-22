@@ -14,7 +14,7 @@
   width: 33%;
 }
 .company__promises .pro__tags {
-  font-weight: 900;
+  font-weight: 600;
 }
 .pro__disc span a {
   text-decoration: underline;
@@ -36,7 +36,7 @@
     margin-top: 40px;
   }
   .company__promises .pro__tags {
-    font-weight: 900;
+    font-weight: 600;
   }
   .pro__disc span a {
     text-decoration: underline;

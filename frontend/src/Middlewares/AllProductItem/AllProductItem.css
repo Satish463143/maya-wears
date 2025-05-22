@@ -18,7 +18,7 @@
 }
 .Product__catalog .name__{
     font-size: var(--pre_font_size);
-    font-weight: 600;
+    font-weight: 500;
 }
 .name__price .price__{
     color: var(--sec_dark);

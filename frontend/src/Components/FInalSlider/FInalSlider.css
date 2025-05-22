@@ -77,21 +77,19 @@
 .slider-details-content h3{
   font-size: var(--font_for_header);
   color: white;
-  font-weight: 600;
+  font-weight: 500;
 }
 .slider-details-content p{
   color: white;
-  font-weight: 500;
 }
 
 .slider-details-content button {
   color:var(--sec_dark) ;
   text-decoration: underline;
   border: none;
-  font-weight: 600;
   cursor: pointer;
   border-radius: 30px;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: underline;
 }
 @media(max-width:800px){
@@ -107,6 +105,11 @@
 
   .mobileImage {
     display: block !important;
+  }
+}
+@media (max-width: 600px){
+  .slider-details-content h3{
+      font-size: 22px;
   }
 }
 
