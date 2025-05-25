@@ -60,7 +60,6 @@ const ProductAdd = () => {
             refetch();
             
         } catch (exception) {
-            console.error("Error while adding product:", exception);
             toast.error("Error while adding product");
         } finally {
             setLoading(false);

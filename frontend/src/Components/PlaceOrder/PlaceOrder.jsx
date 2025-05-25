@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import OrderView from '../OrderView/OrderView';
 import { useListAllCartQuery,useDeledeEntireCartMutation } from '../../api/cart.api';
-import Cookies from "js-cookie";
 import { useCreateOrderMutation } from '../../api/order.api';
 import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
@@ -14,8 +13,7 @@ const PlaceOrder = () => {
     const [loading, setLoading] = useState(false)    
     const customerId = useSelector((state) => state.customer.customerId);
     const [createOrder] = useCreateOrderMutation();
-    const cartId = Cookies.get("cartId");
-    const { data } = useListAllCartQuery(cartId ? { cartId } : null);
+    const { data } = useListAllCartQuery();
     const cartIdForOrder = data?.result?._id
     const cartList = data?.result?.items || [];
     const totalCartNumber = cartList.length;
@@ -65,7 +63,6 @@ const PlaceOrder = () => {
           await deleteCart(cartIdForOrder).unwrap(); 
           
         } catch (exception) {
-          console.error(exception);
           toast.error("Error while placing order.");
         } finally {
           setLoading(false);
@@ -79,7 +76,6 @@ const PlaceOrder = () => {
             const response = await promoApply(payload).unwrap(); 
             setDiscount(response?.discount);  
         } catch (error) {
-            console.log('Promo Error:', error);
             toast.error(error?.data?.message || "Invalid or expired promo code");
         }
     }

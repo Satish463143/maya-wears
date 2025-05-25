@@ -21,7 +21,6 @@ const CustomerGalleryImage = ({image,deleteAction,rowId,link}) => {
                   }
     
             }catch(exception){
-                console.log(exception)
                 toast.error("Error deleting data")
             }
         }

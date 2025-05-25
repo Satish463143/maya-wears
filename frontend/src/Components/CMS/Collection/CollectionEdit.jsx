@@ -55,7 +55,6 @@ const CollectionEdit = () => {
     } catch (exception) {
       let errorMessage = "Error while updating collection";
       toast.error(errorMessage);
-      console.error(exception, "Error here");
     } finally {
       setLoading(false);
     }

@@ -7,25 +7,15 @@ const CartItem = ({ _id, title, slug, image, amount, quantity, price, size, dele
     const [updateCart] = useUpdateCartMutation()
     const [itemLoading, setItemLoading] = useState(false);
 
-    // Get cartId from localStorage if user is not logged in
-    const cartId = localStorage.getItem('cartId');
-    const token = localStorage.getItem('_at'); // Check if user is logged in
 
     const updateQuantity = async (newQuantity) => {
         setItemLoading(true);
         try {
-            // Call the updateCart mutation based on the user's login status
-            if (token) {
-                // If the user is logged in, use the token for authentication
-                await updateCart({ productId: _id, size, quantity: newQuantity }).unwrap();
-            } else if (cartId) {
-                // If the user is not logged in, use the cartId for the anonymous user's cart
-                await updateCart({ productId: _id, size, quantity: newQuantity, cartId }).unwrap();
-            }
+            // Call the updateCart mutation - the API expects cart item ID and quantity
+            await updateCart({ cartItemId: _id, quantity: newQuantity }).unwrap();
 
             // Refetch the cart or update local state if needed
         } catch (exception) {
-            console.log(exception)
         }
         finally{
             setItemLoading(false)

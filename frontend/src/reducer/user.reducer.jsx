@@ -9,7 +9,6 @@ export const getLoggedInUserRedux = createAsyncThunk(
             return loggedInUser.result
 
         }catch(exception){
-            console.log(exception)
             throw exception
         }
     }

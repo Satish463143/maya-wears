@@ -9,12 +9,13 @@ const OrderView = ({title,image, quantity,size,price}) => {
             <img src={image} alt={image} loading='lazy'/>
         </div>
         <div className="ordr_cart_details">
-            <h1>{title}</h1>
+            <h1 className='text-xl' style={{fontWeight: '500'}}>{title}</h1>
             <h2>Quantity: {quantity}</h2>
             <p>Size: {size}</p>
+            <p  style={{fontWeight: '500'}} className='order_summary_price'>Rs.{price}.00/-</p>
         </div>
-        <div className="cart_price">
-            <p>Rs.{price}.00/-</p>
+        <div className="cart_price grid_order_summary_price">
+            <p  style={{fontWeight: '500'}}>Rs.{price}.00/-</p>
         </div>
     </div>
   )

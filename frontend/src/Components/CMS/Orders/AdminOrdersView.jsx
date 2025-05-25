@@ -32,7 +32,6 @@ const AdminOrdersView = () => {
             navigate('/admin/order_list')
 
         }catch(exception){
-            console.log(exception)
             toast.error("Error while updating order")
         }
       }

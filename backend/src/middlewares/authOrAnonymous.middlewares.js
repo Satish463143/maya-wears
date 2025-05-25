@@ -8,6 +8,9 @@ const authOrAnonymous = async (req, res, next) => {
 
         // Check if token exists in the Authorization header
         const token = req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null;
+        
+        console.log('Token:', token ? 'Present' : 'Not present');
+        console.log('Cookies:', req.cookies);
 
         if (token) {
             try {
@@ -27,22 +30,27 @@ const authOrAnonymous = async (req, res, next) => {
                     phone: user.phone,
                 };
                 userId = user._id;
+                console.log('Logged-in user ID:', userId);
             } catch (err) {
                 throw { status: 401, message: 'Invalid or expired token' };
             }
         } else if (req.cookies.cartId) {
             // For anonymous users, use cartId from cookies
             userId = req.cookies.cartId;
+            console.log('Anonymous user cartId from cookies:', userId);
         } else {
             // If no token or cartId, create a new anonymous userId (cartId)
             userId = new mongoose.Types.ObjectId().toString(); // Generate a new ObjectId
             res.cookie('cartId', userId, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); // Set cartId cookie for anonymous users
+            console.log('New anonymous user cartId created:', userId);
         }
 
         // Attach the resolved userId (from token, cookie, or newly generated) to the request
         req.userId = userId;
+        console.log('Final userId set:', userId);
         next();
     } catch (err) {
+        console.log('Auth middleware error:', err);
         next(err);
     }
 };

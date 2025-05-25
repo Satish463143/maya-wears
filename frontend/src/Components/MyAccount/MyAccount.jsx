@@ -57,7 +57,6 @@ const MyAccount = () => {
                 }
     
             }catch(exception){
-                console.log(exception)
                 toast.error("Error canceling order")
             }
     }
@@ -172,7 +171,7 @@ const MyAccount = () => {
                     </div>
                     <div className="order_list">
                         {orders.map((item,index) => (
-                            <div className='user_order_list'>
+                            <div key={item._id} className='user_order_list'>
                                 <div className="order_id">
                                     <div className='order_total'>
                                         <h1><span>Order Id :</span>  {item?.orderId}</h1>
@@ -180,15 +179,15 @@ const MyAccount = () => {
                                     </div>                                    
                                     <div className='border_div'></div>                                    
                                 </div>
-                                {item?.items.map((item,index)=>(
-                                    <div className="user_order_list_item">
+                                {item?.items.map((orderItem,itemIndex)=>(
+                                    <div key={`${item._id}-${orderItem.productId || orderItem._id || itemIndex}`} className="user_order_list_item">
                                         <div className="user_order_list_item_image">
-                                            <img src={item.productImage} alt={item.productImage} loading='lazy'/>
+                                            <img src={orderItem.productImage} alt={orderItem.productImage} loading='lazy'/>
                                         </div>
                                         <div className="user_order_list_item_content">
-                                            <h1>{item.title}</h1>
-                                            <h2><span>Quantity :</span>  {item.quantity}</h2>
-                                            <h2><span> Size : </span> {item.size}</h2>                                            
+                                            <h1>{orderItem.title}</h1>
+                                            <h2><span>Quantity :</span>  {orderItem.quantity}</h2>
+                                            <h2><span> Size : </span> {orderItem.size}</h2>                                            
                                         </div>
                                     </div>
                                 ))}  

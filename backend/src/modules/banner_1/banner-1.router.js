@@ -12,7 +12,6 @@ router.route('/list')
     .get(banner_1Controller.listForHome)
 
 router.route('/')
-    //.post(loginCheck,hasPermission('admin'),setPath("banner_2"),uplaodFile(FileFilterType.VIDEO).single('desktopVideo'),uplaodFile(FileFilterType.VIDEO).single('mobielVideo'),uplaodFile(FileFilterType.IMAGE).single('mobileImage'),uplaodFile(FileFilterType.IMAGE).single('desktopImage'),bodyValidator(banner_2CreateDTO),) // create 
     .get(loginCheck,hasPermission('admin'),banner_1Controller.index) // list
 
 router.route('/:id')

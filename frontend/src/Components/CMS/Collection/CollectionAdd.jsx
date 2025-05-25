@@ -54,7 +54,6 @@ const CollectionAdd = () => {
             }
 
             toast.error(errorMessage);
-            console.error(exception, "Error here");
         } finally {
             setLoading(false);
         }

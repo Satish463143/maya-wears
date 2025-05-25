@@ -23,7 +23,6 @@ const CustomerGalleryList = () => {
             await deletePhoto({imageUrl: rowId }).unwrap()
             toast.success("Image deleted")
         }catch(exception){
-            console.log(exception)
             toast.error("error while deleting image")
         }
     }

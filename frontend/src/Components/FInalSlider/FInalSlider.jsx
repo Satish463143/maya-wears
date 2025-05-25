@@ -82,7 +82,7 @@ const FInalSlider = () => {
           ))}
         </Slider>
       ) : (
-        <p>No products available</p>
+        <></>
       )}
     </div>
   );

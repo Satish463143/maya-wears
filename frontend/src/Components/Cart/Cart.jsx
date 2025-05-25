@@ -2,12 +2,10 @@ import React, {  useState } from 'react'
 import './Cart.css'
 import CartItem from '../../Middlewares/CartItem/CartItem'
 import { useListAllCartQuery, useDeleteCartMutation } from "../../api/cart.api";
-import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
 
 const Cart = ({isCartActive , toogleCart,}) => {
-    const cartId = Cookies.get('cartId');
-    const {data, refetch} = useListAllCartQuery(cartId ? { cartId } : null)
+    const {data, refetch} = useListAllCartQuery()
     const [deleteCart] = useDeleteCartMutation()
     const [loading, setLoading] = useState(false)
 
@@ -21,22 +19,10 @@ const Cart = ({isCartActive , toogleCart,}) => {
     const handleDelete = async (cartItemId) => {
         setLoading(true)
         try {
-            const cartId = Cookies.get('cartId'); // Get the cartId for anonymous users
-            const token = localStorage.getItem('_at'); // Check if the user is logged in
-    
-            // Perform the delete operation based on whether the user is logged in or not
-            if (token) {
-                // If the user is logged in, use the token for authentication
-                await deleteCart(cartItemId).unwrap();
-            } else if (cartId) {
-                // If the user is not logged in, use the cartId for the anonymous user's cart
-                await deleteCart({ cartId, cartItemId }).unwrap();
-            }
-    
-            // Refetch the cart or update the state if necessary
-            refetch(); // Refetch the cart data to reflect the updated cart
+            await deleteCart(cartItemId).unwrap();
+            refetch(); 
         } catch (exception) {
-            console.log(exception);
+            throw exception
         }
         finally{
             setLoading(false)

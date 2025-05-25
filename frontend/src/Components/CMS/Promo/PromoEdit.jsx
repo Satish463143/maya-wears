@@ -14,7 +14,6 @@ const PromoEdit = () => {
     const [editPromo] = useUpdateMutation()
   
     const promos = data?.result
-    console.log(promos)
 
     const submitEvent = async(data)=>{
       setLoading(true)

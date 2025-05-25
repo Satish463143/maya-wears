@@ -1,10 +1,9 @@
-import React, {  useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import "./Banner.css";
-import collectionSvc from "../CMS/Collection/Collection.service";
-import { useListAllQuery, useListForHomeQuery } from "../../api/mainBanner.api";
+import {  useListForHomeQuery } from "../../api/mainBanner.api";
 import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 
-const Banner = () => { 
+const Banner = React.memo(() => { 
 
   const {data, error, isLoading} = useListForHomeQuery(undefined,{
     refetchOnMountOrArgChange:false,
@@ -12,8 +11,14 @@ const Banner = () => {
     cacheTime: 1000 * 60 * 10,
   })
 
-  if(isLoading) {
-    return <LoadingComponent 
+  // Memoize the banner data to prevent unnecessary re-computations
+  const banner = useMemo(() => {
+    return data?.result?.data[0];
+  }, [data]);
+
+  // Memoize the loading component to prevent re-creation
+  const loadingComponent = useMemo(() => (
+    <LoadingComponent 
       style={{
         display: 'flex',
         justifyContent: 'center',
@@ -22,44 +27,48 @@ const Banner = () => {
         backgroundColor: '#f9f9f9',
       }} 
     />
+  ), []);
+
+  if(isLoading) {
+    return loadingComponent;
   }
  
-  const banner =  data?.result?.data[0]
-  
   return (
     <div className="banner">
-      {banner.category === "video" && (
+      {banner?.category === "video" && (
         <>
           <div className="desktop_img">
-            <video autoPlay muted loop loading="lazy">
+            <video autoPlay muted loop loading="lazy"  preload="metadata">
               <source src={banner.desktopVideo} />
             </video>
           </div>
           <div className="mobile_img">
-            <video autoPlay muted loop loading="lazy">
+            <video autoPlay muted loop loading="lazy"  preload="metadata">
               <source src={banner.mobileVideo} />
             </video>
           </div>
         </>
       )}
-      {banner.category === "image" && (
+      {banner?.category === "image" && (
         <>
           <div className="desktop_img">
-            <img src={banner.desktopImage} alt={banner.desktopImage} loading="lazy"/>
+            <img src={banner.desktopImage} alt={banner.desktopImage} loading="lazy"  preload="metadata"/>
           </div>
           <div className="mobile_img">
-            <img src={banner.mobileImage} alt={banner.mobileImage} loading="lazy"/>
+            <img src={banner.mobileImage} alt={banner.mobileImage} loading="lazy"  preload="metadata"/>
           </div>
         </>
       )}
       <div className="banner_content">
-        <h2 className="font-bold">{banner.title} </h2>
-        <p>{banner.content}</p>
-        <a href={banner.link}><button>{banner.button}</button></a>  
+        <h2 className="font-bold">{banner?.title} </h2>
+        <p>{banner?.content}</p>
+        <a href={banner?.link}><button>{banner?.button}</button></a>  
       </div>
     </div>
   );
-};
+});
 
+// Add display name for better debugging
+Banner.displayName = 'Banner';
 
 export default Banner;

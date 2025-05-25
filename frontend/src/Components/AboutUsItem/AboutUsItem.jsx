@@ -1,14 +1,11 @@
 import React from "react";
 import "./AboutUsItem.css";
-import one_photo from "../../assets/images/one.png";
-import two_photo from "../../assets/images/two.png";
 
 function AboutUsItem() {
   return (
     <div className="about_item">
       <div>
         <div className="about_first_item">
-          {/* <img src={one_photo} alt="" /> */}
           <p>
           Fashion is about the way we dress ourselves, and it embodies our expression as a person.
             <br />
@@ -25,7 +22,6 @@ function AboutUsItem() {
           </p>
         </div>
         <div className="about_second_item">
-          {/* <img src={two_photo} alt="" /> */}
           <h1>We Believe</h1>
           <p>Limits are Only Boundaries of the Mind. <br />Possibilities Are Boundless. <br />MAYA is Your Key  <br /> to Transforming the Ordinary.</p>
           <h1>Our passion and dedication are woven into every piece we create, ensuring that each product carries the essence of our love and craftsmanship.</h1>

@@ -37,7 +37,6 @@ const CollectionList = () => {
       toast.success("COllection deleted ucessfully")
       
     }catch(exception){
-      console.log(exception)
       toast.error("Cannot delete collection at this moment")
     }
 

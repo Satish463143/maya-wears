@@ -51,7 +51,6 @@ const BannersEdit = () => {
       }catch(exception){
           let errorMessage = "Error while creating banner";
           toast.error(errorMessage);
-          console.error(exception, "Error here");
       }finally{
           setLoading(false)
       }

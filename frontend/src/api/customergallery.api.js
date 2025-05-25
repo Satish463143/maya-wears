@@ -1,7 +1,7 @@
 import {createApi,fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
 export const CustomerGalleryApi = createApi({
-    reducerPath: "galleryApi",
+    reducerPath: "customerGalleryApi",
     baseQuery: fetchBaseQuery({
         baseUrl:import.meta.env.VITE_API_URL,
         prepareHeaders:(headers)=>{

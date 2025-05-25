@@ -36,7 +36,6 @@ const FeatuedProductEdit = () => {
       navigate('/admin/featured_product')
       
     }catch(exception){
-      console.log(exception)
       toast.error("Error while updating prouct")
     }
     finally{

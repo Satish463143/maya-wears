@@ -31,7 +31,6 @@ const FeatuedProductAdd = () => {
       toast.success("Featurued product added sucessfully")      
       navigate('/admin/featured_product')  
     }catch(exception){
-      console.log(exception)
       toast.error("Error while adding product")
     }
     finally{

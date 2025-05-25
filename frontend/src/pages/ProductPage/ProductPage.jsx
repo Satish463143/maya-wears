@@ -17,13 +17,10 @@ const ProductPage = () => {
   // Pass `productId` to `toogleAddToCart` to check if it's in the cart
   const toogleAddToCart = (product, selectedSize) => {
     if (product && selectedSize) {
-      console.log("Adding product to cart:", product, "with size:", selectedSize); // Debug: log product and size
       if (!isProductInCart(product._id)) {
         addToCartList({ ...product, selectedSize }); // Add product with selected size
       }
-    } else {
-      console.error("Product or selected size is missing");
-    }
+    } 
   };
 
   return (

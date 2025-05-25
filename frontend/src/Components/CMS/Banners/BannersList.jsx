@@ -34,7 +34,6 @@ const BannersList = () => {
         setPage(1);
       }catch(exception){
         toast.error("Failed to delete product")
-        console.error(exception)
       }
     }
 

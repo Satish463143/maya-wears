@@ -112,7 +112,7 @@ const ProductDetails = ({ toogleCart }) => {
                 </div>
                 <p className="model__wearing__size">
                   <span>
-                    {product.modelSize}
+                    {product.modelSize === 'null' ? '' : product.modelSize }
                   </span>
                 </p>
                 <p className="size__guideee" onClick={toggleSelectSize}>
@@ -139,7 +139,7 @@ const ProductDetails = ({ toogleCart }) => {
               <div className={`faq-item ${activeIndex === 1 ? "active" : ""}`} onClick={() => toggleHelp(1)} >
                 <div className="faq-question"> <h3>Fit </h3> </div>
                 {activeIndex === 1 && (
-                  <p>{product?.fit}</p>
+                  <p dangerouslySetInnerHTML={{__html:product?.fit}}></p>
                 )}
               </div>
               <div className={`faq-item ${activeIndex === 2 ? "active" : ""}`} onClick={() => toggleHelp(2)} >

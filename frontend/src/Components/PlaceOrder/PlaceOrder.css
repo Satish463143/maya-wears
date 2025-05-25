@@ -11,12 +11,8 @@
     font-size: var(--pri_font_size);
     width: 100%;    
 }
-.order_from{
-   display: grid;
-   grid-template-columns: 45% 45%;
-   justify-content: space-between;
-   width: 100%;
-   align-items: center;
+.order_summary_price{
+    display: none;
 }
 .order_promo{
     display: grid;
@@ -28,8 +24,12 @@
     height: 50px;
     border-radius: 5px;
 }
+.place_order_button {
+    font-size: 20px;
+    font-weight: 500;
+}
 .submit_btn{
-    width: 250px;
+    /* width: 250px; */
     height: 40px;
     border-radius: 5px;
 }
@@ -37,16 +37,35 @@
     height: 40px;
 }
 @media(max-width:800px){
-    .order_from{
-        grid-template-columns: 49% 49%;
+    
+    .grid_order_summary_price{
+        display: none;
     }
+    .order_summary_price{
+        display: block;
+    }
+    .order_promo{
+        display: grid;
+        grid-template-columns: 60% 35%;
+    }
+    .cart_box{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+
+
 }
 @media(max-width:550px){
-    .order_from{
+    .order_promo{
+        display: grid;
         grid-template-columns: 100%;
     }
     .place_order_button{
         margin-top: 10px;
+        font-size: 18px !important;
 
+    }
+    .order_title{
+        font-size: 20px;
     }
 }

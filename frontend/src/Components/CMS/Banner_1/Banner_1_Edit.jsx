@@ -15,7 +15,6 @@ const Banner_1_Edit = () => {
         try{
             const detail = await collectionSvc.getRequest("/banner_1/"+params.id,{auth:true})           
             setBanner(detail.result)
-            // console.log(banner)
             setLoading(false)            
         }catch(exception){
             toast.error("Error while fetching collection")
@@ -27,7 +26,6 @@ const Banner_1_Edit = () => {
         getDetail()
       },[])
 
-      console.log('first banner', banner)
 
       const submitEvent = async (data)=>{
         setLoading(true);
@@ -59,7 +57,6 @@ const Banner_1_Edit = () => {
         }catch(exception){
             let errorMessage = "Error while updating banner";
             toast.error(errorMessage);
-            console.error(exception, "Error here");
         }finally{
             setLoading(false)
         }

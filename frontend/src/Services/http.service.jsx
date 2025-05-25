@@ -41,7 +41,6 @@ class HttpService {
       });
       return response;
     } catch (exception) {
-      console.log(exception)
       throw exception;
     }
   };
@@ -75,7 +74,6 @@ class HttpService {
 
       return response;
     } catch (exception) {
-      console.log(exception, 'here it is') 
       throw exception;
     }
   };

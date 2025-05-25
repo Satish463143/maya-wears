@@ -1,9 +1,7 @@
 require("dotenv").config();
-const jwt = require("jsonwebtoken")
 const mongoose = require('mongoose')
 const ProductModel = require("../product/product.model");
 const CartModel = require("./cart.model");
-const userSvc = require("../../modules/user/user.service")
 
 class CartController {
     create = async (req, res, next) => {
@@ -82,16 +80,10 @@ class CartController {
     
     index = async (req, res, next) => {
         try {
-            const userId = req.userId; 
-            const cartId = req.cookies.cartId;
+            const userId = req.userId; // This comes from authOrAnonymous middleware
         
-             // Fetch the cart based on userId or cartId
-            const cart = await CartModel.findOne({
-                $or: [
-                { userId }, // Match logged-in user's cart
-                { _id: cartId }, // Match anonymous user's cart by cartId
-                ],
-            });
+             // Fetch the cart based on userId (which can be user ID for logged-in users or cartId for anonymous users)
+            const cart = await CartModel.findOne({ userId });
     
             if (!cart) {
                 return res.status(404).json({ message: "Cart not found" });
@@ -116,13 +108,21 @@ class CartController {
             const {  quantity } = req.body;
     
             const cartId = req.userId // Check for logged-in user or anonymous user
+            
+            console.log('Edit cart - Cart Item ID:', id);
+            console.log('Edit cart - New quantity:', quantity);
+            console.log('Edit cart - User ID (from middleware):', cartId);
     
             // Find the cart for the logged-in user or anonymous user
             const cart = await CartModel.findOne({ userId: cartId });
+            console.log('Edit cart - Cart found:', cart ? 'Yes' : 'No');
+            
             if (!cart) return res.status(404).json({ message: "Cart not found" });
     
             // Find the cart item by id
             const item = cart.items.find(item => item._id.toString() === id);
+            console.log('Edit cart - Item found:', item ? 'Yes' : 'No');
+            
             if (!item) return res.status(404).json({ message: "Item not found in cart" });
     
             // Update the item values
@@ -139,7 +139,7 @@ class CartController {
                 meta: null,
             });
         } catch (exception) {
-            console.log(exception);
+            console.log('Edit cart error:', exception);
             next(exception);
         }
     };
@@ -150,15 +150,22 @@ class CartController {
         try {
             const cartItemId = req.params.id; // ID of the item to delete
             const userId = req.userId; // Set by authOrAnonymous middleware
+            
+            console.log('Delete cart item - Cart Item ID:', cartItemId);
+            console.log('Delete cart item - User ID (from middleware):', userId);
     
             // Find the cart (either logged-in user or anonymous user)
             const cart = await CartModel.findOne({ userId });
+            console.log('Delete cart item - Cart found:', cart ? 'Yes' : 'No');
+            
             if (!cart) {
                 return res.status(404).json({ message: "Cart not found" });
             }
     
             // Check if the item exists in the cart
             const itemExists = cart.items.some(item => item._id.toString() === cartItemId);
+            console.log('Delete cart item - Item exists:', itemExists);
+            
             if (!itemExists) {
                 return res.status(404).json({ message: "Item not found in cart" });
             }

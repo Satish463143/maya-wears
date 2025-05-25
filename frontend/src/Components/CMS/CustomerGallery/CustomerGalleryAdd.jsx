@@ -23,8 +23,7 @@ const CustomerGalleryAdd = () => {
             navigate('/admin/customerGallery')
 
         }catch(exception){
-            console.log(exception)
-            toast.error('Error while adding photos')
+            toast.error(exception?.data?.message || 'Error while adding photos')
         }
         finally{
             setLoading(false)

@@ -186,7 +186,7 @@
     position: relative;      
     list-style: none;
     padding-top: 30px;
-    font-size: var(--font_for_header);
+    font-size: 22px;
     display: inline-block;
     text-align: center;
     

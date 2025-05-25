@@ -14,7 +14,8 @@ const myStorage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const ext = file.originalname.split(".").pop()
-        const filename = randomStringGenerator(40) + "." + ext
+        const generatedCode = randomStringGenerator(20) // Reduced length since we're adding prefix
+        const filename = `maya-wears-${generatedCode}.${ext}`
         cb(null, filename)
     }
 })
@@ -31,7 +32,7 @@ const uplaodFile = (fileType = FileFilterType.IMAGE) => {
     return multer({
         storage: myStorage,
         limits: {
-            fileSize: 300000000, // 300MB
+            fileSize: 2000000, // 2MB
         },
         fileFilter: (req, file, cb) => {
             const ext = file.originalname.split('.').pop().toLowerCase();
@@ -49,7 +50,7 @@ const uploadImageAndVideo = () => {
     return multer({
         storage: myStorage,  // Reuse the existing storage config
         limits: {
-            fileSize: 100000000  // 100MB limit for both images and videos
+            fileSize: 2000000  // 100MB limit for both images and videos
         },
         fileFilter: (req, file, cb) => {
             // console.log("Received file:", file);

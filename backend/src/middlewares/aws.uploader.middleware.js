@@ -8,7 +8,8 @@ const { FileFilterType } = require("../config/constants.config");
 
 const generateFileName = (file) => {
     const ext = path.extname(file.originalname).toLowerCase();
-    return `${randomStringGenerator(40)}${ext}`;
+    const generatedCode = randomStringGenerator(20); // Reduced length since we're adding prefix
+    return `maya-wears-${generatedCode}${ext}`;
 };
 
 // Create a more resilient S3 storage function

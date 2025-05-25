@@ -25,7 +25,6 @@ const Banner_1List = () => {
       });
       setBanner(response.result);      
     } catch (exception) {
-      console.log(exception);
       Toast.error('Error Getting Banner');
     } finally {
       setLoading(false);

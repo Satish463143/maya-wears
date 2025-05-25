@@ -16,7 +16,7 @@ export const cartApi = createApi({
       tagTypes: ['Cart'],
     endpoints:(builder)=>({
         listAllCart : builder.query({
-            query:(cartId)=> `/cart/${cartId}`,
+            query:()=> `/cart`,
             method:"GET",
             providesTags: ['Cart'],
         }),
@@ -39,8 +39,8 @@ export const cartApi = createApi({
             invalidatesTags: ['Cart'],
         }),
         updateCart:builder.mutation({
-            query:({productId, quantity })=>({
-                url:`/cart/${productId}`,
+            query:({cartItemId, quantity })=>({
+                url:`/cart/${cartItemId}`,
                 method:"PUT",
                 body:{quantity}
             }),

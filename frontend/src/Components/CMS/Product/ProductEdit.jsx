@@ -72,7 +72,6 @@ const ProductEdit = () => {
         toast.success("Product added successfully");
         navigate('/admin/product')
     }catch(exception){
-      console.log("error ", exception)
       toast.error('Error While Updating Product')
     }finally{
       setLoading(false)

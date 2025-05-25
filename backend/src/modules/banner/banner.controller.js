@@ -167,12 +167,7 @@ class BannerController {
     listForHome= async(req,res,next)=>{
         try {
 
-            const list = await bannerSvc.listData({
-                limit: 6,
-                filter: {
-                    status: Status.ACTIVE
-                }
-            })
+            const list = await bannerSvc.listData(6)
             res.json({
                 result: list,
                 message: "List of active Banners",

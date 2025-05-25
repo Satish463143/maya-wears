@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import FaqItem from '../../Middlewares/FaqItem/FaqItem';
 import './Faq.css'
 import line_svg from '../../assets/images/headline-curve.svg'

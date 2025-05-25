@@ -1,7 +1,4 @@
 const banner_1Service = require("./banner_1.service")
-const { deleteFile } = require("../../utilies/helper")
-const {uploadImage,uploadVideo} = require("../../config/cloudinary.config")
-// const  = require("../../config/cloudinary.config")
 
 class Banner_1Controller {
     banner_1Details

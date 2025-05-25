@@ -23,7 +23,6 @@ const GalleryAdd = () => {
             navigate('/admin/gallery')
 
         }catch(exception){
-            console.log(exception)
             toast.error('Error while adding photos')
         }
         finally{

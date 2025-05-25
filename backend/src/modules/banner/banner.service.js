@@ -56,6 +56,23 @@ class BannerService {
         }
 
     }
+
+    // Optimized method to get active banners for home page (no count, no population)
+    getActiveBannersForHome = async (limit = 6) => {
+        try {
+            const data = await BannerModel.find({
+                status: "active"
+            })
+            .select("title content desktopImage mobileImage desktopVideo mobileVideo category link button status")
+            .sort({ _id: "desc" })
+            .limit(limit)
+            .lean(); // Use lean() for better performance
+            
+            return data;
+        } catch(exception) {
+            throw exception;
+        }
+    }
 }
 
 const bannerSvc = new BannerService

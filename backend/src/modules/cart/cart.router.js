@@ -5,12 +5,10 @@ const router  = require('express').Router()
 
 
 router.route('/')
-
     .post(authOrAnonymous, CartController.create)
-    // .get(authOrAnonymous, CartController.index)
+    .get(authOrAnonymous, CartController.index)
 
 router.route('/:id')
-    .get(authOrAnonymous, CartController.index)
     .put(authOrAnonymous, CartController.edit)
     .delete(authOrAnonymous, CartController.deleteById) // delete cart by item
 
