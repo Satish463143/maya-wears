@@ -40,6 +40,18 @@ const ProductDetails = ({ toogleCart }) => {
     }
   }, [data, _id, slug]);
 
+  // Reset state when product changes (when navigating between different products)
+  useEffect(() => {
+    setSelectedSize(""); // Reset selected size
+    setActiveIndex(null); // Reset accordion state
+    // Reset scroll position for image container (both vertical and horizontal)
+    const imageContainer = document.querySelector('.product_img_grid');
+    if (imageContainer) {
+      imageContainer.scrollTop = 0; // Reset vertical scroll (desktop)
+      imageContainer.scrollLeft = 0; // Reset horizontal scroll (mobile)
+    }
+  }, [_id, slug]); // Reset when product ID or slug changes
+
   if (isLoading) return <LoadingComponent 
     style={{
       display: 'flex',
@@ -176,11 +188,11 @@ const ProductDetails = ({ toogleCart }) => {
       <div className={`size_popup ${selectSize ? 'dispplay_size_guide': ''}`}>
         <div className="overlay_popup" onClick={toggleSelectSize}></div>
           <div className="sizee_des">
-            <img src={sizeGuide} alt="Maya-wears size guide" loading='lazy'/>             
-          </div>
-          <button className="close_btnn" onClick={toggleSelectSize}>
-            close
-          </button>
+            <img src={sizeGuide} alt="Maya-wears size guide" loading='lazy'/>  
+            <button className="close_btnn" onClick={toggleSelectSize}>
+              <svg viewBox="0 0 24 24" height='24px' width='24px' xmlns="http://www.w3.org/2000/svg"><g id="Line"><path fill="white" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z"/><path fill="white" d="M15.71,8.29a1,1,0,0,0-1.42,0L12,10.59,9.71,8.29A1,1,0,0,0,8.29,9.71L10.59,12l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l2.29,2.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L13.41,12l2.3-2.29A1,1,0,0,0,15.71,8.29Z"/></g></svg>
+            </button>           
+          </div>          
       </div> 
       
     </>

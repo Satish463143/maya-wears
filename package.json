@@ -1,0 +1,19 @@
+{
+  "name": "maya-wears",
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce application with code analysis and optimization tools",
+  "scripts": {
+    "analyze": "node scripts/analyze-code.js",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:analyze": "cd frontend && npm run build && npm run analyze",
+    "backend:dev": "cd backend && npm start",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "build:production": "cd frontend && npm run build",
+    "deploy:prepare": "npm run build:production && npm run deploy:copy",
+    "deploy:copy": "node scripts/deploy-prepare.js"
+  },
+  "keywords": ["e-commerce", "react", "node.js", "code-analysis"],
+  "author": "Your Name",
+  "license": "MIT"
+} 
