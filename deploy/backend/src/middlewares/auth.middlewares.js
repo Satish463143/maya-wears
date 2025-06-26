@@ -18,7 +18,6 @@ const loginCheck = async (req, res, next) => {
             throw{status:403, message: "Main Token is required"} 
         }
 
-        // Fetch user from the database based on JWT `sub` field
         const user = await userSvc.getSingleUserByFilter({
             _id: data.sub
         });
