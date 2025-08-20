@@ -22,7 +22,7 @@ const myStorage = multer.diskStorage({
 
 
 const uplaodFile = (fileType = FileFilterType.IMAGE) => {
-    let allowed = ['jpg','jpeg', 'png', 'webp', 'gif'];
+    let allowed = ['jpg','jpeg','png', 'webp', 'gif'];
     if (fileType === FileFilterType.DOCUMENT) {
         allowed = ['pdf', 'txt', 'docs'];
     } else if (fileType === FileFilterType.VIDEO) {
