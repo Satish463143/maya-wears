@@ -5,11 +5,13 @@ import { useSelector } from "react-redux";
 
 const CheckPermission = ({ allowedBy, children }) => {
  
+  //called loggedin user
   const loggedInUser = useSelector((root)=>{
     return root.user.loggedInUser
   })
   const navigate = useNavigate();
 
+  // check permission
   useEffect(() => {
     if (loggedInUser) {
       if (loggedInUser.role !== allowedBy) {
