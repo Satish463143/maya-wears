@@ -5,6 +5,7 @@ const axiosInstance = axios.create({
     //backend api call
     baseURL:import.meta.env.VITE_API_URL,
     
+    //set timeout
     timeout:30000,
     timeoutErrorMessage:"Server timed out...",
       
