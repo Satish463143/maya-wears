@@ -31,6 +31,7 @@ const storeConfig = configureStore({
         [PromoApi.reducerPath]:PromoApi.reducer
 
     },
+    //bind middleware
     middleware:(getDefaultMiddleware)=>
         getDefaultMiddleware()
         .concat(CollectionApi.middleware)
