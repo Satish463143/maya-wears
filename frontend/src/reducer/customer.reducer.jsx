@@ -5,6 +5,7 @@ export const setCustomerId = (customerId) => ({
   payload: customerId,
 });
 
+//create initial state for customer
 const initialState = {
   customerId: null, // Store the customer ID here
 };
