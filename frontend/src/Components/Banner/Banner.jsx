@@ -69,7 +69,6 @@ const Banner = React.memo(() => {
   );
 });
 
-// Add display name for better debugging
-Banner.displayName = 'Banner';
+
 
 export default Banner;
