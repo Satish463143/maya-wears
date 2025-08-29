@@ -36,6 +36,7 @@ const Banner = React.memo(() => {
  
   return (
     <div className="banner">
+      {/* banner video */}
       {banner?.category === "video" && (
         <>
           <div className="desktop_img">
