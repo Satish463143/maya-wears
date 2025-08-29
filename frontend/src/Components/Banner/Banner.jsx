@@ -50,6 +50,7 @@ const Banner = React.memo(() => {
           </div>
         </>
       )}
+      {/* banner image */}
       {banner?.category === "image" && (
         <>
           <div className="desktop_img">
