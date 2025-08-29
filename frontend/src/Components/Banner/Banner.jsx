@@ -5,6 +5,7 @@ import LoadingComponent from "../../Middlewares/Loading/Loading.component";
 
 const Banner = React.memo(() => { 
 
+  //calling banner api
   const {data, error, isLoading} = useListForHomeQuery(undefined,{
     refetchOnMountOrArgChange:false,
     staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
