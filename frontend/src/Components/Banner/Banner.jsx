@@ -60,6 +60,7 @@ const Banner = React.memo(() => {
           </div>
         </>
       )}
+      {/* banner content */}
       <div className="banner_content">
         <h2 className="font-bold">{banner?.title} </h2>
         <p>{banner?.content}</p>
